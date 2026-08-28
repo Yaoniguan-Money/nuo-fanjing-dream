@@ -514,7 +514,7 @@ function openDoor(source="mouse"){
 ========================================================= */
 function makeDust(){
   const field = $("#particleField");
-  for(let i=0;i<42;i++){
+  for(let i=0;i<18;i++){
     const d=document.createElement("i");
     d.className="dust";
     d.style.left=Math.random()*100+"%";
@@ -529,55 +529,73 @@ function makeDust(){
 }
 makeDust();
 
-function obscuredMaskSvg(i){
-  const forms=[
-    "M95 8L124 31L140 92L129 151L148 222L99 239L52 211L63 152L49 99L68 36Z",
-    "M86 8L126 26L148 73L132 128L151 204L111 239L57 216L45 156L63 100L48 52Z",
-    "M95 7L135 43L126 88L151 151L132 226L92 240L49 219L61 164L39 112L61 49Z",
-    "M104 9L143 51L126 102L146 168L116 237L68 225L44 175L61 120L48 67Z"
-  ];
-  const threads=["M75 42L112 203 M101 27L82 214","M61 48L122 202 M116 40L91 219","M74 31L111 218 M117 63L70 190","M69 50L119 205 M122 83L79 225"];
-  return `<svg viewBox="0 0 190 248" aria-hidden="true"><path class="veil-shape" d="${forms[i]}"/><path class="veil-thread" d="${threads[i]}"/><path class="veil-thread dim" d="M45 165Q95 186 148 151"/></svg>`;
-}
 function maskImage(i, className=""){
   const m=MASKS[i];
   return `<img class="mask-source ${className}" src="${m.asset}" alt="${m.name}面" draggable="false">`;
 }
+
+const ALTAR_MASK_LAYOUT=[
+  {x:0,y:-24,scale:.94,opacity:.50,z:18},
+  {x:-24,y:-8,scale:.66,opacity:.29,z:12},
+  {x:25,y:-3,scale:.62,opacity:.25,z:10},
+  {x:13,y:18,scale:.48,opacity:.18,z:7}
+];
+const ALTAR_AMBIENT_LAYOUT=[
+  {maskIndex:2,className:"altar-ambient altar-foreground altar-left"},
+  {maskIndex:1,className:"altar-ambient altar-foreground altar-right"},
+  {maskIndex:3,className:"altar-ambient altar-mid altar-left-mid"},
+  {maskIndex:0,className:"altar-ambient altar-mid altar-right-mid"},
+  {maskIndex:2,className:"altar-ambient altar-far altar-center-far"}
+];
+
+function createAltarAtmosphere(){
+  const field=$("#ritualAmbientMasks");
+  field.innerHTML="";
+  ALTAR_AMBIENT_LAYOUT.forEach(({maskIndex,className})=>{
+    const node=document.createElement("div");
+    node.className=className;
+    node.innerHTML=maskImage(maskIndex,"altar-ambient-image");
+    field.appendChild(node);
+  });
+}
+createAltarAtmosphere();
+
 MASKS.forEach((m,i)=>{
   const el=document.createElement("div");
-  el.className="mask";
-  el.innerHTML=`<div class="mask-card mask-veil">${obscuredMaskSvg(i)}<i></i></div>`;
+  el.className="mask scene-mask";
+  el.dataset.maskIndex=String(i);
+  el.innerHTML=`<div class="mask-card mask-photo">${maskImage(i,"scene-mask-image")}<i aria-hidden="true"></i></div>`;
   $("#maskRing").appendChild(el);
 });
 const masks=[...document.querySelectorAll(".mask")];
+let altarSelectionActive=false;
 
-function layoutRing(a=-Math.PI/2,d=.7){
-  const rx=Math.min(innerWidth*.27,330), ry=Math.min(innerHeight*.13,108);
+function layoutRing(_angle=-Math.PI/2,d=.7){
   masks.forEach((m,i)=>{
-    const ang=a+i*Math.PI*2/masks.length;
-    const dep=(Math.sin(ang)+1)/2;
-    m.style.zIndex=Math.round(dep*20);
+    const layout=ALTAR_MASK_LAYOUT[i];
+    m.style.zIndex=String(layout.z);
     gsap.to(m,{
-      x:Math.cos(ang)*rx,y:Math.sin(ang)*ry,
-      scale:.54+dep*.63,opacity:.26+dep*.74,
-      filter:`blur(${(1-dep)*2.3}px) drop-shadow(0 18px 22px rgba(0,0,0,.75))`,
-      duration:d,ease:"power3.out"
+      x:innerWidth*layout.x/100,y:innerHeight*layout.y/100,
+      scale:layout.scale,opacity:layout.opacity,duration:d,ease:"power3.out"
     });
   });
 }
 layoutRing();
-masks.forEach((m,i)=> m._float = gsap.to(m,{y:"+=7",duration:2.4+(i%3)*.35,repeat:-1,yoyo:true,ease:"sine.inOut"}));
+masks.forEach((m,i)=> m._float = gsap.to(m,{y:"+=4",duration:3.6+(i%3)*.55,repeat:-1,yoyo:true,ease:"sine.inOut"}));
 
 function startRitual(){
   switchScreen($("#ritual"),{immediate:true});
+  document.body.classList.add("ritual-active");
+  $("#ritual").classList.add("ritual-invocation");
   setPhase("DRAGON ALTAR");
   AudioEngine.playCue("gong");
 
   gsap.timeline()
-    .from(".dragon-svg",{opacity:0,scale:.94,duration:1.2,ease:"power2.out"})
-    .from(".mask",{opacity:0,scale:.22,y:40,stagger:.08,duration:1.0,ease:"power3.out"},"-=.65")
-    .to(["#ritualEyebrow","#ritualTitle","#ritualDesc"],{opacity:1,stagger:.07,duration:.45},"-=.5")
-    .to("#inputWrap",{opacity:1,pointerEvents:"auto",duration:.38},"-=.28");
+    .from("#ritualAtmosphere",{opacity:0,duration:1.25,ease:"power2.out"})
+    .from(".altar-ambient",{opacity:0,stagger:.11,duration:1.2,ease:"power2.out"},"-=.92")
+    .from(".scene-mask",{opacity:0,scale:"-=.12",y:"+=16",stagger:.09,duration:1.1,ease:"power3.out"},"-=1.02")
+    .to(["#ritualEyebrow","#ritualTitle"],{opacity:1,stagger:.08,duration:.48},"-=.58")
+    .to("#inputWrap",{opacity:1,pointerEvents:"auto",duration:.38},"-=.24");
 }
 
 $("#inputBtn").onclick = submitRitual;
@@ -590,6 +608,7 @@ function submitRitual(){
 
   if(state.ritualStep===0){
     state.name=v; state.ritualStep=1;
+    $("#ritual").classList.remove("ritual-invocation");
     setCopy("问 · 愿", `${v}，你为何而来？`, "说出此刻最放不下的一件事。不必说得完整，傩引只需要知道，你真正被什么卡住。");
     showInput("例如：工作、感情、前路、家人、恐惧……");
     EventBus.emit("ritual:name",{name:v});
@@ -606,18 +625,14 @@ function pickMask(text){
 
 function chooseMask(){
   state.selected = pickMask(state.wish);
+  altarSelectionActive=true;
   setPhase("MASK CHOSEN");
   AudioEngine.playCue("heavy");
   impact(.7);
   masks.forEach(m=>m._float && m._float.kill());
 
-  const spin={a:-Math.PI/2};
-  gsap.to(spin,{
-    a:-Math.PI/2 - Math.PI*2*2.7 - (Math.PI*2/masks.length)*state.selected,
-    duration:3.0,ease:"power4.inOut",
-    onUpdate:()=>layoutRing(spin.a,.07),
-    onComplete:focusMask
-  });
+  masks.forEach((mask,index)=>mask.classList.toggle("is-chosen",index===state.selected));
+  gsap.to(masks[state.selected],{x:0,y:-innerHeight*.075,scale:1.06,opacity:.78,duration:2.35,ease:"power3.inOut",onComplete:focusMask});
 }
 
 $("#continueBtn").onclick = ()=>{
@@ -753,6 +768,7 @@ async function requestOmen(){
 function finishStory(){
   buildGetFace();
   persistCurrentResult();
+  document.body.classList.remove("ritual-active");
   setPhase("REVELATION");
   AudioEngine.playCue("heavy");
   impact(1.25);
@@ -939,14 +955,22 @@ document.addEventListener("keydown",event=>{ if(event.key==="Escape") closeCodex
 /* =========================================================
    SUBTLE MOUSE PARALLAX / DEV INPUT
 ========================================================= */
-EventBus.on("mouse:move", ({x,y})=>{
-  if($("#ritual").classList.contains("active")){
-    gsap.to(".dragon-svg",{x:x*14,y:y*10,duration:.8,ease:"power2.out"});
-    gsap.to("#maskRing",{x:x*8,y:y*6,duration:.7,ease:"power2.out"});
-  }
-});
+const ritualParallax={x:0,y:0,queued:false};
+function queueRitualParallax(x,y){
+  ritualParallax.x=x; ritualParallax.y=y;
+  if(ritualParallax.queued) return;
+  ritualParallax.queued=true;
+  requestAnimationFrame(()=>{
+    ritualParallax.queued=false;
+    if(!$("#ritual").classList.contains("active") || dragMask) return;
+    const px=ritualParallax.x*5, py=ritualParallax.y*3;
+    $("#maskRing").style.transform=`translate3d(${px}px,${py}px,0)`;
+    $("#ritualAtmosphere").style.transform=`translate3d(${-px*.48}px,${-py*.48}px,0)`;
+  });
+}
+EventBus.on("mouse:move",({x,y})=>queueRitualParallax(x,y));
 
-window.addEventListener("resize",()=>layoutRing(-Math.PI/2,.25));
+window.addEventListener("resize",()=>{ if(!altarSelectionActive) layoutRing(-Math.PI/2,.25); });
 
 
 /* =========================================================
@@ -1042,14 +1066,7 @@ window.addEventListener("pointermove",(e)=>{
   cursorX=e.clientX;
   cursorY=e.clientY;
 
-  // Dragon altar parallax when not dragging.
-  if($("#ritual").classList.contains("active") && !dragMask){
-    const nx=e.clientX/innerWidth-.5;
-    const ny=e.clientY/innerHeight-.5;
-    gsap.to(".dragon-svg",{x:nx*6,y:ny*4,rotation:nx*.25,duration:.72,overwrite:"auto",ease:"power2.out"});
-    gsap.to("#ritualOrb",{x:nx*-3,y:ny*-2,duration:.82,overwrite:"auto",ease:"power2.out"});
-    gsap.to("#maskRing",{x:nx*3,y:ny*2,duration:.62,overwrite:"auto",ease:"power2.out"});
-  }
+  if($("#ritual").classList.contains("active") && !dragMask) queueRitualParallax(e.clientX/innerWidth-.5,e.clientY/innerHeight-.5);
 
   if(dragMask){
     dragMaskToPointer(e.clientX,e.clientY);
@@ -1142,24 +1159,12 @@ function finishMaskDrag(e){
 masks.forEach((m,i)=>{
   m.addEventListener("pointerenter",()=>{
     if(!$("#ritual").classList.contains("active") || dragMask) return;
-    gsap.to(m,{
-      rotationY:(i%2?1:-1)*2,
-      rotationX:-1,
-      duration:.25,
-      overwrite:"auto",
-      ease:"power2.out"
-    });
+    m.classList.add("is-near");
   });
 
   m.addEventListener("pointerleave",()=>{
     if(dragMask===m) return;
-    gsap.to(m,{
-      rotationY:0,
-      rotationX:0,
-      duration:.25,
-      overwrite:"auto",
-      ease:"power2.out"
-    });
+    m.classList.remove("is-near");
   });
 
   m.addEventListener("pointerdown",(e)=>beginMaskDrag(e,m,i));
@@ -1179,12 +1184,14 @@ function snapMaskToFace(m,i){
   EventBus.emit("mask:snapToFace",{index:i,name:MASKS[i].name});
 
   gsap.timeline()
+    .to(masks.filter(mask=>mask!==m),{opacity:0,y:"+=20",scale:"-=.08",duration:.72,stagger:.05,ease:"power2.in"})
+    .to([".altar-ambient",".ritual-fog-mid",".ritual-fog-far"],{opacity:0,duration:.58,ease:"power2.in"},"<")
     .to(m,{
       x:0,
       y:-45,
-      scale:1.7,
+      scale:1.55,
       rotationZ:0,
-      duration:.26,
+      duration:.58,
       overwrite:"auto",
       ease:"power3.in"
     })
@@ -1213,42 +1220,17 @@ function focusMask(){
   const chosen=masks[state.selected];
   if(!chosen) return;
 
-  const others=masks.filter(m=>m!==chosen);
-
-  others.forEach(m=>{
-    gsap.to(m,{
-      opacity:.04,
-      scale:.4,
-      filter:"blur(5px)",
-      duration:.7,
-      overwrite:"auto"
-    });
-  });
-
+  chosen.classList.add("is-revealed");
   gsap.to(chosen,{
     x:0,
-    y:-20,
-    scale:1.22,
-    opacity:1,
+    y:-innerHeight*.075,
+    scale:1.08,
+    opacity:.82,
     rotationX:0,
     rotationY:0,
-    filter:"blur(0px) drop-shadow(0 25px 32px rgba(0,0,0,.82))",
-    duration:.95,
+    duration:.85,
     overwrite:"auto",
     ease:"power4.out"
-  });
-
-  gsap.to(chosen.querySelector(".mask-card"),{
-    rotateY:180,
-    duration:.65,
-    ease:"power2.inOut",
-    onComplete:()=>{
-      gsap.to(chosen.querySelector(".mask-card"),{
-        rotateY:360,
-        duration:.9,
-        ease:"power3.inOut"
-      });
-    }
   });
 
   setTimeout(()=>{
