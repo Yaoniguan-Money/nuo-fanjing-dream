@@ -1,4 +1,4 @@
-import type { FaceData, FaceMask, FaceRole, FaceRoleKind, FaceMaskVisual } from "./data";
+import type { FaceData, FaceMask, FaceRole, FaceMaskVisual } from "./data";
 
 export interface FaceResolutionContext {
   name?: string;

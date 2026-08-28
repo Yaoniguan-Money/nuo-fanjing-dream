@@ -11,8 +11,7 @@
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run src && npm run test:legacy",
-    "test:legacy": "node --test tests/*.test.mjs",
+    "test": "vitest run src",
     "validate:content": "node scripts/validate-content.mjs && vitest run src/domain/dream-card/content.test.ts",
     "validate": "npm run validate:content",
     "audit": "npm audit --audit-level=high"
