@@ -4,14 +4,14 @@
 
 ## 运行
 
-要求 Node.js `20.19.x`，首次安装与本地开发使用：
+要求 Node.js `24.x`，首次安装与本地开发使用：
 
 ```bash
 npm ci
 npm run dev
 ```
 
-访问 <http://localhost:3000>。生产构建使用 Next standalone 输出；完成构建后可用 `npm run start` 启动生产服务，或直接运行 `.next/standalone/server.js`。
+访问 <http://localhost:3000>。生产构建使用标准 Next.js 输出；完成构建后可用 `npm run start` 启动生产服务，线上由 Vercel 托管。
 
 ## 唯一验证流程
 
@@ -27,7 +27,7 @@ npm run audit
 git diff --check
 ```
 
-CI 定义在 `.github/workflows/ci.yml`；`npm test` 只运行 Vitest。`npm run build` 也会先校验幻梦内容，并生成 standalone 产物。
+CI 定义在 `.github/workflows/ci.yml`；`npm test` 只运行 Vitest。`npm run build` 也会先校验幻梦内容，并生成标准 Next.js 生产产物。
 
 ## 路由与权威路径
 
