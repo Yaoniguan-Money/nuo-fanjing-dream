@@ -40,7 +40,7 @@ function ActHud({ act, actIndex, actCount, textIndex }: { act: DreamAct; actInde
 function DialoguePanel({ text, content }: { text: DreamText | null; content: string }) {
   const kind = text?.extensions.sourceType ?? "narration";
   const classes = ["dialogue-panel", text?.extensions.self ? "self" : "", text?.extensions.mystic ? "mystic" : ""].filter(Boolean).join(" ");
-  return <div className={classes} data-kind={kind}><div className="speaker-name">{kind === "dialogue" ? text?.extensions.speakerName ?? text?.speakerId : ""}</div><div className={text ? "dialogue-content" : "dialogue-content act-ready"}>{text ? content : "点击继续，开始本幕。"}</div><div className="advance-hint">点击继续 ▽</div></div>;
+  return <div className={classes} data-kind={kind}><div className="speaker-name">{kind === "dialogue" ? text?.extensions.speakerName ?? text?.speakerId : ""}</div><div className={text ? "dialogue-content" : "dialogue-content act-ready"}>{text ? content : "点击继续，开始本幕。"}</div><div className="advance-hint"><span className="pointer-advance-hint">点击继续</span><span className="touch-advance-hint">轻触继续</span> ▽</div></div>;
 }
 
 export interface DreamPlayerProps {

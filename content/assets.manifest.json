@@ -242,11 +242,11 @@
     {
       "assetId": "threshold.fanjing-backdrop",
       "type": "threshold",
-      "file": "threshold/fanjing-backdrop-v2.png",
-      "mimeType": "image/png",
+      "file": "threshold/fanjing-backdrop-v2.webp",
+      "mimeType": "image/webp",
       "width": 1672,
       "height": 941,
-      "bytes": 2482465,
+      "bytes": 169724,
       "status": "draft",
       "source": { "type": "project", "license": "project-owned" },
       "description": "梵净山入场远景。"
@@ -254,11 +254,11 @@
     {
       "assetId": "threshold.fanjing-village",
       "type": "threshold",
-      "file": "threshold/fanjing-mountain-village.png",
-      "mimeType": "image/png",
+      "file": "threshold/fanjing-mountain-village.webp",
+      "mimeType": "image/webp",
       "width": 1672,
       "height": 941,
-      "bytes": 2323876,
+      "bytes": 137130,
       "status": "draft",
       "source": { "type": "project", "license": "project-owned" },
       "description": "梵净山村寨共享背景。"
@@ -266,11 +266,11 @@
     {
       "assetId": "threshold.ritual-hall",
       "type": "threshold",
-      "file": "threshold/ritual-threshold-hall.png",
-      "mimeType": "image/png",
+      "file": "threshold/ritual-threshold-hall.webp",
+      "mimeType": "image/webp",
       "width": 1672,
       "height": 941,
-      "bytes": 1867093,
+      "bytes": 87684,
       "status": "draft",
       "source": { "type": "project", "license": "project-owned" },
       "description": "门后仪式空间。"
@@ -278,11 +278,11 @@
     {
       "assetId": "threshold.village-door",
       "type": "threshold",
-      "file": "threshold/village-facade-door.png",
-      "mimeType": "image/png",
+      "file": "threshold/village-facade-door.webp",
+      "mimeType": "image/webp",
       "width": 1672,
       "height": 941,
-      "bytes": 2726966,
+      "bytes": 415422,
       "status": "draft",
       "source": { "type": "project", "license": "project-owned" },
       "description": "村寨门面与门环入场前景。"

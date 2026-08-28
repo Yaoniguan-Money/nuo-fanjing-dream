@@ -1,4 +1,4 @@
-.result-page { min-height: 100svh; display: grid; place-items: center; padding: 28px; background: radial-gradient(circle at 50% 22%, rgba(110,80,38,.18), transparent 32%), #050403; text-align: center; }
+.result-page { min-height: 100svh; min-height: 100dvh; display: grid; place-items: center; padding: calc(28px + env(safe-area-inset-top, 0px)) calc(28px + env(safe-area-inset-right, 0px)) calc(28px + env(safe-area-inset-bottom, 0px)) calc(28px + env(safe-area-inset-left, 0px)); background: radial-gradient(circle at 50% 22%, rgba(110,80,38,.18), transparent 32%), #050403; text-align: center; }
 .result-card { width: min(760px, 100%); padding: clamp(28px, 6vw, 64px); border: 1px solid rgba(208,173,98,.25); background: rgba(10,8,6,.82); box-shadow: 0 32px 100px rgba(0,0,0,.5); }
 .result-card > span { color: #8a7247; font-size: 11px; letter-spacing: .14em; }
 .result-card h1 { margin: 20px 0; color: #d0ad62; font-size: clamp(30px, 5vw, 52px); font-weight: 400; letter-spacing: .1em; }
@@ -6,4 +6,9 @@
 .result-card p, .result-card li { color: #b6aa96; font: 14px/1.9 system-ui, sans-serif; text-align: left; }
 .result-card h2 { margin-top: 30px; color: #c4a669; font-size: 17px; font-weight: 400; letter-spacing: .12em; }
 .result-card small { display: block; margin: 28px 0; color: #716759; font: 11px/1.7 system-ui, sans-serif; }
-.result-card a, .result-page a { display: inline-block; padding: 11px 20px; border: 1px solid rgba(208,173,98,.35); color: #d0ad62; text-decoration: none; }
+.result-card a, .result-page a { display: inline-grid; min-height: 44px; place-items: center; padding: 11px 20px; border: 1px solid rgba(208,173,98,.35); color: #d0ad62; text-decoration: none; }
+@media (max-width: 620px) {
+  .result-page { align-items: start; padding-inline: calc(16px + env(safe-area-inset-left, 0px)) calc(16px + env(safe-area-inset-right, 0px)); }
+  .result-card { padding: 28px 18px; }
+  .result-card a, .result-page a { width: 100%; }
+}

@@ -326,7 +326,7 @@ export function GetFaceRitual({ onReturn }: { onReturn: () => void }) {
       <h1>{state.phase === "name" ? "来者何人？" : `${state.name}，你为何而来？`}</h1>
       <p>{state.phase === "name" ? "你已经被吸进坛前。先报上名字，再说出所问之事，傩引才会替你请面。" : "说出此刻最放不下的一件事。不必说得完整，傩引只需要知道，你真正被什么卡住。"}</p>
       <form onSubmit={state.phase === "name" ? handleNameSubmit : handleWishSubmit} className="get-face-form">
-        {state.phase === "name" ? <input value={nameInput} onChange={(event) => setNameInput(event.target.value)} autoFocus aria-label="你的名字" placeholder="输入你的名字" autoComplete="off" /> : <textarea value={wishInput} onChange={(event) => setWishInput(event.target.value)} autoFocus aria-label="你的愿望" rows={4} placeholder="例如：我被一个迟迟无法开始的选择困住了……" />}
+        {state.phase === "name" ? <input value={nameInput} onChange={(event) => setNameInput(event.target.value)} aria-label="你的名字" placeholder="输入你的名字" autoComplete="off" /> : <textarea value={wishInput} onChange={(event) => setWishInput(event.target.value)} aria-label="你的愿望" rows={4} placeholder="例如：我被一个迟迟无法开始的选择困住了……" />}
         <button type="submit">奉告 ↵</button>
         {inputError ? <p className="get-face-error" role="alert">{inputError}</p> : null}
       </form>

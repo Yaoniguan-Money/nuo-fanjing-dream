@@ -6,11 +6,20 @@ import { normalizeCodexEntry, type CodexEntry } from "@/domain/codex";
 import { faceData } from "@/domain/get-face";
 import { CodexExperience } from "./codex-experience";
 
+const viewerSpies = vi.hoisted(() => ({
+  zoomIn: vi.fn(),
+  zoomOut: vi.fn(),
+  reset: vi.fn(),
+  dispose: vi.fn()
+}));
+
 vi.mock("./mask-relief-viewer", () => ({
   MaskReliefViewer: class {
     mount = vi.fn(async () => undefined);
-    reset = vi.fn();
-    dispose = vi.fn();
+    zoomIn = viewerSpies.zoomIn;
+    zoomOut = viewerSpies.zoomOut;
+    reset = viewerSpies.reset;
+    dispose = viewerSpies.dispose;
   }
 }));
 
@@ -22,6 +31,8 @@ const collectedEntry = normalizeCodexEntry({
 
 afterEach(() => {
   cleanup();
+  document.body.style.overflow = "";
+  vi.clearAllMocks();
   vi.unstubAllGlobals();
 });
 
@@ -35,13 +46,25 @@ describe("CodexExperience", () => {
     expect(screen.getAllByRole("button").filter((button) => button.hasAttribute("disabled"))).toHaveLength(11);
     const card = screen.getByRole("button", { name: "查看已收录的翘冠长须" });
     fireEvent.keyDown(card, { key: "Enter" });
-    expect(await screen.findByRole("dialog", { name: "开路将军傩面详情" })).toBeTruthy();
+    const dialog = await screen.findByRole("dialog", { name: "开路将军" });
+    expect(dialog.getAttribute("aria-modal")).toBe("true");
+    expect(document.body.style.overflow).toBe("hidden");
     expect(screen.getByText("前行莫问旧尘埃")).toBeTruthy();
-    await waitFor(() => expect(screen.getByRole("dialog", { name: "开路将军傩面详情" }).getAttribute("data-presentation")).toBe("revealed"));
+    await waitFor(() => expect(screen.getByRole("dialog", { name: "开路将军" }).getAttribute("data-presentation")).toBe("revealed"));
+    const zoomOut = screen.getByRole("button", { name: "缩小面具" });
+    const zoomIn = screen.getByRole("button", { name: "放大面具" });
+    await waitFor(() => expect((zoomIn as HTMLButtonElement).disabled).toBe(false));
+    fireEvent.click(zoomOut);
+    fireEvent.click(zoomIn);
+    fireEvent.click(screen.getByRole("button", { name: "复位" }));
+    expect(viewerSpies.zoomOut).toHaveBeenCalledOnce();
+    expect(viewerSpies.zoomIn).toHaveBeenCalledOnce();
+    expect(viewerSpies.reset).toHaveBeenCalledOnce();
     fireEvent.click(card);
-    expect(screen.getByRole("dialog", { name: "开路将军傩面详情" }).getAttribute("data-presentation")).toBe("revealed");
+    expect(screen.getByRole("dialog", { name: "开路将军" }).getAttribute("data-presentation")).toBe("revealed");
     fireEvent.keyDown(window, { key: "Escape" });
-    expect(screen.queryByRole("dialog", { name: "开路将军傩面详情" })).toBeNull();
+    expect(screen.queryByRole("dialog", { name: "开路将军" })).toBeNull();
+    expect(document.body.style.overflow).toBe("");
     expect(screen.getByRole("region", { name: "面具显形台" }).textContent).toContain("显形台尚空");
     await new Promise((resolve) => window.setTimeout(resolve, 0));
     expect(document.activeElement).toBe(card);

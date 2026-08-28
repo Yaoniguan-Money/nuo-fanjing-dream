@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import type { PointerEvent as ReactPointerEvent } from "react";
 import gsap from "gsap";
 import { resolveAssetId } from "@/domain/dream-card";
 import { addTrackedListener } from "./runtime-lifecycle";
@@ -63,6 +64,12 @@ export function ThresholdExperience({ onCrossThreshold }: { onCrossThreshold: ()
     holdTweenRef.current = gsap.to(state, { value: 1, duration: 1.2, ease: "none", onUpdate: () => applyProgress(state.value), onComplete: () => { holdTweenRef.current = null; void openDoor(); } });
   }, [applyProgress, openDoor, opening, ready]);
 
+  const startPointerHold = useCallback((event: ReactPointerEvent<HTMLButtonElement>) => {
+    if (!event.isPrimary || event.button !== 0) return;
+    event.currentTarget.setPointerCapture(event.pointerId);
+    startHold();
+  }, [startHold]);
+
   useEffect(() => {
     const keyDown = (event: Event) => {
       const keyboardEvent = event as KeyboardEvent;
@@ -85,11 +92,11 @@ export function ThresholdExperience({ onCrossThreshold }: { onCrossThreshold: ()
     <div className="threshold-vignette" />
     <div className={`threshold-copy${ready ? " ready" : ""}`}><span>傩 · 梵净入梦</span><h1>{ready ? "山门已至" : "循雾入山"}</h1><p>{ready ? "按住门环，让门认出你的来意。" : "镜头正在穿过梵净山雾。"}</p></div>
     <div className={`threshold-controls${ready ? " ready" : ""}`}>
-      <button type="button" className="hold-ring" onPointerDown={startHold} onPointerUp={cancelHold} onPointerLeave={cancelHold} onPointerCancel={cancelHold} disabled={!ready || opening}>
-        <span ref={progressRef} className="hold-progress" />
+      <button type="button" className="hold-ring" onPointerDown={startPointerHold} onPointerUp={cancelHold} onPointerCancel={cancelHold} disabled={!ready || opening} aria-describedby="threshold-hold-hint">
+        <span ref={progressRef} className="hold-progress" aria-hidden="true" />
         {opening ? "门已启" : "按住门环"}
       </button>
-      <small>鼠标 · Space / Enter</small>
+      <small id="threshold-hold-hint"><span className="threshold-hint-touch">触碰并长按门环</span><span className="threshold-hint-pointer">鼠标长按 · Space / Enter</span></small>
     </div>
   </section>;
 }
