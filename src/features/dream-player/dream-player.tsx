@@ -16,12 +16,18 @@ import {
 import { useTypewriter } from "./use-typewriter";
 import "./dream-player.css";
 
+function characterHorizontalPosition(position: DreamCharacter["position"], characterCount: number): number {
+  if (position === "center") return 50;
+  if (characterCount >= 3) return position === "left" ? 25 : 75;
+  return position === "left" ? 100 / 3 : 200 / 3;
+}
+
 function CharacterLayer({ characters, activeSpeaker }: { characters: DreamCharacter[]; activeSpeaker: string }) {
   const byPosition = useMemo(() => new Map(characters.map((character) => [character.position, character])), [characters]);
   return <div className="character-layer" aria-hidden="true">{(["left", "center", "right"] as const).map((position) => {
     const character = byPosition.get(position);
     const assetUrl = character ? resolveAssetId(character.assetId) : null;
-    return <div className={`character-slot character-${position}${character?.instanceId === activeSpeaker ? " active" : ""}`} key={position}>
+    return <div className={`character-slot character-${position}${character?.instanceId === activeSpeaker ? " active" : ""}`} key={position} style={{ left: `${characterHorizontalPosition(position, characters.length)}%` }}>
       {character && assetUrl ? <Image className="character-image" src={assetUrl} alt="" width={1024} height={1536} priority={position === "center"} /> : null}
     </div>;
   })}</div>;

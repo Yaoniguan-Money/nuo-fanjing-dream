@@ -1,5 +1,5 @@
 {
-  "$schema": "../schemas/dream-card.schema.json",
+  "$schema": "./dream-card.schema.json",
   "schemaVersion": "0.1.0",
   "meta": {
     "id": "dream.template-001",

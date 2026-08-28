@@ -1,4 +1,4 @@
-import { existsSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import Ajv2020 from "ajv/dist/2020";
@@ -16,6 +16,17 @@ describe("DreamCard content contract", () => {
     expect(cards[0].data.acts).toHaveLength(7);
     for (const card of cards) expect(validateJsonSchema(card), JSON.stringify(validateJsonSchema.errors)).toBe(true);
     expect(inspectDreamCard(cards[0]).filter((issue) => issue.severity === "error")).toEqual([]);
+  });
+
+  it("keeps the static card directory and runtime registry in sync", () => {
+    const cardDirectory = join(process.cwd(), "content", "dream-cards");
+    const files = readdirSync(cardDirectory).filter((file) => file.endsWith(".json")).sort();
+    const diskCardIds = files.map((file) => {
+      const card = JSON.parse(readFileSync(join(cardDirectory, file), "utf8"));
+      return card.meta.id as string;
+    }).sort();
+    expect(new Set(diskCardIds).size).toBe(diskCardIds.length);
+    expect(diskCardIds).toEqual([...new Set(listDreamCards().map((card) => card.meta.id))].sort());
   });
 
   it("resolves every manifest asset to a real public file", () => {
