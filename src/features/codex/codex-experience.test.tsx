@@ -1,6 +1,6 @@
 // @vitest-environment happy-dom
 
-import { cleanup, fireEvent, render, screen } from "@testing-library/react";
+import { cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { afterEach, describe, expect, test, vi } from "vitest";
 import { normalizeCodexEntry, type CodexEntry } from "@/domain/codex";
 import { faceData } from "@/domain/get-face";
@@ -26,16 +26,23 @@ afterEach(() => {
 });
 
 describe("CodexExperience", () => {
-  test("renders a 12-slot wall and opens collected details with keyboard focus restore", async () => {
+  test("renders 12 back-only slots and keeps the stage empty until a collected card opens", async () => {
     render(<CodexExperience data={faceData} entries={{ "crown-beard": collectedEntry }} />);
-    expect(screen.getByText("已收录 1 / 4")).toBeTruthy();
+    expect(screen.getByText("已收录 1 / 12")).toBeTruthy();
     expect(screen.getAllByRole("button")).toHaveLength(13);
+    expect(screen.getByRole("region", { name: "面具显形台" }).textContent).toContain("显形台尚空");
+    expect(document.querySelectorAll(".codex-wall img")).toHaveLength(0);
+    expect(screen.getAllByRole("button").filter((button) => button.hasAttribute("disabled"))).toHaveLength(11);
     const card = screen.getByRole("button", { name: "查看已收录的翘冠长须" });
     fireEvent.keyDown(card, { key: "Enter" });
     expect(await screen.findByRole("dialog", { name: "开路将军傩面详情" })).toBeTruthy();
     expect(screen.getByText("前行莫问旧尘埃")).toBeTruthy();
+    await waitFor(() => expect(screen.getByRole("dialog", { name: "开路将军傩面详情" }).getAttribute("data-presentation")).toBe("revealed"));
+    fireEvent.click(card);
+    expect(screen.getByRole("dialog", { name: "开路将军傩面详情" }).getAttribute("data-presentation")).toBe("revealed");
     fireEvent.keyDown(window, { key: "Escape" });
-    expect(screen.queryByRole("dialog")).toBeNull();
+    expect(screen.queryByRole("dialog", { name: "开路将军傩面详情" })).toBeNull();
+    expect(screen.getByRole("region", { name: "面具显形台" }).textContent).toContain("显形台尚空");
     await new Promise((resolve) => window.setTimeout(resolve, 0));
     expect(document.activeElement).toBe(card);
   });
@@ -46,6 +53,14 @@ describe("CodexExperience", () => {
     render(<CodexExperience data={faceData} entries={{ "crown-beard": collectedEntry }} />);
     fireEvent.click(screen.getByRole("button", { name: "清空本机收录" }));
     expect(confirm).toHaveBeenCalledOnce();
-    expect(screen.getByText("已收录 1 / 4")).toBeTruthy();
+    expect(screen.getByText("已收录 1 / 12")).toBeTruthy();
+  });
+
+  test("does not open locked or reserved slots", () => {
+    render(<CodexExperience data={faceData} entries={{}} />);
+    const locked = screen.getByRole("button", { name: "未得之面，第05谱位" });
+    expect((locked as HTMLButtonElement).disabled).toBe(true);
+    fireEvent.click(locked);
+    expect(screen.getByRole("region", { name: "面具显形台" }).textContent).toContain("显形台尚空");
   });
 });

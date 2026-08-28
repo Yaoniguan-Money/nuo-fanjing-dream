@@ -38,5 +38,5 @@ export function codexNumber(index: number): string {
 
 export function slotLabel(slot: CodexSlotView): string {
   if (slot.entry && slot.mask) return `查看已收录的${slot.mask.name}`;
-  return slot.state === "reserved" ? "待补傩面位置" : "尚未收录的傩面";
+  return `未得之面，第${codexNumber(slot.index)}谱位`;
 }

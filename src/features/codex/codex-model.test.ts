@@ -10,10 +10,10 @@ describe("codex feature model", () => {
     expect(slots.slice(4).every((slot) => slot.kind === "reserved" && slot.state === "reserved")).toBe(true);
   });
 
-  test("counts only collected masks and labels reserved positions accessibly", () => {
+  test("counts only collected masks and labels every unavailable position as locked", () => {
     const slots = buildCodexSlots(faceData, {});
     expect(collectedCount(slots)).toBe(0);
-    expect(slotLabel(slots[4])).toBe("待补傩面位置");
+    expect(slotLabel(slots[4])).toBe("未得之面，第05谱位");
     expect(codexNumber(0)).toBe("01");
     expect(codexNumber(11)).toBe("12");
   });
