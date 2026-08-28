@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
-import type { CSSProperties, RefObject } from "react";
+import type { CSSProperties, KeyboardEvent as ReactKeyboardEvent, RefObject } from "react";
 import Image from "next/image";
 import { gsap } from "gsap";
 import type { CodexCollection, CodexEntry, StorageLike } from "@/domain/codex";
@@ -75,6 +75,7 @@ interface CodexDetailProps {
 }
 
 function CodexDetail({ data, slot, presentation, stageRef, copyRef, onClose }: CodexDetailProps) {
+  const dialogRef = useRef<HTMLElement>(null);
   const viewerHost = useRef<HTMLDivElement>(null);
   const closeButton = useRef<HTMLButtonElement>(null);
   const viewer = useRef<MaskReliefViewer | null>(null);
@@ -85,6 +86,21 @@ function CodexDetail({ data, slot, presentation, stageRef, copyRef, onClose }: C
   useEffect(() => {
     if (slot) closeButton.current?.focus();
   }, [slot]);
+
+  const keepFocusInDialog = useCallback((event: ReactKeyboardEvent<HTMLElement>) => {
+    if (event.key !== "Tab") return;
+    const focusable = Array.from(dialogRef.current?.querySelectorAll<HTMLElement>("button:not(:disabled), a[href]") ?? []);
+    if (!focusable.length) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  }, []);
 
   useEffect(() => {
     if (!entry || !mask || !viewerHost.current) {
@@ -108,7 +124,8 @@ function CodexDetail({ data, slot, presentation, stageRef, copyRef, onClose }: C
   }, [data.codex.relief, entry, mask]);
 
   const sourceKind = entry?.role.kind === "traditional_reference" ? "传统职司借鉴" : "项目新创";
-  return <section className="codex-detail" data-presentation={presentation} role={slot && entry && mask ? "dialog" : "region"} aria-label={slot && entry && mask ? `${entry.role.name}傩面详情` : "面具显形台"}>
+  const titleId = slot ? `codex-detail-title-${slot.id}` : undefined;
+  return <section ref={dialogRef} className="codex-detail" data-presentation={presentation} role={slot && entry && mask ? "dialog" : "region"} aria-modal={slot && entry && mask ? true : undefined} aria-labelledby={slot && entry && mask ? titleId : undefined} aria-label={slot && entry && mask ? undefined : "面具显形台"} onKeyDown={slot ? keepFocusInDialog : undefined}>
     {slot ? <button ref={closeButton} className="codex-close" type="button" onClick={onClose} aria-label="关闭傩面详情">×</button> : null}
     {!slot || !entry || !mask ? <div className="codex-empty" role="status"><span className="codex-empty-glyph" aria-hidden="true">◌</span><h2>显形台尚空</h2><p>点击已获得的面具，令它从图鉴入场。</p></div> : <>
       <div className="codex-viewer-column">
@@ -118,11 +135,18 @@ function CodexDetail({ data, slot, presentation, stageRef, copyRef, onClose }: C
           {viewerState === "fallback" ? <div className="codex-viewer-fallback"><Image src={mask.asset} alt={`${mask.name}原始视觉母体`} width={1086} height={1448} /><p>3D 查看不可用，已回退至原始视觉母体。</p></div> : null}
           {viewerState === "loading" ? <span className="codex-viewer-status" role="status">正在生成程序化浮雕…</span> : null}
         </div>
-        <div className="codex-viewer-tools"><span>拖动旋转 · 滚轮缩放</span><button type="button" onClick={() => viewer.current?.reset()}>复位面具</button></div>
+        <div className="codex-viewer-tools">
+          <span><span className="codex-viewer-hint-pointer">拖动旋转 · 滚轮缩放</span><span className="codex-viewer-hint-touch">单指拖动旋转 · 使用按钮缩放</span></span>
+          <div className="codex-viewer-controls" role="group" aria-label="面具视图控制">
+            <button type="button" onClick={() => viewer.current?.zoomOut()} disabled={viewerState !== "ready"} aria-label="缩小面具">缩小</button>
+            <button type="button" onClick={() => viewer.current?.zoomIn()} disabled={viewerState !== "ready"} aria-label="放大面具">放大</button>
+            <button type="button" onClick={() => viewer.current?.reset()} disabled={viewerState !== "ready"}>复位</button>
+          </div>
+        </div>
         <p className="codex-model-note">程序化 PNG 浮雕 3D · 非历史扫描模型</p>
       </div>
       <div ref={copyRef} className="codex-detail-copy">
-        <header className="codex-detail-head"><div><h3>{entry.role.name}</h3><p className="codex-detail-duty">职司 · {entry.role.duty}</p></div><p>视觉母体 · {mask.name}</p></header>
+        <header className="codex-detail-head"><div><h3 id={titleId}>{entry.role.name}</h3><p className="codex-detail-duty">职司 · {entry.role.duty}</p></div><p>视觉母体 · {mask.name}</p></header>
         <div className="codex-detail-scroll">
           <section className="codex-detail-section"><span>职司</span><p>{sourceKind}。{entry.role.background}</p></section>
           <section className="codex-detail-section"><span>傩 · 面</span><p>{entry.visualText}</p></section>
@@ -231,6 +255,13 @@ export function CodexExperience({ data = faceData, entries: controlledEntries, c
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [activeSlot, close]);
+
+  useEffect(() => {
+    if (!activeSlot) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => { document.body.style.overflow = previousOverflow; };
+  }, [activeSlot]);
 
   return <main className="codex-experience" style={{ "--codex-altar": `url("${data.codex.altar.background}")` } as CSSProperties}>
     <header className="codex-title"><div className="codex-kicker">傩 · 谱 · 收 · 录</div><h1>面具图鉴 <span className="codex-title-count">({count} / {data.codex.slots.length})</span></h1><p>已收录的面具可翻入细看；本机只保存得面结果，不保存愿望与人像。</p></header>

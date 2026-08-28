@@ -115,6 +115,14 @@ export class MaskReliefViewer {
     this.render();
   }
 
+  zoomIn(): void {
+    this.setDistance(this.distance - 0.35);
+  }
+
+  zoomOut(): void {
+    this.setDistance(this.distance + 0.35);
+  }
+
   dispose(): void {
     this.mountToken += 1;
     this.drag = null;
@@ -170,9 +178,13 @@ export class MaskReliefViewer {
     add("wheel", (event) => {
       event.preventDefault();
       const wheel = event as WheelEvent;
-      this.distance = clamp(this.distance + wheel.deltaY * 0.003, this.options.minDistance ?? 2.25, this.options.maxDistance ?? 4.25);
-      this.render();
+      this.setDistance(this.distance + wheel.deltaY * 0.003);
     }, { passive: false });
+  }
+
+  private setDistance(distance: number): void {
+    this.distance = clamp(distance, this.options.minDistance ?? 2.25, this.options.maxDistance ?? 4.25);
+    this.render();
   }
 
   private resize(): void {

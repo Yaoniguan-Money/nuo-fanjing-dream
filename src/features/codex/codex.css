@@ -8,7 +8,7 @@
 .codex-title p { margin: 0; color: #817660; font: 13px/1.8 system-ui, sans-serif; }
 .codex-actions { position: absolute; top: clamp(30px, 5vw, 68px); right: clamp(18px, 4vw, 60px); display: flex; align-items: center; gap: 14px; }
 .codex-actions p { margin: 0; color: #bda374; font-size: 12px; letter-spacing: .18em; white-space: nowrap; }
-.codex-actions button, .codex-viewer-tools button { border: 1px solid rgba(192,157,93,.25); background: rgba(7,6,4,.52); color: #a9956e; padding: 9px 11px; cursor: pointer; font: 11px/1 inherit; letter-spacing: .12em; }
+.codex-actions button, .codex-viewer-tools button { min-height: 44px; border: 1px solid rgba(192,157,93,.25); background: rgba(7,6,4,.52); color: #a9956e; padding: 9px 11px; cursor: pointer; font: 11px/1 inherit; letter-spacing: .12em; }
 .codex-actions button:hover, .codex-viewer-tools button:hover, .codex-actions button:focus-visible, .codex-viewer-tools button:focus-visible { border-color: rgba(233,188,103,.62); color: #e0bd7b; }
 .codex-layout { display: grid; grid-template-columns: minmax(360px, 42vw) minmax(0, 1fr); align-items: stretch; gap: clamp(18px, 4vw, 64px); margin-top: clamp(34px, 6vh, 64px); }
 .codex-wall { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: repeat(4, minmax(0, 1fr)); gap: clamp(10px, 1.2vw, 18px); min-width: 0; margin: 0; padding: 0; list-style: none; }
@@ -26,7 +26,7 @@
 .codex-slot-locked-ui .codex-card-state { color: #766b5d; }
 .codex-restart { display: block; margin: 28px 0 0 auto; border: 1px solid rgba(192,157,93,.25); background: transparent; color: #a9956e; padding: 10px 18px; cursor: pointer; letter-spacing: .16em; }
 .codex-detail { position: relative; display: grid; grid-template-columns: minmax(220px, .9fr) minmax(260px, 1.1fr); gap: clamp(18px, 3vw, 46px); min-height: min(64vh, 680px); padding: clamp(18px, 2.5vw, 34px); overflow: hidden; border: 1px solid rgba(225,194,127,.22); background: linear-gradient(130deg, rgba(19,15,10,.96), rgba(4,4,3,.98)); box-shadow: 0 22px 90px rgba(0,0,0,.55); }
-.codex-close { position: absolute; top: 8px; right: 13px; z-index: 2; width: 34px; height: 34px; border: 0; background: transparent; color: #a99673; cursor: pointer; font: 30px/1 system-ui, sans-serif; }
+.codex-close { position: absolute; top: 8px; right: 13px; z-index: 2; display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 0; background: transparent; color: #a99673; cursor: pointer; font: 30px/1 system-ui, sans-serif; }
 .codex-close:focus-visible { outline: 1px solid #d9ad57; }
 .codex-empty { display: grid; grid-column: 1 / -1; place-content: center; min-height: 360px; text-align: center; }
 .codex-empty-glyph { color: #a98c57; font-size: 72px; opacity: .68; }
@@ -43,6 +43,9 @@
 .codex-viewer-fallback p, .codex-viewer-status { color: #817660; font: 11px/1.6 system-ui, sans-serif; }
 .codex-viewer-status { position: absolute; inset: 50% auto auto 50%; transform: translate(-50%, -50%); white-space: nowrap; }
 .codex-viewer-tools { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 10px; color: #716858; font: 10px/1.4 system-ui, sans-serif; letter-spacing: .1em; }
+.codex-viewer-controls { display: flex; gap: 6px; }
+.codex-viewer-tools button:disabled { cursor: default; opacity: .42; }
+.codex-viewer-hint-touch { display: none; }
 .codex-model-note, .codex-asset-notice { margin: 9px 0 0; color: #756348; font: 10px/1.6 system-ui, sans-serif; letter-spacing: .08em; }
 .codex-detail-copy { opacity: 0; }
 .codex-detail[data-presentation="revealed"] .codex-detail-copy { opacity: 1; }
@@ -62,5 +65,25 @@
 .codex-sources i { color: #9a8666; }
 .codex-asset-notice { padding-bottom: 18px; }
 @media (max-width: 900px) { .codex-layout { grid-template-columns: minmax(300px, 44vw) minmax(0, 1fr); gap: 18px; } .codex-wall { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: none; } .codex-detail { grid-template-columns: minmax(170px, .82fr) minmax(200px, 1.18fr); gap: 16px; padding: 18px; } }
-@media (max-width: 700px) { .codex-experience { padding: 22px 16px 34px; } .codex-title { max-width: 100%; } .codex-actions { position: relative; top: auto; right: auto; justify-content: space-between; margin-top: 17px; } .codex-layout { display: flex; flex-direction: column; gap: 20px; margin-top: 28px; } .codex-wall { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; max-height: none; } .codex-card { min-height: 142px; } .codex-detail { display: block; min-height: 68vh; height: 68vh; padding: 42px 16px 18px; overflow: auto; } .codex-close { display: none; } .codex-empty { min-height: 100%; } .codex-viewer-frame { min-height: 230px; height: min(36vh, 330px); } .codex-viewer, .codex-viewer-fallback { min-height: 230px; } .codex-detail-copy { opacity: 1; margin-top: 18px; } .codex-detail-head { align-items: start; flex-direction: column; } .codex-detail-head p { text-align: left; } }
+@media (max-width: 700px) {
+  .codex-experience { padding: calc(22px + env(safe-area-inset-top)) calc(16px + env(safe-area-inset-right)) calc(34px + env(safe-area-inset-bottom)) calc(16px + env(safe-area-inset-left)); }
+  .codex-title { max-width: 100%; }
+  .codex-actions { position: relative; top: auto; right: auto; justify-content: space-between; margin-top: 17px; }
+  .codex-layout { display: flex; flex-direction: column; gap: 20px; margin-top: 28px; }
+  .codex-wall { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; max-height: none; }
+  .codex-card { min-height: 142px; }
+  .codex-detail { display: block; min-height: 68vh; height: 68vh; padding: 42px 16px 18px; overflow: auto; }
+  .codex-detail[role="dialog"] { position: fixed; inset: 0; z-index: 20; width: 100%; height: 100dvh; min-height: 100svh; padding: calc(60px + env(safe-area-inset-top)) calc(16px + env(safe-area-inset-right)) calc(24px + env(safe-area-inset-bottom)) calc(16px + env(safe-area-inset-left)); border: 0; overscroll-behavior: contain; }
+  .codex-close { position: fixed; top: calc(8px + env(safe-area-inset-top)); right: calc(8px + env(safe-area-inset-right)); background: rgba(7,6,4,.78); border: 1px solid rgba(192,157,93,.25); }
+  .codex-empty { min-height: 100%; }
+  .codex-viewer-frame { min-height: 230px; height: min(36svh, 330px); }
+  .codex-viewer, .codex-viewer-fallback { min-height: 230px; }
+  .codex-viewer-tools { align-items: stretch; flex-direction: column; }
+  .codex-viewer-controls { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .codex-viewer-hint-pointer { display: none; }
+  .codex-viewer-hint-touch { display: inline; }
+  .codex-detail-copy { opacity: 1; margin-top: 18px; }
+  .codex-detail-head { align-items: start; flex-direction: column; padding-right: 0; }
+  .codex-detail-head p { text-align: left; }
+}
 @media (prefers-reduced-motion: reduce) { .codex-card { transition: none; } .codex-detail-copy { transition: none; } }
