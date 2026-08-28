@@ -9,7 +9,7 @@ export const interpretRequestSchema = z.object({
 export const interpretResponseSchema = z.object({
   schemaVersion: z.literal("1.0.0"),
   cardId: z.string().min(1),
-  provider: z.literal("deterministic-local"),
+  provider: z.string().min(1),
   interpretation: interpretationSchema
 }).strict();
 

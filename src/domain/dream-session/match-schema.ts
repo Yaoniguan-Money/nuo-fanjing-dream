@@ -7,7 +7,7 @@ export const matchRequestSchema = z.object({
 export const matchResponseSchema = z.object({
   schemaVersion: z.literal("1.0.0"),
   cardId: z.string().min(1),
-  provider: z.literal("deterministic-local"),
+  provider: z.string().min(1),
   confidence: z.number().min(0).max(1),
   reason: z.string().min(1)
 }).strict();
