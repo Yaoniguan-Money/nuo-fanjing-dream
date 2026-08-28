@@ -41,7 +41,7 @@ DEEPSEEK_MODEL=deepseek-v4-flash
 
 ## 发布
 
-推送到 `main` 后，`.github/workflows/deploy-pages.yml` 会将静态站点发布到 GitHub Pages。首次创建仓库后，请在仓库 **Settings → Pages** 中将 Source 设为 **GitHub Actions**。
+推送到 `main` 后，`.github/workflows/deploy-pages.yml` 会先校验并构建 `dream-card/`，再将主体验发布到站点根路径、将 Dream Card Player 发布到 `/dream-card/`。首次创建仓库后，请在仓库 **Settings → Pages** 中将 Source 设为 **GitHub Actions**。
 
 ## 主要文件
 

@@ -89,7 +89,7 @@
         "characters": [
           {"instanceId": "elder", "assetId": "character.village-elder", "position": "left"},
           {"instanceId": "adu", "assetId": "character.adu", "position": "center"},
-          {"instanceId": "villager-representative", "assetId": "character.villager-a", "position": "right"}
+          {"instanceId": "villager-a", "assetId": "character.villager-a", "position": "right"}
         ],
         "texts": [
           {"id": "act-03-text-01", "content": "少年把祖父的话告诉了村里人。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
@@ -111,7 +111,7 @@
         "backgroundAssetId": "background.foggy-broken-road",
         "characters": [
           {"instanceId": "adu", "assetId": "character.adu", "position": "left"},
-          {"instanceId": "masked-guide", "assetId": "character.masked-kailu-jiangjun", "position": "right"}
+          {"instanceId": "masked", "assetId": "character.masked-kailu-jiangjun", "position": "right"}
         ],
         "texts": [
           {"id": "act-04-text-01", "content": "少年砍了半日，雾越来越浓。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
@@ -141,7 +141,7 @@
         "backgroundAssetId": "background.deep-broken-road",
         "characters": [
           {"instanceId": "adu", "assetId": "character.adu", "position": "left"},
-          {"instanceId": "masked-guide", "assetId": "character.masked-kailu-jiangjun", "position": "right"}
+          {"instanceId": "masked", "assetId": "character.masked-kailu-jiangjun", "position": "right"}
         ],
         "texts": [
           {"id": "act-05-text-01", "content": "少年砍了一日一夜。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
@@ -192,7 +192,7 @@
         "characters": [
           {"instanceId": "elder", "assetId": "character.village-elder", "position": "left"},
           {"instanceId": "adu", "assetId": "character.adu", "position": "center"},
-          {"instanceId": "masked-guide", "assetId": "character.masked-kailu-jiangjun", "position": "right"}
+          {"instanceId": "masked", "assetId": "character.masked-kailu-jiangjun", "position": "right"}
         ],
         "texts": [
           {"id": "act-07-text-01", "content": "三日后，少年从山外回来。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},

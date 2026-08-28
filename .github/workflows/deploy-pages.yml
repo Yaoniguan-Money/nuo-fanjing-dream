@@ -22,9 +22,32 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.12.0
+          cache: npm
+          cache-dependency-path: dream-card/package-lock.json
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Test main experience
+        run: |
+          python -m unittest discover -s tests -p 'test_*.py'
+          node --test tests/*.test.mjs
+      - name: Validate and build Dream Card Player
+        working-directory: dream-card
+        run: |
+          npm ci
+          npm run build
+      - name: Assemble Pages artifact
+        run: |
+          mkdir -p _site/dream-card
+          cp index.html _site/
+          cp -R assets src vendor _site/
+          cp -R dream-card/dist/. _site/dream-card/
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: _site
       - id: deployment
         uses: actions/deploy-pages@v4

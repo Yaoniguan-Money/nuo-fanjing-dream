@@ -4,11 +4,11 @@
 
 ## 本地运行
 
-首次运行：
+需要 Node.js `^20.19.0` 或 `>=22.12.0`。首次运行：
 
 ```bash
 cd dream-card
-npm install
+npm ci
 npm run dev
 ```
 
@@ -24,8 +24,9 @@ npm run dev
 ## 验证与构建
 
 ```bash
+npm run validate
 npm run typecheck
 npm run build
 ```
 
-生产构建输出到 `dist/`，可以作为静态 Web 应用部署，也可以继续嵌入后续正式项目。
+`validate` 会用 `schemas/dream-card.schema.json` 校验全部卡片和模板，并检查素材引用、文件与 manifest 是否一致。生产构建输出到 `dist/`；仓库的 GitHub Pages 工作流会把它发布到站点的 `/dream-card/` 路径。
