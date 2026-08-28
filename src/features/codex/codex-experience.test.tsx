@@ -31,7 +31,8 @@ describe("CodexExperience", () => {
     expect(screen.getByText("已收录 1 / 12")).toBeTruthy();
     expect(screen.getAllByRole("button")).toHaveLength(13);
     expect(screen.getByRole("region", { name: "面具显形台" }).textContent).toContain("显形台尚空");
-    expect(document.querySelectorAll(".codex-wall img")).toHaveLength(0);
+    expect(document.querySelectorAll(".codex-wall img")).toHaveLength(1);
+    expect(screen.getByRole("img", { name: "开路将军面具卡面" })).toBeTruthy();
     expect(screen.getAllByRole("button").filter((button) => button.hasAttribute("disabled"))).toHaveLength(11);
     const card = screen.getByRole("button", { name: "查看已收录的翘冠长须" });
     fireEvent.keyDown(card, { key: "Enter" });

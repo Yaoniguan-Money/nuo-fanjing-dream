@@ -56,8 +56,9 @@ function CodexCard({ slot, selected, onOpen }: { slot: CodexSlotView; selected: 
         }
       }}
     >
-      <span className="codex-card-back" aria-hidden="true">
-        <span className="codex-card-glyph">{codexGlyph(slot.mask)}</span>
+      <span className="codex-card-back">
+        {collected && slot.mask?.artwork?.card ? <Image className="codex-card-mask" src={slot.mask.artwork.card} alt={`${cardName}面具卡面`} fill sizes="(max-width: 700px) 29vw, (max-width: 900px) 20vw, 14vw" /> : <span className="codex-card-glyph">{codexGlyph(slot.mask)}</span>}
+        <span className="codex-card-veil" />
         <span className="codex-card-meta"><span>谱 · {codexNumber(slot.index)}</span><strong>{cardName}</strong></span>
         <span className="codex-card-state">{collected ? "已 · 获" : "锁 · 未得"}</span>
       </span>

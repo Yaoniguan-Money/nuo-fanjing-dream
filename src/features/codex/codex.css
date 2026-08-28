@@ -18,11 +18,14 @@
 .codex-slot-collected .codex-card:hover, .codex-slot-collected .codex-card:focus-visible, .codex-card.is-selected { transform: translateY(-5px) rotateX(3deg); outline: none; filter: brightness(1.16); }
 .codex-card:focus-visible { outline: 1px solid #d9ad57; outline-offset: 4px; }
 .codex-card-back { position: absolute; inset: 0; display: grid; place-items: center; overflow: hidden; border: 1px solid rgba(203,185,133,.16); background: radial-gradient(circle at 50% 38%, color-mix(in srgb, var(--card-a, #91622d) 25%, transparent), transparent 42%), linear-gradient(150deg, #17130f, #050505 75%); }
+.codex-card-mask { z-index: 0; object-fit: contain; padding: 12% 8% 20%; filter: drop-shadow(0 10px 13px rgba(0,0,0,.58)); transform: scale(1.05); transition: transform .35s ease, filter .35s ease; }
+.codex-card-veil { position: absolute; z-index: 1; inset: 0; pointer-events: none; background: linear-gradient(180deg, transparent 40%, rgba(5,4,3,.1) 54%, rgba(5,4,3,.92) 100%); }
+.codex-slot-collected .codex-card:hover .codex-card-mask, .codex-card:focus-visible .codex-card-mask, .codex-card.is-selected .codex-card-mask { filter: drop-shadow(0 11px 17px rgba(0,0,0,.7)) brightness(1.08); transform: scale(1.11); }
 .codex-slot-locked-ui .codex-card-back { filter: brightness(.36) saturate(.2); }
 .codex-card-glyph { color: var(--card-a, #a67f3b); font: 66px/1 serif; filter: drop-shadow(0 0 9px var(--card-a, #a67f3b)); }
-.codex-card-meta { position: absolute; inset: auto 10px 10px; display: flex; align-items: end; justify-content: space-between; gap: 7px; color: #a9956e; font: 9px/1 system-ui, sans-serif; letter-spacing: .12em; }
+.codex-card-meta { position: absolute; z-index: 2; inset: auto 10px 10px; display: flex; align-items: end; justify-content: space-between; gap: 7px; color: #a9956e; font: 9px/1 system-ui, sans-serif; letter-spacing: .12em; }
 .codex-card-meta strong { overflow: hidden; color: #bca879; font: 13px/1.2 inherit; letter-spacing: .1em; text-overflow: ellipsis; white-space: nowrap; }
-.codex-card-state { position: absolute; top: 9px; right: 8px; color: var(--card-a, #a9956e); font: 8px/1 system-ui, sans-serif; letter-spacing: .14em; }
+.codex-card-state { position: absolute; z-index: 2; top: 9px; right: 8px; color: var(--card-a, #a9956e); font: 8px/1 system-ui, sans-serif; letter-spacing: .14em; }
 .codex-slot-locked-ui .codex-card-state { color: #766b5d; }
 .codex-restart { display: block; margin: 28px 0 0 auto; border: 1px solid rgba(192,157,93,.25); background: transparent; color: #a9956e; padding: 10px 18px; cursor: pointer; letter-spacing: .16em; }
 .codex-detail { position: relative; display: grid; grid-template-columns: minmax(220px, .9fr) minmax(260px, 1.1fr); gap: clamp(18px, 3vw, 46px); min-height: min(64vh, 680px); padding: clamp(18px, 2.5vw, 34px); overflow: hidden; border: 1px solid rgba(225,194,127,.22); background: linear-gradient(130deg, rgba(19,15,10,.96), rgba(4,4,3,.98)); box-shadow: 0 22px 90px rgba(0,0,0,.55); }
