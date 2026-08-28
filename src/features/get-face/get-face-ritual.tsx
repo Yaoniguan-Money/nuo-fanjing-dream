@@ -262,10 +262,16 @@ export function GetFaceRitual({ onReturn }: { onReturn: () => void }) {
       pointerY = event.clientY / Math.max(window.innerHeight, 1) - .5;
       if (rafId === null) rafId = window.requestAnimationFrame(renderParallax);
     };
-    window.addEventListener("pointermove", onPointerMove, { passive: true });
-    return () => {
+    const stopParallax = () => {
       window.removeEventListener("pointermove", onPointerMove);
       if (rafId !== null) window.cancelAnimationFrame(rafId);
+      rafId = null;
+    };
+    window.addEventListener("pointermove", onPointerMove, { passive: true });
+    window.addEventListener("pagehide", stopParallax);
+    return () => {
+      window.removeEventListener("pagehide", stopParallax);
+      stopParallax();
       scene.style.removeProperty("--altar-parallax-x");
       scene.style.removeProperty("--altar-parallax-y");
       atmosphere.style.removeProperty("--altar-parallax-x");
