@@ -1,29 +1,32 @@
-# DEV HANDOFF — 当前唯一基线
+# DEV HANDOFF — Next App Router 唯一基线
 
-## 开场
-不要恢复旧版山体多层动画。开场只有一个连续吸入镜头，控制在 1.2~1.6 秒，优先只动画 transform / opacity，避免复杂 filter 和大量 DOM。
+## 体验链路
 
-## 交互
-傩门之前不出现文字、不出现按钮。傩门是第一次主动交互。
+产品主链路固定为 `Threshold → GetFaceRitual → DreamCard → GetFaceResult → Codex`。`Threshold` 负责连续入场镜头与门环交互；`GetFaceRitual` 负责名字、愿望、可选摄像头预览、三幕选择与面具确认；`DreamCard` 播放注册表中的固定幻梦；`GetFaceResult` 展示得面、签解、溯源和视觉变体；`Codex` 负责本机傩谱收录与浏览。
 
-## 主场
-保留龙坛、面具、输入接口。鼠标视觉反馈克制，主要服务抓取、拖拽与确认。
+页面入口是 `src/app/page.tsx`、`src/app/dream/[cardId]/page.tsx` 和 `src/app/result/page.tsx`。幻梦播放结束后由结果页载入确定性解释，并在完成得面后进入 Codex 体验。
 
-## 结尾
-禁止回到四张卡片式总结。结尾必须先做 cinematic reveal，再进入人物图鉴。图鉴采用角色墙/神龛式布局，不做 SaaS 卡片。
+## 权威边界
 
-图鉴固定 12 格，其中 4 格映射现有视觉母体、8 格待补。卡片默认是线描背面，已收录时点亮并可翻入详情；同一面具只占一个位置，重复体验更新该位置最近一次得面结果。详情内的 3D 是运行时从 PNG 生成的浮雕网格，不得标为文物扫描。
+- 页面与接口只放在 `src/app/`；`POST /api/v1/omen` 的 Route Handler 在 `src/app/api/v1/omen/route.ts`。
+- UI 与视觉运行时只放在 `src/features/`；Threshold、GetFaceRitual、DreamCard、GetFaceResult 和 Codex 各自维护自己的组件与样式。
+- 得面数据、解析算法和会话状态只放在 `src/domain/get-face/`；不要在组件中复制角色关键词、传统说明或匹配规则。
+- 幻梦内容只来自 `content/dream-cards/`，通过 `src/domain/dream-card/registry.ts` 显式注册；素材路径只由 `content/assets.manifest.json` 映射到 `public/dream-assets/`。
+- 傩谱持久化只经过 `src/domain/codex/`；`reference-materials/` 只保留研究与源文件。
+- 服务端 provider 位于 `src/server/ai/`，外部模型密钥只能由服务端环境读取。
 
-## 得面结果
-- 职司、视觉母体、溯源和授面理由由 `src/get-face-data.js` 驱动；不要把关键词或传统说明重新塞回 `app.js`。
-- 傩签与傩解仅经本机 `server.py` 代理调用 DeepSeek；Key 只能来自被忽略的 `.env.local` 或进程环境，绝不进入浏览器。
-- 摄像头是可选的本机预览。不可截帧、分析、保存或上传；任何离页和确认操作都要释放镜头轨道。
-- 当前本地面具资产不可称为馆藏或真实历史角色；结果页必须保留“历史身份及授权来源未提供”的标记。
-- 傩谱只可在本机保存面具、职司、傩签、傩解、溯源与视觉变体；不得保存愿望、人像、视频帧、摄像头状态或服务端配置。清空入口必须二次确认。
+## 摄像头与本机数据
 
-## 性能
-- 开场最多 8~12 个主要 DOM 节点
-- 优先 transform / opacity
-- 粒子数量 <= 30
-- 不要在 pointermove 中同时更新大量元素
-- GSAP tween 使用 overwrite:auto
+摄像头是可选的本机预览。不得截帧、分析、保存或上传；页面隐藏、离页、刷新和确认操作都必须释放媒体轨道。会话存储只能保留继续体验所需的名字、愿望、选择与结果状态；本机傩谱不得保存愿望、人像、视频帧、摄像头状态或服务端配置，清空入口必须二次确认。
+
+## 视觉与文化边界
+
+开场是单一连续镜头，控制在 1.2 至 1.6 秒，优先只动画 transform 与 opacity。傩门之前不出现文字或按钮，门环是第一次主动交互；主场保留龙坛、面具和输入接口，鼠标反馈只服务抓取、拖拽与确认。
+
+结尾先做 cinematic reveal，再进入神龛式角色墙，不回到四张卡片式总结。Codex 固定 12 格，其中 4 格映射现有视觉母体、8 格待补；同一面具只占一个位置，重复体验更新该位置最近一次结果。详情内的 3D 是由运行时 PNG 生成的浮雕网格，不标为文物扫描；结果页始终保留“历史身份及授权来源未提供”的声明。
+
+## 性能与验证
+
+开场最多 8 至 12 个主要 DOM 节点，粒子数量不超过 30，避免在 pointermove 中同时更新大量元素；WebGL 卸载时释放 renderer、RAF、GSAP timeline、几何、材质、纹理与全局监听，GSAP tween 使用 `overwrite: auto`。
+
+唯一完整验证命令见 [README.md](README.md) 的“唯一验证流程”，顺序为 lint、typecheck、Vitest、内容校验、standalone build、audit 与 diff check。构建配置由 `next.config.ts` 的 `output: "standalone"` 负责，CI 以 `.github/workflows/ci.yml` 为准。

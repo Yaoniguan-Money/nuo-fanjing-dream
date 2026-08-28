@@ -1,0 +1,75 @@
+.get-face-ritual { position: fixed; inset: 0; overflow: hidden; background: #050403; color: #eee4d3; isolation: isolate; }
+.get-face-altar { position: absolute; inset: 0; z-index: -3; background: radial-gradient(ellipse at 50% 45%, rgba(130, 75, 24, .2), transparent 34%), linear-gradient(110deg, #100a07, #030302 67%, #0b0704); }
+.get-face-altar::after { content: ""; position: absolute; inset: 0; opacity: .3; background: radial-gradient(ellipse at 50% 47%, transparent 0 27%, rgba(0, 0, 0, .42) 76%, #010101 100%); }
+.ritual-atmosphere { position: absolute; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; opacity: 0; transform: translate(var(--altar-parallax-x, 0), var(--altar-parallax-y, 0)); transition: opacity .35s ease; }
+.ritual-fog { position: absolute; left: -12%; width: 124%; border-radius: 50%; background: radial-gradient(ellipse, rgba(187, 157, 113, .14), rgba(93, 66, 39, .05) 45%, transparent 72%); filter: blur(22px); mix-blend-mode: screen; }
+.ritual-fog-far { top: 9%; height: 30%; opacity: .36; animation: ritual-fog-drift 15s ease-in-out infinite alternate; }
+.ritual-fog-mid { top: 31%; height: 38%; opacity: .48; filter: blur(30px); animation: ritual-fog-drift 12s ease-in-out -3s infinite alternate-reverse; }
+.ritual-fog-front { bottom: -12%; height: 44%; opacity: .74; filter: blur(38px); animation: ritual-fog-drift 18s ease-in-out -5s infinite alternate; }
+.ritual-beam { position: absolute; top: -24%; width: 13%; height: 150%; opacity: .12; background: linear-gradient(90deg, transparent, rgba(209, 165, 85, .34), transparent); filter: blur(13px); transform: rotate(21deg); transform-origin: center; mix-blend-mode: screen; }
+.ritual-beam-left { left: 7%; }
+.ritual-beam-center { left: 44%; width: 10%; opacity: .16; transform: rotate(8deg); }
+.ritual-beam-right { right: 7%; transform: rotate(-22deg); }
+.ritual-ambient-masks { position: absolute; inset: 0; transform: translate(calc(var(--altar-parallax-x, 0) * .7), calc(var(--altar-parallax-y, 0) * .7)); }
+.altar-ambient { position: absolute; width: clamp(115px, 19vw, 280px); height: auto; aspect-ratio: .78; object-fit: cover; object-position: center; mix-blend-mode: screen; filter: sepia(.7) grayscale(.42) brightness(.42) contrast(1.16) blur(2px); opacity: .22; mask-image: radial-gradient(ellipse at center, #000 28%, rgba(0, 0, 0, .66) 58%, transparent 83%); }
+.altar-foreground { width: clamp(150px, 23vw, 330px); opacity: .25; filter: sepia(.82) grayscale(.4) brightness(.31) contrast(1.28) blur(3px); }
+.altar-left { left: -2%; bottom: -16%; transform: rotate(-13deg); }
+.altar-right { right: -3%; bottom: -19%; transform: scaleX(-1) rotate(-9deg); }
+.altar-left-mid { left: 14%; top: 26%; opacity: .17; transform: rotate(-8deg); }
+.altar-right-mid { right: 14%; top: 21%; opacity: .15; transform: scaleX(-1) rotate(8deg); }
+.altar-center-far { left: 43%; top: 8%; width: clamp(100px, 14vw, 205px); opacity: .09; filter: sepia(.9) grayscale(.55) brightness(.26) blur(5px); }
+.ritual-particles { position: absolute; inset: 0; opacity: .42; mix-blend-mode: screen; }
+.ritual-particles i { position: absolute; width: 2px; height: 2px; border-radius: 50%; background: rgba(218, 183, 112, .48); animation: ritual-dust 8s ease-in-out calc(var(--particle-index) * -.33s) infinite alternate; }
+.get-face-header { position: absolute; top: 26px; left: 32px; right: 32px; z-index: 8; display: flex; justify-content: space-between; color: rgba(236, 216, 178, .58); font-size: 11px; letter-spacing: .24em; }
+.get-face-header small { color: rgba(236, 216, 178, .3); }
+.get-face-copy, .get-face-portrait, .get-face-story, .get-face-submitting { position: absolute; inset: 0; display: grid; align-content: center; justify-items: center; padding: 80px 20px 70px; text-align: center; z-index: 4; }
+.get-face-copy > span, .get-face-portrait > span, .get-face-story > span, .get-face-submitting > span, .mask-ceremony-copy > span { color: #caa767; font-size: 10px; letter-spacing: .52em; }
+.get-face-copy h1, .get-face-portrait h1, .get-face-story h1, .get-face-submitting h1, .mask-ceremony-copy h1 { margin: 15px 0 9px; color: #d8bd84; font-weight: 400; letter-spacing: .18em; }
+.get-face-copy p, .get-face-portrait > p, .get-face-story > p, .get-face-submitting > p, .mask-ceremony-copy > p { max-width: 540px; margin: 0; color: rgba(238, 228, 211, .7); font: 13px/1.8 system-ui, sans-serif; }
+.get-face-form { width: min(620px, 92vw); margin-top: 27px; display: grid; gap: 12px; }
+.get-face-form input, .get-face-form textarea { width: 100%; border: 1px solid rgba(203, 172, 106, .32); background: rgba(0, 0, 0, .38); color: #eee4d3; padding: 14px 16px; outline: none; resize: vertical; }
+.get-face-form input:focus, .get-face-form textarea:focus { border-color: #caa767; }
+.get-face-form button, .portrait-actions button, .story-choices button, .get-face-submitting button, .mask-ceremony-copy button { border: 1px solid rgba(203, 172, 106, .52); background: rgba(31, 20, 11, .8); color: #e8cc91; padding: 11px 18px; cursor: pointer; }
+.get-face-error { color: #e99583 !important; font-size: 12px !important; }
+.get-face-portrait { grid-template-rows: auto auto auto auto auto; gap: 11px; }
+.portrait-frame { position: relative; width: min(190px, 50vw); aspect-ratio: .78; overflow: hidden; border: 1px solid rgba(203, 172, 106, .5); border-radius: 48% 48% 42% 42%; background: radial-gradient(ellipse at 50% 40%, #2a2119, #090807 70%); }
+.portrait-frame video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transform: scaleX(-1); }
+.portrait-frame.previewing video { opacity: .75; }
+.portrait-silhouette { position: absolute; inset: 17% 19%; border-radius: 48% 48% 42% 42%; background: radial-gradient(ellipse at 50% 30%, rgba(201, 167, 95, .52), rgba(68, 52, 34, .34) 54%, transparent 56%); filter: blur(8px); opacity: .78; pointer-events: none; }
+.portrait-frame.previewing .portrait-silhouette { opacity: .13; }
+.portrait-actions, .story-choices { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 12px; }
+.get-face-mask-stage { position: absolute; inset: 0; overflow: hidden; z-index: 2; }
+.altar-scene { position: absolute; inset: 0; transform: translate(var(--altar-parallax-x, 0), var(--altar-parallax-y, 0)); perspective: 1100px; transform-style: preserve-3d; }
+.scene-mask { position: absolute; left: 50%; top: 50%; width: clamp(125px, 18vw, 250px); aspect-ratio: .78; transform-style: preserve-3d; transform-origin: center; will-change: transform, opacity; pointer-events: none; }
+.scene-mask-front, .scene-mask-back { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; backface-visibility: hidden; filter: sepia(.76) grayscale(.48) brightness(.35) contrast(1.3); mask-image: radial-gradient(ellipse at center, #000 30%, rgba(0, 0, 0, .74) 61%, transparent 88%); }
+.scene-mask-back { transform: rotateY(180deg); filter: sepia(.65) grayscale(.56) brightness(.25) contrast(1.2); }
+.scene-mask-chosen { z-index: 30; }
+.mask-ceremony-copy { position: absolute; left: 50%; bottom: 10%; z-index: 5; width: min(570px, 90vw); transform: translateX(-50%); text-align: center; pointer-events: none; }
+.mask-ceremony-copy h1 { text-shadow: 0 3px 24px #000; }
+.mask-ceremony-copy p { margin-inline: auto; text-shadow: 0 2px 16px #000; }
+.mask-ceremony-copy button { margin-top: 18px; pointer-events: auto; }
+.altar-impact-flash { position: absolute; inset: 0; z-index: 4; pointer-events: none; opacity: 0; background: radial-gradient(circle at 50% 43%, rgba(255, 236, 190, .9), rgba(214, 166, 76, .24) 24%, transparent 60%); mix-blend-mode: screen; }
+.get-face-story { align-content: center; }
+.story-count { position: absolute; top: 86px; right: 32px; color: rgba(236, 216, 178, .48) !important; font-size: 11px !important; }
+.story-choices button { min-width: 180px; }
+.get-face-return { position: absolute; left: 32px; bottom: 26px; z-index: 9; border: 0; background: transparent; color: rgba(236, 216, 178, .48); font-size: 11px; cursor: pointer; }
+@keyframes ritual-fog-drift { from { transform: translate3d(-3%, 0, 0) scale(1); } to { transform: translate3d(3%, -4%, 0) scale(1.06); } }
+@keyframes ritual-dust { from { transform: translate3d(0, 8px, 0); opacity: .22; } to { transform: translate3d(7px, -12px, 0); opacity: .75; } }
+@media (max-width: 800px) {
+  .scene-mask { width: clamp(92px, 22vw, 180px); }
+  .altar-ambient { width: clamp(85px, 25vw, 180px); opacity: .15; }
+  .altar-foreground { width: clamp(115px, 31vw, 230px); opacity: .18; }
+  .mask-ceremony-copy { bottom: 8%; }
+}
+@media (max-width: 620px) {
+  .get-face-header { left: 18px; right: 18px; }
+  .get-face-mask-stage { overflow: hidden; }
+  .scene-mask { width: clamp(78px, 25vw, 145px); }
+  .mask-ceremony-copy { bottom: 12%; width: min(92vw, 470px); }
+  .mask-ceremony-copy h1 { font-size: 24px; }
+  .get-face-return { left: 18px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ritual-fog, .ritual-particles i { animation: none; }
+  .ritual-atmosphere { transition: none; }
+}

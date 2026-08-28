@@ -1,58 +1,49 @@
-# 傩 · 梵净入梦
+# 入梦黔境
 
-BUILD: `20260828-codex-v1`
+入梦黔境是运行在 Next.js App Router 上的贵州傩文化互动幻梦原型。唯一体验链路为 `Threshold → GetFaceRitual → DreamCard → GetFaceResult → Codex`：穿过山门后完成请面、愿望与三幕选择，播放一张固定幻梦，查看得面与签解，最后将结果收录到本机傩谱。
 
-一个围绕“入戏—幻梦—得面”的沉浸式傩文化交互原型。
+## 运行
 
-## 体验设计
+要求 Node.js `20.19.x`，首次安装与本地开发使用：
 
-- 开场：一个 Three.js 2.5D 场景内的 1.35 秒单调镜头，由白昼云雾中的贵州梵净山推进至破旧村寨正中的同一扇木门；镜头停稳后，门环才成为第一次交互。按住门环会打开同一组 3D 门扇，镜头连续穿过门洞进入仪式厅，没有黑场、背景替换或第二段门动画。
-- 请面：4 个不显示真实样貌的朦胧傩影在龙坛旋转、聚焦与可拖拽吸附，避免在故事前泄露收集面具。
-- 收集展示面：结尾 cinematic reveal 后进入 12 格傩谱。4 张视觉母体可按本机收录状态点亮，8 格为待补位置；收录数据不保存愿望或人像。
-- 傩谱详情：已收录卡会翻入独立详情，使用原始 PNG 生成可拖动、缩放的程序化浮雕网格；它明确不是文物扫描模型。
-- 龙坛：使用本地 `assets/dragon-altar-style.png` 作为祭坛氛围底图，原有请面拖拽流程保持不变。
-- 性能：开场只运行一个 WebGL renderer；GSAP 只编排相机、门扇与雾层的 transform / opacity。低性能设备自动减少雾层与阴影。
-
-## 本地启动
-
-完整“得面”体验请通过 `start.bat`、`start.ps1` 或 `python server.py` 启动本地服务。它为 DeepSeek 傩签代理和摄像头预览提供所需的 localhost 环境；不要单独移动该文件，须保留同级的 `assets/`、`src/` 与 `vendor/` 文件夹。
-
-直接双击 `index.html` 仍可查看原有离线场景，但浏览器会明确提示 AI 求签与摄像头预览不可用，不会生成伪造傩签。
-
-`start.bat` 仅用于本地调试：它会启动禁用缓存的本地服务。也可在项目目录运行：
-
-```powershell
-python server.py
+```bash
+npm ci
+npm run dev
 ```
 
-服务会选择一个空闲本地端口并关闭缓存。
+访问 <http://localhost:3000>。生产构建使用 Next standalone 输出；完成构建后可用 `npm run start` 启动生产服务，或直接运行 `.next/standalone/server.js`。
 
-### 配置 AI 傩签
+## 唯一验证流程
 
-复制 `.env.local.example` 为 `.env.local`，再填入**轮换后的** DeepSeek Key：
+本地完整验证按以下顺序执行，CI 使用同一组项目门禁：
 
-```ini
-DEEPSEEK_API_KEY=你的新密钥
-DEEPSEEK_BASE_URL=https://api.deepseek.com
-DEEPSEEK_MODEL=deepseek-v4-flash
+```bash
+npm run lint
+npm run typecheck
+npm test
+npm run validate
+npm run build
+npm run audit
+git diff --check
 ```
 
-`.env.local` 已被 Git 忽略。浏览器只请求本机 `/api/v1/omen`，摄像头只作本机预览，不截帧、不识别、不上传。
+CI 定义在 `.github/workflows/ci.yml`；`npm test` 只运行 Vitest。`npm run build` 也会先校验幻梦内容，并生成 standalone 产物。
 
-## 发布
+## 路由与权威路径
 
-推送到 `main` 后，`.github/workflows/deploy-pages.yml` 会将静态站点发布到 GitHub Pages。首次创建仓库后，请在仓库 **Settings → Pages** 中将 Source 设为 **GitHub Actions**。
+- `src/app/`：App Router 页面与 Route Handler 入口；主要页面是山门 `/`、幻梦 `/dream/[cardId]`、结果 `/result`，傩引接口为 `POST /api/v1/omen`。
+- `src/features/`：Threshold、GetFaceRitual、DreamCard 播放、GetFaceResult 与 Codex 的界面和运行时效果。
+- `src/domain/`：领域模型、状态机、校验与持久化边界；得面权威数据在 `src/domain/get-face/`，幻梦权威注册在 `src/domain/dream-card/`，傩谱边界在 `src/domain/codex/`。
+- `src/server/`：服务端 AI provider 与外部模型代理；密钥和 provider 细节不得进入浏览器。
+- `content/dream-cards/`：固定幻梦内容；选中卡片后，AI 不得生成或改写 Act。
+- `content/assets.manifest.json`：稳定 `assetId` 到运行素材的唯一映射。
+- `public/dream-assets/`：产品运行时可访问的正式素材。
+- `reference-materials/`：研究资料与源文件，不进入产品 bundle。
+- `docs/dream-card/`：幻梦卡 schema、模板、素材规范与内容流程。
+- `next.config.ts`、`vitest.config.mts`、`package.json`：构建、测试与项目命令的配置来源。
 
-## 主要文件
+## 隐私与产品边界
 
-- `index.html`：场景结构
-- `src/app.js`：GSAP 交互、请面和收集解锁流程
-- `src/threshold-scene.js`：Three.js 连续开场、门扇与相机路径
-- `src/styles.css`：镜头、门与傩谱视觉样式
-- `src/codex-collection.js`：本机傩谱存储边界（不含愿望、视频或人像）
-- `src/mask-relief-viewer.js`：按视觉母体生成与释放 Three.js 浮雕查看器
-- `assets/fanjing-backdrop-v2.png`、`assets/village-facade-door.png`、`assets/ritual-threshold-hall.png`：原创分层环境资源
-- `vendor/three.min.js`、`vendor/THREE-LICENSE`：本地托管的 Three.js r160.1 经典脚本与 MIT 许可证
-- `vendor/gsap.min.js`、`vendor/GSAP-LICENSE.md`：本地托管的 GSAP 3.15.0 与许可证说明
-- `assets/masks/`：结尾收集展示使用的原始面具文件
-- `assets/dragon-altar-style.png`：用户提供的龙坛画风底图
+摄像头仅用于本机预览，不截帧、不识别、不保存、不上传；离页、切后台和确认操作都会释放媒体轨道。愿望、人像、视频帧、摄像头状态和服务端配置不会写入本机傩谱，傩谱只保存面具、职司、傩签、傩解、溯源与视觉变体。
+
+签解是叙事性反思，不是事实预测或专业建议。面具视觉母体是项目运行素材，结果页会明确标注历史身份及授权来源未提供。

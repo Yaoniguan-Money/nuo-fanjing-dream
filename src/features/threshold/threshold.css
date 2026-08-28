@@ -1,0 +1,18 @@
+.threshold-experience { position: fixed; inset: 0; overflow: hidden; background: #000; }
+.threshold-plate { position: absolute; inset: -8%; pointer-events: none; will-change: transform, opacity; background-position: center; background-repeat: no-repeat; background-size: cover; }
+.threshold-mountain { z-index: 1; }
+.threshold-hall { z-index: 2; opacity: 0; }
+.threshold-village { z-index: 3; }
+.threshold-canvas { position: absolute; inset: 0; z-index: 4; width: 100%; height: 100%; }
+.threshold-vignette { position: absolute; inset: 0; z-index: 5; pointer-events: none; background: radial-gradient(ellipse at 50% 47%, transparent 28%, rgba(0,0,0,.1) 64%, rgba(0,0,0,.72) 100%); }
+.threshold-copy { position: absolute; z-index: 6; top: 7vh; left: 50%; width: min(720px, 86vw); transform: translateX(-50%); text-align: center; text-shadow: 0 3px 24px #000; opacity: 0; transition: opacity .4s ease; }
+.threshold-copy.ready { opacity: 1; }
+.threshold-copy span { color: rgba(236, 216, 178, .65); font-size: 10px; letter-spacing: .52em; }
+.threshold-copy h1 { margin: 12px 0; color: #d5bd90; font-size: clamp(34px, 5vw, 68px); font-weight: 400; letter-spacing: .16em; }
+.threshold-copy p { margin: 0; color: rgba(238, 228, 211, .66); font: 13px/1.8 system-ui, sans-serif; }
+.threshold-controls { position: absolute; z-index: 7; bottom: 5vh; left: 50%; display: grid; justify-items: center; gap: 10px; transform: translateX(-50%) translateY(20px); opacity: 0; pointer-events: none; transition: opacity .3s ease, transform .3s ease; }
+.threshold-controls.ready { transform: translateX(-50%); opacity: 1; pointer-events: auto; }
+.hold-ring { position: relative; width: 94px; height: 94px; padding: 0; border: 1px solid rgba(190, 147, 82, .48); border-radius: 50%; background: radial-gradient(circle, rgba(13,10,7,.9), rgba(4,4,3,.72)); color: #ccb181; cursor: pointer; }
+.hold-ring:disabled { cursor: default; opacity: .7; }
+.hold-progress { --hold-progress: 0deg; position: absolute; inset: -5px; border-radius: 50%; background: conic-gradient(#b68e4f var(--hold-progress), transparent var(--hold-progress)); -webkit-mask: radial-gradient(circle, transparent 63%, #000 64%); mask: radial-gradient(circle, transparent 63%, #000 64%); }
+.threshold-controls small { color: rgba(201, 180, 145, .55); font: 10px system-ui, sans-serif; letter-spacing: .08em; }
