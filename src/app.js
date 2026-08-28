@@ -1,4 +1,4 @@
-window.__NUO_BUILD__="20260828-file-textures-v6"; console.info("[NUO BUILD]", window.__NUO_BUILD__);
+window.__NUO_BUILD__="20260828-codex-v1"; console.info("[NUO BUILD]", window.__NUO_BUILD__);
 window.addEventListener("error",(e)=>{
   const box=document.getElementById("runtimeError");
   if(box){
@@ -34,6 +34,11 @@ const state = {
   wish:"",
   selected:0,
   storyStep:0,
+  choices:[],
+  getFace:null,
+  portraitMode:"unseen",
+  portraitStream:null,
+  portraitTimer:null,
   holdValue:0,
   doorOpened:false,
   thresholdReady:false,
@@ -44,18 +49,20 @@ const state = {
    DATA LAYER / INTERFACES
    可被后续接真实 API 替换
 ========================================================= */
-const MASKS = [
-  {name:"开山", duty:"破障", qian:"先破一道障，再求远处结果", key:/迷茫|前路|选择|未来|规划|上岸|卡住/, asset:"assets/masks/mask-01.png"},
-  {name:"和合", duty:"调和", qian:"先安人心，再谈关系结果", key:/爱|感情|关系|分手|喜欢|相处|沟通/, asset:"assets/masks/mask-02.png"},
-  {name:"将军", duty:"定断", qian:"先立边界，再谈事业进退", key:/工作|职业|事业|面试|创业|项目|钱/, asset:"assets/masks/mask-03.png"},
-  {name:"判官", duty:"照见", qian:"先看清害怕什么，再谈输赢", key:/怕|恐惧|焦虑|压力|失败|不安/, asset:"assets/masks/mask-04.png"}
-];
-
-const STORY = [
-  {eyebrow:"入 · 山门", title:"第一幕 · 山门问路", desc:"黑暗里，鼓声从远处一下一下逼近。你必须决定，是循声直入，还是先问清来路。", choices:["循鼓声直入","先停下问来路"]},
-  {eyebrow:"照 · 心火", title:"第二幕 · 火堂试心", desc:"火光照出来的不是吉凶，而是你最不愿承认的那一部分。", choices:["直视那团火","先避开它"]},
-  {eyebrow:"对 · 影", title:"第三幕 · 对影受面", desc:"影子从脚下站起来。它不追你，只问：你到底愿意舍掉什么，又要守住什么？", choices:["承认恐惧","守住所求"]}
-];
+const GET_FACE_DATA = window.NuoGetFaceData;
+const GET_FACE_DOMAIN = window.NuoGetFaceDomain;
+if (!GET_FACE_DATA || !GET_FACE_DOMAIN) throw new Error("得面内容未加载，请保留 src/get-face-data.js 与 src/get-face-domain.js。");
+const MASKS = GET_FACE_DATA.masks;
+const STORY = GET_FACE_DATA.story;
+const CODEX_DATA = GET_FACE_DATA.codex;
+const CodexCollection = window.NuoCodexCollection;
+const MaskReliefViewer = window.NuoMaskReliefViewer;
+if (!CODEX_DATA || !CodexCollection || !MaskReliefViewer) throw new Error("傩谱模块未加载，请保留 codex-collection.js 与 mask-relief-viewer.js。");
+$("#ritual")?.style.setProperty("--altar-focus",CODEX_DATA.altar?.focalPoint || "50% 50%");
+let codexViewer = null;
+let codexActiveMaskId = null;
+let codexFocusReturn = null;
+let codexOpening = false;
 
 /* =========================================================
    EVENT BUS
@@ -215,16 +222,15 @@ window.NuoDemoAPI = {
   data:{
     getMasks:()=>MASKS,
     getStory:()=>STORY,
+    getRoles:()=>GET_FACE_DATA.roles.map(({id,name,duty,kind,maskIndex})=>({id,name,duty,kind,maskIndex})),
+    getCurrentResult:()=>state.getFace ? structuredClone(state.getFace) : null,
     provider:null,
     setProvider(fn){ this.provider=typeof fn==="function"?fn:null; },
     async fetchMasks(){
       return this.provider ? await this.provider() : MASKS;
     },
     selectMaskByText(text){
-      const direct = MASKS.findIndex(m=>m.key.test(text || ""));
-      if(direct >= 0) return MASKS[direct];
-      let h = 0; for(const c of (text||"")) h=(h*31+c.charCodeAt(0))>>>0;
-      return MASKS[h % MASKS.length];
+      return MASKS[GET_FACE_DOMAIN.resolveVisual(GET_FACE_DATA, text || "")];
     }
   },
   audio:{
@@ -265,6 +271,22 @@ window.NuoDemoAPI = {
   events:{
     on:(name,fn)=>EventBus.on(name,fn),
     emit:(name,payload)=>EventBus.emit(name,payload),
+  },
+  result:{
+    getCurrent:()=>state.getFace ? structuredClone(state.getFace) : null,
+    retryOmen:()=>requestOmen()
+  },
+  codex:{
+    getCollection:()=>CodexCollection.list(CODEX_DATA.storageKey),
+    getEntry:(maskId)=>CodexCollection.get(CODEX_DATA.storageKey,maskId),
+    open:(maskId)=>openCodexEntry(maskId),
+    clear:()=>clearCodexCollection()
+  },
+  portrait:{
+    getMode:()=>state.portraitMode,
+    stop:()=>stopPortraitPreview(),
+    // 保留给后续真实采集适配器；默认流程不会调用摄像头。
+    requestCameraPreview:()=>startPortraitPreview()
   },
   debugState:state,
 };
@@ -318,10 +340,66 @@ function showInput(placeholder){
   setTimeout(()=>$("#textInput").focus(),100);
 }
 function hideInput(){ gsap.to("#inputWrap",{opacity:0,pointerEvents:"none",duration:.2}); }
+function showPortraitRite(){
+  hideInput();
+  state.portraitMode="symbolic";
+  setCopy("照 · 相", "汝之状貌", "傩引以影采相。无需取镜，不分析、不保存、不上传你的面部。 ");
+  $("#portraitFrame").classList.add("portrait-fallback");
+  $("#portraitNote").textContent="象征采相正在进行，约两秒后将自动入坛。";
+  gsap.to("#portraitRite",{opacity:1,pointerEvents:"auto",duration:.45});
+  clearTimeout(state.portraitTimer);
+  state.portraitTimer=setTimeout(()=>confirmPortrait("symbolic"),1900);
+}
+function hidePortraitRite(){
+  clearTimeout(state.portraitTimer);
+  state.portraitTimer=null;
+  gsap.to("#portraitRite",{opacity:0,pointerEvents:"none",duration:.22});
+  stopPortraitPreview();
+}
+function stopPortraitPreview(){
+  const stream=state.portraitStream;
+  if(stream) stream.getTracks().forEach(track=>track.stop());
+  state.portraitStream=null;
+  const video=$("#portraitVideo");
+  if(video) video.srcObject=null;
+}
+async function startPortraitPreview(){
+  const note=$("#portraitNote");
+  if(!navigator.mediaDevices?.getUserMedia || !window.isSecureContext){
+    state.portraitMode="silhouette";
+    note.textContent="当前环境无法安全启镜，已改用象征剪影；不会采集任何面部资料。";
+    $("#portraitFrame").classList.add("portrait-fallback");
+    return;
+  }
+  try{
+    stopPortraitPreview();
+    state.portraitStream=await navigator.mediaDevices.getUserMedia({video:{facingMode:"user"},audio:false});
+    $("#portraitVideo").srcObject=state.portraitStream;
+    $("#portraitFrame").classList.remove("portrait-fallback");
+    state.portraitMode="preview";
+    note.textContent="取景仅在本机预览。确认后将立即关闭镜头；系统不会截帧、识别或上传。";
+  }catch(error){
+    console.warn("portrait preview unavailable",error?.name);
+    state.portraitMode="silhouette";
+    $("#portraitFrame").classList.add("portrait-fallback");
+    note.textContent="未取得镜头权限，已改用象征剪影；不会采集任何面部资料。";
+  }
+}
+function confirmPortrait(mode){
+  state.portraitMode=mode || state.portraitMode || "silhouette";
+  hidePortraitRite();
+  chooseMask();
+}
 function showContinue(txt){
   $("#continueBtn").textContent = txt;
   gsap.to("#continueWrap",{opacity:1,pointerEvents:"auto",duration:.4});
 }
+
+$("#portraitStart").addEventListener("click",()=>startPortraitPreview());
+$("#portraitConfirm").addEventListener("click",()=>confirmPortrait());
+$("#portraitSkip").addEventListener("click",()=>confirmPortrait("symbolic"));
+document.addEventListener("visibilitychange",()=>{ if(document.hidden) stopPortraitPreview(); });
+window.addEventListener("pagehide",stopPortraitPreview);
 function hideContinue(){ gsap.to("#continueWrap",{opacity:0,pointerEvents:"none",duration:.2}); }
 function showChoices(arr){
   const wrap = $("#choiceWrap");
@@ -518,16 +596,12 @@ function submitRitual(){
   }else{
     state.wish=v; state.ritualStep=2;
     EventBus.emit("ritual:wish",{wish:v});
-    hideInput();
-    chooseMask();
+    showPortraitRite();
   }
 }
 
 function pickMask(text){
-  const direct = MASKS.findIndex(m=>m.key.test(text||""));
-  if(direct >= 0) return direct;
-  let h=0; for(const c of (text||"")) h=(h*31+c.charCodeAt(0))>>>0;
-  return h % MASKS.length;
+  return GET_FACE_DOMAIN.resolveVisual(GET_FACE_DATA,text||"");
 }
 
 function chooseMask(){
@@ -563,6 +637,7 @@ function startStoryStep(i){
 }
 function chooseStory(idx){
   AudioEngine.playCue("heavy");
+  state.choices.push(idx);
   impact(1); crush(.5);
   gsap.to("#choiceWrap",{opacity:0,pointerEvents:"none",duration:.25});
 
@@ -596,7 +671,88 @@ function buildEndingEmbers(){
   }
 }
 
+function escapeHtml(value){
+  return String(value||"").replace(/[&<>"']/g,(char)=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"})[char]);
+}
+function buildGetFace(){
+  const resolved=GET_FACE_DOMAIN.resolveRole(GET_FACE_DATA,{
+    name:state.name,wish:state.wish,choices:state.choices,maskIndex:state.selected
+  });
+  const variant=GET_FACE_DOMAIN.buildVariant(GET_FACE_DATA,{name:state.name,wish:state.wish,choices:state.choices},resolved.role);
+  const sourceMap=new Map(GET_FACE_DATA.sources.map(source=>[source.id,source]));
+  state.getFace={
+    role:resolved.role,
+    mask:resolved.mask,
+    variant,
+    evidence:{wish:state.wish,choices:[...state.choices],score:resolved.score},
+    sources:resolved.role.sources.map(id=>sourceMap.get(id)).filter(Boolean),
+    omen:{status:"idle",qian:"神意正在成形",jie:"傩引正在将此回的愿望与选择结成一段未定的解释。",error:null,meta:null}
+  };
+  return state.getFace;
+}
+function makeCollectionEntry(result=state.getFace){
+  if(!result) return null;
+  const role=result.role;
+  return {
+    mask:result.mask,
+    role,
+    variant:result.variant,
+    visualText:`视觉母体：${result.mask.name}。固定标志为${role.signs.join("、")}；本回变体采用${result.variant.tint}色调与${result.variant.mark}，${state.portraitMode==="preview"?"镜头仅作本机预览，不参与分析。":"以象征剪影入坛。"}`,
+    reasonText:`本回愿望主题与三幕选择共同指向此面。${role.reason}`,
+    sources:result.sources,
+    omen:result.omen
+  };
+}
+function persistCurrentResult(){
+  const entry=makeCollectionEntry();
+  if(entry) CodexCollection.upsert(CODEX_DATA.storageKey,entry);
+}
+function renderResultScroll(result=state.getFace){
+  if(!result) return;
+  const role=result.role, omen=result.omen;
+  $("#resultVisual").textContent=result.visualText || makeCollectionEntry(result).visualText;
+  $("#resultReason").textContent=result.reasonText || makeCollectionEntry(result).reasonText;
+  $("#resultQian").textContent=omen.qian;
+  $("#resultJie").textContent=omen.jie;
+  $("#resultBackground").textContent=role.background;
+  const kind=role.kind==="traditional_reference"?"传统职司借鉴":"项目新创";
+  $("#resultSources").innerHTML=`<p class="source-status">${kind} · ${GET_FACE_DATA.localAssetNotice}</p>`+result.sources.map(source=>`<a class="source-link" href="${escapeHtml(source.url)}" target="_blank" rel="noreferrer"><b>${escapeHtml(source.title)}</b><small>${escapeHtml(source.institution)} · ${escapeHtml(source.accessedAt)}</small><em>${escapeHtml(source.meaning)}</em><i>${escapeHtml(source.imageRights)}</i></a>`).join("");
+  const canRetry=result===state.getFace;
+  $("#retryOmen").hidden=!canRetry;
+  $("#retryOmen").disabled=omen.status==="pending";
+  $("#retryOmen").textContent=omen.status==="pending"?"傩引正在结签":"重新求签";
+}
+async function requestOmen(){
+  const result=state.getFace;
+  if(!result || result.omen.status==="pending") return;
+  result.omen.status="pending";
+  result.omen.qian="神意正在成形";
+  result.omen.jie="傩引正在结签，请稍候。";
+  renderResultScroll();
+  const payload={
+    request_id:crypto.randomUUID?.() || `${Date.now()}-${Math.random().toString(16).slice(2)}`,
+    wish:state.wish,
+    choices:state.choices,
+    role:{id:result.role.id,name:result.role.name,duty:result.role.duty,reason:result.role.reason,kind:result.role.kind},
+    evidence:{mask_id:result.mask.id,signs:result.role.signs,prompt_version:GET_FACE_DATA.promptVersion}
+  };
+  try{
+    const response=await fetch("/api/v1/omen",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});
+    const body=await response.json().catch(()=>({}));
+    if(!response.ok) throw new Error(body.message || body.code || "傩签未能成形");
+    result.omen={status:"ready",qian:body.qian,jie:body.jie,error:null,meta:body.meta};
+    $("#endingQianText").textContent=`${body.qian}。`;
+  }catch(error){
+    result.omen={status:"error",qian:"神意未成",jie:"这一次傩引未能结出文字。你可以保留已得之面，或在网络与本地服务可用后重新求签。",error:error.message||"请求失败",meta:null};
+    $("#endingQianText").textContent="神意未成，可入谱后重新求签。";
+  }
+  persistCurrentResult();
+  renderResultScroll();
+}
+
 function finishStory(){
+  buildGetFace();
+  persistCurrentResult();
   setPhase("REVELATION");
   AudioEngine.playCue("heavy");
   impact(1.25);
@@ -604,11 +760,14 @@ function finishStory(){
   gsap.to("#ritual",{opacity:0,duration:.6,onComplete:()=>{
     switchScreen($("#outro"));
     playEndingCinematic();
+    requestOmen();
   }});
 }
 
 function playEndingCinematic(){
-  const m=MASKS[state.selected];
+  const result=state.getFace;
+  const m=result.mask;
+  const role=result.role;
   const end=$("#endingCinematic");
   const codex=$("#codexWorld");
 
@@ -618,9 +777,10 @@ function playEndingCinematic(){
   end.style.pointerEvents="none";
 
   $("#endingMask").innerHTML=maskImage(state.selected,"ending-source");
-  $("#endingName").textContent=`傩 · ${m.name}`;
-  $("#endingDuty").textContent=`职司 · ${m.duty}`;
-  $("#endingQianText").textContent=m.qian+"。";
+  $("#endingMask").dataset.tint=result.variant.tint;
+  $("#endingName").textContent=`傩 · ${role.name}`;
+  $("#endingDuty").textContent=`职司 · ${role.duty}`;
+  $("#endingQianText").textContent="神意正在成形。";
   buildEndingEmbers();
 
   gsap.set(["#endingDisc","#endingMask","#endingKicker","#endingName","#endingDuty","#endingQian","#endingSeal","#endingRecord","#endingEnter",".ending-fog"],{opacity:0});
@@ -650,27 +810,100 @@ function playEndingCinematic(){
     });
 }
 
+function codexGlyph(kind){
+  const common=`<svg viewBox="0 0 100 132" aria-hidden="true"><path d="M50 8 C76 10 88 35 84 68 C81 102 65 122 50 126 C35 122 19 102 16 68 C12 35 24 10 50 8 Z"/><circle cx="34" cy="60" r="8"/><circle cx="66" cy="60" r="8"/>`;
+  const tails={
+    mountain:`<path class="secondary" d="M25 89 L41 73 L50 82 L62 64 L78 89 M30 104 Q50 94 70 104"/>`,
+    knot:`<path class="secondary" d="M27 87 C38 75 46 77 50 88 C54 77 62 75 73 87 C64 101 55 105 50 96 C45 105 36 101 27 87Z"/>`,
+    scale:`<path class="secondary" d="M50 76 V108 M30 88 H70 M29 90 L21 106 H37 Z M71 90 L63 106 H79 Z"/>`,
+    lamp:`<path class="secondary" d="M50 80 C39 96 39 105 50 112 C61 105 61 96 50 80 Z M31 92 Q50 80 69 92"/>`,
+    unknown:`<path class="secondary" d="M36 85 Q50 71 64 85 M39 101 H61"/>`
+  };
+  return common+(tails[kind]||tails.unknown)+`</svg>`;
+}
+function codexNumber(index){ return String(index+1).padStart(2,"0"); }
 function buildCodex(){
   const wall=$("#codexWall");
-  const m=MASKS[state.selected];
+  const entries=CodexCollection.list(CODEX_DATA.storageKey);
+  const collected=Object.keys(entries).length;
+  $("#codexCount").textContent=`已收录 ${collected} / ${MASKS.length}`;
   wall.innerHTML="";
-
-  MASKS.forEach((item,i)=>{
-    const person=document.createElement("div");
-    person.className="codex-person "+(i===state.selected?"unlocked":"locked");
-    person.innerHTML=`
-      <div class="codex-person-mask">${maskImage(i)}</div>
-      <div class="codex-person-lock">${i===state.selected?"":"未 · 见"}</div>
-      <div class="codex-person-name">${i===state.selected?item.name:"？？"}</div>
-    `;
-    wall.appendChild(person);
+  CODEX_DATA.slots.forEach((slot,index)=>{
+    const mask=MASKS.find(item=>item.id===slot.id);
+    const entry=mask ? entries[mask.id] : null;
+    const visual=mask?.visual?.card || {primary:"#61594d",secondary:"#766f63",glyph:"unknown"};
+    const stateClass=entry?"unlocked":(slot.kind==="reserved"?"reserved":"locked");
+    const label=entry?entry.role.name:(slot.kind==="reserved"?"待补":"未见");
+    const card=document.createElement("div");
+    card.className=`codex-person ${stateClass}`;
+    card.style.setProperty("--card-a",visual.primary);
+    card.style.setProperty("--card-b",visual.secondary);
+    card.innerHTML=`<div class="codex-card" role="${entry?"button":"img"}" tabindex="${entry?"0":"-1"}" aria-label="${escapeHtml(entry?`查看已收录的${mask.name}`:`${label}面具`)}">
+      <div class="codex-card-face codex-card-back"><div class="codex-card-glyph">${codexGlyph(visual.glyph)}</div><div class="codex-card-meta"><span class="codex-card-index">NO.${codexNumber(index)}</span><span class="codex-card-name">${escapeHtml(label)}</span></div></div>
+      <div class="codex-card-face codex-card-flip">${entry?`<img src="${escapeHtml(mask.asset)}" alt="${escapeHtml(mask.name)}"/>`:""}</div>
+    </div>`;
+    if(entry){
+      const activate=()=>openCodexEntry(mask.id,card);
+      card.querySelector(".codex-card").addEventListener("click",activate);
+      card.querySelector(".codex-card").addEventListener("keydown",event=>{ if(event.key==="Enter"||event.key===" "){ event.preventDefault(); activate(); } });
+    }
+    wall.appendChild(card);
   });
+}
 
-  $("#codexDetailMask").innerHTML=maskImage(state.selected);
-  $("#codexDetailNum").textContent=`第${["壹","贰","叁","肆"][state.selected]}面 · 已解锁`;
-  $("#codexDetailName").textContent=m.name;
-  $("#codexDetailDuty").textContent=m.duty;
-  $("#codexDetailText").textContent=`${state.name}，你在这一回故事中真正遇见了这张面。${m.qian}。`;
+async function openCodexEntry(maskId, trigger){
+  const entry=CodexCollection.get(CODEX_DATA.storageKey,maskId);
+  const mask=MASKS.find(item=>item.id===maskId);
+  if(!entry || !mask || codexOpening) return false;
+  if(codexActiveMaskId===maskId && $("#codexDetail").getAttribute("aria-hidden")==="false") return true;
+  codexOpening=true;
+  try{
+  codexFocusReturn=trigger?.querySelector?.(".codex-card") || document.activeElement;
+  const card=trigger || [...document.querySelectorAll(".codex-person")].find(item=>item.querySelector(".codex-card")?.getAttribute("aria-label")?.includes(mask.name));
+  card?.classList.add("opening");
+  await new Promise(resolve=>setTimeout(resolve,360));
+  card?.classList.remove("opening");
+  codexActiveMaskId=maskId;
+  $("#codexDetailNum").textContent=`第${["壹","贰","叁","肆"][MASKS.indexOf(mask)]||"未定"}面 · 已收录`;
+  $("#codexDetailName").textContent=entry.role.name;
+  $("#codexDetailDuty").textContent=`职司 · ${entry.role.duty}`;
+  $("#codexDetailText").textContent=`视觉母体 · ${mask.name}`;
+  renderResultScroll(entry);
+  const detail=$("#codexDetail");
+  detail.setAttribute("aria-hidden","false");
+  document.body.classList.add("codex-detail-open");
+  $("#codexViewer").hidden=false; $("#codexViewerFallback").hidden=true;
+  if(codexViewer) codexViewer.dispose();
+  codexViewer=new MaskReliefViewer($("#codexViewer"),{...CODEX_DATA.relief, ...(mask.visual?.relief||{})});
+  try{
+    await codexViewer.mount(mask);
+  }catch(error){
+    console.warn("codex relief unavailable",error?.message);
+    codexViewer?.dispose(); codexViewer=null;
+    $("#codexViewer").hidden=true;
+    const fallback=$("#codexViewerFallback");
+    fallback.hidden=false;
+    fallback.innerHTML=`<img src="${escapeHtml(mask.asset)}" alt="${escapeHtml(mask.name)} 原始面具图"/><p>3D 查看不可用，已显示原始视觉母体。</p>`;
+  }
+  setTimeout(()=>$("#codexClose").focus(),30);
+  return true;
+  }finally{ codexOpening=false; }
+}
+
+function closeCodexDetail(){
+  const detail=$("#codexDetail");
+  if(detail.getAttribute("aria-hidden")!=="false") return;
+  codexViewer?.dispose(); codexViewer=null; codexActiveMaskId=null;
+  detail.setAttribute("aria-hidden","true");
+  document.body.classList.remove("codex-detail-open");
+  codexFocusReturn?.focus?.();
+}
+
+function clearCodexCollection(){
+  if(!window.confirm("清空本机已收录的傩面与傩签？此操作不会保存愿望或人像，也无法恢复。")) return false;
+  CodexCollection.clear(CODEX_DATA.storageKey);
+  closeCodexDetail(); buildCodex();
+  return true;
 }
 
 function enterCodex(){
@@ -690,14 +923,18 @@ function enterCodex(){
       codex.style.display="block";
       setPhase("CODEX");
       gsap.fromTo(codex,{opacity:0},{opacity:1,duration:.52});
-      gsap.fromTo(".codex-person",{opacity:0,y:18},{opacity:(i,el)=>el.classList.contains("unlocked")?1:.30,y:0,stagger:.055,duration:.48});
-      gsap.fromTo("#codexDetail",{opacity:0,y:12},{opacity:1,y:0,duration:.48,delay:.22});
+      gsap.fromTo(".codex-person",{opacity:0,y:18},{opacity:1,y:0,stagger:.045,duration:.48});
       gsap.fromTo("#codexRestart",{opacity:0},{opacity:1,duration:.4,delay:.35});
       AudioEngine.playCue("gong");
     });
 }
 
 $("#codexRestart").addEventListener("click",()=>location.reload());
+$("#retryOmen").addEventListener("click",()=>requestOmen());
+$("#codexClose").addEventListener("click",closeCodexDetail);
+$("#codexViewerReset").addEventListener("click",()=>codexViewer?.reset());
+$("#codexClear").addEventListener("click",clearCodexCollection);
+document.addEventListener("keydown",event=>{ if(event.key==="Escape") closeCodexDetail(); });
 
 /* =========================================================
    SUBTLE MOUSE PARALLAX / DEV INPUT
@@ -1046,6 +1283,11 @@ if(soundBtnEl){
     AudioEngine.resume();
     AudioEngine.setMuted(!state.muted);
   });
+}
+if(location.protocol==="file:"){
+  const box=$("#runtimeError");
+  box.style.display="block";
+  box.textContent="完整得面需要通过 start.bat、start.ps1 或本地 server.py 启动；离线页面不会伪造傩签。";
 }
 InputLayer.init();
 requestAnimationFrame(()=>startExperience());

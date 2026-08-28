@@ -6,9 +6,9 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
 <meta http-equiv="Pragma" content="no-cache" />
 <meta http-equiv="Expires" content="0" />
-<meta name="nuo-build" content="20260828-file-textures-v6" />
+<meta name="nuo-build" content="20260828-codex-v1" />
 <title>傩 · 梵净入梦</title>
-<link rel="stylesheet" href="src/styles.css?v=20260828-file-textures-v6" />
+<link rel="stylesheet" href="src/styles.css?v=20260828-codex-v1" />
 </head>
 <body>
 <div id="app">
@@ -39,7 +39,7 @@
 
   <section class="screen" id="ritual">
     <div class="ritual-orb" id="ritualOrb"></div>
-    <div class="dragon-field">
+    <div class="dragon-field" id="dragonField">
       <svg class="dragon-svg" viewBox="0 0 1000 1000" aria-hidden="true">
         <path d="M774 535 C735 446 667 392 592 390 C522 388 470 432 446 489 C419 552 445 633 511 681 C591 740 709 716 787 630
                  C853 556 860 452 820 371 C783 297 720 249 629 228 C528 204 415 235 336 306 C240 393 215 528 269 651
@@ -66,6 +66,21 @@
         <button id="inputBtn">奉告 ↵</button>
       </div>
     </div>
+
+    <section class="portrait-rite" id="portraitRite" aria-live="polite">
+      <div class="portrait-kicker">汝 · 之 · 状 · 貌</div>
+      <div class="portrait-frame" id="portraitFrame">
+        <video id="portraitVideo" autoplay muted playsinline></video>
+        <div class="portrait-silhouette" id="portraitSilhouette" aria-hidden="true"></div>
+        <div class="portrait-scan" aria-hidden="true"></div>
+      </div>
+      <p id="portraitNote">象征采相：本版仅作本机取景预览，不分析、不保存、不上传面部。</p>
+      <div class="portrait-actions">
+        <button id="portraitStart" type="button">启镜采相</button>
+        <button id="portraitConfirm" type="button">受相入坛</button>
+        <button id="portraitSkip" type="button">以影代相</button>
+      </div>
+    </section>
 
     <div class="choicewrap" id="choiceWrap"></div>
     <div class="continue" id="continueWrap"><button id="continueBtn">进入下一幕</button></div>
@@ -96,23 +111,38 @@
     </div>
 
     <div class="codex-world" id="codexWorld">
-      <div class="codex-title">
-        <div class="codex-kicker">傩 · 谱</div>
+      <header class="codex-title">
+        <div class="codex-kicker">傩 · 谱 · 收 · 录</div>
         <h2>面中有人，戏外有余声</h2>
-        <p>每完成一次入戏，便在傩谱中留下一个被你真正遇见过的角色。</p>
+        <p>已收录的面具可翻入细看；本机只保存得面结果，不保存愿望与人像。</p>
+      </header>
+      <div class="codex-actions">
+        <p id="codexCount" aria-live="polite">已收录 0 / 4</p>
+        <button id="codexClear" type="button">清空本机收录</button>
       </div>
+      <div class="codex-wall" id="codexWall" aria-label="傩面图鉴"></div>
 
-      <div class="codex-wall" id="codexWall"></div>
-
-      <div class="codex-detail" id="codexDetail">
-        <div class="codex-detail-mask" id="codexDetailMask"></div>
-        <div class="codex-detail-copy">
-          <div class="codex-detail-num" id="codexDetailNum">第壹面</div>
-          <h3 id="codexDetailName">开山</h3>
-          <div class="codex-detail-duty" id="codexDetailDuty">破障</div>
-          <p id="codexDetailText">此面已经被你带出故事。</p>
+      <section class="codex-detail" id="codexDetail" aria-hidden="true" aria-label="傩面详情">
+        <button class="codex-close" id="codexClose" type="button" aria-label="关闭傩面详情">×</button>
+        <div class="codex-viewer-column">
+          <div class="codex-detail-num" id="codexDetailNum">第壹面 · 已解锁</div>
+          <div class="codex-viewer" id="codexViewer" aria-label="可拖动旋转的傩面浮雕"></div>
+          <div class="codex-viewer-fallback" id="codexViewerFallback" hidden></div>
+          <div class="codex-viewer-tools"><span>拖动旋转 · 滚轮缩放</span><button id="codexViewerReset" type="button">复位面具</button></div>
+          <p class="codex-model-note">程序化浮雕 3D／非历史扫描模型</p>
         </div>
-      </div>
+        <div class="codex-detail-copy">
+          <div class="codex-detail-head"><div><h3 id="codexDetailName">未命名傩面</h3><div class="codex-detail-duty" id="codexDetailDuty"></div></div><p id="codexDetailText"></p></div>
+          <section class="result-scroll" id="resultScroll" aria-live="polite">
+            <div class="result-section"><span>傩 · 面</span><p id="resultVisual"></p></div>
+            <div class="result-section"><span>授 · 面 · 理 · 由</span><p id="resultReason"></p></div>
+            <div class="result-section result-omen"><span>傩 · 签</span><p id="resultQian">神意未成</p><button id="retryOmen" type="button">重新求签</button></div>
+            <div class="result-section"><span>傩 · 解</span><p id="resultJie">傩解尚未成形。</p></div>
+            <div class="result-section"><span>角 · 色 · 背 · 景</span><p id="resultBackground"></p></div>
+            <div class="result-section"><span>溯 · 源</span><div id="resultSources"></div></div>
+          </section>
+        </div>
+      </section>
 
       <button class="codex-restart" id="codexRestart">再入傩门</button>
     </div>
@@ -130,6 +160,10 @@
 <script src="vendor/gsap.min.js"></script>
 <script src="vendor/three.min.js"></script>
 <script src="src/threshold-scene.js?v=20260828-file-textures-v6"></script>
-<script src="src/app.js?v=20260828-file-textures-v6"></script>
+<script src="src/get-face-data.js?v=20260828-get-face-v1"></script>
+<script src="src/get-face-domain.js?v=20260828-get-face-v1"></script>
+<script src="src/codex-collection.js?v=20260828-codex-v1"></script>
+<script src="src/mask-relief-viewer.js?v=20260828-codex-v1"></script>
+<script src="src/app.js?v=20260828-codex-v1"></script>
 </body>
 </html>
