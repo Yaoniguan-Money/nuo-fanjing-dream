@@ -14,6 +14,12 @@ interface PlaybackState {
 
 const initialPlayback: PlaybackState = { phase: "title", actIndex: 0, textIndex: -1 };
 
+function characterHorizontalPosition(position: DreamCharacter["position"], characterCount: number): number {
+  if (position === "center") return 50;
+  if (characterCount >= 3) return position === "left" ? 25 : 75;
+  return position === "left" ? 100 / 3 : 200 / 3;
+}
+
 function TitleView({ card, onStart }: { card: DreamCard; onStart: () => void }) {
   return (
     <section className="title-view">
@@ -56,6 +62,7 @@ function CharacterLayer({ characters, activeSpeaker }: { characters: DreamCharac
           <div
             className={`character-slot character-${position}${character?.instanceId === activeSpeaker ? " active" : ""}`}
             key={position}
+            style={{ left: `${characterHorizontalPosition(position, characters.length)}%` }}
           >
             {character && assetUrl ? (
               <img className="character-image" src={assetUrl} alt="" />

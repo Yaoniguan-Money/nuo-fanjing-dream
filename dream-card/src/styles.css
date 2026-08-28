@@ -159,22 +159,21 @@ button:focus-visible, select:focus-visible { outline: 2px solid var(--gold); out
 
 .character-layer {
   z-index: 4;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  align-items: end;
-  padding: 10% 4% 15%;
   pointer-events: none;
 }
 
 .character-slot {
+  position: absolute;
+  top: 10%;
+  bottom: 15%;
   display: flex;
   align-items: end;
   justify-content: center;
-  height: 100%;
+  width: 33.333%;
   min-width: 0;
   opacity: 0.64;
   filter: saturate(0.78) brightness(0.82);
-  transform: translateY(3%);
+  transform: translateX(-50%) translateY(3%);
   transition: opacity 260ms ease, filter 260ms ease, transform 260ms ease;
 }
 
@@ -182,12 +181,8 @@ button:focus-visible, select:focus-visible { outline: 2px solid var(--gold); out
   z-index: 2;
   opacity: 1;
   filter: saturate(1) brightness(1);
-  transform: translateY(0) scale(1.02);
+  transform: translateX(-50%) translateY(0) scale(1.02);
 }
-
-.character-left { grid-column: 1; }
-.character-center { grid-column: 2; }
-.character-right { grid-column: 3; }
 
 .character-image {
   display: block;

@@ -42,7 +42,7 @@
         "backgroundAssetId": "background.stone-sill-village",
         "characters": [
           {"instanceId": "elder", "assetId": "character.village-elder", "position": "left"},
-          {"instanceId": "adu", "assetId": "character.adu", "position": "center"}
+          {"instanceId": "adu", "assetId": "character.adu", "position": "right"}
         ],
         "texts": [
           {"id": "act-01-text-01", "content": "千年前，有一座山村，叫作石槛村。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
@@ -63,7 +63,7 @@
         "backgroundAssetId": "background.grandfather-hut",
         "characters": [
           {"instanceId": "adu", "assetId": "character.adu", "position": "left"},
-          {"instanceId": "grandfather", "assetId": "character.grandfather", "position": "center"}
+          {"instanceId": "grandfather", "assetId": "character.grandfather", "position": "right"}
         ],
         "texts": [
           {"id": "act-02-text-01", "content": "少年的祖父，是村里最后一个还记得路曾经通的人。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
