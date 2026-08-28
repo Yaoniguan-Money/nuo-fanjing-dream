@@ -1,0 +1,37 @@
+.get-face-ritual { position: fixed; inset: 0; overflow: hidden; background: #070504; color: #eee4d3; isolation: isolate; }
+.get-face-altar { position: absolute; inset: 0; z-index: -2; background: radial-gradient(circle at 50% 43%, rgba(148, 89, 30, .3), transparent 35%), linear-gradient(135deg, #130d09, #050403 68%); }
+.get-face-altar::after { content: ""; position: absolute; inset: 0; opacity: .32; background: repeating-radial-gradient(ellipse at 50% 48%, transparent 0 44px, rgba(209, 165, 85, .1) 45px 46px); }
+.get-face-header { position: absolute; top: 26px; left: 32px; right: 32px; z-index: 2; display: flex; justify-content: space-between; color: rgba(236, 216, 178, .72); font-size: 11px; letter-spacing: .24em; }
+.get-face-header small { color: rgba(236, 216, 178, .42); }
+.get-face-copy, .get-face-portrait, .get-face-mask-stage, .get-face-story, .get-face-submitting { position: absolute; inset: 0; display: grid; align-content: center; justify-items: center; padding: 80px 20px 70px; text-align: center; }
+.get-face-copy > span, .get-face-portrait > span, .get-face-mask-stage > span, .get-face-story > span, .get-face-submitting > span { color: #caa767; font-size: 10px; letter-spacing: .52em; }
+.get-face-copy h1, .get-face-portrait h1, .get-face-mask-stage h1, .get-face-story h1, .get-face-submitting h1 { margin: 15px 0 9px; color: #d8bd84; font-weight: 400; letter-spacing: .18em; }
+.get-face-copy p, .get-face-portrait > p, .get-face-mask-stage > p, .get-face-story > p, .get-face-submitting > p { max-width: 540px; margin: 0; color: rgba(238, 228, 211, .7); font: 13px/1.8 system-ui, sans-serif; }
+.get-face-form { width: min(620px, 92vw); margin-top: 27px; display: grid; gap: 12px; }
+.get-face-form input, .get-face-form textarea { width: 100%; border: 1px solid rgba(203, 172, 106, .32); background: rgba(0, 0, 0, .38); color: #eee4d3; padding: 14px 16px; outline: none; resize: vertical; }
+.get-face-form input:focus, .get-face-form textarea:focus { border-color: #caa767; }
+.get-face-form button, .portrait-actions button, .story-choices button, .get-face-submitting button { border: 1px solid rgba(203, 172, 106, .52); background: rgba(31, 20, 11, .8); color: #e8cc91; padding: 11px 18px; cursor: pointer; }
+.get-face-error { color: #e99583 !important; font-size: 12px !important; }
+.get-face-portrait { grid-template-rows: auto auto auto auto auto; gap: 11px; }
+.portrait-frame { position: relative; width: min(190px, 50vw); aspect-ratio: .78; overflow: hidden; border: 1px solid rgba(203, 172, 106, .5); border-radius: 48% 48% 42% 42%; background: radial-gradient(ellipse at 50% 40%, #2a2119, #090807 70%); }
+.portrait-frame video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transform: scaleX(-1); }
+.portrait-frame.previewing video { opacity: .75; }
+.portrait-silhouette { position: absolute; inset: 17% 19%; border-radius: 48% 48% 42% 42%; background: radial-gradient(ellipse at 50% 30%, rgba(201, 167, 95, .52), rgba(68, 52, 34, .34) 54%, transparent 56%); filter: blur(8px); opacity: .78; pointer-events: none; }
+.portrait-frame.previewing .portrait-silhouette { opacity: .13; }
+.portrait-actions, .story-choices { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 12px; }
+.get-face-mask-stage { align-content: start; padding-top: 14vh; }
+.mask-ring { width: min(760px, 96vw); margin-top: 25px; display: grid; grid-template-columns: repeat(4, 1fr); align-items: end; gap: 10px; }
+.mask-choice { min-width: 0; border: 0; background: transparent; color: #bba886; cursor: grab; padding: 8px; transition: opacity .2s, transform .2s; }
+.mask-choice:not(.selected) { opacity: .25; pointer-events: none; }
+.mask-choice.selected { opacity: 1; }
+.mask-choice.dragging { position: relative; z-index: 4; cursor: grabbing; transform: scale(1.1); }
+.mask-shadow { display: block; width: 100%; aspect-ratio: .78; background-position: center; background-size: contain; background-repeat: no-repeat; filter: grayscale(1) blur(1.3px) drop-shadow(0 15px 17px rgba(0,0,0,.8)); }
+.mask-choice strong { display: block; margin-top: 7px; font-size: 11px; font-weight: 400; letter-spacing: .12em; }
+.face-drop-zone { display: grid; place-items: center; width: 180px; height: 210px; margin-top: 12px; border: 1px dashed rgba(207, 170, 95, .32); border-radius: 48% 48% 40% 40%; color: rgba(207, 170, 95, .62); transition: border-color .2s, background .2s, transform .2s; }
+.face-drop-zone.active { border-color: #dbb86c; background: rgba(168, 102, 31, .15); transform: scale(1.04); }
+.mask-hint { margin-top: 12px !important; color: rgba(238, 228, 211, .48) !important; font-size: 11px !important; }
+.get-face-story { align-content: center; }
+.story-count { position: absolute; top: 86px; right: 32px; color: rgba(236, 216, 178, .48) !important; font-size: 11px !important; }
+.story-choices button { min-width: 180px; }
+.get-face-return { position: absolute; left: 32px; bottom: 26px; border: 0; background: transparent; color: rgba(236, 216, 178, .48); font-size: 11px; cursor: pointer; }
+@media (max-width: 620px) { .get-face-header { left: 18px; right: 18px; } .mask-ring { grid-template-columns: repeat(2, 1fr); width: min(430px, 88vw); } .get-face-mask-stage { overflow: auto; } .get-face-return { left: 18px; } }
