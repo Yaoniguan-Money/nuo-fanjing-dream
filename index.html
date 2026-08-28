@@ -6,10 +6,10 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
 <meta http-equiv="Pragma" content="no-cache" />
 <meta http-equiv="Expires" content="0" />
-<meta name="nuo-build" content="20260828-fanjing-opening-v3" />
+<meta name="nuo-build" content="20260828-continuous-threshold-v4" />
 <title>傩 · 梵净入梦</title>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-<link rel="stylesheet" href="src/styles.css?v=20260828-fanjing-opening-v3" />
+<link rel="stylesheet" href="src/styles.css?v=20260828-continuous-threshold-v4" />
 </head>
 <body>
 <div id="app">
@@ -22,43 +22,16 @@
   <div class="dev-chip">已暴露接口：window.NuoDemoAPI</div>
 
   <section class="screen active" id="intro">
-    <div class="opening-world" id="openingWorld">
-      <div class="opening-plate" id="openingPlate"></div>
-      <div class="opening-fog opening-fog-near" id="openingFogNear"></div>
-      <div class="opening-fog opening-fog-far" id="openingFogFar"></div>
-      <div class="opening-throughway" id="openingThroughway"></div>
-      <div class="opening-portal" id="openingPortal"></div>
-    </div>
-    <div class="opening-black" id="openingBlack"></div>
-  </section>
-
-  <section class="screen" id="gate">
-    <div class="gate-hall" id="gateHall">
-      <div class="column left"></div><div class="column right"></div>
-      <div class="floor"></div><div class="hall-glow"></div>
-
-      <div class="guide-silhouette" id="guide">
-        <div class="cloak"></div><div class="hood"></div>
+    <canvas id="thresholdCanvas" aria-label="梵净山入村镜头"></canvas>
+    <div class="threshold-vignette"></div>
+    <div class="threshold-ui" id="thresholdUI" aria-live="polite">
+      <div class="threshold-breath"></div>
+      <div class="hold-btn" id="holdBtn">
+        <div class="hold-progress" id="holdProgress"></div>
+        <span>按住门环</span>
       </div>
-      <div class="staff" id="staff"></div>
-      <div class="lantern" id="lantern"></div>
-
-      <div class="guide-dialog" id="guideDialog" style="display:none"></div>
-
-      <div class="bigdoor" id="bigDoor">
-        <div class="lintel"></div><div class="frame"></div>
-        <div class="panel left" id="doorLeft"></div>
-        <div class="panel right" id="doorRight"></div>
-        <div class="crack" id="doorCrack"></div>
-        <div class="ring-hold">
-          <div class="hold-btn" id="holdBtn">
-            <div class="hold-progress" id="holdProgress"></div>
-            <span>按住门环</span>
-          </div>
-          <div class="hold-tip" id="holdTip">按住门环</div>
-          <div class="input-map">鼠标 · Space / Enter · 手柄 A</div>
-        </div>
-      </div>
+      <div class="hold-tip" id="holdTip">按住门环</div>
+      <div class="input-map">鼠标 · Space / Enter · 手柄 A</div>
     </div>
   </section>
 
@@ -152,6 +125,6 @@
 
 <div class="cursor-ring" id="cursorRing"></div><div class="cursor-dot" id="cursorDot"></div>
 <div class="runtime-error" id="runtimeError"></div>
-<script src="src/app.js?v=20260828-fanjing-opening-v3"></script>
+<script type="module" src="src/app.js?v=20260828-continuous-threshold-v4"></script>
 </body>
 </html>

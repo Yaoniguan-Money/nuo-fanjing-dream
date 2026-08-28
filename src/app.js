@@ -1,4 +1,6 @@
-window.__NUO_BUILD__="20260828-fanjing-opening-v3"; console.info("[NUO BUILD]", window.__NUO_BUILD__);
+import { createThresholdScene } from "./threshold-scene.js";
+
+window.__NUO_BUILD__="20260828-continuous-threshold-v4"; console.info("[NUO BUILD]", window.__NUO_BUILD__);
 window.addEventListener("error",(e)=>{
   const box=document.getElementById("runtimeError");
   if(box){
@@ -30,6 +32,7 @@ const state = {
   storyStep:0,
   holdValue:0,
   doorOpened:false,
+  thresholdReady:false,
   gamepadHolding:false,
 };
 
@@ -148,7 +151,7 @@ const InputLayer = {
     });
 
     window.addEventListener("keydown", (e)=>{
-      if($("#gate").classList.contains("active") && !state.doorOpened){
+      if(state.thresholdReady && !state.doorOpened){
         if(e.code==="Space" || e.code==="Enter"){
           e.preventDefault();
           startHold("keyboard");
@@ -177,7 +180,7 @@ const InputLayer = {
         const gp = navigator.getGamepads()[this.gamepadIndex];
         if(gp){
           const aPressed = gp.buttons[0]?.pressed;
-          if($("#gate").classList.contains("active") && !state.doorOpened){
+          if(state.thresholdReady && !state.doorOpened){
             if(aPressed && !state.gamepadHolding){
               state.gamepadHolding = true;
               startHold("gamepad");
@@ -198,9 +201,9 @@ const InputLayer = {
    GLOBAL API EXPOSED
 ========================================================= */
 window.NuoDemoAPI = {
-  version:"0.4-fanjing-opening",
+  version:"0.5-continuous-threshold",
   config:{
-    introDurationMs:2200,
+    introDurationMs:1350,
     doorHoldMs:1200,
     setIntroDuration(ms){ this.introDurationMs=Math.max(800,Number(ms)||2200); },
     setDoorHold(ms){ this.doorHoldMs=Math.max(300,Number(ms)||1200); },
@@ -270,7 +273,7 @@ function setDepth(p){ gsap.to("#depthFill",{width:`${p}%`,duration:.6,ease:"powe
 function setPhase(t){ $("#phase").textContent = t; }
 
 function switchScreen(el,{immediate=false}={}){
-  ["#intro","#gate","#ritual","#outro"].forEach(sel=>{
+  ["#intro","#ritual","#outro"].forEach(sel=>{
     const s=$(sel); s.classList.remove("active"); s.style.pointerEvents="none";
   });
   el.classList.add("active");
@@ -333,72 +336,47 @@ function showChoices(arr){
    INTRO AUTO ABSORB FLOW
 ========================================================= */
 function startExperience(){
-  runIntro();
+  thresholdScene.ready.then(runIntro).catch((error)=>{
+    console.error(error);
+    $("#runtimeError").textContent="开场资源加载失败，请刷新重试。";
+    $("#runtimeError").style.display="block";
+  });
 }
 
+const thresholdScene=createThresholdScene({
+  canvas:$("#thresholdCanvas"),
+  onComplete:showGate,
+  onDoorOpened:()=>EventBus.emit("threshold:crossed",{}),
+  onReady:()=>EventBus.emit("threshold:ready",{})
+});
+window.addEventListener("resize",()=>thresholdScene.resize());
+
 function runIntro(){
-  const INTRO_MS=1320;
+  const INTRO_MS=1350;
   setPhase("OPENING");
   setDepth(8);
-
-  const tl=gsap.timeline({defaults:{ease:"power3.inOut"}});
-  tl
-    .set([".topbar",".depth",".sound-btn",".dev-chip"],{autoAlpha:0})
-    .set("#openingWorld",{scale:1})
-    .set("#openingPlate",{scale:1,transformOrigin:"50% 82%"})
-    .set("#openingThroughway",{scale:.78,opacity:0,transformOrigin:"50% 50%"})
-    .set("#openingPortal",{scale:.16,opacity:0,transformOrigin:"50% 50%"})
-    .set(".opening-fog",{xPercent:0,opacity:.32})
-    .to("#openingPlate",{scale:1.06,duration:.18,ease:"power1.out"})
-    .add(()=>{
-      setPhase("PULLED");
-      setDepth(34);
-      EventBus.emit("intro:pullStart",{duration:INTRO_MS});
-    })
-    .to("#openingPlate",{scale:1.55,duration:.42,ease:"power4.in"},"<")
-    .to("#openingFogNear",{xPercent:-13,opacity:.6,duration:.42,ease:"power2.in"},"<")
-    .to("#openingFogFar",{xPercent:10,opacity:.48,duration:.42,ease:"power2.in"},"<")
-    .to("#openingPortal",{scale:1.08,opacity:.8,duration:.42,ease:"power4.in"},"<")
-    .add(()=>setDepth(66))
-    .to("#openingPlate",{scale:3.15,duration:.29,ease:"power4.in"})
-    .to("#openingPortal",{scale:4.2,opacity:1,duration:.29,ease:"power4.in"},"<")
-    .to(".opening-fog",{opacity:.08,duration:.18},"<")
-    .to("#openingPortal",{scale:13,opacity:0,duration:.29,ease:"power3.in"})
-    .to("#openingThroughway",{scale:1.06,opacity:1,duration:.29,ease:"power2.out"},"<")
-    .to("#openingThroughway",{scale:1.12,duration:.13,ease:"none"})
-    .add(()=>{
-      setDepth(82);
-      setPhase("NUO GATE");
-      EventBus.emit("intro:complete",{duration:INTRO_MS});
-      showGate();
-    });
+  gsap.set([".topbar",".depth",".sound-btn",".dev-chip","#thresholdUI"],{autoAlpha:0});
+  EventBus.emit("intro:pullStart",{duration:INTRO_MS});
+  setDepth(34);
+  thresholdScene.intro();
 }
 
 /* =========================================================
    GATE FLOW
 ========================================================= */
 function showGate(){
-  switchScreen($("#gate"),{immediate:true});
+  state.thresholdReady=true;
   setPhase("NUO GATE");
-  gsap.to([".topbar",".depth",".sound-btn",".dev-chip"],{autoAlpha:1,duration:.25,overwrite:"auto"});
-
-  // Gate lands almost immediately after the automatic intro.
-  gsap.timeline({defaults:{ease:"power4.out"}})
-    .fromTo("#bigDoor",{opacity:0,scale:1.18,y:-8},{opacity:1,scale:1,y:0,duration:.42})
-    .fromTo("#guide",{opacity:0,x:-12},{opacity:.72,x:0,duration:.34},"-=.25")
-    .fromTo("#staff",{opacity:0,y:10},{opacity:.72,y:0,duration:.32},"-=.28")
-    .fromTo("#lantern",{opacity:0,scale:.7},{opacity:.8,scale:1,duration:.3},"-=.26")
-    .fromTo(".ring-hold",{opacity:0,y:8},{opacity:1,y:0,duration:.28},"-=.14");
-
-  gsap.to("#lantern",{opacity:.46,duration:1.1,repeat:-1,yoyo:true,ease:"sine.inOut"});
+  setDepth(82);
+  gsap.to([".topbar",".depth",".sound-btn",".dev-chip","#thresholdUI"],{autoAlpha:1,duration:.28,overwrite:"auto"});
   EventBus.emit("gate:ready",{});
+  EventBus.emit("intro:complete",{duration:1350});
 }
 
 let holdTween = null;
 function applyHoldProgress(p){
   state.holdValue = p;
   $("#holdProgress").style.setProperty("--p", (360*p) + "deg");
-  gsap.to("#doorCrack",{width:2 + p*18,duration:.05});
   if(p>.18 && p<.92){
     gsap.to("#holdTip",{opacity:.78,duration:.1});
   }
@@ -413,7 +391,7 @@ function startHold(source="mouse"){
   $("#holdTip").textContent = "门在回应";
   holdTween = gsap.to({p:state.holdValue},{
     p:1,duration:window.NuoDemoAPI?.config?.doorHoldMs/1000 || 1.2,ease:"none",
-    onUpdate:function(){ applyHoldProgress(this.targets()[0].p); gsap.to("#bigDoor",{scale:1.015,duration:.08}); },
+    onUpdate:function(){ applyHoldProgress(this.targets()[0].p); },
     onComplete:()=>openDoor(source)
   });
 }
@@ -426,7 +404,6 @@ function cancelHold(source="mouse"){
     onUpdate:function(){ applyHoldProgress(this.targets()[0].p); }
   });
   $("#holdTip").textContent = "按住门环";
-  gsap.to("#bigDoor",{scale:1,duration:.2});
 }
 
 $("#holdBtn").addEventListener("pointerdown",(e)=>{ e.preventDefault(); startHold("mouse"); });
@@ -441,16 +418,11 @@ function openDoor(source="mouse"){
   AudioEngine.playCue("heavy");
   impact(1.25); crush(1);
 
-  gsap.timeline({defaults:{ease:"power4.inOut"}})
-    .to("#doorLeft",{rotationY:-92,x:-12,duration:1.45})
-    .to("#doorRight",{rotationY:92,x:12,duration:1.45},"<")
-    .to("#doorCrack",{width:"64%",filter:"blur(8px)",duration:1.15},"<.04")
-    .to(["#guide","#staff","#lantern","#guideDialog"],{opacity:0,y:-16,duration:.55},"-=.9")
-    .to("#bigDoor",{scale:1.08,duration:1.0},"-=1.0")
-    .add(()=>{ gsap.fromTo("#flash",{opacity:0},{opacity:.22,duration:.1,yoyo:true,repeat:1}); impact(.75); }, "-=.52")
-    .to("#gate",{background:"#000",duration:.8},"-=.65")
-    .to("#bigDoor",{opacity:0,scale:1.18,duration:.8},"-=.62")
-    .add(startRitual);
+  gsap.to("#thresholdUI",{autoAlpha:0,duration:.2,overwrite:"auto"});
+  const passage=thresholdScene.openDoor();
+  passage?.eventCallback("onComplete",()=>{
+    gsap.to("#intro",{opacity:0,duration:.24,onComplete:startRitual});
+  });
 }
 
 /* =========================================================
@@ -725,9 +697,6 @@ $("#codexRestart").addEventListener("click",()=>location.reload());
    SUBTLE MOUSE PARALLAX / DEV INPUT
 ========================================================= */
 EventBus.on("mouse:move", ({x,y})=>{
-  if($("#gate").classList.contains("active") && !state.doorOpened){
-    gsap.to("#bigDoor",{x:x*8,y:y*6,duration:.5,ease:"power2.out"});
-  }
   if($("#ritual").classList.contains("active")){
     gsap.to(".dragon-svg",{x:x*14,y:y*10,duration:.8,ease:"power2.out"});
     gsap.to("#maskRing",{x:x*8,y:y*6,duration:.7,ease:"power2.out"});
@@ -829,14 +798,6 @@ function dragMaskToPointer(clientX,clientY){
 window.addEventListener("pointermove",(e)=>{
   cursorX=e.clientX;
   cursorY=e.clientY;
-
-  // Gate parallax.
-  if($("#gate").classList.contains("active") && !state.doorOpened){
-    const nx=e.clientX/innerWidth-.5;
-    const ny=e.clientY/innerHeight-.5;
-    gsap.to("#bigDoor",{x:nx*10,y:ny*7,duration:.48,overwrite:"auto",ease:"power2.out"});
-    gsap.to("#guide",{x:nx*-8,y:ny*-4,duration:.58,overwrite:"auto",ease:"power2.out"});
-  }
 
   // Dragon altar parallax when not dragging.
   if($("#ritual").classList.contains("active") && !dragMask){

@@ -5,7 +5,7 @@ import socket
 import threading
 import webbrowser
 
-BUILD = "20260828-fanjing-opening-v3"
+BUILD = "20260828-continuous-threshold-v4"
 
 class NoCacheHandler(SimpleHTTPRequestHandler):
     def end_headers(self):

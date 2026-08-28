@@ -29,4 +29,4 @@ for /f "delims=" %%P in ('dir /b /s "%LocalAppData%\Programs\Python\python.exe" 
 
 echo [警告] 没找到 Python。
 echo 将直接打开 index.html，但推荐安装 Python 后再运行 start.bat。
-start "" "%~dp0index.html?build=20260828-fanjing-opening-v3"
+start "" "%~dp0index.html?build=20260828-continuous-threshold-v4"
