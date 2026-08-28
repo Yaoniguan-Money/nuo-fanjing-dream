@@ -1,4 +1,4 @@
-.get-face-ritual { position: fixed; inset: 0; overflow: hidden; background: #050403; color: #eee4d3; isolation: isolate; }
+.get-face-ritual { position: fixed; inset: 0; width: 100%; min-height: 100svh; height: 100dvh; overflow: hidden; background: #050403; color: #eee4d3; isolation: isolate; }
 .get-face-altar { position: absolute; inset: 0; z-index: -3; background: radial-gradient(ellipse at 50% 45%, rgba(130, 75, 24, .2), transparent 34%), linear-gradient(110deg, #100a07, #030302 67%, #0b0704); }
 .get-face-altar::after { content: ""; position: absolute; inset: 0; opacity: .3; background: radial-gradient(ellipse at 50% 47%, transparent 0 27%, rgba(0, 0, 0, .42) 76%, #010101 100%); }
 .ritual-atmosphere { position: absolute; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; opacity: 0; transform: translate(var(--altar-parallax-x, 0), var(--altar-parallax-y, 0)); transition: opacity .35s ease; }
@@ -20,16 +20,16 @@
 .altar-center-far { left: 43%; top: 8%; width: clamp(100px, 14vw, 205px); opacity: .09; filter: sepia(.9) grayscale(.55) brightness(.26) blur(5px); }
 .ritual-particles { position: absolute; inset: 0; opacity: .42; mix-blend-mode: screen; }
 .ritual-particles i { position: absolute; width: 2px; height: 2px; border-radius: 50%; background: rgba(218, 183, 112, .48); animation: ritual-dust 8s ease-in-out calc(var(--particle-index) * -.33s) infinite alternate; }
-.get-face-header { position: absolute; top: 26px; left: 32px; right: 32px; z-index: 8; display: flex; justify-content: space-between; color: rgba(236, 216, 178, .58); font-size: 11px; letter-spacing: .24em; }
+.get-face-header { position: absolute; top: calc(26px + var(--safe-top)); left: calc(32px + var(--safe-left)); right: calc(32px + var(--safe-right)); z-index: 8; display: flex; justify-content: space-between; color: rgba(236, 216, 178, .58); font-size: 11px; letter-spacing: .24em; }
 .get-face-header small { color: rgba(236, 216, 178, .3); }
-.get-face-copy, .get-face-portrait, .get-face-story, .get-face-submitting { position: absolute; inset: 0; display: grid; align-content: center; justify-items: center; padding: 80px 20px 70px; text-align: center; z-index: 4; }
+.get-face-copy, .get-face-portrait, .get-face-story, .get-face-submitting { position: absolute; inset: 0; display: grid; align-content: center; justify-items: center; overflow-y: auto; overscroll-behavior-y: contain; padding: calc(80px + var(--safe-top)) calc(20px + var(--safe-right)) calc(70px + var(--safe-bottom)) calc(20px + var(--safe-left)); scroll-padding-block: calc(80px + var(--safe-top)) calc(70px + var(--safe-bottom)); text-align: center; z-index: 4; }
 .get-face-copy > span, .get-face-portrait > span, .get-face-story > span, .get-face-submitting > span, .mask-ceremony-copy > span { color: #caa767; font-size: 10px; letter-spacing: .52em; }
 .get-face-copy h1, .get-face-portrait h1, .get-face-story h1, .get-face-submitting h1, .mask-ceremony-copy h1 { margin: 15px 0 9px; color: #d8bd84; font-weight: 400; letter-spacing: .18em; }
 .get-face-copy p, .get-face-portrait > p, .get-face-story > p, .get-face-submitting > p, .mask-ceremony-copy > p { max-width: 540px; margin: 0; color: rgba(238, 228, 211, .7); font: 13px/1.8 system-ui, sans-serif; }
 .get-face-form { width: min(620px, 92vw); margin-top: 27px; display: grid; gap: 12px; }
-.get-face-form input, .get-face-form textarea { width: 100%; border: 1px solid rgba(203, 172, 106, .32); background: rgba(0, 0, 0, .38); color: #eee4d3; padding: 14px 16px; outline: none; resize: vertical; }
+.get-face-form input, .get-face-form textarea { width: 100%; border: 1px solid rgba(203, 172, 106, .32); background: rgba(0, 0, 0, .38); color: #eee4d3; padding: 14px 16px; outline: none; resize: vertical; font-size: max(16px, 1em); }
 .get-face-form input:focus, .get-face-form textarea:focus { border-color: #caa767; }
-.get-face-form button, .portrait-actions button, .story-choices button, .get-face-submitting button, .mask-ceremony-copy button { border: 1px solid rgba(203, 172, 106, .52); background: rgba(31, 20, 11, .8); color: #e8cc91; padding: 11px 18px; cursor: pointer; }
+.get-face-form button, .portrait-actions button, .story-choices button, .get-face-submitting button, .mask-ceremony-copy button { min-height: var(--tap-size); border: 1px solid rgba(203, 172, 106, .52); background: rgba(31, 20, 11, .8); color: #e8cc91; padding: 11px 18px; cursor: pointer; }
 .get-face-error { color: #e99583 !important; font-size: 12px !important; }
 .get-face-portrait { grid-template-rows: auto auto auto auto auto; gap: 11px; }
 .portrait-frame { position: relative; width: min(190px, 50vw); aspect-ratio: .78; overflow: hidden; border: 1px solid rgba(203, 172, 106, .5); border-radius: 48% 48% 42% 42%; background: radial-gradient(ellipse at 50% 40%, #2a2119, #090807 70%); }
@@ -52,7 +52,7 @@
 .get-face-story { align-content: center; }
 .story-count { position: absolute; top: 86px; right: 32px; color: rgba(236, 216, 178, .48) !important; font-size: 11px !important; }
 .story-choices button { min-width: 180px; }
-.get-face-return { position: absolute; left: 32px; bottom: 26px; z-index: 9; border: 0; background: transparent; color: rgba(236, 216, 178, .48); font-size: 11px; cursor: pointer; }
+.get-face-return { position: absolute; left: calc(32px + var(--safe-left)); bottom: calc(14px + var(--safe-bottom)); z-index: 9; min-width: var(--tap-size); min-height: var(--tap-size); border: 0; background: transparent; color: rgba(236, 216, 178, .48); font-size: 11px; cursor: pointer; }
 @keyframes ritual-fog-drift { from { transform: translate3d(-3%, 0, 0) scale(1); } to { transform: translate3d(3%, -4%, 0) scale(1.06); } }
 @keyframes ritual-dust { from { transform: translate3d(0, 8px, 0); opacity: .22; } to { transform: translate3d(7px, -12px, 0); opacity: .75; } }
 @media (max-width: 800px) {
@@ -62,12 +62,27 @@
   .mask-ceremony-copy { bottom: 8%; }
 }
 @media (max-width: 620px) {
-  .get-face-header { left: 18px; right: 18px; }
+  .get-face-header { top: calc(18px + var(--safe-top)); left: calc(var(--mobile-page-padding) + var(--safe-left)); right: calc(var(--mobile-page-padding) + var(--safe-right)); }
+  .get-face-header small { display: none; }
+  .get-face-copy, .get-face-portrait, .get-face-story, .get-face-submitting { align-content: start; padding: calc(78px + var(--safe-top)) calc(var(--mobile-page-padding) + var(--safe-right)) calc(78px + var(--safe-bottom)) calc(var(--mobile-page-padding) + var(--safe-left)); scroll-padding-block: calc(78px + var(--safe-top)) calc(78px + var(--safe-bottom)); }
+  .get-face-form { width: 100%; }
+  .get-face-form button { width: 100%; }
+  .portrait-actions, .story-choices { width: 100%; flex-direction: column; }
+  .portrait-actions button, .story-choices button { width: 100%; }
+  .portrait-frame { width: min(180px, 48vw); }
+  .story-count { position: static; margin: 10px 0 0 !important; }
   .get-face-mask-stage { overflow: hidden; }
   .scene-mask { width: clamp(78px, 25vw, 145px); }
-  .mask-ceremony-copy { bottom: 12%; width: min(92vw, 470px); }
+  .mask-ceremony-copy { bottom: calc(12% + var(--safe-bottom)); width: min(92vw, 470px); }
   .mask-ceremony-copy h1 { font-size: 24px; }
-  .get-face-return { left: 18px; }
+  .get-face-return { left: calc(var(--mobile-page-padding) + var(--safe-left)); }
+}
+@media (max-height: 700px) {
+  .get-face-copy, .get-face-portrait, .get-face-story, .get-face-submitting { align-content: start; padding-top: calc(72px + var(--safe-top)); padding-bottom: calc(72px + var(--safe-bottom)); scroll-padding-block: calc(72px + var(--safe-top)) calc(72px + var(--safe-bottom)); }
+  .get-face-copy h1, .get-face-portrait h1, .get-face-story h1, .get-face-submitting h1 { margin-top: 10px; }
+  .get-face-form { margin-top: 18px; }
+  .get-face-portrait { gap: 8px; }
+  .portrait-frame { width: min(150px, 38vw); }
 }
 @media (prefers-reduced-motion: reduce) {
   .ritual-fog, .ritual-particles i { animation: none; }

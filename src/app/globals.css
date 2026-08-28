@@ -4,6 +4,12 @@
   --paper: #eee4d3;
   --muted: #a99b83;
   --gold: #d0ad62;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+  --mobile-page-padding: 18px;
+  --tap-size: 44px;
   font-family: "Songti SC", "STSong", "SimSun", serif;
   color: var(--paper);
   background: var(--ink);
