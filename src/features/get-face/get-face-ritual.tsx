@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useReducer, useRef, useState } from "react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import gsap from "gsap";
 import { createDreamSession, matchResponseSchema } from "@/domain/dream-session";
@@ -314,7 +315,7 @@ export function GetFaceRitual({ onReturn }: { onReturn: () => void }) {
       <span className="ritual-beam ritual-beam-center" />
       <span className="ritual-beam ritual-beam-right" />
       <div className="ritual-ambient-masks">
-        {ALTAR_AMBIENT_MASKS.map(({ maskIndex, className }, index) => <img key={`${maskIndex}-${index}`} className={className} src={assetPath(getFaceData.masks[maskIndex].asset)} alt="" />)}
+        {ALTAR_AMBIENT_MASKS.map(({ maskIndex, className }, index) => <Image key={`${maskIndex}-${index}`} className={className} src={assetPath(getFaceData.masks[maskIndex].asset)} alt="" width={1086} height={1448} sizes="(max-width: 800px) 31vw, 23vw" />)}
       </div>
       <div className="ritual-particles">{ALTAR_PARTICLES.map((particle) => <i key={particle} style={{ "--particle-index": particle, left: `${(particle * 37) % 100}%`, top: `${(particle * 61) % 100}%` } as React.CSSProperties} />)}</div>
     </div>
@@ -352,8 +353,8 @@ export function GetFaceRitual({ onReturn }: { onReturn: () => void }) {
           const mask = getFaceData.masks[maskIndex];
           const chosen = slot === firstAltarSlotForMask(state.selectedMaskIndex ?? -1);
           return <div key={`scene-slot-${slot}`} ref={(node) => { sceneMaskRefs.current[slot] = node; }} className={`scene-mask${chosen ? " scene-mask-chosen" : ""}`} data-mask-index={maskIndex} data-slot={slot}>
-            <img className="scene-mask-front" src={assetPath(mask.asset)} alt="" />
-            <img className="scene-mask-back" src={assetPath(mask.asset)} alt="" />
+            <Image className="scene-mask-front" src={assetPath(mask.asset)} alt="" fill sizes="(max-width: 620px) 25vw, (max-width: 800px) 22vw, 18vw" />
+            <Image className="scene-mask-back" src={assetPath(mask.asset)} alt="" fill sizes="(max-width: 620px) 25vw, (max-width: 800px) 22vw, 18vw" />
           </div>;
         })}
       </div>
