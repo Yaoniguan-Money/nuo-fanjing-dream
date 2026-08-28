@@ -63,6 +63,12 @@ let codexViewer = null;
 let codexActiveMaskId = null;
 let codexFocusReturn = null;
 let codexOpening = false;
+let codexTimeline = null;
+let codexState = "locked";
+let altarOrbitTimeline = null;
+let altarSelectionTimeline = null;
+let altarScenePhase = "idle";
+let selectedSceneMask = null;
 
 /* =========================================================
    EVENT BUS
@@ -280,7 +286,13 @@ window.NuoDemoAPI = {
     getCollection:()=>CodexCollection.list(CODEX_DATA.storageKey),
     getEntry:(maskId)=>CodexCollection.get(CODEX_DATA.storageKey,maskId),
     open:(maskId)=>openCodexEntry(maskId),
-    clear:()=>clearCodexCollection()
+    clear:()=>clearCodexCollection(),
+    getState:()=>codexState
+  },
+  ceremony:{
+    getState:()=>altarScenePhase,
+    replay:()=>{ if(state.ritualStep>=2) playMaskSelectionCinematic(); },
+    reset:()=>{ altarSelectionTimeline?.kill(); altarScenePhase="idle"; altarSelectionActive=false; setAltarOrbit(0,0); startAltarOrbit(); }
   },
   portrait:{
     getMode:()=>state.portraitMode,
@@ -399,7 +411,13 @@ $("#portraitStart").addEventListener("click",()=>startPortraitPreview());
 $("#portraitConfirm").addEventListener("click",()=>confirmPortrait());
 $("#portraitSkip").addEventListener("click",()=>confirmPortrait("symbolic"));
 document.addEventListener("visibilitychange",()=>{ if(document.hidden) stopPortraitPreview(); });
-window.addEventListener("pagehide",stopPortraitPreview);
+window.addEventListener("pagehide",()=>{
+  stopPortraitPreview();
+  altarOrbitTimeline?.kill();
+  altarSelectionTimeline?.kill();
+  codexTimeline?.kill();
+  codexViewer?.dispose();
+});
 function hideContinue(){ gsap.to("#continueWrap",{opacity:0,pointerEvents:"none",duration:.2}); }
 function showChoices(arr){
   const wrap = $("#choiceWrap");
@@ -534,12 +552,7 @@ function maskImage(i, className=""){
   return `<img class="mask-source ${className}" src="${m.asset}" alt="${m.name}面" draggable="false">`;
 }
 
-const ALTAR_MASK_LAYOUT=[
-  {x:0,y:-24,scale:.94,opacity:.50,z:18},
-  {x:-24,y:-8,scale:.66,opacity:.29,z:12},
-  {x:25,y:-3,scale:.62,opacity:.25,z:10},
-  {x:13,y:18,scale:.48,opacity:.18,z:7}
-];
+const ALTAR_MASK_INDICES=[0,2,1,3,0,1,2];
 const ALTAR_AMBIENT_LAYOUT=[
   {maskIndex:2,className:"altar-ambient altar-foreground altar-left"},
   {maskIndex:1,className:"altar-ambient altar-foreground altar-right"},
@@ -560,28 +573,47 @@ function createAltarAtmosphere(){
 }
 createAltarAtmosphere();
 
-MASKS.forEach((m,i)=>{
+ALTAR_MASK_INDICES.forEach((maskIndex,slotIndex)=>{
   const el=document.createElement("div");
   el.className="mask scene-mask";
-  el.dataset.maskIndex=String(i);
-  el.innerHTML=`<div class="mask-card mask-photo">${maskImage(i,"scene-mask-image")}<i aria-hidden="true"></i></div>`;
+  el.dataset.maskIndex=String(maskIndex);
+  el.dataset.slotIndex=String(slotIndex);
+  el.innerHTML=`<div class="mask-card mask-photo"><div class="face">${maskImage(maskIndex,"scene-mask-image")}</div><div class="back scene-mask-back"><span>傩</span><i aria-hidden="true"></i></div><i aria-hidden="true"></i></div>`;
   $("#maskRing").appendChild(el);
 });
 const masks=[...document.querySelectorAll(".mask")];
 let altarSelectionActive=false;
 
-function layoutRing(_angle=-Math.PI/2,d=.7){
-  masks.forEach((m,i)=>{
-    const layout=ALTAR_MASK_LAYOUT[i];
-    m.style.zIndex=String(layout.z);
-    gsap.to(m,{
-      x:innerWidth*layout.x/100,y:innerHeight*layout.y/100,
-      scale:layout.scale,opacity:layout.opacity,duration:d,ease:"power3.out"
-    });
+function altarOrbitPosition(slot, phase=0){
+  const angle=phase+slot*Math.PI*2/masks.length;
+  const depth=(Math.sin(angle)+1)/2;
+  return {
+    x:Math.cos(angle)*innerWidth*.31,
+    y:Math.sin(angle)*innerHeight*.16-innerHeight*.07,
+    scale:.40+depth*.52,
+    opacity:.14+depth*.50,
+    zIndex:String(8+Math.round(depth*24)),
+    rotationZ:Math.cos(angle)*3
+  };
+}
+function setAltarOrbit(phase=0,duration=.7){
+  masks.forEach((mask,slot)=>{
+    const pose=altarOrbitPosition(slot,phase);
+    mask.style.zIndex=pose.zIndex;
+    gsap.to(mask,{...pose,duration,ease:"power2.inOut",overwrite:"auto"});
   });
 }
-layoutRing();
-masks.forEach((m,i)=> m._float = gsap.to(m,{y:"+=4",duration:3.6+(i%3)*.55,repeat:-1,yoyo:true,ease:"sine.inOut"}));
+function startAltarOrbit(){
+  altarOrbitTimeline?.kill();
+  altarOrbitTimeline=gsap.timeline({repeat:-1,defaults:{ease:"sine.inOut"}});
+  for(let step=1;step<=4;step++){
+    masks.forEach((mask,slot)=>{
+      const pose=altarOrbitPosition(slot,step*Math.PI/2);
+      altarOrbitTimeline.to(mask,{...pose,duration:4.4+(slot%3)*.32,overwrite:"auto"},(step-1)*4.2);
+    });
+  }
+}
+setAltarOrbit(0,0); startAltarOrbit();
 
 function startRitual(){
   switchScreen($("#ritual"),{immediate:true});
@@ -626,13 +658,8 @@ function pickMask(text){
 function chooseMask(){
   state.selected = pickMask(state.wish);
   altarSelectionActive=true;
-  setPhase("MASK CHOSEN");
-  AudioEngine.playCue("heavy");
-  impact(.7);
-  masks.forEach(m=>m._float && m._float.kill());
-
-  masks.forEach((mask,index)=>mask.classList.toggle("is-chosen",index===state.selected));
-  gsap.to(masks[state.selected],{x:0,y:-innerHeight*.075,scale:1.06,opacity:.78,duration:2.35,ease:"power3.inOut",onComplete:focusMask});
+  selectedSceneMask=masks.find(mask=>Number(mask.dataset.maskIndex)===state.selected) || masks[0];
+  playMaskSelectionCinematic();
 }
 
 $("#continueBtn").onclick = ()=>{
@@ -839,24 +866,31 @@ function codexGlyph(kind){
 }
 function codexNumber(index){ return String(index+1).padStart(2,"0"); }
 function buildCodex(){
+  codexTimeline?.kill();
+  codexState="locked";
   const wall=$("#codexWall");
   const entries=CodexCollection.list(CODEX_DATA.storageKey);
   const collected=Object.keys(entries).length;
-  $("#codexCount").textContent=`已收录 ${collected} / ${MASKS.length}`;
+  $("#codexCount").textContent=`已获得 ${collected} / ${CODEX_DATA.slots.length}`;
+  $("#codexTitleCount").textContent=`（${collected} / ${CODEX_DATA.slots.length}）`;
+  $("#codexDetail").setAttribute("aria-hidden","false");
+  $("#codexEmptyState").hidden=false;
+  $("#codexViewer").hidden=true;
+  $("#codexViewerFallback").hidden=true;
   wall.innerHTML="";
   CODEX_DATA.slots.forEach((slot,index)=>{
     const mask=MASKS.find(item=>item.id===slot.id);
     const entry=mask ? entries[mask.id] : null;
     const visual=mask?.visual?.card || {primary:"#61594d",secondary:"#766f63",glyph:"unknown"};
-    const stateClass=entry?"unlocked":(slot.kind==="reserved"?"reserved":"locked");
-    const label=entry?entry.role.name:(slot.kind==="reserved"?"待补":"未见");
+    const stateClass=entry?"acquired-idle":"locked";
+    const label=entry?entry.role.name:"未得之面";
     const card=document.createElement("div");
     card.className=`codex-person ${stateClass}`;
     card.style.setProperty("--card-a",visual.primary);
     card.style.setProperty("--card-b",visual.secondary);
     card.innerHTML=`<div class="codex-card" role="${entry?"button":"img"}" tabindex="${entry?"0":"-1"}" aria-label="${escapeHtml(entry?`查看已收录的${mask.name}`:`${label}面具`)}">
-      <div class="codex-card-face codex-card-back"><div class="codex-card-glyph">${codexGlyph(visual.glyph)}</div><div class="codex-card-meta"><span class="codex-card-index">NO.${codexNumber(index)}</span><span class="codex-card-name">${escapeHtml(label)}</span></div></div>
-      <div class="codex-card-face codex-card-flip">${entry?`<img src="${escapeHtml(mask.asset)}" alt="${escapeHtml(mask.name)}"/>`:""}</div>
+      <div class="codex-card-face codex-card-back"><div class="codex-card-glyph">${codexGlyph(visual.glyph)}</div><div class="codex-card-meta"><span class="codex-card-index">谱 · ${codexNumber(index)}</span><span class="codex-card-name">${escapeHtml(label)}</span></div></div>
+      <div class="codex-card-face codex-card-flip"></div>
     </div>`;
     if(entry){
       const activate=()=>openCodexEntry(mask.id,card);
@@ -871,14 +905,15 @@ async function openCodexEntry(maskId, trigger){
   const entry=CodexCollection.get(CODEX_DATA.storageKey,maskId);
   const mask=MASKS.find(item=>item.id===maskId);
   if(!entry || !mask || codexOpening) return false;
-  if(codexActiveMaskId===maskId && $("#codexDetail").getAttribute("aria-hidden")==="false") return true;
+  if(codexActiveMaskId===maskId && codexState==="revealed") return true;
   codexOpening=true;
   try{
+  codexTimeline?.kill();
+  codexState="selected";
   codexFocusReturn=trigger?.querySelector?.(".codex-card") || document.activeElement;
   const card=trigger || [...document.querySelectorAll(".codex-person")].find(item=>item.querySelector(".codex-card")?.getAttribute("aria-label")?.includes(mask.name));
-  card?.classList.add("opening");
-  await new Promise(resolve=>setTimeout(resolve,360));
-  card?.classList.remove("opening");
+  document.querySelectorAll(".codex-person.selected").forEach(item=>item.classList.remove("selected"));
+  card?.classList.add("selected","opening");
   codexActiveMaskId=maskId;
   $("#codexDetailNum").textContent=`第${["壹","贰","叁","肆"][MASKS.indexOf(mask)]||"未定"}面 · 已收录`;
   $("#codexDetailName").textContent=entry.role.name;
@@ -888,6 +923,7 @@ async function openCodexEntry(maskId, trigger){
   const detail=$("#codexDetail");
   detail.setAttribute("aria-hidden","false");
   document.body.classList.add("codex-detail-open");
+  $("#codexEmptyState").hidden=true;
   $("#codexViewer").hidden=false; $("#codexViewerFallback").hidden=true;
   if(codexViewer) codexViewer.dispose();
   codexViewer=new MaskReliefViewer($("#codexViewer"),{...CODEX_DATA.relief, ...(mask.visual?.relief||{})});
@@ -901,6 +937,17 @@ async function openCodexEntry(maskId, trigger){
     fallback.hidden=false;
     fallback.innerHTML=`<img src="${escapeHtml(mask.asset)}" alt="${escapeHtml(mask.name)} 原始面具图"/><p>3D 查看不可用，已显示原始视觉母体。</p>`;
   }
+  const sourceRect=card?.getBoundingClientRect();
+  const viewerRect=($("#codexViewer").hidden ? $("#codexViewerFallback") : $("#codexViewer")).getBoundingClientRect();
+  const fromX=sourceRect ? sourceRect.left+sourceRect.width/2-viewerRect.left-viewerRect.width/2 : -viewerRect.width*.56;
+  const fromY=sourceRect ? sourceRect.top+sourceRect.height/2-viewerRect.top-viewerRect.height/2 : 0;
+  const stage=$(".codex-viewer-column");
+  codexTimeline=gsap.timeline({onComplete:()=>{codexState="revealed";card?.classList.remove("opening");}})
+    .set(stage,{transformPerspective:1500})
+    .fromTo(stage,{x:fromX,y:fromY,scale:.26,rotationY:0,opacity:.35},{x:0,y:0,scale:1,rotationY:180,opacity:1,duration:.54,ease:"power3.inOut"})
+    .to(stage,{rotationY:360,duration:.48,ease:"power2.out"})
+    .fromTo(".codex-detail-copy",{opacity:0,y:14},{opacity:1,y:0,duration:.52,ease:"power2.out"},"-=.14");
+  AudioEngine.playCue("wood");
   setTimeout(()=>$("#codexClose").focus(),30);
   return true;
   }finally{ codexOpening=false; }
@@ -908,9 +955,16 @@ async function openCodexEntry(maskId, trigger){
 
 function closeCodexDetail(){
   const detail=$("#codexDetail");
-  if(detail.getAttribute("aria-hidden")!=="false") return;
+  if(codexState==="locked") return;
+  codexTimeline?.kill();
   codexViewer?.dispose(); codexViewer=null; codexActiveMaskId=null;
-  detail.setAttribute("aria-hidden","true");
+  codexState="locked";
+  document.querySelectorAll(".codex-person.selected,.codex-person.opening").forEach(item=>item.classList.remove("selected","opening"));
+  $("#codexEmptyState").hidden=false;
+  $("#codexViewer").hidden=true;
+  $("#codexViewerFallback").hidden=true;
+  gsap.set(".codex-viewer-column",{clearProps:"transform"});
+  gsap.set(".codex-detail-copy",{opacity:0});
   document.body.classList.remove("codex-detail-open");
   codexFocusReturn?.focus?.();
 }
@@ -1087,7 +1141,7 @@ document.addEventListener("pointerout",(e)=>{
 
 function enableMaskDrag(index){
   canDragSelected=true;
-  const m=masks[index];
+  const m=selectedSceneMask;
   if(!m) return;
   m.dataset.draggable="1";
   gsap.to("#faceZone",{opacity:.06,duration:.4});
@@ -1096,7 +1150,7 @@ function enableMaskDrag(index){
 
 function beginMaskDrag(e,m,i){
   if(!canDragSelected) return;
-  if(i!==state.selected) return;
+  if(m!==selectedSceneMask) return;
   if(!$("#ritual").classList.contains("active")) return;
 
   e.preventDefault();
@@ -1216,42 +1270,72 @@ function snapMaskToFace(m,i){
   all previous behavior is preserved, except auto-slam is intentionally replaced
   by the user's drag → magnetic center → snap-to-face interaction.
 */
-function focusMask(){
-  const chosen=masks[state.selected];
-  if(!chosen) return;
+function fastOrbitPose(slot, turn, phaseOffset=0){
+  return altarOrbitPosition(slot,phaseOffset+turn*Math.PI*2);
+}
 
-  chosen.classList.add("is-revealed");
-  gsap.to(chosen,{
-    x:0,
-    y:-innerHeight*.075,
-    scale:1.08,
-    opacity:.82,
-    rotationX:0,
-    rotationY:0,
-    duration:.85,
-    overwrite:"auto",
-    ease:"power4.out"
+function completeMaskSelection(){
+  altarScenePhase="enterStory";
+  canDragSelected=false;
+  EventBus.emit("mask:snapToFace",{index:state.selected,name:MASKS[state.selected].name});
+  gsap.set("#flash",{opacity:0});
+  gsap.to("#ritual",{opacity:1,duration:.28});
+  gsap.set(masks,{opacity:0});
+  setCopy(
+    "戴 · 面",
+    "你已经入戏",
+    `${state.name}，你戴上了「${MASKS[state.selected].name}面」。不是它告诉你答案，而是从这一刻开始，你要用它的眼睛进入故事。`
+  );
+  showContinue("进入第一幕");
+}
+
+/* The altar owns this directed sequence.  It deliberately does not expose the
+   selected mask until the array has lost control, then ejects and turns it. */
+function playMaskSelectionCinematic(){
+  const chosen=selectedSceneMask;
+  if(!chosen) return;
+  altarOrbitTimeline?.kill();
+  altarSelectionTimeline?.kill();
+  altarScenePhase="selecting";
+  setPhase("MASK ORACLE");
+  gsap.to(["#ritualEyebrow","#ritualTitle","#ritualDesc"],{opacity:0,duration:.28,overwrite:"auto"});
+  gsap.to("#inputWrap",{opacity:0,pointerEvents:"none",duration:.2});
+  masks.forEach(mask=>{
+    mask.classList.remove("is-chosen","is-revealed");
+    gsap.set(mask.querySelector(".mask-card"),{rotationY:0,transformPerspective:1200});
   });
 
-  setTimeout(()=>{
-    AudioEngine.playCue("heavy");
-    impact(1.05);
-  },450);
-
-  gsap.timeline({delay:1.10})
-    .add(()=>{
-      setCopy(
-        "请 · 面",
-        "把那道影子带到你面前",
-        "握住它。它尚未显形。"
-      );
-    })
-    .add(()=>enableMaskDrag(state.selected))
-    .fromTo(chosen,{rotationZ:-1.2},{
-      rotationZ:0,
-      duration:.62,
-      ease:"elastic.out(1,.5)"
+  const tl=altarSelectionTimeline=gsap.timeline({defaults:{overwrite:"auto"},onComplete:completeMaskSelection});
+  // Slow → violent: five keyed positions create nearly three complete shared turns.
+  tl.add(()=>{altarScenePhase="spinning"; AudioEngine.playCue("suck");})
+    .to(".ritual-fog-mid",{x:-18,scale:1.05,opacity:.58,duration:.38,ease:"power2.in"},0);
+  for(let turn=1;turn<=3;turn++){
+    masks.forEach((mask,slot)=>{
+      const pose=fastOrbitPose(slot,turn,.2);
+      tl.to(mask,{...pose,duration:.57,ease:turn===1?"power4.in":"none"},(turn-1)*.57);
     });
+  }
+  tl.to(".ritual-fog-front",{x:22,scale:1.08,opacity:.78,duration:.34,ease:"power2.out"},1.35)
+    .add(()=>{altarScenePhase="ejecting";},1.70);
+  masks.filter(mask=>mask!==chosen).forEach((mask,slot)=>{
+    tl.to(mask,{x:(slot%2?-1:1)*innerWidth*(.38+slot*.025),y:innerHeight*(slot%3-.8)*.28,scale:.2,opacity:0,duration:.46,ease:"power3.in"},1.70);
+  });
+  const chosenCard=chosen.querySelector(".mask-card");
+  tl.set(chosen,{zIndex:80})
+    .to(chosen,{x:innerWidth*.16,y:-innerHeight*.13,scale:.82,opacity:1,rotationZ:8,duration:.18,ease:"power4.in"},1.70)
+    .to(chosen,{x:0,y:-innerHeight*.07,scale:1.08,rotationZ:0,duration:.28,ease:"expo.out"},">")
+    .set(chosenCard,{rotationY:180,transformPerspective:1300})
+    .add(()=>{altarScenePhase="revealing"; AudioEngine.playCue("heavy"); impact(.72);},">-.03")
+    .to(chosenCard,{rotationY:360,duration:.62,ease:"power3.inOut"},">+.10")
+    .to([".ritual-fog-mid",".ritual-fog-front"],{x:0,opacity:.28,duration:.42,ease:"power2.out"},"<+.14")
+    .add(()=>{AudioEngine.playCue("gong"); impact(1.25);},">-.06")
+    .add(()=>{altarScenePhase="impact";},">+.28")
+    .to(chosen,{scale:4.8,y:-innerHeight*.06,opacity:1,filter:"blur(0px)",duration:.46,ease:"power4.in"})
+    .to(chosen,{scale:7.2,opacity:.08,filter:"blur(5px)",duration:.18,ease:"power4.in"})
+    .add(()=>{AudioEngine.playCue("heavy"); impact(1.45); crush(.58); gsap.fromTo("#flash",{opacity:.72},{opacity:0,duration:.18});},"<+.05")
+    .add(()=>{altarScenePhase="blackout";},">")
+    .to("#ritual",{opacity:0,duration:.10})
+    .to({}, {duration:.42});
 }
 
 
