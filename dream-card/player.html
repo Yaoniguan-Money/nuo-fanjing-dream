@@ -1,0 +1,1833 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>大傩幻梦 · Dream Card Player</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --ink: #080706;
+      --ink-soft: #12100d;
+      --paper: #eee4d3;
+      --paper-muted: #a99b83;
+      --gold: #d0ad62;
+      --gold-soft: #8a7247;
+      --red: #7b2f27;
+      --blue: #91afc1;
+      --debug-height: 58px;
+      --radius: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
+      margin: 0;
+      background: var(--ink);
+      color: var(--paper);
+      font-family: "Songti SC", "STSong", "SimSun", "宋体", serif;
+    }
+
+    body {
+      overflow: hidden;
+    }
+
+    button,
+    select,
+    input {
+      font: inherit;
+    }
+
+    button,
+    select,
+    .file-button {
+      border: 1px solid rgba(208, 173, 98, 0.28);
+      background: rgba(16, 13, 10, 0.78);
+      color: var(--paper);
+      border-radius: 8px;
+      min-height: 34px;
+    }
+
+    button,
+    .file-button {
+      cursor: pointer;
+    }
+
+    button:hover:not(:disabled),
+    .file-button:hover {
+      border-color: rgba(208, 173, 98, 0.7);
+      color: var(--gold);
+    }
+
+    button:disabled,
+    select:disabled {
+      cursor: not-allowed;
+      opacity: 0.38;
+    }
+
+    button:focus-visible,
+    select:focus-visible,
+    .file-button:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 2px;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .debug-bar {
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 100;
+      height: var(--debug-height);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      background: rgba(8, 7, 6, 0.94);
+      border-bottom: 1px solid rgba(208, 173, 98, 0.18);
+      backdrop-filter: blur(16px);
+    }
+
+    .debug-brand {
+      flex: 0 0 auto;
+      margin-right: 6px;
+      color: var(--gold);
+      font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .file-button,
+    .debug-bar button,
+    .debug-bar select {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 34px;
+      min-height: 34px;
+      padding: 0 11px;
+      font-family: system-ui, sans-serif;
+      font-size: 12px;
+    }
+
+    .debug-bar select {
+      max-width: 190px;
+    }
+
+    .file-name {
+      min-width: 0;
+      max-width: 240px;
+      overflow: hidden;
+      color: var(--paper-muted);
+      font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
+      font-size: 11px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .debug-spacer {
+      flex: 1;
+    }
+
+    .debug-status {
+      color: var(--paper-muted);
+      font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
+      font-size: 11px;
+      white-space: nowrap;
+    }
+
+    .issue-button[data-level="error"] {
+      border-color: rgba(212, 88, 75, 0.62);
+      color: #ef9389;
+    }
+
+    .issue-button[data-level="warning"] {
+      border-color: rgba(208, 173, 98, 0.6);
+      color: var(--gold);
+    }
+
+    .app {
+      position: fixed;
+      inset: var(--debug-height) 0 0;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+      background:
+        radial-gradient(circle at 18% 20%, rgba(120, 92, 50, 0.1), transparent 32%),
+        radial-gradient(circle at 82% 74%, rgba(55, 74, 76, 0.14), transparent 36%),
+        var(--ink);
+    }
+
+    body.production .debug-bar {
+      display: none;
+    }
+
+    body.production .app {
+      inset: 0;
+    }
+
+    .drop-screen {
+      width: min(760px, calc(100vw - 36px));
+      padding: clamp(32px, 7vw, 72px);
+      border: 1px solid rgba(208, 173, 98, 0.24);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(135deg, rgba(208, 173, 98, 0.06), transparent 40%),
+        rgba(18, 16, 13, 0.9);
+      box-shadow: 0 28px 90px rgba(0, 0, 0, 0.42);
+      text-align: center;
+    }
+
+    .drop-screen.dragging {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 4px rgba(208, 173, 98, 0.1), 0 28px 90px rgba(0, 0, 0, 0.42);
+    }
+
+    .drop-mark {
+      width: 78px;
+      height: 92px;
+      margin: 0 auto 28px;
+      border: 1px solid rgba(208, 173, 98, 0.5);
+      border-radius: 50% 50% 42% 42%;
+      background:
+        radial-gradient(circle at 35% 40%, rgba(208, 173, 98, 0.78) 0 4px, transparent 5px),
+        radial-gradient(circle at 65% 40%, rgba(208, 173, 98, 0.78) 0 4px, transparent 5px),
+        linear-gradient(155deg, rgba(123, 47, 39, 0.5), rgba(10, 8, 7, 0.2));
+      box-shadow: inset 0 0 24px rgba(208, 173, 98, 0.08);
+    }
+
+    .drop-screen h1 {
+      margin: 0 0 14px;
+      color: var(--gold);
+      font-size: clamp(28px, 5vw, 44px);
+      font-weight: 400;
+      letter-spacing: 0.22em;
+      text-indent: 0.22em;
+    }
+
+    .drop-screen p {
+      max-width: 540px;
+      margin: 0 auto 28px;
+      color: var(--paper-muted);
+      font-size: 15px;
+      line-height: 2;
+    }
+
+    .drop-screen .file-button {
+      min-height: 44px;
+      padding: 0 24px;
+      letter-spacing: 0.12em;
+    }
+
+    .drop-note {
+      margin-top: 18px;
+      color: #625847;
+      font-family: system-ui, sans-serif;
+      font-size: 12px;
+    }
+
+    .player-shell {
+      position: relative;
+      height: min(calc(100vh - var(--debug-height) - 40px), 54vw);
+      min-height: 0;
+      max-height: 900px;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      border: 1px solid rgba(208, 173, 98, 0.22);
+      border-radius: var(--radius);
+      background: #15110d;
+      box-shadow: 0 32px 110px rgba(0, 0, 0, 0.6);
+      isolation: isolate;
+    }
+
+    body.production .player-shell {
+      height: min(calc(100vh - 32px), 54vw);
+    }
+
+    .background-placeholder,
+    .background-image,
+    .stage-shade,
+    .stage-fog,
+    .character-layer,
+    .player-view {
+      position: absolute;
+      inset: 0;
+    }
+
+    .background-placeholder {
+      z-index: 0;
+      background:
+        radial-gradient(circle at 50% 42%, var(--placeholder-accent, #5b4933), transparent 34%),
+        linear-gradient(155deg, var(--placeholder-start, #211b14), var(--placeholder-end, #070605));
+      transition: background 500ms ease;
+    }
+
+    .background-placeholder::before {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(115deg, transparent 0 42%, rgba(255, 255, 255, 0.025) 43%, transparent 45%),
+        repeating-linear-gradient(0deg, transparent 0 34px, rgba(255, 255, 255, 0.015) 35px);
+      content: "";
+    }
+
+    .background-image {
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 500ms ease;
+    }
+
+    .background-image.loaded {
+      opacity: 1;
+    }
+
+    .stage-shade {
+      z-index: 2;
+      pointer-events: none;
+      background:
+        linear-gradient(180deg, rgba(5, 4, 3, 0.34), transparent 35%, transparent 58%, rgba(5, 4, 3, 0.84)),
+        radial-gradient(ellipse at center, transparent 44%, rgba(4, 3, 2, 0.64) 100%);
+    }
+
+    .stage-fog {
+      z-index: 3;
+      inset: -24%;
+      pointer-events: none;
+      opacity: 0.52;
+      background: radial-gradient(ellipse, rgba(220, 207, 180, 0.06), transparent 58%);
+      animation: fog-drift 24s ease-in-out infinite alternate;
+    }
+
+    @keyframes fog-drift {
+      from { transform: translate3d(-3%, 2%, 0) scale(1); }
+      to { transform: translate3d(5%, -2%, 0) scale(1.08); }
+    }
+
+    .asset-label {
+      position: absolute;
+      z-index: 8;
+      top: 54px;
+      right: 18px;
+      max-width: 46%;
+      overflow: hidden;
+      color: rgba(238, 228, 211, 0.42);
+      font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
+      font-size: 10px;
+      text-align: right;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    body.production .asset-label {
+      display: none;
+    }
+
+    .character-layer {
+      z-index: 4;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      align-items: end;
+      padding: 10% 4% 15%;
+      pointer-events: none;
+    }
+
+    .character-slot {
+      position: relative;
+      display: flex;
+      align-items: end;
+      justify-content: center;
+      height: 100%;
+      min-width: 0;
+      opacity: 0.62;
+      filter: saturate(0.78) brightness(0.82);
+      transform: translateY(3%);
+      transition: opacity 260ms ease, filter 260ms ease, transform 260ms ease;
+    }
+
+    .character-slot.active {
+      z-index: 2;
+      opacity: 1;
+      filter: saturate(1) brightness(1);
+      transform: translateY(0) scale(1.02);
+    }
+
+    .character-image {
+      display: block;
+      width: min(100%, 280px);
+      max-height: 100%;
+      object-fit: contain;
+      object-position: bottom center;
+    }
+
+    .character-placeholder {
+      position: relative;
+      width: min(68%, 190px);
+      aspect-ratio: 2 / 3;
+      border: 1px solid rgba(208, 173, 98, 0.16);
+      border-bottom: 0;
+      border-radius: 48% 48% 12% 12%;
+      background:
+        radial-gradient(circle at 50% 20%, rgba(205, 181, 134, 0.17) 0 11%, transparent 12%),
+        radial-gradient(ellipse at 50% 64%, rgba(205, 181, 134, 0.1) 0 37%, transparent 38%),
+        linear-gradient(180deg, rgba(16, 13, 10, 0.28), rgba(5, 4, 3, 0.82));
+      box-shadow: inset 0 0 32px rgba(208, 173, 98, 0.04);
+    }
+
+    .character-placeholder span {
+      position: absolute;
+      right: 6px;
+      bottom: 8px;
+      left: 6px;
+      overflow: hidden;
+      color: rgba(238, 228, 211, 0.44);
+      font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
+      font-size: clamp(7px, 0.75vw, 10px);
+      text-align: center;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    body.production .character-placeholder span {
+      display: none;
+    }
+
+    .player-view {
+      z-index: 10;
+    }
+
+    .title-view,
+    .end-view {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 7%;
+      background: radial-gradient(ellipse at center, rgba(32, 24, 17, 0.6), rgba(7, 6, 5, 0.94));
+      text-align: center;
+    }
+
+    .title-eyebrow,
+    .end-eyebrow {
+      margin-bottom: 18px;
+      color: var(--gold-soft);
+      font-size: clamp(9px, 1vw, 12px);
+      letter-spacing: 0.56em;
+      text-indent: 0.56em;
+    }
+
+    .title-name {
+      margin: 0;
+      color: var(--gold);
+      font-size: clamp(38px, 6vw, 78px);
+      font-weight: 400;
+      letter-spacing: 0.27em;
+      text-indent: 0.27em;
+      text-shadow: 0 0 46px rgba(208, 173, 98, 0.18);
+    }
+
+    .title-divider,
+    .end-divider {
+      width: 80px;
+      height: 1px;
+      margin: 24px 0;
+      background: linear-gradient(90deg, transparent, rgba(208, 173, 98, 0.68), transparent);
+    }
+
+    .title-synopsis {
+      display: -webkit-box;
+      max-width: 680px;
+      margin: 0 0 22px;
+      overflow: hidden;
+      color: var(--paper-muted);
+      font-size: clamp(12px, 1.35vw, 16px);
+      line-height: 1.9;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 7px;
+      margin-bottom: 28px;
+    }
+
+    .tag {
+      padding: 5px 10px;
+      border: 1px solid rgba(208, 173, 98, 0.18);
+      border-radius: 999px;
+      color: #8e816c;
+      font-family: system-ui, sans-serif;
+      font-size: 10px;
+    }
+
+    .ritual-button {
+      min-height: 42px;
+      padding: 0 26px;
+      border-color: rgba(208, 173, 98, 0.5);
+      background: rgba(208, 173, 98, 0.06);
+      color: var(--gold);
+      letter-spacing: 0.26em;
+      text-indent: 0.26em;
+    }
+
+    .play-view {
+      cursor: pointer;
+    }
+
+    .hud {
+      position: absolute;
+      z-index: 20;
+      top: 16px;
+      right: 18px;
+      left: 18px;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 14px;
+      pointer-events: none;
+    }
+
+    .act-identity {
+      min-width: 0;
+    }
+
+    .act-kicker {
+      color: rgba(238, 228, 211, 0.48);
+      font-size: clamp(8px, 0.85vw, 11px);
+      letter-spacing: 0.34em;
+    }
+
+    .act-title {
+      margin-top: 4px;
+      overflow: hidden;
+      color: var(--gold);
+      font-size: clamp(14px, 1.65vw, 23px);
+      letter-spacing: 0.14em;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .progress-dots {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .progress-dot {
+      width: 6px;
+      height: 6px;
+      padding: 0;
+      border: 0;
+      border-radius: 50%;
+      min-height: 0;
+      background: rgba(238, 228, 211, 0.18);
+      pointer-events: auto;
+      transition: transform 200ms ease, background 200ms ease;
+    }
+
+    .progress-dot.done {
+      background: rgba(208, 173, 98, 0.46);
+    }
+
+    .progress-dot.active {
+      background: var(--gold);
+      box-shadow: 0 0 12px rgba(208, 173, 98, 0.7);
+      transform: scale(1.45);
+    }
+
+    body.production .progress-dot {
+      pointer-events: none;
+    }
+
+    .line-position {
+      justify-self: end;
+      color: rgba(238, 228, 211, 0.42);
+      font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
+      font-size: clamp(8px, 0.8vw, 10px);
+    }
+
+    .dialogue-panel {
+      position: absolute;
+      z-index: 18;
+      right: 4.5%;
+      bottom: 4.5%;
+      left: 4.5%;
+      min-height: 24%;
+      padding: clamp(16px, 2.4vw, 30px) clamp(20px, 3vw, 40px);
+      border: 1px solid rgba(208, 173, 98, 0.22);
+      border-radius: 12px;
+      background:
+        linear-gradient(90deg, rgba(208, 173, 98, 0.04), transparent 22%),
+        rgba(8, 7, 6, 0.86);
+      box-shadow: 0 16px 46px rgba(0, 0, 0, 0.34);
+      backdrop-filter: blur(10px);
+    }
+
+    .speaker-name {
+      min-height: 1.4em;
+      margin-bottom: 7px;
+      color: #c5b79f;
+      font-size: clamp(11px, 1.2vw, 15px);
+      letter-spacing: 0.14em;
+    }
+
+    .dialogue-content {
+      min-height: 2.2em;
+      color: var(--paper);
+      font-size: clamp(15px, 1.65vw, 24px);
+      line-height: 1.8;
+      letter-spacing: 0.025em;
+    }
+
+    .dialogue-panel[data-kind="narration"] .dialogue-content {
+      color: #dfc78f;
+      font-style: italic;
+    }
+
+    .dialogue-panel[data-kind="action"] .dialogue-content {
+      color: #9b8d76;
+      font-size: clamp(13px, 1.4vw, 19px);
+      font-style: italic;
+      text-align: center;
+    }
+
+    .dialogue-panel[data-kind="final-narration"] {
+      border-color: rgba(208, 173, 98, 0.42);
+      background: rgba(18, 13, 9, 0.91);
+    }
+
+    .dialogue-panel[data-kind="final-narration"] .dialogue-content {
+      color: var(--gold);
+      font-style: italic;
+      text-align: center;
+    }
+
+    .dialogue-panel.self .speaker-name {
+      color: #d5a66f;
+    }
+
+    .dialogue-panel.mystic .speaker-name {
+      color: var(--blue);
+      font-style: italic;
+    }
+
+    .advance-hint {
+      position: absolute;
+      right: 22px;
+      bottom: 12px;
+      color: rgba(208, 173, 98, 0.6);
+      font-family: system-ui, sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      animation: hint-pulse 1.8s ease-in-out infinite;
+    }
+
+    @keyframes hint-pulse {
+      0%, 100% { opacity: 0.3; transform: translateY(0); }
+      50% { opacity: 0.9; transform: translateY(2px); }
+    }
+
+    .act-ready {
+      color: var(--paper-muted);
+      font-style: italic;
+    }
+
+    .end-title {
+      margin: 0;
+      color: var(--gold);
+      font-size: clamp(32px, 5vw, 62px);
+      font-weight: 400;
+      letter-spacing: 0.3em;
+      text-indent: 0.3em;
+    }
+
+    .end-note {
+      max-width: 600px;
+      margin: 0 0 30px;
+      color: var(--paper-muted);
+      font-size: clamp(13px, 1.4vw, 17px);
+      line-height: 2;
+    }
+
+    .end-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .issue-drawer {
+      position: fixed;
+      z-index: 120;
+      top: calc(var(--debug-height) + 10px);
+      right: 12px;
+      width: min(520px, calc(100vw - 24px));
+      max-height: calc(100vh - var(--debug-height) - 24px);
+      overflow: auto;
+      padding: 18px;
+      border: 1px solid rgba(208, 173, 98, 0.24);
+      border-radius: 12px;
+      background: rgba(12, 10, 8, 0.97);
+      box-shadow: 0 22px 70px rgba(0, 0, 0, 0.58);
+      font-family: system-ui, sans-serif;
+    }
+
+    .issue-drawer h2 {
+      margin: 0 0 12px;
+      color: var(--gold);
+      font-family: inherit;
+      font-size: 15px;
+    }
+
+    .issue-summary {
+      margin-bottom: 14px;
+      color: var(--paper-muted);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .issue-list {
+      display: grid;
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .issue-item {
+      padding: 10px 12px;
+      border-left: 2px solid var(--gold-soft);
+      background: rgba(255, 255, 255, 0.025);
+      color: #cfc4b2;
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    .issue-item.error {
+      border-left-color: #d4584b;
+    }
+
+    .issue-path {
+      display: block;
+      margin-bottom: 4px;
+      color: #776b58;
+      font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
+      font-size: 10px;
+    }
+
+    .error-box {
+      margin-top: 18px;
+      padding: 12px;
+      border-left: 2px solid #d4584b;
+      background: rgba(212, 88, 75, 0.08);
+      color: #e5aaa4;
+      font-family: system-ui, sans-serif;
+      font-size: 12px;
+      line-height: 1.6;
+      text-align: left;
+    }
+
+    @media (max-width: 820px) {
+      :root {
+        --debug-height: 98px;
+      }
+
+      .debug-bar {
+        flex-wrap: wrap;
+        align-content: center;
+      }
+
+      .debug-brand,
+      .file-name {
+        display: none;
+      }
+
+      .debug-spacer {
+        flex-basis: 100%;
+        order: 3;
+        height: 0;
+      }
+
+      .player-shell {
+        min-height: 0;
+      }
+
+      .title-view,
+      .end-view {
+        padding: 4%;
+      }
+
+      .title-eyebrow,
+      .end-eyebrow,
+      .title-divider,
+      .end-divider,
+      .title-synopsis,
+      .end-note {
+        display: none;
+      }
+
+      .title-name,
+      .end-title {
+        font-size: clamp(28px, 10vw, 42px);
+      }
+
+      .tag-list {
+        gap: 4px;
+        margin: 10px 0;
+      }
+
+      .tag {
+        padding: 3px 7px;
+        font-size: 8px;
+      }
+
+      .ritual-button {
+        min-height: 32px;
+        padding: 0 16px;
+        font-size: 11px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <input id="file-input" type="file" accept=".json,application/json" hidden>
+
+  <header class="debug-bar" id="debug-bar">
+    <div class="debug-brand">Dream Card Player</div>
+    <label class="file-button" for="file-input" tabindex="0">加载 JSON</label>
+    <span class="file-name" id="file-name">尚未加载</span>
+    <select id="act-select" aria-label="跳转到指定 Act" disabled>
+      <option>选择 Act</option>
+    </select>
+    <button id="previous-button" type="button" disabled>← 上一步</button>
+    <button id="next-button" type="button" disabled>下一步 →</button>
+    <button id="restart-button" type="button" disabled>重播</button>
+    <div class="debug-spacer"></div>
+    <span class="debug-status" id="debug-status">EMPTY</span>
+    <button class="issue-button" id="issue-button" type="button" data-level="ok">诊断 0</button>
+  </header>
+
+  <main class="app" id="app">
+    <section class="drop-screen" id="drop-screen">
+      <div class="drop-mark" aria-hidden="true"></div>
+      <h1>幻梦播放器</h1>
+      <p>选择或拖入一张本地 Dream Card JSON。播放器不会修改剧情数据；当前缺失的背景与人物素材将使用带有 assetId 的占位画面。</p>
+      <label class="file-button" for="file-input" tabindex="0">选择 Dream Card JSON</label>
+      <div class="drop-note">也可以将 JSON 文件拖放到此页面</div>
+      <div class="error-box hidden" id="load-error" role="alert"></div>
+    </section>
+
+    <section class="player-shell hidden" id="player-shell" aria-label="幻梦播放舞台">
+      <div class="background-placeholder" id="background-placeholder"></div>
+      <img class="background-image" id="background-image" alt="">
+      <div class="stage-shade"></div>
+      <div class="stage-fog"></div>
+      <div class="asset-label" id="background-label"></div>
+      <div class="character-layer" id="character-layer"></div>
+
+      <section class="player-view title-view" id="title-view">
+        <div class="title-eyebrow">大 傩 幻 梦 · DREAM CARD</div>
+        <h1 class="title-name" id="title-name"></h1>
+        <div class="title-divider"></div>
+        <p class="title-synopsis" id="title-synopsis"></p>
+        <div class="tag-list" id="tag-list"></div>
+        <button class="ritual-button" id="enter-button" type="button">进 入 幻 梦</button>
+      </section>
+
+      <section class="player-view play-view hidden" id="play-view" tabindex="0" aria-label="点击继续播放">
+        <div class="hud">
+          <div class="act-identity">
+            <div class="act-kicker" id="act-kicker"></div>
+            <div class="act-title" id="act-title"></div>
+          </div>
+          <div class="progress-dots" id="progress-dots" aria-label="Act 进度"></div>
+          <div class="line-position" id="line-position"></div>
+        </div>
+
+        <div class="dialogue-panel" id="dialogue-panel" data-kind="narration">
+          <div class="speaker-name" id="speaker-name"></div>
+          <div class="dialogue-content" id="dialogue-content" aria-live="polite"></div>
+          <div class="advance-hint" id="advance-hint">点击继续 ▽</div>
+        </div>
+      </section>
+
+      <section class="player-view end-view hidden" id="end-view">
+        <div class="end-eyebrow">幻 梦 已 尽</div>
+        <h2 class="end-title" id="end-title"></h2>
+        <div class="end-divider"></div>
+        <p class="end-note">这场幻梦已经完整播放。调试时可以重新观看、跳转到指定 Act，或载入另一张 Dream Card。</p>
+        <div class="end-actions">
+          <button class="ritual-button" id="end-restart-button" type="button">重 新 观 看</button>
+          <label class="file-button" for="file-input" tabindex="0">载 入 新 卡</label>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <aside class="issue-drawer hidden" id="issue-drawer" aria-label="Dream Card 诊断结果">
+    <h2>卡片诊断</h2>
+    <div class="issue-summary" id="issue-summary"></div>
+    <ul class="issue-list" id="issue-list"></ul>
+  </aside>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const SUPPORTED_SCHEMA_VERSION = "0.1.0";
+      const SUPPORTED_TEXT_KINDS = new Set(["narration", "dialogue", "action", "final-narration"]);
+      const CHARACTER_POSITIONS = new Set(["left", "center", "right"]);
+      const SPECIAL_SPEAKERS = new Set(["narrator", "stage"]);
+      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+      const dom = {
+        app: document.getElementById("app"),
+        fileInput: document.getElementById("file-input"),
+        fileName: document.getElementById("file-name"),
+        dropScreen: document.getElementById("drop-screen"),
+        loadError: document.getElementById("load-error"),
+        playerShell: document.getElementById("player-shell"),
+        titleView: document.getElementById("title-view"),
+        playView: document.getElementById("play-view"),
+        endView: document.getElementById("end-view"),
+        titleName: document.getElementById("title-name"),
+        titleSynopsis: document.getElementById("title-synopsis"),
+        tagList: document.getElementById("tag-list"),
+        enterButton: document.getElementById("enter-button"),
+        endTitle: document.getElementById("end-title"),
+        endRestartButton: document.getElementById("end-restart-button"),
+        backgroundPlaceholder: document.getElementById("background-placeholder"),
+        backgroundImage: document.getElementById("background-image"),
+        backgroundLabel: document.getElementById("background-label"),
+        characterLayer: document.getElementById("character-layer"),
+        actKicker: document.getElementById("act-kicker"),
+        actTitle: document.getElementById("act-title"),
+        progressDots: document.getElementById("progress-dots"),
+        linePosition: document.getElementById("line-position"),
+        dialoguePanel: document.getElementById("dialogue-panel"),
+        speakerName: document.getElementById("speaker-name"),
+        dialogueContent: document.getElementById("dialogue-content"),
+        advanceHint: document.getElementById("advance-hint"),
+        actSelect: document.getElementById("act-select"),
+        previousButton: document.getElementById("previous-button"),
+        nextButton: document.getElementById("next-button"),
+        restartButton: document.getElementById("restart-button"),
+        debugStatus: document.getElementById("debug-status"),
+        issueButton: document.getElementById("issue-button"),
+        issueDrawer: document.getElementById("issue-drawer"),
+        issueSummary: document.getElementById("issue-summary"),
+        issueList: document.getElementById("issue-list")
+      };
+
+      const state = {
+        phase: "empty",
+        card: null,
+        sourceName: "",
+        actIndex: 0,
+        textIndex: -1,
+        isTyping: false,
+        typingTimer: null,
+        autoTimer: null,
+        typingText: "",
+        issues: [],
+        assetResolver: () => null,
+        assetResolverConnected: false,
+        assetManifest: null,
+        assetEntries: new Map(),
+        debug: new URLSearchParams(window.location.search).get("debug") !== "0"
+      };
+
+      if (!state.debug) {
+        document.body.classList.add("production");
+      }
+
+      function issue(severity, code, path, message) {
+        return { severity, code, path, message };
+      }
+
+      function isRecord(value) {
+        return value !== null && typeof value === "object" && !Array.isArray(value);
+      }
+
+      function inspectCard(card) {
+        const issues = [];
+
+        if (!isRecord(card)) {
+          return [issue("error", "card.not-object", "$", "JSON 根节点必须是对象。")];
+        }
+
+        if (card.schemaVersion !== SUPPORTED_SCHEMA_VERSION) {
+          issues.push(issue(
+            "error",
+            "card.schema-version",
+            "$.schemaVersion",
+            `播放器只支持 schemaVersion ${SUPPORTED_SCHEMA_VERSION}，当前值为 ${String(card.schemaVersion)}。`
+          ));
+        }
+
+        if (!isRecord(card.meta)) {
+          issues.push(issue("error", "meta.missing", "$.meta", "缺少 meta 对象。"));
+        } else {
+          if (typeof card.meta.id !== "string" || !card.meta.id.startsWith("dream.")) {
+            issues.push(issue("error", "meta.id", "$.meta.id", "meta.id 必须是以 dream. 开头的字符串。"));
+          }
+          if (typeof card.meta.title !== "string" || card.meta.title.trim() === "") {
+            issues.push(issue("error", "meta.title", "$.meta.title", "meta.title 不能为空。"));
+          }
+          if (typeof card.meta.synopsis !== "string" || card.meta.synopsis.trim() === "") {
+            issues.push(issue("warning", "meta.synopsis", "$.meta.synopsis", "缺少剧情梗概，标题页将无法展示简介。"));
+          }
+        }
+
+        if (!isRecord(card.data) || !Array.isArray(card.data.acts)) {
+          issues.push(issue("error", "data.acts", "$.data.acts", "缺少 data.acts 数组。"));
+          return issues;
+        }
+
+        if (card.data.acts.length < 5 || card.data.acts.length > 7) {
+          issues.push(issue("error", "acts.length", "$.data.acts", "幻梦卡必须包含 5 至 7 个 Act。"));
+        }
+
+        const actIds = new Set();
+        const textIds = new Set();
+
+        card.data.acts.forEach((act, actIndex) => {
+          const actPath = `$.data.acts[${actIndex}]`;
+          if (!isRecord(act)) {
+            issues.push(issue("error", "act.not-object", actPath, "Act 必须是对象。"));
+            return;
+          }
+
+          if (typeof act.id !== "string" || act.id.trim() === "") {
+            issues.push(issue("error", "act.id", `${actPath}.id`, "Act 缺少稳定 ID。"));
+          } else if (actIds.has(act.id)) {
+            issues.push(issue("error", "act.id-duplicate", `${actPath}.id`, `Act ID ${act.id} 重复。`));
+          } else {
+            actIds.add(act.id);
+          }
+
+          if (typeof act.title !== "string" || act.title.trim() === "") {
+            issues.push(issue("error", "act.title", `${actPath}.title`, "Act 标题不能为空。"));
+          }
+
+          if (typeof act.backgroundAssetId !== "string" || act.backgroundAssetId.trim() === "") {
+            issues.push(issue("error", "act.background", `${actPath}.backgroundAssetId`, "Act 必须引用背景 assetId。"));
+          }
+
+          if (!Array.isArray(act.characters)) {
+            issues.push(issue("error", "act.characters", `${actPath}.characters`, "characters 必须是数组。"));
+          } else {
+            const occupiedPositions = new Set();
+            const instanceIds = new Set();
+            act.characters.forEach((character, characterIndex) => {
+              const characterPath = `${actPath}.characters[${characterIndex}]`;
+              if (!isRecord(character)) {
+                issues.push(issue("error", "character.not-object", characterPath, "人物条目必须是对象。"));
+                return;
+              }
+              if (typeof character.instanceId !== "string" || character.instanceId.trim() === "") {
+                issues.push(issue("error", "character.instance-id", `${characterPath}.instanceId`, "人物缺少 instanceId。"));
+              } else if (instanceIds.has(character.instanceId)) {
+                issues.push(issue("warning", "character.instance-duplicate", `${characterPath}.instanceId`, `人物实例 ${character.instanceId} 重复。`));
+              } else {
+                instanceIds.add(character.instanceId);
+              }
+              if (typeof character.assetId !== "string" || character.assetId.trim() === "") {
+                issues.push(issue("error", "character.asset-id", `${characterPath}.assetId`, "人物缺少 assetId。"));
+              }
+              if (!CHARACTER_POSITIONS.has(character.position)) {
+                issues.push(issue("error", "character.position", `${characterPath}.position`, "人物位置只能是 left、center 或 right。"));
+              } else if (occupiedPositions.has(character.position)) {
+                issues.push(issue("warning", "character.position-duplicate", `${characterPath}.position`, `位置 ${character.position} 出现多个前景人物。`));
+              } else {
+                occupiedPositions.add(character.position);
+              }
+            });
+
+            const offstageSpeakers = new Set();
+            if (Array.isArray(act.texts)) {
+              act.texts.forEach((text, textIndex) => {
+                const textPath = `${actPath}.texts[${textIndex}]`;
+                if (!isRecord(text)) {
+                  issues.push(issue("error", "text.not-object", textPath, "文本条目必须是对象。"));
+                  return;
+                }
+                if (typeof text.id !== "string" || text.id.trim() === "") {
+                  issues.push(issue("error", "text.id", `${textPath}.id`, "文本缺少稳定 ID。"));
+                } else if (textIds.has(text.id)) {
+                  issues.push(issue("error", "text.id-duplicate", `${textPath}.id`, `文本 ID ${text.id} 重复。`));
+                } else {
+                  textIds.add(text.id);
+                }
+                if (typeof text.content !== "string" || text.content.trim() === "") {
+                  issues.push(issue("error", "text.content", `${textPath}.content`, "文本内容不能为空。"));
+                }
+
+                const kind = text.extensions?.sourceType ?? "narration";
+                if (!SUPPORTED_TEXT_KINDS.has(kind)) {
+                  issues.push(issue("warning", "text.kind", `${textPath}.extensions.sourceType`, `未知文本类型 ${kind}，播放器将按 narration 显示。`));
+                }
+
+                const speakerId = text.speakerId;
+                if (
+                  typeof speakerId === "string" &&
+                  !SPECIAL_SPEAKERS.has(speakerId) &&
+                  !instanceIds.has(speakerId)
+                ) {
+                  offstageSpeakers.add(speakerId);
+                }
+              });
+            }
+
+            if (offstageSpeakers.size > 0) {
+              issues.push(issue(
+                "warning",
+                "text.offstage-speaker",
+                `${actPath}.texts`,
+                `本幕说话人 ${Array.from(offstageSpeakers).join("、")} 不在人物槽位中，将按画外对白正常播放。`
+              ));
+            }
+          }
+
+          if (!Array.isArray(act.texts)) {
+            issues.push(issue("error", "act.texts", `${actPath}.texts`, "texts 必须是数组。"));
+          } else if (act.texts.length === 0) {
+            issues.push(issue("warning", "act.texts-empty", `${actPath}.texts`, "本幕没有文本。"));
+          }
+
+          if (!Array.isArray(act.choices)) {
+            issues.push(issue("error", "act.choices", `${actPath}.choices`, "choices 必须是数组。"));
+          } else if (act.choices.length > 0) {
+            issues.push(issue("error", "act.choices-unsupported", `${actPath}.choices`, "播放器 0.1.0 尚不支持选择功能。"));
+          }
+        });
+
+        return issues;
+      }
+
+      function normalizeText(text) {
+        const extensions = isRecord(text.extensions) ? text.extensions : {};
+        const rawKind = extensions.sourceType ?? "narration";
+        return {
+          id: text.id,
+          content: text.content,
+          speakerId: text.speakerId,
+          speakerName: extensions.speakerName ?? text.speakerId ?? "",
+          kind: SUPPORTED_TEXT_KINDS.has(rawKind) ? rawKind : "narration",
+          self: extensions.self === true,
+          mystic: extensions.mystic === true,
+          display: {
+            mode: text.display?.mode === "instant" ? "instant" : "typewriter",
+            advance: text.display?.advance === "auto" ? "auto" : "manual"
+          }
+        };
+      }
+
+      function normalizeCard(card) {
+        return {
+          schemaVersion: card.schemaVersion,
+          meta: {
+            id: card.meta.id,
+            title: card.meta.title,
+            synopsis: card.meta.synopsis ?? "",
+            tags: Array.isArray(card.meta.match?.tags) ? card.meta.match.tags.slice() : [],
+            estimatedDurationSeconds: card.meta.estimatedDurationSeconds ?? 0,
+            status: card.meta.status ?? "draft"
+          },
+          acts: card.data.acts.map((act) => ({
+            id: act.id,
+            title: act.title,
+            backgroundAssetId: act.backgroundAssetId,
+            characters: act.characters.map((character) => ({ ...character })),
+            texts: act.texts.map(normalizeText),
+            choices: act.choices.slice()
+          }))
+        };
+      }
+
+      function clearTimers() {
+        if (state.typingTimer !== null) {
+          window.clearTimeout(state.typingTimer);
+          state.typingTimer = null;
+        }
+        if (state.autoTimer !== null) {
+          window.clearTimeout(state.autoTimer);
+          state.autoTimer = null;
+        }
+        state.isTyping = false;
+      }
+
+      function graphemes(text) {
+        if (typeof Intl.Segmenter === "function") {
+          return Array.from(new Intl.Segmenter("zh-CN", { granularity: "grapheme" }).segment(text), (item) => item.segment);
+        }
+        return Array.from(text);
+      }
+
+      function stablePalette(value) {
+        let hash = 2166136261;
+        for (const char of value) {
+          hash ^= char.codePointAt(0);
+          hash = Math.imul(hash, 16777619);
+        }
+        const hue = Math.abs(hash) % 360;
+        const accentHue = (hue + 36) % 360;
+        return {
+          start: `hsl(${hue} 22% 13%)`,
+          end: `hsl(${(hue + 330) % 360} 20% 4%)`,
+          accent: `hsla(${accentHue} 34% 32% / 0.48)`
+        };
+      }
+
+      function resolvedAssetUrl(assetId) {
+        try {
+          const result = state.assetResolver(assetId);
+          if (typeof result === "string") return result;
+          if (isRecord(result) && typeof result.url === "string") return result.url;
+        } catch (error) {
+          console.warn(`Asset resolver failed for ${assetId}`, error);
+        }
+        return null;
+      }
+
+      function referencedAssetIds(card) {
+        const acts = Array.isArray(card?.data?.acts) ? card.data.acts : card?.acts;
+        if (!Array.isArray(acts)) return [];
+        const ids = new Set();
+        acts.forEach((act) => {
+          if (typeof act.backgroundAssetId === "string") ids.add(act.backgroundAssetId);
+          if (Array.isArray(act.characters)) {
+            act.characters.forEach((character) => {
+              if (typeof character?.assetId === "string") ids.add(character.assetId);
+            });
+          }
+        });
+        return Array.from(ids);
+      }
+
+      function inspectManifestAssets(card) {
+        if (!state.assetManifest) return [];
+        const missing = [];
+        const placeholders = [];
+        referencedAssetIds(card).forEach((assetId) => {
+          const entry = state.assetEntries.get(assetId);
+          if (!entry) missing.push(assetId);
+          else if (entry.status === "placeholder") placeholders.push(assetId);
+        });
+
+        const issues = [];
+        if (missing.length > 0) {
+          issues.push(issue(
+            "warning",
+            "asset.manifest-missing",
+            "$.data.acts",
+            `资产清单缺少 ${missing.join("、")}，播放器将显示 assetId 占位画面。`
+          ));
+        }
+        if (placeholders.length > 0) {
+          issues.push(issue(
+            "warning",
+            "asset.manifest-placeholder",
+            "$.data.acts",
+            `以下素材尚为占位版本：${placeholders.join("、")}。`
+          ));
+        }
+        return issues;
+      }
+
+      function refreshManifestIssues() {
+        state.issues = state.issues.filter((entry) => !entry.code.startsWith("asset.manifest-"));
+        if (state.card) state.issues.push(...inspectManifestAssets(state.card));
+        renderIssues();
+      }
+
+      function renderBackground(assetId) {
+        const palette = stablePalette(assetId);
+        dom.backgroundPlaceholder.style.setProperty("--placeholder-start", palette.start);
+        dom.backgroundPlaceholder.style.setProperty("--placeholder-end", palette.end);
+        dom.backgroundPlaceholder.style.setProperty("--placeholder-accent", palette.accent);
+        dom.backgroundLabel.textContent = assetId;
+        dom.backgroundImage.classList.remove("loaded");
+        dom.backgroundImage.removeAttribute("src");
+
+        const url = resolvedAssetUrl(assetId);
+        if (!url) return;
+
+        dom.backgroundImage.onload = () => dom.backgroundImage.classList.add("loaded");
+        dom.backgroundImage.onerror = () => {
+          dom.backgroundImage.classList.remove("loaded");
+          dom.backgroundImage.removeAttribute("src");
+        };
+        dom.backgroundImage.src = url;
+        dom.backgroundImage.alt = assetId;
+      }
+
+      function createCharacterPlaceholder(character) {
+        const placeholder = document.createElement("div");
+        placeholder.className = "character-placeholder";
+        const label = document.createElement("span");
+        label.textContent = character.assetId;
+        placeholder.appendChild(label);
+        return placeholder;
+      }
+
+      function renderCharacters(characters) {
+        dom.characterLayer.replaceChildren();
+        const positionOrder = { left: 0, center: 1, right: 2 };
+        const byPosition = new Map(characters.map((character) => [character.position, character]));
+
+        ["left", "center", "right"].forEach((position) => {
+          const slot = document.createElement("div");
+          slot.className = `character-slot character-${position}`;
+          slot.style.gridColumn = String(positionOrder[position] + 1);
+          const character = byPosition.get(position);
+
+          if (character) {
+            slot.dataset.instanceId = character.instanceId;
+            slot.dataset.assetId = character.assetId;
+            const url = resolvedAssetUrl(character.assetId);
+            if (url) {
+              const image = document.createElement("img");
+              image.className = "character-image";
+              image.alt = character.instanceId;
+              image.src = url;
+              image.addEventListener("error", () => image.replaceWith(createCharacterPlaceholder(character)), { once: true });
+              slot.appendChild(image);
+            } else {
+              slot.appendChild(createCharacterPlaceholder(character));
+            }
+          }
+
+          dom.characterLayer.appendChild(slot);
+        });
+      }
+
+      function focusSpeaker(speakerId) {
+        dom.characterLayer.querySelectorAll(".character-slot").forEach((slot) => {
+          slot.classList.toggle("active", slot.dataset.instanceId === speakerId);
+        });
+      }
+
+      function renderProgress() {
+        dom.progressDots.replaceChildren();
+        state.card.acts.forEach((act, index) => {
+          const dot = document.createElement("button");
+          dot.type = "button";
+          dot.className = "progress-dot";
+          dot.setAttribute("aria-label", `跳转到 ${act.title}`);
+          dot.classList.toggle("done", index < state.actIndex);
+          dot.classList.toggle("active", index === state.actIndex);
+          dot.addEventListener("click", (event) => {
+            event.stopPropagation();
+            if (state.debug) jumpToAct(index);
+          });
+          dom.progressDots.appendChild(dot);
+        });
+      }
+
+      function renderAct(index) {
+        clearTimers();
+        state.phase = "playing";
+        state.actIndex = index;
+        state.textIndex = -1;
+        const act = state.card.acts[index];
+        renderBackground(act.backgroundAssetId);
+        renderCharacters(act.characters);
+        renderProgress();
+        dom.actKicker.textContent = `第 ${index + 1} 幕 · ${act.id}`;
+        dom.actTitle.textContent = act.title;
+        dom.linePosition.textContent = `0 / ${act.texts.length}`;
+        dom.speakerName.textContent = "";
+        dom.dialogueContent.textContent = "点击继续，开始本幕。";
+        dom.dialogueContent.className = "dialogue-content act-ready";
+        dom.dialoguePanel.dataset.kind = "narration";
+        dom.dialoguePanel.classList.remove("self", "mystic");
+        dom.advanceHint.classList.remove("hidden");
+        focusSpeaker("");
+        dom.actSelect.value = String(index);
+        showView("play");
+        updateControls();
+      }
+
+      function scheduleAutoAdvance(text) {
+        if (text.display.advance !== "auto") return;
+        const delay = Math.min(5200, Math.max(1500, 1300 + graphemes(text.content).length * 45));
+        state.autoTimer = window.setTimeout(() => {
+          state.autoTimer = null;
+          next();
+        }, delay);
+      }
+
+      function finishTyping() {
+        if (!state.isTyping) return false;
+        if (state.typingTimer !== null) {
+          window.clearTimeout(state.typingTimer);
+          state.typingTimer = null;
+        }
+        state.isTyping = false;
+        dom.dialogueContent.textContent = state.typingText;
+        const text = state.card.acts[state.actIndex].texts[state.textIndex];
+        scheduleAutoAdvance(text);
+        updateControls();
+        return true;
+      }
+
+      function typeText(text, onComplete) {
+        const units = graphemes(text);
+        state.typingText = text;
+        state.isTyping = true;
+        let cursor = 0;
+        dom.dialogueContent.textContent = "";
+
+        const tick = () => {
+          cursor += 1;
+          dom.dialogueContent.textContent = units.slice(0, cursor).join("");
+          if (cursor >= units.length) {
+            state.isTyping = false;
+            state.typingTimer = null;
+            onComplete();
+            updateControls();
+            return;
+          }
+          state.typingTimer = window.setTimeout(tick, 34);
+        };
+
+        state.typingTimer = window.setTimeout(tick, 24);
+      }
+
+      function renderText(text, forceInstant = false) {
+        clearTimers();
+        dom.dialogueContent.className = "dialogue-content";
+        dom.dialoguePanel.dataset.kind = text.kind;
+        dom.dialoguePanel.classList.toggle("self", text.self);
+        dom.dialoguePanel.classList.toggle("mystic", text.mystic);
+        dom.speakerName.textContent = text.kind === "dialogue" ? text.speakerName : "";
+        focusSpeaker(text.speakerId);
+        dom.linePosition.textContent = `${state.textIndex + 1} / ${state.card.acts[state.actIndex].texts.length}`;
+        dom.advanceHint.classList.remove("hidden");
+
+        const showInstantly = forceInstant || text.display.mode === "instant" || prefersReducedMotion.matches;
+        if (showInstantly) {
+          dom.dialogueContent.textContent = text.content;
+          scheduleAutoAdvance(text);
+        } else {
+          typeText(text.content, () => scheduleAutoAdvance(text));
+        }
+        updateControls();
+      }
+
+      function showView(view) {
+        dom.titleView.classList.toggle("hidden", view !== "title");
+        dom.playView.classList.toggle("hidden", view !== "play");
+        dom.endView.classList.toggle("hidden", view !== "end");
+      }
+
+      function renderTitle() {
+        clearTimers();
+        state.phase = "title";
+        state.actIndex = 0;
+        state.textIndex = -1;
+        const meta = state.card.meta;
+        dom.titleName.textContent = meta.title;
+        dom.titleSynopsis.textContent = meta.synopsis;
+        dom.tagList.replaceChildren();
+        meta.tags.slice(0, 7).forEach((tag) => {
+          const chip = document.createElement("span");
+          chip.className = "tag";
+          chip.textContent = tag;
+          dom.tagList.appendChild(chip);
+        });
+        dom.endTitle.textContent = meta.title;
+        renderBackground(state.card.acts[0].backgroundAssetId);
+        renderCharacters([]);
+        dom.actSelect.value = "0";
+        showView("title");
+        updateControls();
+      }
+
+      function renderEnd() {
+        clearTimers();
+        state.phase = "finished";
+        state.textIndex = state.card.acts[state.actIndex].texts.length - 1;
+        showView("end");
+        updateControls();
+      }
+
+      function start() {
+        if (!state.card) return;
+        renderAct(0);
+      }
+
+      function next() {
+        if (!state.card) return;
+        if (state.phase === "title") {
+          start();
+          return;
+        }
+        if (state.phase !== "playing") return;
+        if (finishTyping()) return;
+
+        if (state.autoTimer !== null) {
+          window.clearTimeout(state.autoTimer);
+          state.autoTimer = null;
+        }
+
+        const act = state.card.acts[state.actIndex];
+        if (state.textIndex < act.texts.length - 1) {
+          state.textIndex += 1;
+          renderText(act.texts[state.textIndex]);
+          return;
+        }
+
+        if (state.actIndex < state.card.acts.length - 1) {
+          renderAct(state.actIndex + 1);
+        } else {
+          renderEnd();
+        }
+      }
+
+      function previous() {
+        if (!state.card || state.phase !== "playing") return;
+        clearTimers();
+        if (state.textIndex > 0) {
+          state.textIndex -= 1;
+          renderText(state.card.acts[state.actIndex].texts[state.textIndex], true);
+          return;
+        }
+        if (state.textIndex === 0) {
+          state.textIndex = -1;
+          renderAct(state.actIndex);
+          return;
+        }
+        if (state.actIndex > 0) {
+          const previousActIndex = state.actIndex - 1;
+          renderAct(previousActIndex);
+          const texts = state.card.acts[previousActIndex].texts;
+          if (texts.length > 0) {
+            state.textIndex = texts.length - 1;
+            renderText(texts[state.textIndex], true);
+          }
+        }
+      }
+
+      function restart() {
+        if (!state.card) return;
+        renderTitle();
+      }
+
+      function jumpToAct(index) {
+        if (!state.card) return;
+        const safeIndex = Number(index);
+        if (!Number.isInteger(safeIndex) || safeIndex < 0 || safeIndex >= state.card.acts.length) return;
+        renderAct(safeIndex);
+      }
+
+      function renderIssues() {
+        const errors = state.issues.filter((item) => item.severity === "error");
+        const warnings = state.issues.filter((item) => item.severity === "warning");
+        dom.issueButton.textContent = `诊断 ${state.issues.length}`;
+        dom.issueButton.dataset.level = errors.length > 0 ? "error" : warnings.length > 0 ? "warning" : "ok";
+        dom.issueSummary.textContent = `${errors.length} 个错误，${warnings.length} 个警告。错误会阻止播放；警告用于标记缺失素材和允许存在的画外说话人。`;
+        dom.issueList.replaceChildren();
+        if (state.issues.length === 0) {
+          const item = document.createElement("li");
+          item.className = "issue-item";
+          item.textContent = "未发现问题。";
+          dom.issueList.appendChild(item);
+          return;
+        }
+        state.issues.forEach((entry) => {
+          const item = document.createElement("li");
+          item.className = `issue-item ${entry.severity}`;
+          const path = document.createElement("span");
+          path.className = "issue-path";
+          path.textContent = `${entry.severity.toUpperCase()} · ${entry.code} · ${entry.path}`;
+          const message = document.createElement("span");
+          message.textContent = entry.message;
+          item.append(path, message);
+          dom.issueList.appendChild(item);
+        });
+      }
+
+      function populateActSelect() {
+        dom.actSelect.replaceChildren();
+        state.card.acts.forEach((act, index) => {
+          const option = document.createElement("option");
+          option.value = String(index);
+          option.textContent = `${index + 1}. ${act.title}`;
+          dom.actSelect.appendChild(option);
+        });
+        dom.actSelect.value = "0";
+      }
+
+      function updateControls() {
+        const loaded = state.card !== null;
+        dom.actSelect.disabled = !loaded;
+        dom.previousButton.disabled = !loaded || state.phase !== "playing" || (state.actIndex === 0 && state.textIndex < 0);
+        dom.nextButton.disabled = !loaded || state.phase === "finished";
+        dom.restartButton.disabled = !loaded;
+        const phase = state.isTyping ? `${state.phase}:typing` : state.phase;
+        const position = loaded ? ` · A${state.actIndex + 1}:${state.textIndex + 1}` : "";
+        dom.debugStatus.textContent = `${phase.toUpperCase()}${position}`;
+      }
+
+      function showLoadError(message) {
+        dom.loadError.textContent = message;
+        dom.loadError.classList.remove("hidden");
+        dom.dropScreen.classList.remove("hidden");
+        dom.playerShell.classList.add("hidden");
+      }
+
+      function loadCardObject(card, options = {}) {
+        clearTimers();
+        const issues = inspectCard(card);
+        if (!state.assetResolverConnected) {
+          issues.push(issue(
+            "warning",
+            "asset.resolver-missing",
+            "$",
+            "尚未连接全局资产解析器，背景和人物将显示 assetId 占位画面。"
+          ));
+        }
+        issues.push(...inspectManifestAssets(card));
+        const errors = issues.filter((entry) => entry.severity === "error");
+        state.issues = issues;
+        renderIssues();
+
+        if (errors.length > 0) {
+          state.phase = "error";
+          state.card = null;
+          showLoadError(`无法播放：${errors[0].message}`);
+          updateControls();
+          return { ok: false, issues };
+        }
+
+        state.card = normalizeCard(card);
+        state.sourceName = options.sourceName ?? card.meta.id;
+        state.fileName = state.sourceName;
+        dom.fileName.textContent = state.sourceName;
+        dom.loadError.classList.add("hidden");
+        dom.dropScreen.classList.add("hidden");
+        dom.playerShell.classList.remove("hidden");
+        populateActSelect();
+        renderTitle();
+        return { ok: true, issues };
+      }
+
+      async function readCardFile(file) {
+        if (!file) return;
+        try {
+          const text = await file.text();
+          const card = JSON.parse(text);
+          loadCardObject(card, { sourceName: file.name });
+        } catch (error) {
+          state.phase = "error";
+          state.card = null;
+          state.issues = [issue("error", "file.parse", "$", `JSON 读取失败：${error.message}`)];
+          renderIssues();
+          showLoadError(`JSON 读取失败：${error.message}`);
+          updateControls();
+        } finally {
+          dom.fileInput.value = "";
+        }
+      }
+
+      async function loadCardFromUrl(url) {
+        const response = await fetch(url);
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const card = await response.json();
+        return loadCardObject(card, { sourceName: url });
+      }
+
+      function applyAssetManifest(manifest, options = {}) {
+        if (!isRecord(manifest) || !Array.isArray(manifest.assets)) {
+          throw new Error("资产清单必须包含 assets 数组。");
+        }
+
+        const baseUrl = new URL(options.baseUrl ?? document.baseURI, document.baseURI);
+        const entries = new Map();
+        manifest.assets.forEach((asset, index) => {
+          if (!isRecord(asset) || typeof asset.assetId !== "string" || typeof asset.file !== "string") {
+            throw new Error(`assets[${index}] 缺少 assetId 或 file。`);
+          }
+          if (entries.has(asset.assetId)) {
+            throw new Error(`资产清单中存在重复 assetId：${asset.assetId}。`);
+          }
+          entries.set(asset.assetId, {
+            ...asset,
+            url: new URL(asset.file, baseUrl).href
+          });
+        });
+
+        state.assetManifest = manifest;
+        state.assetEntries = entries;
+        setAssetResolver((assetId) => entries.get(assetId) ?? null);
+        refreshManifestIssues();
+        return { manifest, assetCount: entries.size };
+      }
+
+      async function loadAssetManifest(source = "assets/assets.manifest.json", options = {}) {
+        if (isRecord(source)) return applyAssetManifest(source, options);
+        const response = await fetch(source);
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const manifest = await response.json();
+        const manifestUrl = new URL(response.url || source, document.baseURI);
+        return applyAssetManifest(manifest, { baseUrl: new URL(".", manifestUrl) });
+      }
+
+      function setAssetResolver(resolver) {
+        state.assetResolverConnected = typeof resolver === "function";
+        state.assetResolver = state.assetResolverConnected ? resolver : () => null;
+        if (state.assetResolverConnected) {
+          state.issues = state.issues.filter((entry) => entry.code !== "asset.resolver-missing");
+        } else if (state.card && !state.issues.some((entry) => entry.code === "asset.resolver-missing")) {
+          state.issues.push(issue(
+            "warning",
+            "asset.resolver-missing",
+            "$",
+            "尚未连接全局资产解析器，背景和人物将显示 assetId 占位画面。"
+          ));
+        }
+        renderIssues();
+        if (state.card) {
+          if (state.phase === "title") {
+            renderBackground(state.card.acts[0].backgroundAssetId);
+            renderCharacters([]);
+          } else if (state.phase === "playing") {
+            const act = state.card.acts[state.actIndex];
+            renderBackground(act.backgroundAssetId);
+            renderCharacters(act.characters);
+            if (state.textIndex >= 0) focusSpeaker(act.texts[state.textIndex].speakerId);
+          }
+        }
+      }
+
+      function setDebug(enabled) {
+        state.debug = enabled === true;
+        document.body.classList.toggle("production", !state.debug);
+      }
+
+      dom.fileInput.addEventListener("change", () => readCardFile(dom.fileInput.files?.[0]));
+      dom.enterButton.addEventListener("click", start);
+      dom.endRestartButton.addEventListener("click", restart);
+      dom.playView.addEventListener("click", next);
+      dom.previousButton.addEventListener("click", previous);
+      dom.nextButton.addEventListener("click", next);
+      dom.restartButton.addEventListener("click", restart);
+      dom.actSelect.addEventListener("change", () => jumpToAct(Number(dom.actSelect.value)));
+      dom.issueButton.addEventListener("click", () => dom.issueDrawer.classList.toggle("hidden"));
+
+      document.addEventListener("keydown", (event) => {
+        if (event.target instanceof HTMLInputElement || event.target instanceof HTMLSelectElement) return;
+        if (event.key === " " || event.key === "Enter" || event.key === "ArrowRight") {
+          event.preventDefault();
+          next();
+        } else if (event.key === "ArrowLeft" && state.debug) {
+          event.preventDefault();
+          previous();
+        } else if (event.key.toLowerCase() === "d" && state.debug) {
+          dom.issueDrawer.classList.toggle("hidden");
+        }
+      });
+
+      ["dragenter", "dragover"].forEach((eventName) => {
+        document.addEventListener(eventName, (event) => {
+          event.preventDefault();
+          dom.dropScreen.classList.add("dragging");
+        });
+      });
+
+      ["dragleave", "drop"].forEach((eventName) => {
+        document.addEventListener(eventName, (event) => {
+          event.preventDefault();
+          dom.dropScreen.classList.remove("dragging");
+        });
+      });
+
+      document.addEventListener("drop", (event) => {
+        const file = Array.from(event.dataTransfer?.files ?? []).find((candidate) => candidate.name.toLowerCase().endsWith(".json"));
+        if (file) readCardFile(file);
+      });
+
+      document.addEventListener("click", (event) => {
+        if (!dom.issueDrawer.classList.contains("hidden") && !dom.issueDrawer.contains(event.target) && event.target !== dom.issueButton) {
+          dom.issueDrawer.classList.add("hidden");
+        }
+      });
+
+      window.DreamCardPlayer = Object.freeze({
+        load: loadCardObject,
+        loadFromUrl: loadCardFromUrl,
+        loadAssetManifest,
+        setAssetResolver,
+        setDebug,
+        start,
+        next,
+        previous,
+        restart,
+        jumpToAct,
+        inspect: inspectCard,
+        getState: () => ({
+          phase: state.phase,
+          cardId: state.card?.meta.id ?? null,
+          actIndex: state.actIndex,
+          textIndex: state.textIndex,
+          isTyping: state.isTyping,
+          assetCount: state.assetEntries.size,
+          issues: state.issues.map((entry) => ({ ...entry }))
+        })
+      });
+
+      renderIssues();
+      updateControls();
+
+      async function initialize() {
+        if (window.location.protocol === "http:" || window.location.protocol === "https:") {
+          try {
+            await loadAssetManifest();
+          } catch (error) {
+            console.info(`未加载默认资产清单：${error.message}`);
+          }
+        }
+
+        const initialCardUrl = new URLSearchParams(window.location.search).get("card");
+        if (!initialCardUrl) return;
+        try {
+          await loadCardFromUrl(initialCardUrl);
+        } catch (error) {
+          state.issues = [issue("error", "card.fetch", "$", `无法加载 ${initialCardUrl}：${error.message}`)];
+          renderIssues();
+          showLoadError(`无法加载指定卡片：${error.message}`);
+          updateControls();
+        }
+      }
+
+      initialize();
+    })();
+  </script>
+</body>
+</html>
