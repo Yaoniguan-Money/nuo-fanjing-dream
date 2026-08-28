@@ -421,7 +421,9 @@ function openDoor(source="mouse"){
   gsap.to("#thresholdUI",{autoAlpha:0,duration:.2,overwrite:"auto"});
   const passage=thresholdScene.openDoor();
   passage?.eventCallback("onComplete",()=>{
-    gsap.to("#intro",{opacity:0,duration:.24,onComplete:startRitual});
+    // The interior plane is already framed by the same camera.  Let ritual UI
+    // take over on that exact frame; a DOM fade here would reintroduce a seam.
+    startRitual();
   });
 }
 
@@ -485,7 +487,7 @@ layoutRing();
 masks.forEach((m,i)=> m._float = gsap.to(m,{y:"+=7",duration:2.4+(i%3)*.35,repeat:-1,yoyo:true,ease:"sine.inOut"}));
 
 function startRitual(){
-  switchScreen($("#ritual"));
+  switchScreen($("#ritual"),{immediate:true});
   setPhase("DRAGON ALTAR");
   AudioEngine.playCue("gong");
 
