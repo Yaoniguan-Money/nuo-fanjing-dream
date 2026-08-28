@@ -1,0 +1,77 @@
+{
+  "project_name": "guizhou-hackathon-next-unified-app",
+  "created_at": "2026-08-28T23:10:00+08:00",
+  "model": "gpt-5.6-luna",
+  "max_retries": 2,
+  "stop_on_failure": true,
+  "max_parallel": 2,
+  "features": [
+    {
+      "id": "feat-001",
+      "title": "从最新 main 建立 Next.js 统一基线",
+      "description": "在 feat/next-unified-app 上迁入 2393 worktree 已完成的 Next.js App Router、领域模型、固定幻梦内容和测试，并解决旧静态入口冲突。",
+      "verify_cmd": "npm run lint && npm run typecheck && npm test && npm run validate:content && npm run build",
+      "status": "in_progress",
+      "priority": 1,
+      "attempts": 1,
+      "error": null,
+      "commit_hash": null,
+      "started_at": "2026-08-28T23:10:00+08:00",
+      "completed_at": null
+    },
+    {
+      "id": "feat-002",
+      "title": "迁移 main 领先的得面与傩谱体验",
+      "description": "将 get-face、cinematic reveal、12 格傩谱、PNG 浮雕详情、龙坛资源及隐私边界迁入 React/Next，并保留现有测试语义。",
+      "verify_cmd": "npm test && npm run typecheck",
+      "status": "pending",
+      "priority": 2,
+      "attempts": 0,
+      "error": null,
+      "commit_hash": null,
+      "started_at": null,
+      "completed_at": null
+    },
+    {
+      "id": "feat-003",
+      "title": "吸收最新 Dream Card 交付修复",
+      "description": "同步角色位置、speakerId/instanceId、Schema 引用与 AJV 依赖安全修复，并增加目录与注册表一致性门禁。",
+      "verify_cmd": "npm run validate:content && npm test && npm run typecheck",
+      "status": "pending",
+      "priority": 3,
+      "attempts": 0,
+      "error": null,
+      "commit_hash": null,
+      "started_at": null,
+      "completed_at": null
+    },
+    {
+      "id": "feat-004",
+      "title": "补齐 AI Provider 与部署边界",
+      "description": "恢复服务端模型代理的环境变量边界，将 provider 契约改为可扩展，并建立与 Next.js 服务端能力匹配的部署配置。",
+      "verify_cmd": "npm run lint && npm run typecheck && npm test && npm run build",
+      "status": "pending",
+      "priority": 4,
+      "attempts": 0,
+      "error": null,
+      "commit_hash": null,
+      "started_at": null,
+      "completed_at": null
+    },
+    {
+      "id": "feat-005",
+      "title": "执行全链路交付验收",
+      "description": "完成入戏到签解、得面和傩谱的生产态冒烟，检查依赖安全、部署配置、Git diff 与交付文档。",
+      "verify_cmd": "npm run lint && npm run typecheck && npm test && npm run validate:content && npm run build && npm audit --audit-level=moderate",
+      "status": "pending",
+      "priority": 5,
+      "attempts": 0,
+      "error": null,
+      "commit_hash": null,
+      "started_at": null,
+      "completed_at": null
+    }
+  ],
+  "global_verify_cmd": "npm run lint && npm run typecheck && npm test && npm run validate:content && npm run build && npm audit --audit-level=moderate",
+  "notes": "以 upstream/main@06d55c2 为唯一基线；2393 原迁移保存在 stash；不得回退 main 已有产品能力或 Dream Card 最新交付修复。"
+}

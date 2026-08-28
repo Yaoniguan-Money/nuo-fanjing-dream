@@ -1,0 +1,11 @@
+.wish-page { min-height: 100svh; display: grid; place-items: center; padding: 28px; background: radial-gradient(circle at 50% 38%, rgba(104,76,37,.2), transparent 28%), #050403; }
+.wish-form { width: min(680px, 100%); text-align: center; }
+.wish-form > span { color: #8a7247; font-size: 10px; letter-spacing: .52em; }
+.wish-form h1 { margin: 18px 0 12px; color: #d0ad62; font-size: clamp(30px, 5vw, 54px); font-weight: 400; letter-spacing: .1em; }
+.wish-form p { margin: 0 auto 28px; color: #a99b83; font: 13px/1.9 system-ui, sans-serif; }
+.wish-form textarea { width: 100%; resize: vertical; padding: 18px; border: 1px solid rgba(208,173,98,.3); border-radius: 10px; outline: 0; background: rgba(15,11,8,.82); color: #eee4d3; font: 17px/1.8 inherit; }
+.wish-form textarea:focus { border-color: rgba(208,173,98,.72); box-shadow: 0 0 0 3px rgba(208,173,98,.08); }
+.wish-form > button { min-height: 44px; padding: 0 28px; border: 1px solid rgba(208,173,98,.46); background: rgba(208,173,98,.06); color: #d0ad62; cursor: pointer; letter-spacing: .24em; }
+.wish-form > button:disabled { opacity: .5; cursor: wait; }
+.wish-form .wish-return { display: block; margin: 12px auto 0; min-height: 32px; border: 0; color: #756955; font-size: 11px; }
+.wish-error { min-height: 32px; padding: 7px; color: #cf8174; font: 12px system-ui, sans-serif; }

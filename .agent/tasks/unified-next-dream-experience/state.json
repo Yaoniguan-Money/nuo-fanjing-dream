@@ -1,0 +1,71 @@
+{
+  "schema_version": 2,
+  "task_id": "unified-next-dream-experience",
+  "title": "统一 Next.js 幻梦体验架构",
+  "phase": "completed",
+  "execution_mode": "lightweight-staged",
+  "risk_level": "medium",
+  "current_node": null,
+  "max_parallel_nodes": 1,
+  "active_nodes": [],
+  "active_artifacts": [
+    "spec.md",
+    "state.json"
+  ],
+  "completed": [
+    {
+      "id": "stage-1-next-shell",
+      "summary": "根 Next.js 16 App Router 外壳与 /、/dream/[cardId]、/result、/dev/cards 路由建立；lint/typecheck/build 通过"
+    },
+    {
+      "id": "stage-2-card-runtime",
+      "summary": "迁移 1 张 7 Act 固定卡、13 项素材、Schema/注册表/校验/assetId 解析；正式播放器与开发选择器分离"
+    },
+    {
+      "id": "stage-3-threshold-webgl",
+      "summary": "Three.js/GSAP 迁入隔离客户端组件；实现 renderer/RAF/timeline/资源/监听清理与重复挂载生命周期计数测试"
+    },
+    {
+      "id": "stage-4-session-api",
+      "summary": "建立 DreamSession v1、严格 match/interpret Schema、deterministic provider、两个无状态 Route Handler 与正式入梦到签解链路"
+    },
+    {
+      "id": "stage-5-cleanup-acceptance",
+      "summary": "单一根 Next.js 应用验收通过；旧静态/Vite/vendor/server/Pages 入口退出，未确定素材移入非 public 参考区"
+    }
+  ],
+  "failed": [],
+  "evidence": [
+    "git log --oneline --decorate -8 => HEAD a1dab33 (feat/dream-card-player)",
+    "stage 1: npm run lint && npm run typecheck && npm run build => PASS; build enumerated four required routes",
+    "stage 2: npm run validate:content => 3 tests PASS; lint/typecheck/build PASS",
+    "stage 3: threshold lifecycle + content => 4 tests PASS; lint/typecheck/build PASS",
+    "stage 4: npm test => 5 files, 11 tests PASS; lint/typecheck/build PASS; build enumerated two API routes",
+    "stage 5: npm ci PASS; lint zero warnings; 6 files/12 tests PASS; content 3 tests PASS; production build PASS",
+    "production smoke: / /dream/[cardId] /result => 200; /dev/cards => 404; API valid => 200; uploaded card => 400",
+    "parallel gate: source feat/dream-card-player@61d7d63, only unstaged .gitignore tmp/; two committed docs changes classified and absorbed",
+    "final content gate: Zod + JSON Schema Draft 2020-12 + unique assetId + real public files => PASS",
+    "final audit: one package.json outside node_modules; no legacy entry, Vite app, vendor, dist/tmp/.next/tsbuildinfo, tracked node_modules, or secret-shaped value"
+    ,"post-acceptance fix: character assets returned 200 and decoded; bounded grid row reduced rendered character boxes from 1536px to 368.5px within the stage"
+    ,"post-acceptance gates: lint, typecheck, 6 files/12 tests, content 3 tests, production build => PASS"
+  ],
+  "retry_count": 1,
+  "blockers": [],
+  "parallel_integration_gate": {
+    "source_workspace": "/Users/river/Dev/guizhou-hackathon",
+    "source_branch": "feat/dream-card-player",
+    "source_head": "61d7d639c25d9293f9189227a0fc1619f6463f27",
+    "status": "completed-read-only",
+    "policy": "read-only source inspection; absorb only in isolated worktree",
+    "classifications": [
+      "absorb: committed official guide rename offcial-guide -> docs",
+      "absorb-and-adapt: committed 幻梦卡生成指南 into docs/dream-card with Next.js authority paths",
+      "absorb: unstaged .gitignore tmp/ rule",
+      "equivalent: no additional runtime feature or fix in source",
+      "semantic-conflict: none"
+    ]
+  },
+  "history_path": "history.jsonl",
+  "next_action": "none; committed for user acceptance",
+  "updated_at": "2026-08-28T22:30:00+08:00"
+}

@@ -1,0 +1,27 @@
+:root {
+  color-scheme: dark;
+  --ink: #050403;
+  --paper: #eee4d3;
+  --muted: #a99b83;
+  --gold: #d0ad62;
+  font-family: "Songti SC", "STSong", "SimSun", serif;
+  color: var(--paper);
+  background: var(--ink);
+}
+
+* { box-sizing: border-box; }
+html, body { min-height: 100%; margin: 0; }
+body { background: radial-gradient(circle at 50% 15%, #211a12, var(--ink) 52%); }
+button, input, select { font: inherit; }
+a { color: inherit; }
+
+.route-shell {
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: 32px;
+  text-align: center;
+}
+
+.route-shell h1 { color: var(--gold); font-weight: 400; letter-spacing: .18em; }
+.route-shell p { max-width: 640px; color: var(--muted); line-height: 1.8; }
