@@ -6,9 +6,9 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
 <meta http-equiv="Pragma" content="no-cache" />
 <meta http-equiv="Expires" content="0" />
-<meta name="nuo-build" content="20260828-offline-file-v5" />
+<meta name="nuo-build" content="20260828-file-textures-v6" />
 <title>傩 · 梵净入梦</title>
-<link rel="stylesheet" href="src/styles.css?v=20260828-offline-file-v5" />
+<link rel="stylesheet" href="src/styles.css?v=20260828-file-textures-v6" />
 </head>
 <body>
 <div id="app">
@@ -21,6 +21,9 @@
   <div class="dev-chip">已暴露接口：window.NuoDemoAPI</div>
 
   <section class="screen active" id="intro">
+    <div class="threshold-plate threshold-mountain" id="thresholdMountain" aria-hidden="true"></div>
+    <div class="threshold-plate threshold-hall" id="thresholdHall" aria-hidden="true"></div>
+    <div class="threshold-plate threshold-village" id="thresholdVillage" aria-hidden="true"></div>
     <canvas id="thresholdCanvas" aria-label="梵净山入村镜头"></canvas>
     <div class="threshold-vignette"></div>
     <div class="threshold-ui" id="thresholdUI" aria-live="polite">
@@ -126,7 +129,7 @@
 <div class="runtime-error" id="runtimeError"></div>
 <script src="vendor/gsap.min.js"></script>
 <script src="vendor/three.min.js"></script>
-<script src="src/threshold-scene.js?v=20260828-offline-file-v5"></script>
-<script src="src/app.js?v=20260828-offline-file-v5"></script>
+<script src="src/threshold-scene.js?v=20260828-file-textures-v6"></script>
+<script src="src/app.js?v=20260828-file-textures-v6"></script>
 </body>
 </html>

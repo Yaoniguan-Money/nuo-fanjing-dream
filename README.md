@@ -1,6 +1,6 @@
 # 傩 · 梵净入梦
 
-BUILD: `20260828-offline-file-v5`
+BUILD: `20260828-file-textures-v6`
 
 一个围绕“入戏—幻梦—得面”的沉浸式傩文化交互原型。
 

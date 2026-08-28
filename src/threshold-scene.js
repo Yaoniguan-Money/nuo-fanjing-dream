@@ -2,12 +2,6 @@
 const THREE = window.THREE;
 if (!THREE) throw new Error("离线启动失败：Three.js 未加载。请确认 vendor/three.min.js 与 index.html 位于同一项目文件夹。");
 
-const ASSETS = {
-  mountain: "assets/fanjing-backdrop-v2.png",
-  village: "assets/village-facade-door.png",
-  hall: "assets/ritual-threshold-hall.png"
-};
-
 function softTexture(){
   const canvas=document.createElement("canvas");
   canvas.width=256; canvas.height=256;
@@ -39,16 +33,12 @@ function woodTexture(){
   return texture;
 }
 
-function loadTexture(loader,url){
-  return new Promise((resolve,reject)=>loader.load(url,resolve,undefined,reject));
-}
-
 function createThresholdScene({canvas,onReady,onComplete,onDoorOpened}){
-  const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:false,powerPreference:"high-performance"});
+  const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true,powerPreference:"high-performance"});
   renderer.setPixelRatio(Math.min(devicePixelRatio||1,1.5));
   renderer.outputColorSpace=THREE.SRGBColorSpace;
+  renderer.setClearColor(0x000000,0);
   const scene=new THREE.Scene();
-  scene.background=new THREE.Color("#d6dcdb");
   const camera=new THREE.PerspectiveCamera(42,1,.1,100);
   const lookAt=new THREE.Vector3(0,-.25,-13);
   const motion={z:18};
@@ -60,10 +50,12 @@ function createThresholdScene({canvas,onReady,onComplete,onDoorOpened}){
   const warm=new THREE.PointLight(0xe5a34e,10,18,2);
   warm.position.set(0,-.15,-10); scene.add(warm);
 
-  const loader=new THREE.TextureLoader();
   const root=new THREE.Group(); scene.add(root);
   const doorRoot=new THREE.Group();
-  let leftDoor,rightDoor,hallMat,opening=false,disposed=false;
+  const mountain=document.getElementById("thresholdMountain");
+  const village=document.getElementById("thresholdVillage");
+  const hall=document.getElementById("thresholdHall");
+  let leftDoor,rightDoor,opening=false,disposed=false;
   const fogs=[];
 
   const resize=()=>{
@@ -86,18 +78,10 @@ function createThresholdScene({canvas,onReady,onComplete,onDoorOpened}){
     requestAnimationFrame(tick);
   };
 
-  const ready=Promise.all(Object.values(ASSETS).map(url=>loadTexture(loader,url))).then(([mountain,village,hall])=>{
-    [mountain,village,hall].forEach(t=>{t.colorSpace=THREE.SRGBColorSpace;t.anisotropy=renderer.capabilities.getMaxAnisotropy();});
-    const mountainPlane=new THREE.Mesh(new THREE.PlaneGeometry(96,54),new THREE.MeshBasicMaterial({map:mountain}));
-    mountainPlane.position.set(0,0,-34); root.add(mountainPlane);
-
-    hallMat=new THREE.MeshBasicMaterial({map:hall,side:THREE.DoubleSide,transparent:true,opacity:0});
-    const hallPlane=new THREE.Mesh(new THREE.PlaneGeometry(18,10.15),hallMat);
-    hallPlane.position.set(0,-.25,-11.2); root.add(hallPlane);
-
-    const villagePlane=new THREE.Mesh(new THREE.PlaneGeometry(17,9.12),new THREE.MeshBasicMaterial({map:village,transparent:true,alphaTest:.04,side:THREE.DoubleSide}));
-    villagePlane.position.set(0,-.55,-4.9); root.add(villagePlane);
-
+  const ready=Promise.resolve().then(()=>{
+    gsap.set(mountain,{scale:1.02,opacity:1});
+    gsap.set(village,{scale:.22,opacity:.08});
+    gsap.set(hall,{scale:1.75,opacity:0});
     const wood=woodTexture(); wood.colorSpace=THREE.SRGBColorSpace;
     const doorMat=new THREE.MeshBasicMaterial({map:wood});
     const trimMat=new THREE.MeshStandardMaterial({color:0x22150c,roughness:.74,metalness:.05});
@@ -133,7 +117,11 @@ function createThresholdScene({canvas,onReady,onComplete,onDoorOpened}){
   return {
     ready,
     intro(){
-      return gsap.to(motion,{z:3.25,duration:1.35,ease:"power3.inOut",overwrite:"auto",onUpdate:updateCamera,onComplete:()=>onComplete?.()});
+      const tl=gsap.timeline({defaults:{duration:1.35,ease:"power3.inOut",overwrite:"auto"},onComplete:()=>onComplete?.()});
+      tl.to(motion,{z:3.25,onUpdate:updateCamera},0)
+        .to(mountain,{scale:1.16},0)
+        .to(village,{scale:1.08,opacity:1},0);
+      return tl;
     },
     openDoor(){
       if(opening) return;
@@ -141,7 +129,8 @@ function createThresholdScene({canvas,onReady,onComplete,onDoorOpened}){
       const tl=gsap.timeline({defaults:{ease:"power3.inOut"}});
       tl.to(leftDoor.rotation,{y:-1.38,duration:1.08},0)
         .to(rightDoor.rotation,{y:1.38,duration:1.08},0)
-        .to(hallMat,{opacity:1,duration:.42,ease:"power2.out"},.50)
+        .to(hall,{opacity:1,scale:1.05,duration:.68,ease:"power2.out"},.34)
+        .to([village,mountain],{opacity:0,duration:.48,ease:"power2.in"},.58)
         .to(motion,{z:-7.15,duration:1.32,ease:"power4.inOut",onUpdate:updateCamera},.14)
         .add(()=>onDoorOpened?.(),.94);
       return tl;

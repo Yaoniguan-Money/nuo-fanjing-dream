@@ -1,4 +1,4 @@
-window.__NUO_BUILD__="20260828-offline-file-v5"; console.info("[NUO BUILD]", window.__NUO_BUILD__);
+window.__NUO_BUILD__="20260828-file-textures-v6"; console.info("[NUO BUILD]", window.__NUO_BUILD__);
 window.addEventListener("error",(e)=>{
   const box=document.getElementById("runtimeError");
   if(box){

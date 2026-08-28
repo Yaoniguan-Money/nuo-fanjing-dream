@@ -5,7 +5,7 @@ import socket
 import threading
 import webbrowser
 
-BUILD = "20260828-offline-file-v5"
+BUILD = "20260828-file-textures-v6"
 
 class NoCacheHandler(SimpleHTTPRequestHandler):
     def end_headers(self):
