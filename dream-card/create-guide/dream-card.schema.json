@@ -1,0 +1,331 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://daydream-nuo.local/schemas/dream-card.schema.json",
+  "title": "大傩幻梦 Dream Card",
+  "description": "一张幻梦卡描述一个完整幻梦。AI 仅使用 meta 选择卡片；data 是选中后固定演出的 5 至 7 个 Act。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema",
+    "schemaVersion",
+    "meta",
+    "data"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "minLength": 1
+    },
+    "schemaVersion": {
+      "const": "0.1.0"
+    },
+    "meta": {
+      "$ref": "#/$defs/meta"
+    },
+    "data": {
+      "$ref": "#/$defs/data"
+    }
+  },
+  "$defs": {
+    "identifier": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9]*(?:[._-][a-z0-9]+)*$"
+    },
+    "nonEmptyString": {
+      "type": "string",
+      "minLength": 1
+    },
+    "uniqueStringList": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "meta": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "version",
+        "title",
+        "synopsis",
+        "match",
+        "officeCandidates",
+        "tone",
+        "estimatedDurationSeconds",
+        "culturalSources",
+        "status"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^dream\\.[a-z0-9]+(?:[._-][a-z0-9]+)*$"
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$"
+        },
+        "title": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "synopsis": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "match": {
+          "$ref": "#/$defs/match"
+        },
+        "officeCandidates": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/officeCandidate"
+          }
+        },
+        "tone": {
+          "$ref": "#/$defs/uniqueStringList"
+        },
+        "estimatedDurationSeconds": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "culturalSources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/culturalSource"
+          }
+        },
+        "status": {
+          "enum": [
+            "draft",
+            "review",
+            "ready",
+            "archived"
+          ]
+        }
+      }
+    },
+    "match": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "tags",
+        "situations",
+        "emotions",
+        "dilemmas",
+        "relationships",
+        "excludeTags"
+      ],
+      "properties": {
+        "tags": {
+          "$ref": "#/$defs/uniqueStringList"
+        },
+        "situations": {
+          "$ref": "#/$defs/uniqueStringList"
+        },
+        "emotions": {
+          "$ref": "#/$defs/uniqueStringList"
+        },
+        "dilemmas": {
+          "$ref": "#/$defs/uniqueStringList"
+        },
+        "relationships": {
+          "$ref": "#/$defs/uniqueStringList"
+        },
+        "excludeTags": {
+          "$ref": "#/$defs/uniqueStringList"
+        }
+      }
+    },
+    "officeCandidate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "officeId",
+        "fit",
+        "reason"
+      ],
+      "properties": {
+        "officeId": {
+          "type": "string",
+          "pattern": "^office\\.[a-z0-9]+(?:[._-][a-z0-9]+)*$"
+        },
+        "fit": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "reason": {
+          "$ref": "#/$defs/nonEmptyString"
+        }
+      }
+    },
+    "culturalSource": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "title",
+        "region",
+        "reference",
+        "note"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/identifier"
+        },
+        "title": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "region": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "reference": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "note": {
+          "type": "string"
+        }
+      }
+    },
+    "data": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "acts"
+      ],
+      "properties": {
+        "acts": {
+          "type": "array",
+          "minItems": 5,
+          "maxItems": 7,
+          "items": {
+            "$ref": "#/$defs/act"
+          }
+        }
+      }
+    },
+    "act": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "title",
+        "backgroundAssetId",
+        "characters",
+        "texts",
+        "choices",
+        "notes"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^act-[0-9]{2}$"
+        },
+        "title": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "backgroundAssetId": {
+          "$ref": "#/$defs/identifier"
+        },
+        "characters": {
+          "type": "array",
+          "maxItems": 3,
+          "items": {
+            "$ref": "#/$defs/character"
+          }
+        },
+        "texts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/textElement"
+          }
+        },
+        "choices": {
+          "description": "选择功能在 schemaVersion 0.1.0 中仅作保留，必须为空数组。",
+          "type": "array",
+          "maxItems": 0
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    },
+    "character": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "instanceId",
+        "assetId",
+        "position"
+      ],
+      "properties": {
+        "instanceId": {
+          "$ref": "#/$defs/identifier"
+        },
+        "assetId": {
+          "$ref": "#/$defs/identifier"
+        },
+        "position": {
+          "enum": [
+            "left",
+            "center",
+            "right"
+          ]
+        }
+      }
+    },
+    "textElement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "content",
+        "speakerId",
+        "display",
+        "extensions"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^act-[0-9]{2}-text-[0-9]{2}$"
+        },
+        "content": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "speakerId": {
+          "$ref": "#/$defs/identifier"
+        },
+        "display": {
+          "$ref": "#/$defs/textDisplay"
+        },
+        "extensions": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      }
+    },
+    "textDisplay": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode",
+        "advance"
+      ],
+      "properties": {
+        "mode": {
+          "enum": [
+            "instant",
+            "typewriter"
+          ]
+        },
+        "advance": {
+          "enum": [
+            "manual",
+            "auto"
+          ]
+        }
+      }
+    }
+  }
+}
