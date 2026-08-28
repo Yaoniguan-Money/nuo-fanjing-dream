@@ -11,7 +11,7 @@
 .ritual-beam-center { left: 44%; width: 10%; opacity: .16; transform: rotate(8deg); }
 .ritual-beam-right { right: 7%; transform: rotate(-22deg); }
 .ritual-ambient-masks { position: absolute; inset: 0; transform: translate(calc(var(--altar-parallax-x, 0) * .7), calc(var(--altar-parallax-y, 0) * .7)); }
-.altar-ambient { position: absolute; width: clamp(115px, 19vw, 280px); aspect-ratio: .78; object-fit: cover; object-position: center; mix-blend-mode: screen; filter: sepia(.7) grayscale(.42) brightness(.42) contrast(1.16) blur(2px); opacity: .22; mask-image: radial-gradient(ellipse at center, #000 28%, rgba(0, 0, 0, .66) 58%, transparent 83%); }
+.altar-ambient { position: absolute; width: clamp(115px, 19vw, 280px); height: auto; aspect-ratio: .78; object-fit: cover; object-position: center; mix-blend-mode: screen; filter: sepia(.7) grayscale(.42) brightness(.42) contrast(1.16) blur(2px); opacity: .22; mask-image: radial-gradient(ellipse at center, #000 28%, rgba(0, 0, 0, .66) 58%, transparent 83%); }
 .altar-foreground { width: clamp(150px, 23vw, 330px); opacity: .25; filter: sepia(.82) grayscale(.4) brightness(.31) contrast(1.28) blur(3px); }
 .altar-left { left: -2%; bottom: -16%; transform: rotate(-13deg); }
 .altar-right { right: -3%; bottom: -19%; transform: scaleX(-1) rotate(-9deg); }

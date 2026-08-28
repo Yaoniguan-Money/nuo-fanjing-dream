@@ -9,6 +9,63 @@ interface ThresholdSceneElements {
   village: HTMLElement;
 }
 
+export interface ThresholdScene {
+  resize: () => void;
+  intro: () => Promise<void>;
+  openDoor: () => Promise<void>;
+  dispose: () => void;
+}
+
+function createRenderer(canvas: HTMLCanvasElement) {
+  const attributes: WebGLContextAttributes = {
+    alpha: true,
+    antialias: true,
+    powerPreference: "high-performance",
+  };
+
+  try {
+    const context = canvas.getContext("webgl2", attributes)
+      ?? canvas.getContext("webgl", attributes);
+    if (!context) return null;
+    return new THREE.WebGLRenderer({
+      canvas,
+      context,
+      antialias: true,
+      alpha: true,
+      powerPreference: "high-performance",
+    });
+  } catch {
+    return null;
+  }
+}
+
+function createCssFallback(
+  { canvas, mountain, hall, village }: ThresholdSceneElements,
+  releaseScene: () => void,
+): ThresholdScene {
+  canvas.hidden = true;
+  canvas.dataset.renderMode = "css-fallback";
+  gsap.set(mountain, { scale: 1.08, opacity: 1 });
+  gsap.set(village, { scale: 1, opacity: 1 });
+  gsap.set(hall, { scale: 1.05, opacity: 0 });
+  let disposed = false;
+
+  return {
+    resize: () => undefined,
+    intro: async () => undefined,
+    openDoor: async () => {
+      gsap.set(hall, { opacity: 1, scale: 1 });
+      gsap.set([village, mountain], { opacity: 0 });
+    },
+    dispose: () => {
+      if (disposed) return;
+      disposed = true;
+      gsap.killTweensOf([mountain, hall, village]);
+      releaseScene();
+    },
+  };
+}
+
 function makeSoftTexture() {
   const canvas = document.createElement("canvas");
   canvas.width = 256;
@@ -59,9 +116,13 @@ function disposeMaterial(material: THREE.Material) {
   material.dispose();
 }
 
-export function createThresholdScene({ canvas, mountain, hall, village }: ThresholdSceneElements) {
+export function createThresholdScene({ canvas, mountain, hall, village }: ThresholdSceneElements): ThresholdScene {
   const releaseScene = trackScene();
-  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: "high-performance" });
+  const renderer = createRenderer(canvas);
+  if (!renderer) {
+    console.warn("[threshold] WebGL unavailable; using CSS fallback.");
+    return createCssFallback({ canvas, mountain, hall, village }, releaseScene);
+  }
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.setClearColor(0x000000, 0);
