@@ -47,6 +47,22 @@ describe("get-face ritual session", () => {
     expect(() => getFaceRitualSessionSchema.parse(JSON.parse(raw))).not.toThrow();
   });
 
+  it("keeps the complete whitelist for the result page while excluding camera state", () => {
+    const fakeStorage = storage();
+    const complete: GetFaceRitualSession = {
+      ...createInitialGetFaceRitualSession(),
+      phase: "complete",
+      name: "阿渡",
+      wish: "找一条路",
+      selectedMaskIndex: 0,
+      choices: [0, 1, 0],
+      storyIndex: 3
+    };
+    writeGetFaceRitualSession(complete, fakeStorage);
+    expect(readGetFaceRitualSession(fakeStorage)).toEqual(complete);
+    expect([...fakeStorage.values.values()][0]).not.toMatch(/camera|stream|video|portraitData/i);
+  });
+
   it("ignores invalid or out-of-order events", () => {
     const initial = createInitialGetFaceRitualSession();
     expect(transitionGetFaceRitual(initial, { type: "wishSubmitted", wish: "愿望" })).toEqual(initial);

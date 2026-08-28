@@ -126,7 +126,11 @@ export function GetFaceRitual({ onReturn }: { onReturn: () => void }) {
       if (!response.ok) throw new Error(`match:${response.status}`);
       const match = matchResponseSchema.parse(await response.json());
       writeDreamSession(createDreamSession(ritual.wish, match));
-      clearGetFaceRitualSession();
+      // Persist the complete, camera-free whitelist before navigating. The
+      // result page derives the face from this boundary and clears it only
+      // when the visitor explicitly starts another ritual.
+      const completed = transitionGetFaceRitual(ritual, { type: "matched" });
+      writeGetFaceRitualSession(completed);
       dispatch({ type: "matched" });
       router.push(`/dream/${encodeURIComponent(match.cardId)}`);
     } catch {
