@@ -85,10 +85,10 @@ export interface FaceData {
 export const faceData: FaceData = {
   promptVersion: "nuo-omen-v1",
   masks: [
-    { id: "crown-beard", name: "翘冠长须", asset: "assets/masks/mask-01.png", themes: ["前路", "选择", "未来", "迷茫", "卡住", "出发", "方向"], visual: { tint: "amber", pattern: "山纹", emblem: "路印", card: { primary: "#e2a81d", secondary: "#87c9e9", glyph: "mountain" }, relief: { depth: 0.34, resolution: 56, threshold: 24 } } },
-    { id: "square-crown", name: "方冠笑相", asset: "assets/masks/mask-02.png", themes: ["感情", "关系", "喜欢", "沟通", "和好", "家人", "朋友"], visual: { tint: "vermilion", pattern: "合纹", emblem: "结印", card: { primary: "#e4495a", secondary: "#f2bb50", glyph: "knot" }, relief: { depth: 0.30, resolution: 56, threshold: 24 } } },
-    { id: "bound-hair", name: "束发圆目", asset: "assets/masks/mask-03.png", themes: ["工作", "事业", "面试", "项目", "钱", "边界", "决定"], visual: { tint: "iron", pattern: "衡纹", emblem: "尺印", card: { primary: "#b284ff", secondary: "#5fa6d8", glyph: "scale" }, relief: { depth: 0.28, resolution: 56, threshold: 24 } } },
-    { id: "high-crown", name: "高冠静相", asset: "assets/masks/mask-04.png", themes: ["害怕", "恐惧", "焦虑", "失去", "压力", "不安", "自己"], visual: { tint: "bone", pattern: "回纹", emblem: "灯印", card: { primary: "#7be4c7", secondary: "#a8e17e", glyph: "lamp" }, relief: { depth: 0.26, resolution: 56, threshold: 24 } } }
+    { id: "crown-beard", name: "翘冠长须", asset: "/dream-assets/masks/mask-01.png", themes: ["前路", "选择", "未来", "迷茫", "卡住", "出发", "方向"], visual: { tint: "amber", pattern: "山纹", emblem: "路印", card: { primary: "#e2a81d", secondary: "#87c9e9", glyph: "mountain" }, relief: { depth: 0.34, resolution: 56, threshold: 24 } } },
+    { id: "square-crown", name: "方冠笑相", asset: "/dream-assets/masks/mask-02.png", themes: ["感情", "关系", "喜欢", "沟通", "和好", "家人", "朋友"], visual: { tint: "vermilion", pattern: "合纹", emblem: "结印", card: { primary: "#e4495a", secondary: "#f2bb50", glyph: "knot" }, relief: { depth: 0.30, resolution: 56, threshold: 24 } } },
+    { id: "bound-hair", name: "束发圆目", asset: "/dream-assets/masks/mask-03.png", themes: ["工作", "事业", "面试", "项目", "钱", "边界", "决定"], visual: { tint: "iron", pattern: "衡纹", emblem: "尺印", card: { primary: "#b284ff", secondary: "#5fa6d8", glyph: "scale" }, relief: { depth: 0.28, resolution: 56, threshold: 24 } } },
+    { id: "high-crown", name: "高冠静相", asset: "/dream-assets/masks/mask-04.png", themes: ["害怕", "恐惧", "焦虑", "失去", "压力", "不安", "自己"], visual: { tint: "bone", pattern: "回纹", emblem: "灯印", card: { primary: "#7be4c7", secondary: "#a8e17e", glyph: "lamp" }, relief: { depth: 0.26, resolution: 56, threshold: 24 } } }
   ],
   story: [
     { eyebrow: "入 · 山门", title: "第一幕 · 山门问路", desc: "黑暗里，鼓声从远处一下一下逼近。你必须决定，是循声直入，还是先问清来路。", choices: ["循鼓声直入", "先停下问来路"] },
@@ -118,7 +118,7 @@ export const faceData: FaceData = {
       { id: "reserved-09", kind: "reserved" }, { id: "reserved-10", kind: "reserved" }, { id: "reserved-11", kind: "reserved" }, { id: "reserved-12", kind: "reserved" }
     ],
     relief: { rotationX: 0.16, rotationY: -0.32, minDistance: 2.25, maxDistance: 4.25, light: "#f0ce87" },
-    altar: { background: "assets/dragon-altar-style.png", focalPoint: "50% 50%", veilOpacity: 0.62 }
+    altar: { background: "/dream-assets/altar/dragon-altar-style.png", focalPoint: "50% 50%", veilOpacity: 0.62 }
   },
   localAssetNotice: "本地视觉母体，历史身份及授权来源未提供。"
 };
