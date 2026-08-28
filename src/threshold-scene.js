@@ -1,4 +1,6 @@
-import * as THREE from "../vendor/three.module.js";
+(() => {
+const THREE = window.THREE;
+if (!THREE) throw new Error("离线启动失败：Three.js 未加载。请确认 vendor/three.min.js 与 index.html 位于同一项目文件夹。");
 
 const ASSETS = {
   mountain: "assets/fanjing-backdrop-v2.png",
@@ -41,7 +43,7 @@ function loadTexture(loader,url){
   return new Promise((resolve,reject)=>loader.load(url,resolve,undefined,reject));
 }
 
-export function createThresholdScene({canvas,onReady,onComplete,onDoorOpened}){
+function createThresholdScene({canvas,onReady,onComplete,onDoorOpened}){
   const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:false,powerPreference:"high-performance"});
   renderer.setPixelRatio(Math.min(devicePixelRatio||1,1.5));
   renderer.outputColorSpace=THREE.SRGBColorSpace;
@@ -148,3 +150,6 @@ export function createThresholdScene({canvas,onReady,onComplete,onDoorOpened}){
     dispose(){disposed=true;renderer.dispose();}
   };
 }
+
+window.createThresholdScene = createThresholdScene;
+})();

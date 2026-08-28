@@ -1,6 +1,4 @@
-import { createThresholdScene } from "./threshold-scene.js";
-
-window.__NUO_BUILD__="20260828-continuous-threshold-v4"; console.info("[NUO BUILD]", window.__NUO_BUILD__);
+window.__NUO_BUILD__="20260828-offline-file-v5"; console.info("[NUO BUILD]", window.__NUO_BUILD__);
 window.addEventListener("error",(e)=>{
   const box=document.getElementById("runtimeError");
   if(box){
@@ -17,6 +15,12 @@ window.addEventListener("unhandledrejection",(e)=>{
   }
   console.error(e.reason);
 });
+
+if (!window.gsap || !window.THREE || typeof window.createThresholdScene !== "function") {
+  throw new Error("离线启动失败：本地动画或场景文件未加载。请确认未单独移动 index.html，并保留 vendor、src 与 assets 文件夹。");
+}
+
+const createThresholdScene = window.createThresholdScene;
 
 /* =========================================================
    CORE STATE

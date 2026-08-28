@@ -6,10 +6,9 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
 <meta http-equiv="Pragma" content="no-cache" />
 <meta http-equiv="Expires" content="0" />
-<meta name="nuo-build" content="20260828-continuous-threshold-v4" />
+<meta name="nuo-build" content="20260828-offline-file-v5" />
 <title>傩 · 梵净入梦</title>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-<link rel="stylesheet" href="src/styles.css?v=20260828-continuous-threshold-v4" />
+<link rel="stylesheet" href="src/styles.css?v=20260828-offline-file-v5" />
 </head>
 <body>
 <div id="app">
@@ -125,6 +124,9 @@
 
 <div class="cursor-ring" id="cursorRing"></div><div class="cursor-dot" id="cursorDot"></div>
 <div class="runtime-error" id="runtimeError"></div>
-<script type="module" src="src/app.js?v=20260828-continuous-threshold-v4"></script>
+<script src="vendor/gsap.min.js"></script>
+<script src="vendor/three.min.js"></script>
+<script src="src/threshold-scene.js?v=20260828-offline-file-v5"></script>
+<script src="src/app.js?v=20260828-offline-file-v5"></script>
 </body>
 </html>

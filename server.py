@@ -5,7 +5,7 @@ import socket
 import threading
 import webbrowser
 
-BUILD = "20260828-continuous-threshold-v4"
+BUILD = "20260828-offline-file-v5"
 
 class NoCacheHandler(SimpleHTTPRequestHandler):
     def end_headers(self):

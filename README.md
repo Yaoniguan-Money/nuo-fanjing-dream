@@ -1,6 +1,6 @@
 # 傩 · 梵净入梦
 
-BUILD: `20260828-continuous-threshold-v4`
+BUILD: `20260828-offline-file-v5`
 
 一个围绕“入戏—幻梦—得面”的沉浸式傩文化交互原型。
 
@@ -13,7 +13,9 @@ BUILD: `20260828-continuous-threshold-v4`
 
 ## 本地启动
 
-直接双击 `start.bat`，或在项目目录运行：
+可直接双击 `index.html` 离线体验；不要单独移动该文件，须保留同级的 `assets/`、`src/` 与 `vendor/` 文件夹。
+
+`start.bat` 仅用于本地调试：它会启动禁用缓存的本地服务。也可在项目目录运行：
 
 ```powershell
 python server.py
@@ -32,5 +34,6 @@ python server.py
 - `src/threshold-scene.js`：Three.js 连续开场、门扇与相机路径
 - `src/styles.css`：镜头、门与傩谱视觉样式
 - `assets/fanjing-backdrop-v2.png`、`assets/village-facade-door.png`、`assets/ritual-threshold-hall.png`：原创分层环境资源
-- `vendor/three.module.js`、`vendor/THREE-LICENSE`：本地托管的 Three.js r164 与 MIT 许可证
+- `vendor/three.min.js`、`vendor/THREE-LICENSE`：本地托管的 Three.js r160.1 经典脚本与 MIT 许可证
+- `vendor/gsap.min.js`、`vendor/GSAP-LICENSE.md`：本地托管的 GSAP 3.15.0 与许可证说明
 - `assets/masks/`：结尾收集展示使用的原始面具文件
