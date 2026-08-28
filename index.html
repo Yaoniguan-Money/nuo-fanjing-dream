@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+<meta name="nuo-build" content="20260828-fanjing-opening-v3" />
+<title>傩 · 梵净入梦</title>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<link rel="stylesheet" href="src/styles.css?v=20260828-fanjing-opening-v3" />
+</head>
+<body>
+<div id="app">
+  <div class="topbar">
+    <div class="brand"><b>傩</b> · 梵净入梦</div>
+    <div class="phase" id="phase">OPENING</div>
+  </div>
+  <div class="depth"><small>深入程度</small><div class="depthline"><i id="depthFill"></i></div></div>
+  <button class="sound-btn" id="soundBtn">声 · 开</button>
+  <div class="dev-chip">已暴露接口：window.NuoDemoAPI</div>
+
+  <section class="screen active" id="intro">
+    <div class="opening-world" id="openingWorld">
+      <div class="opening-plate" id="openingPlate"></div>
+      <div class="opening-fog opening-fog-near" id="openingFogNear"></div>
+      <div class="opening-fog opening-fog-far" id="openingFogFar"></div>
+      <div class="opening-throughway" id="openingThroughway"></div>
+      <div class="opening-portal" id="openingPortal"></div>
+    </div>
+    <div class="opening-black" id="openingBlack"></div>
+  </section>
+
+  <section class="screen" id="gate">
+    <div class="gate-hall" id="gateHall">
+      <div class="column left"></div><div class="column right"></div>
+      <div class="floor"></div><div class="hall-glow"></div>
+
+      <div class="guide-silhouette" id="guide">
+        <div class="cloak"></div><div class="hood"></div>
+      </div>
+      <div class="staff" id="staff"></div>
+      <div class="lantern" id="lantern"></div>
+
+      <div class="guide-dialog" id="guideDialog" style="display:none"></div>
+
+      <div class="bigdoor" id="bigDoor">
+        <div class="lintel"></div><div class="frame"></div>
+        <div class="panel left" id="doorLeft"></div>
+        <div class="panel right" id="doorRight"></div>
+        <div class="crack" id="doorCrack"></div>
+        <div class="ring-hold">
+          <div class="hold-btn" id="holdBtn">
+            <div class="hold-progress" id="holdProgress"></div>
+            <span>按住门环</span>
+          </div>
+          <div class="hold-tip" id="holdTip">按住门环</div>
+          <div class="input-map">鼠标 · Space / Enter · 手柄 A</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="screen" id="ritual">
+    <div class="ritual-orb" id="ritualOrb"></div>
+    <div class="dragon-field">
+      <svg class="dragon-svg" viewBox="0 0 1000 1000" aria-hidden="true">
+        <path d="M774 535 C735 446 667 392 592 390 C522 388 470 432 446 489 C419 552 445 633 511 681 C591 740 709 716 787 630
+                 C853 556 860 452 820 371 C783 297 720 249 629 228 C528 204 415 235 336 306 C240 393 215 528 269 651
+                 C329 786 462 853 605 832 C726 814 826 740 886 627" />
+        <path class="thin" d="M610 229 C631 260 636 303 614 336 C594 363 560 381 520 385" />
+        <path class="thin" d="M335 308 C377 315 414 345 430 392" />
+        <path class="thin" d="M509 681 C480 656 464 620 463 579" />
+        <path class="thin" d="M782 633 C748 621 721 594 705 559" />
+        <path d="M607 228 C635 206 674 205 702 228 C687 249 672 266 648 280" />
+      </svg>
+    </div>
+    <div class="particle-field" id="particleField"></div>
+    <div class="mask-ring" id="maskRing"></div>
+
+    <div class="ritual-copy">
+      <div class="eyebrow" id="ritualEyebrow">龙 · 坛 · 受 · 面</div>
+      <h2 id="ritualTitle">来者何人？</h2>
+      <p id="ritualDesc">你已经被吸进坛前。先报上名字，再说出所问之事，傩引才会替你请面。</p>
+    </div>
+
+    <div class="inputwrap" id="inputWrap">
+      <div class="inputrow">
+        <input id="textInput" placeholder="输入你的名字" autocomplete="off"/>
+        <button id="inputBtn">奉告 ↵</button>
+      </div>
+    </div>
+
+    <div class="choicewrap" id="choiceWrap"></div>
+    <div class="continue" id="continueWrap"><button id="continueBtn">进入下一幕</button></div>
+  </section>
+
+  <section class="screen" id="outro">
+    <div class="ending-cinematic" id="endingCinematic">
+      <div class="ending-fog ending-fog-a"></div>
+      <div class="ending-fog ending-fog-b"></div>
+      <div class="ending-disc" id="endingDisc"></div>
+      <div class="ending-embers" id="endingEmbers"></div>
+      <div class="ending-mask" id="endingMask"></div>
+
+      <div class="ending-nameblock">
+        <div class="ending-kicker" id="endingKicker">一 · 面 · 既 · 受</div>
+        <h2 id="endingName">傩 · 开山</h2>
+        <div class="ending-duty" id="endingDuty">职司 · 破障</div>
+      </div>
+
+      <div class="ending-qian" id="endingQian">
+        <span>傩签</span>
+        <p id="endingQianText">先破一道障，再求远处结果。</p>
+      </div>
+
+      <div class="ending-seal" id="endingSeal">录</div>
+      <div class="ending-record" id="endingRecord">此面已录入傩谱</div>
+      <div class="ending-enter" id="endingEnter">点击任意处 · 查看傩谱</div>
+    </div>
+
+    <div class="codex-world" id="codexWorld">
+      <div class="codex-title">
+        <div class="codex-kicker">傩 · 谱</div>
+        <h2>面中有人，戏外有余声</h2>
+        <p>每完成一次入戏，便在傩谱中留下一个被你真正遇见过的角色。</p>
+      </div>
+
+      <div class="codex-wall" id="codexWall"></div>
+
+      <div class="codex-detail" id="codexDetail">
+        <div class="codex-detail-mask" id="codexDetailMask"></div>
+        <div class="codex-detail-copy">
+          <div class="codex-detail-num" id="codexDetailNum">第壹面</div>
+          <h3 id="codexDetailName">开山</h3>
+          <div class="codex-detail-duty" id="codexDetailDuty">破障</div>
+          <p id="codexDetailText">此面已经被你带出故事。</p>
+        </div>
+      </div>
+
+      <button class="codex-restart" id="codexRestart">再入傩门</button>
+    </div>
+  </section>
+
+  <div class="face-zone" id="faceZone"></div><div class="vignette"></div>
+</div>
+
+<div class="flash" id="flash"></div>
+<div class="shock" id="shock"></div>
+<div class="lens" id="lens"></div>
+
+<div class="cursor-ring" id="cursorRing"></div><div class="cursor-dot" id="cursorDot"></div>
+<div class="runtime-error" id="runtimeError"></div>
+<script src="src/app.js?v=20260828-fanjing-opening-v3"></script>
+</body>
+</html>
