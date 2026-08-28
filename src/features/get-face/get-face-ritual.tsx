@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useReducer, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import gsap from "gsap";
 import { createDreamSession, matchResponseSchema } from "@/domain/dream-session";
 import { writeDreamSession } from "@/domain/dream-session/storage";
 import { getFaceData, resolveVisual } from "@/domain/get-face";
@@ -14,6 +15,13 @@ import {
   type GetFaceRitualEvent,
   type GetFaceRitualSession
 } from "@/domain/get-face/session";
+import {
+  ALTAR_MASK_INDICES,
+  ALTAR_SCENE_PHASES,
+  altarOrbitPose,
+  firstAltarSlotForMask,
+  type AltarScenePhase
+} from "./altar-scene";
 import "./get-face-ritual.css";
 
 function ritualReducer(state: GetFaceRitualSession, event: GetFaceRitualEvent): GetFaceRitualSession {
@@ -23,6 +31,16 @@ function ritualReducer(state: GetFaceRitualSession, event: GetFaceRitualEvent): 
 function assetPath(asset: string): string {
   return `/${asset.replace(/^\/+/, "")}`;
 }
+
+const ALTAR_AMBIENT_MASKS = [
+  { maskIndex: 2, className: "altar-ambient altar-foreground altar-left" },
+  { maskIndex: 1, className: "altar-ambient altar-foreground altar-right" },
+  { maskIndex: 3, className: "altar-ambient altar-mid altar-left-mid" },
+  { maskIndex: 0, className: "altar-ambient altar-mid altar-right-mid" },
+  { maskIndex: 2, className: "altar-ambient altar-far altar-center-far" }
+] as const;
+
+const ALTAR_PARTICLES = Array.from({ length: 18 }, (_, index) => index);
 
 export function stopGetFaceMediaStream(stream: MediaStream | null): void {
   stream?.getTracks().forEach((track) => track.stop());
@@ -40,14 +58,16 @@ export function GetFaceRitual({ onReturn }: { onReturn: () => void }) {
   const [inputError, setInputError] = useState("");
   const [cameraError, setCameraError] = useState("");
   const [matchError, setMatchError] = useState("");
-  const [dragging, setDragging] = useState(false);
+  const [ceremonyPhase, setCeremonyPhase] = useState<AltarScenePhase | "idle">("idle");
   const [isMatching, setIsMatching] = useState(false);
-  const [dragPoint, setDragPoint] = useState({ x: 0, y: 0 });
   const streamRef = useRef<MediaStream | null>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const mountedRef = useRef(true);
-  const dragIndexRef = useRef<number | null>(null);
-  const dropZoneRef = useRef<HTMLDivElement>(null);
+  const altarSceneRef = useRef<HTMLDivElement>(null);
+  const atmosphereRef = useRef<HTMLDivElement>(null);
+  const sceneMaskRefs = useRef<Array<HTMLDivElement | null>>([]);
+  const flashRef = useRef<HTMLDivElement>(null);
+  const ceremonyTimelineRef = useRef<gsap.core.Timeline | null>(null);
 
   useEffect(() => {
     writeGetFaceRitualSession(state);
@@ -81,6 +101,23 @@ export function GetFaceRitual({ onReturn }: { onReturn: () => void }) {
       releaseCamera();
     };
   }, [releaseCamera]);
+
+  const killCeremony = useCallback(() => {
+    ceremonyTimelineRef.current?.kill();
+    ceremonyTimelineRef.current = null;
+    if (altarSceneRef.current) gsap.killTweensOf(altarSceneRef.current.querySelectorAll("*"));
+    if (atmosphereRef.current) gsap.killTweensOf(atmosphereRef.current);
+    if (flashRef.current) gsap.killTweensOf(flashRef.current);
+  }, []);
+
+  useEffect(() => {
+    const releaseOnPageExit = () => killCeremony();
+    window.addEventListener("pagehide", releaseOnPageExit);
+    return () => {
+      window.removeEventListener("pagehide", releaseOnPageExit);
+      killCeremony();
+    };
+  }, [killCeremony]);
 
   const startCamera = useCallback(async () => {
     setCameraError("");
@@ -146,39 +183,95 @@ export function GetFaceRitual({ onReturn }: { onReturn: () => void }) {
     if (next.phase === "submitting") void submitMatch(next);
   }, [state, submitMatch]);
 
-  const beginMaskDrag = useCallback((event: React.PointerEvent<HTMLButtonElement>, index: number) => {
-    if (state.phase !== "mask" || index !== state.selectedMaskIndex) return;
-    event.preventDefault();
-    dragIndexRef.current = index;
-    setDragging(true);
-    setDragPoint({ x: event.clientX, y: event.clientY });
-    event.currentTarget.setPointerCapture?.(event.pointerId);
+  useEffect(() => {
+    if (state.phase !== "mask" || state.selectedMaskIndex === null) {
+      return;
+    }
+    const atmosphere = atmosphereRef.current;
+    const flash = flashRef.current;
+    const sceneNodes = sceneMaskRefs.current.filter((node): node is HTMLDivElement => Boolean(node));
+    const chosenSlot = firstAltarSlotForMask(state.selectedMaskIndex);
+    const chosen = chosenSlot >= 0 ? sceneNodes[chosenSlot] : null;
+    if (!atmosphere || !flash || !chosen || sceneNodes.length !== ALTAR_MASK_INDICES.length) return;
+
+    let active = true;
+    const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ?? false;
+    const duration = (seconds: number) => reduced ? 0.01 : seconds;
+    const announce = (phase: AltarScenePhase) => {
+      if (active && ALTAR_SCENE_PHASES.includes(phase)) setCeremonyPhase(phase);
+    };
+    const otherMasks = sceneNodes.filter((node) => node !== chosen);
+    sceneNodes.forEach((node, slot) => {
+      const pose = altarOrbitPose(slot, 0, { width: window.innerWidth, height: window.innerHeight });
+      gsap.set(node, { ...pose, rotationY: 0 });
+    });
+    gsap.set(chosen, { opacity: 1, zIndex: 30 });
+    gsap.set(atmosphere, { opacity: 0.3 });
+    gsap.set(flash, { opacity: 0 });
+
+    const timeline = gsap.timeline({
+      defaults: { ease: "power2.inOut", overwrite: "auto" },
+      onComplete: () => {
+        ceremonyTimelineRef.current = null;
+        if (active) setCeremonyPhase("blackout");
+      }
+    });
+    ceremonyTimelineRef.current = timeline;
+    timeline.call(() => announce("selecting"), undefined, 0)
+      .to(atmosphere, { opacity: 1, duration: duration(.24) }, 0)
+      .call(() => announce("spinning"), undefined, duration(.24))
+      // Three shared turns make the whole altar feel like one mechanism.
+      .to(sceneNodes, { rotationY: "+=1080", duration: duration(1.5), ease: "power1.inOut" }, duration(.24))
+      .call(() => announce("ejecting"), undefined, duration(1.74))
+      .to(otherMasks, { x: (_, index) => (index % 2 === 0 ? -1 : 1) * (220 + index * 45), y: 80, scale: .48, opacity: 0, duration: duration(.46), stagger: reduced ? 0 : .035, ease: "power3.in" }, duration(1.74))
+      .to(atmosphere, { opacity: .42, duration: duration(.46), ease: "power2.out" }, duration(1.74))
+      .call(() => announce("revealing"), undefined, duration(2.2))
+      .to(chosen, { x: 0, y: -44, scale: 1.45, opacity: .98, rotationY: 180, duration: duration(.36), ease: "power3.out" }, duration(2.2))
+      .to(chosen, { rotationY: 360, duration: duration(.38), ease: "power2.inOut" }, duration(2.56))
+      .call(() => announce("impact"), undefined, duration(2.94))
+      .to(flash, { opacity: .78, duration: duration(.05), yoyo: true, repeat: reduced ? 0 : 1, ease: "power4.out" }, duration(2.94))
+      .to(chosen, { scale: 4.8, duration: duration(.35), ease: "power4.in" }, duration(2.94))
+      .to(chosen, { scale: 7.2, opacity: 0, duration: duration(.35), ease: "power4.in" }, duration(3.29))
+      .to(atmosphere, { opacity: 0, duration: duration(.35), ease: "power2.in" }, duration(3.29));
+
+    return () => {
+      active = false;
+      timeline.kill();
+      if (ceremonyTimelineRef.current === timeline) ceremonyTimelineRef.current = null;
+      gsap.killTweensOf([...sceneNodes, atmosphere, flash]);
+    };
   }, [state.phase, state.selectedMaskIndex]);
 
-  const finishMaskDrag = useCallback((event?: PointerEvent, force = false) => {
-    const index = dragIndexRef.current;
-    if (index === null) return;
-    const zone = dropZoneRef.current;
-    const rect = zone?.getBoundingClientRect();
-    const inZone = force || Boolean(rect && rect.width > 0 && event && event.clientX >= rect.left && event.clientX <= rect.right && event.clientY >= rect.top && event.clientY <= rect.bottom);
-    dragIndexRef.current = null;
-    setDragging(false);
-    if (inZone) dispatch({ type: "maskSnapped" });
-  }, []);
-
   useEffect(() => {
-    if (!dragging) return;
-    const move = (event: PointerEvent) => setDragPoint({ x: event.clientX, y: event.clientY });
-    const up = (event: PointerEvent) => finishMaskDrag(event);
-    window.addEventListener("pointermove", move);
-    window.addEventListener("pointerup", up);
-    window.addEventListener("pointercancel", up);
-    return () => {
-      window.removeEventListener("pointermove", move);
-      window.removeEventListener("pointerup", up);
-      window.removeEventListener("pointercancel", up);
+    if (state.phase !== "mask") return;
+    const scene = altarSceneRef.current;
+    const atmosphere = atmosphereRef.current;
+    if (!scene || !atmosphere) return;
+    let rafId: number | null = null;
+    let pointerX = 0;
+    let pointerY = 0;
+    const renderParallax = () => {
+      rafId = null;
+      scene.style.setProperty("--altar-parallax-x", `${pointerX * 5}px`);
+      scene.style.setProperty("--altar-parallax-y", `${pointerY * 3}px`);
+      atmosphere.style.setProperty("--altar-parallax-x", `${pointerX * -2.4}px`);
+      atmosphere.style.setProperty("--altar-parallax-y", `${pointerY * -1.4}px`);
     };
-  }, [dragging, finishMaskDrag]);
+    const onPointerMove = (event: PointerEvent) => {
+      pointerX = event.clientX / Math.max(window.innerWidth, 1) - .5;
+      pointerY = event.clientY / Math.max(window.innerHeight, 1) - .5;
+      if (rafId === null) rafId = window.requestAnimationFrame(renderParallax);
+    };
+    window.addEventListener("pointermove", onPointerMove, { passive: true });
+    return () => {
+      window.removeEventListener("pointermove", onPointerMove);
+      if (rafId !== null) window.cancelAnimationFrame(rafId);
+      scene.style.removeProperty("--altar-parallax-x");
+      scene.style.removeProperty("--altar-parallax-y");
+      atmosphere.style.removeProperty("--altar-parallax-x");
+      atmosphere.style.removeProperty("--altar-parallax-y");
+    };
+  }, [state.phase]);
 
   const handleNameSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -202,12 +295,23 @@ export function GetFaceRitual({ onReturn }: { onReturn: () => void }) {
 
   const selectedMask = state.selectedMaskIndex === null ? null : getFaceData.masks[state.selectedMaskIndex];
   const story = getFaceData.story[state.storyIndex];
-  const viewportWidth = typeof window === "undefined" ? 0 : window.innerWidth;
-  const viewportHeight = typeof window === "undefined" ? 0 : window.innerHeight;
-  const maskStyle = dragging ? { transform: `translate(${dragPoint.x - viewportWidth / 2}px, ${dragPoint.y - viewportHeight * .43}px)` } : undefined;
 
-  return <main className="get-face-ritual" data-phase={state.phase}>
+  const visibleCeremonyPhase = state.phase === "mask" ? ceremonyPhase : "idle";
+
+  return <main className="get-face-ritual" data-phase={state.phase} data-ceremony-phase={visibleCeremonyPhase}>
     <div className="get-face-altar" aria-hidden="true" />
+    <div ref={atmosphereRef} className="ritual-atmosphere" aria-hidden="true">
+      <span className="ritual-fog ritual-fog-far" />
+      <span className="ritual-fog ritual-fog-mid" />
+      <span className="ritual-fog ritual-fog-front" />
+      <span className="ritual-beam ritual-beam-left" />
+      <span className="ritual-beam ritual-beam-center" />
+      <span className="ritual-beam ritual-beam-right" />
+      <div className="ritual-ambient-masks">
+        {ALTAR_AMBIENT_MASKS.map(({ maskIndex, className }, index) => <img key={`${maskIndex}-${index}`} className={className} src={assetPath(getFaceData.masks[maskIndex].asset)} alt="" />)}
+      </div>
+      <div className="ritual-particles">{ALTAR_PARTICLES.map((particle) => <i key={particle} style={{ "--particle-index": particle, left: `${(particle * 37) % 100}%`, top: `${(particle * 61) % 100}%` } as React.CSSProperties} />)}</div>
+    </div>
     <header className="get-face-header"><span>傩 · 梵净入梦</span><small>龙 · 坛 · 请 · 面</small></header>
 
     {state.phase === "name" || state.phase === "wish" ? <section className="get-face-copy" aria-live="polite">
@@ -236,16 +340,24 @@ export function GetFaceRitual({ onReturn }: { onReturn: () => void }) {
       </div>
     </section> : null}
 
-    {state.phase === "mask" ? <section className="get-face-mask-stage" aria-live="polite">
-      <span>选 · 一 · 面</span><h1>把它拖入面中</h1><p>愿望先替你照见一面；拖动这枚朦胧傩影，让它吸附入坛。</p>
-      <div className="mask-ring" aria-label="可选面具">
-        {getFaceData.masks.map((mask, index) => <button key={mask.id} type="button" className={`mask-choice${index === state.selectedMaskIndex ? " selected" : ""}${dragging && index === state.selectedMaskIndex ? " dragging" : ""}`} style={index === state.selectedMaskIndex ? maskStyle : undefined} onPointerDown={(event) => beginMaskDrag(event, index)} aria-label={`拖动${mask.name}`} aria-pressed={index === state.selectedMaskIndex}>
-          <span className="mask-shadow" style={{ backgroundImage: `url(${assetPath(mask.asset)})` }} />
-          <strong>{mask.name}</strong>
-        </button>)}
+    {state.phase === "mask" ? <section className="get-face-mask-stage" aria-live="polite" data-ceremony-phase={visibleCeremonyPhase}>
+      <div ref={altarSceneRef} className="altar-scene" aria-hidden="true">
+        {ALTAR_MASK_INDICES.map((maskIndex, slot) => {
+          const mask = getFaceData.masks[maskIndex];
+          const chosen = slot === firstAltarSlotForMask(state.selectedMaskIndex ?? -1);
+          return <div key={`scene-slot-${slot}`} ref={(node) => { sceneMaskRefs.current[slot] = node; }} className={`scene-mask${chosen ? " scene-mask-chosen" : ""}`} data-mask-index={maskIndex} data-slot={slot}>
+            <img className="scene-mask-front" src={assetPath(mask.asset)} alt="" />
+            <img className="scene-mask-back" src={assetPath(mask.asset)} alt="" />
+          </div>;
+        })}
       </div>
-      <div ref={dropZoneRef} className={`face-drop-zone${dragging ? " active" : ""}`} onPointerUp={() => finishMaskDrag(undefined, true)} aria-label="面具吸附区域">入 · 面</div>
-      {selectedMask ? <p className="mask-hint">当前应答：{selectedMask.name}</p> : null}
+      <div ref={flashRef} className="altar-impact-flash" aria-hidden="true" />
+      <div className="mask-ceremony-copy">
+        <span>选 · 一 · 面</span>
+        <h1>{visibleCeremonyPhase === "blackout" ? "已经入戏" : "坛前择面"}</h1>
+        <p>{visibleCeremonyPhase === "blackout" ? `${state.name}，你已戴上「${selectedMask?.name ?? "此面"}」的眼睛。不是它替你回答，而是从这一刻开始，你要用它进入故事。` : "愿望已经替你照见一面，坛前正在替你完成择面。"}</p>
+        {visibleCeremonyPhase === "blackout" ? <button type="button" onClick={() => dispatch({ type: "maskSnapped" })}>进入第一幕</button> : null}
+      </div>
     </section> : null}
 
     {state.phase === "story" ? <section className="get-face-story" aria-live="polite">
