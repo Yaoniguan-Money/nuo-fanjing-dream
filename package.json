@@ -13,6 +13,7 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run src",
     "validate:content": "node scripts/validate-content.mjs && vitest run src/domain/dream-card/content.test.ts",
+    "validate:assets": "node scripts/validate-dream-assets.mjs",
     "validate": "npm run validate:content",
     "audit": "npm audit --audit-level=high"
   },
