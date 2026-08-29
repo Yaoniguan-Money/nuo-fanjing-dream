@@ -41,11 +41,10 @@
 .codex-card-frame-art, .codex-card-back-art { position: absolute; z-index: 5; inset: 0; pointer-events: none; background-position: center; background-repeat: no-repeat; background-size: 100% 100%; }
 .codex-card-frame-art { background-image: url("/dream-assets/ui/codex/card-front-frame-v2.svg"); }
 .codex-card-back-art { background-image: url("/dream-assets/ui/codex/card-back-seal-v2.svg"); }
-.codex-card-mask { z-index: 1; object-fit: contain; padding: 15% 12% 27%; filter: drop-shadow(0 0 7px rgba(215,173,81,.27)); transform: scale(.96); transition: transform .35s ease, filter .35s ease; }
-.codex-card-mask-sao-di-he-shang { transform: scale(.72); }
-.codex-slot-collected .codex-card:hover .codex-card-mask-sao-di-he-shang, .codex-card:focus-visible .codex-card-mask-sao-di-he-shang { transform: scale(.76); }
+.codex-card-mask { --mask-rest-scale: .96; --mask-hover-scale: 1.02; z-index: 1; object-fit: contain; padding: 15% 12% 27%; filter: drop-shadow(0 0 7px rgba(215,173,81,.27)); transform: scale(var(--mask-rest-scale)); transition: transform .35s ease, filter .35s ease; }
+.codex-card-mask-sao-di-he-shang { --mask-rest-scale: .72; --mask-hover-scale: .765; }
 .codex-card-veil { position: absolute; z-index: 2; inset: 0; pointer-events: none; background: linear-gradient(180deg, rgba(5,10,12,.04) 38%, rgba(5,9,11,.18) 59%, rgba(4,8,10,.9) 100%); }
-.codex-slot-collected .codex-card:hover .codex-card-mask, .codex-card:focus-visible .codex-card-mask { filter: drop-shadow(0 0 12px rgba(230,189,93,.42)); transform: scale(1.02); }
+.codex-slot-collected .codex-card:hover .codex-card-mask, .codex-card:focus-visible .codex-card-mask { filter: drop-shadow(0 0 12px rgba(230,189,93,.42)); transform: scale(var(--mask-hover-scale)); }
 .codex-slot-locked-ui .codex-card-front { filter: brightness(.47) saturate(.46); }
 .codex-slot-locked-ui .codex-card-frame-art { opacity: .62; }
 .codex-card-lock-art { position: relative; z-index: 1; display: grid; width: 58%; aspect-ratio: 1; place-items: center; opacity: .5; }

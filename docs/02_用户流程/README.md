@@ -45,3 +45,5 @@
 | 唐氏太婆《织魂记》 | [../../content/dream-cards/dream.tangshi-taipo.zhi-hun-ji.json](../../content/dream-cards/dream.tangshi-taipo.zhi-hun-ji.json) | 唐氏太婆 |
 
 八职司、素材状态与未完成项由 [../04_协作交接/待办与分工.md](../04_协作交接/待办与分工.md) 统一维护。
+
+八面匹配、盖面入戏、得面飞入傩谱的分镜、素材接口与实现顺序见 [03_八面授面与收录动效规划.md](03_八面授面与收录动效规划.md)。

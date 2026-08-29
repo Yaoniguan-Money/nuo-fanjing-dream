@@ -24,8 +24,8 @@ describe("get-face ritual session", () => {
     state = transitionGetFaceRitual(state, { type: "nameSubmitted", name: "  阿渡  " });
     state = transitionGetFaceRitual(state, { type: "wishSubmitted", wish: "我想找到一条路" });
     expect(state.phase).toBe("matching");
-    state = transitionGetFaceRitual(state, { type: "matchResolved", cardId: "dream.kailu-jiangjun.du-shan-ji", maskIndex: 0 });
-    expect(state).toMatchObject({ phase: "mask", selectedMaskIndex: 0, cardId: "dream.kailu-jiangjun.du-shan-ji" });
+    state = transitionGetFaceRitual(state, { type: "matchResolved", cardId: "dream.kailu-jiangjun.du-shan-ji", maskId: "crown-beard" });
+    expect(state).toMatchObject({ phase: "mask", selectedMaskId: "crown-beard", cardId: "dream.kailu-jiangjun.du-shan-ji" });
     state = transitionGetFaceRitual(state, { type: "enterStory" });
     expect(state.phase).toBe("wearing");
     expect(transitionGetFaceRitual(state, { type: "wearComplete" }).phase).toBe("complete");
@@ -61,5 +61,13 @@ describe("get-face ritual session", () => {
     expect(transitionGetFaceRitual(initial, { type: "wishSubmitted", wish: "愿望" })).toEqual(initial);
     const named = transitionGetFaceRitual(initial, { type: "nameSubmitted", name: "" });
     expect(named).toEqual(initial);
+  });
+
+  it("accepts any of the eight configured masks without a four-mask index limit", () => {
+    let state = createInitialGetFaceRitualSession();
+    state = transitionGetFaceRitual(state, { type: "nameSubmitted", name: "阿渡" });
+    state = transitionGetFaceRitual(state, { type: "wishSubmitted", wish: "我想把未来留下" });
+    state = transitionGetFaceRitual(state, { type: "matchResolved", cardId: "dream.abu-mo.future-story", maskId: "abu-mo" });
+    expect(state).toMatchObject({ phase: "mask", selectedMaskId: "abu-mo", cardId: "dream.abu-mo.future-story" });
   });
 });

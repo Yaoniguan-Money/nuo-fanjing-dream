@@ -7,7 +7,7 @@ import type { GetFaceRitualSession } from "@/domain/get-face/session";
 import { GetFaceResult, makeStoryCodexEntry } from "./get-face-result";
 
 vi.mock("@/features/codex/codex-experience", () => ({
-  CodexExperience: ({ demoMode }: { demoMode?: boolean }) => <main data-demo-mode={String(Boolean(demoMode))}>傩谱已打开</main>
+  CodexExperience: ({ demoMode, newlyCollectedMaskId }: { demoMode?: boolean; newlyCollectedMaskId?: string }) => <main data-demo-mode={String(Boolean(demoMode))} data-new-mask={newlyCollectedMaskId}>傩谱已打开</main>
 }));
 afterEach(() => { cleanup(); vi.restoreAllMocks(); });
 
@@ -35,6 +35,21 @@ describe("story-backed mask reveal", () => {
     expect(entry.role?.name).toBe("开路将军");
   });
 
+  it("accepts a future merged story through its selected mask id", () => {
+    const futureCard = { ...card, meta: { ...card.meta, id: "dream.abu-mo.future-story", title: "留种记" } };
+    const futureSession = { ...session, cardId: futureCard.meta.id, selectedMaskIndex: null, selectedMaskId: "abu-mo" } as GetFaceRitualSession;
+    const entry = makeStoryCodexEntry(futureSession, futureCard);
+    expect(entry.mask?.id).toBe("abu-mo");
+    expect(entry.role?.name).toBe("阿布摩");
+  });
+
+  it("uses a quiet altar reveal without the old rotating radial rays", () => {
+    const local = storage();
+    const { container } = render(<GetFaceResult session={session} card={card} storage={local} onRestart={vi.fn()} />);
+    expect(container.querySelector(".face-result-rays")).toBeNull();
+    expect(screen.getByRole("button", { name: "收录此面" }).className).toContain("ui-primary-cta");
+  });
+
   it("collects on explicit confirmation, then enters the codex without any network request", async () => {
     const local = storage();
     const fetchSpy = vi.spyOn(globalThis, "fetch");
@@ -45,6 +60,7 @@ describe("story-backed mask reveal", () => {
     fireEvent.click(collect);
     const codex = await screen.findByText("傩谱已打开", {}, { timeout: 2000 });
     expect(codex.getAttribute("data-demo-mode")).toBe("true");
+    expect(codex.getAttribute("data-new-mask")).toBe("crown-beard");
     expect(local.values.get("nuo.codex.v2")).toContain("开路将军");
     expect(fetchSpy).not.toHaveBeenCalled();
   });

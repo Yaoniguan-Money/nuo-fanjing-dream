@@ -4,6 +4,10 @@
   --paper: #eee4d3;
   --muted: #a99b83;
   --gold: #d0ad62;
+  --gold-dim: #8f6e37;
+  --lacquer: #0d1210;
+  --lacquer-raised: #1d211c;
+  --vermilion: #873d2b;
   font-family: "Songti SC", "STSong", "SimSun", serif;
   color: var(--paper);
   background: var(--ink);
@@ -14,6 +18,66 @@ html, body { min-height: 100%; margin: 0; }
 body { background: radial-gradient(circle at 50% 15%, #211a12, var(--ink) 52%); }
 button, input, select { font: inherit; }
 a { color: inherit; }
+
+/* Shared ritual controls: light actions stay as ink-and-gold plaques; only a
+   committed action receives a raised lacquer surface. */
+.ui-return-control,
+.ui-continue-control,
+.ui-utility-control {
+  --control-line: rgba(208, 173, 98, .5);
+  min-height: 38px;
+  border: 1px solid var(--control-line);
+  border-radius: 0;
+  background:
+    linear-gradient(90deg, transparent 0 12px, rgba(208, 173, 98, .16) 12px 13px, transparent 13px calc(100% - 13px), rgba(208, 173, 98, .16) calc(100% - 13px) calc(100% - 12px), transparent calc(100% - 12px)),
+    rgba(8, 11, 10, .78);
+  box-shadow: inset 0 0 0 3px rgba(208, 173, 98, .035), 0 8px 22px rgba(0, 0, 0, .18);
+  color: rgba(238, 228, 211, .8);
+  font: 12px/1.1 "STSong", "Songti SC", "SimSun", serif;
+  letter-spacing: .16em;
+  text-decoration: none;
+  transition: border-color .18s ease, color .18s ease, background-color .18s ease, transform .18s ease;
+}
+
+.ui-return-control:hover,
+.ui-return-control:focus-visible,
+.ui-continue-control:hover,
+.ui-continue-control:focus-visible,
+.ui-utility-control:hover,
+.ui-utility-control:focus-visible {
+  --control-line: rgba(225, 190, 112, .86);
+  background-color: rgba(31, 29, 21, .9);
+  color: #efd28e;
+  outline: none;
+}
+
+.ui-return-control:focus-visible,
+.ui-continue-control:focus-visible,
+.ui-utility-control:focus-visible,
+.ui-primary-cta:focus-visible { outline: 2px solid #efd28e; outline-offset: 3px; }
+
+.ui-primary-cta {
+  min-height: 46px;
+  padding: 0 30px;
+  border: 1px solid #c99b4e;
+  border-radius: 2px;
+  background:
+    linear-gradient(180deg, rgba(255, 225, 151, .28), transparent 42%),
+    linear-gradient(90deg, #5e371a, #b47b31 14%, #d8a750 50%, #9a6127 86%, #4a2a16);
+  box-shadow: inset 0 1px 0 rgba(255, 239, 193, .55), inset 0 -2px 0 rgba(62, 30, 13, .68), 0 8px 20px rgba(0, 0, 0, .34);
+  color: #24150a;
+  cursor: pointer;
+  font: 500 16px/1 "STSong", "Songti SC", "SimSun", serif;
+  letter-spacing: .28em;
+  text-indent: .28em;
+  text-shadow: 0 1px rgba(255, 236, 184, .3);
+  transition: filter .18s ease, transform .18s ease, box-shadow .18s ease;
+}
+
+.ui-primary-cta:hover:not(:disabled),
+.ui-primary-cta:focus-visible { filter: brightness(1.12); transform: translateY(-1px); }
+.ui-primary-cta:active:not(:disabled) { transform: translateY(1px); box-shadow: inset 0 2px 4px rgba(62, 30, 13, .65); }
+.ui-primary-cta:disabled { cursor: wait; filter: saturate(.45); opacity: .62; }
 
 .route-shell {
   min-height: 100svh;

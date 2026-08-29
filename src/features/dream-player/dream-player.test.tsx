@@ -17,4 +17,11 @@ describe("DreamPlayer", () => {
     expect(screen.queryByText("点击继续，开始本幕。", { exact: true })).toBeNull();
     expect(screen.queryByText("点击继续 ▽", { exact: true })).toBeNull();
   });
+
+  it("uses the shared navigation and primary ritual controls", () => {
+    render(<DreamPlayer card={requireDreamCard("dream.kailu-jiangjun.du-shan-ji")} />);
+
+    expect(screen.getByRole("link", { name: "返回首页" }).className).toContain("ui-return-control");
+    expect(screen.getByRole("button", { name: "进 入 幻 梦" }).className).toContain("ui-primary-cta");
+  });
 });

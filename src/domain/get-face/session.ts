@@ -9,6 +9,7 @@ export interface GetFaceRitualSession {
   name: string;
   wish: string;
   selectedMaskIndex: number | null;
+  selectedMaskId?: string | null;
   cardId: string | null;
 }
 
@@ -17,7 +18,8 @@ export const getFaceRitualSessionSchema = z.object({
   phase: getFaceRitualPhaseSchema,
   name: z.string().max(80),
   wish: z.string().max(280),
-  selectedMaskIndex: z.number().int().min(0).max(3).nullable(),
+  selectedMaskIndex: z.number().int().min(0).max(7).nullable(),
+  selectedMaskId: z.string().min(1).max(80).nullable().optional(),
   cardId: z.string().min(1).max(160).nullable()
 }).strict();
 
@@ -25,13 +27,13 @@ export type GetFaceRitualEvent =
   | { type: "restore"; state: GetFaceRitualSession }
   | { type: "nameSubmitted"; name: string }
   | { type: "wishSubmitted"; wish: string }
-  | { type: "matchResolved"; cardId: string; maskIndex: number }
+  | { type: "matchResolved"; cardId: string; maskId: string }
   | { type: "enterStory" }
   | { type: "wearComplete" }
   | { type: "reset" };
 
 export function createInitialGetFaceRitualSession(): GetFaceRitualSession {
-  return { schemaVersion: "2.0.0", phase: "name", name: "", wish: "", selectedMaskIndex: null, cardId: null };
+  return { schemaVersion: "2.0.0", phase: "name", name: "", wish: "", selectedMaskIndex: null, selectedMaskId: null, cardId: null };
 }
 
 function cleanText(value: string, maxLength: number): string { return value.trim().slice(0, maxLength); }
@@ -47,10 +49,10 @@ export function transitionGetFaceRitual(state: GetFaceRitualSession, event: GetF
     const wish = cleanText(event.wish, 280);
     return wish.length >= 2 ? { ...state, phase: "matching", wish } : state;
   }
-  if (state.phase === "matching" && event.type === "matchResolved" && Number.isInteger(event.maskIndex) && event.maskIndex >= 0 && event.maskIndex <= 3) {
-    return { ...state, phase: "mask", cardId: cleanText(event.cardId, 160), selectedMaskIndex: event.maskIndex };
+  if (state.phase === "matching" && event.type === "matchResolved" && event.maskId.trim()) {
+    return { ...state, phase: "mask", cardId: cleanText(event.cardId, 160), selectedMaskId: cleanText(event.maskId, 80), selectedMaskIndex: null };
   }
-  if (state.phase === "mask" && event.type === "enterStory" && state.cardId && state.selectedMaskIndex !== null) return { ...state, phase: "wearing" };
+  if (state.phase === "mask" && event.type === "enterStory" && state.cardId && (state.selectedMaskId || state.selectedMaskIndex !== null)) return { ...state, phase: "wearing" };
   if (state.phase === "wearing" && event.type === "wearComplete") return { ...state, phase: "complete" };
   return state;
 }

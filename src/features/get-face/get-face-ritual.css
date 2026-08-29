@@ -3,8 +3,6 @@
 .get-face-altar::after { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 50% 42%, rgba(244,202,105,.1), transparent 27%), linear-gradient(90deg, rgba(6,4,2,.74), transparent 30% 70%, rgba(6,4,2,.74)); }
 .get-face-mist { position: absolute; z-index: -2; inset: 38% -15% -14%; background: radial-gradient(ellipse at 50% 55%, rgba(239,220,176,.3), transparent 62%); filter: blur(22px); animation: ritual-mist 10s ease-in-out infinite alternate; }
 .get-face-header { position: absolute; z-index: 10; inset: 24px 32px auto; display: flex; justify-content: flex-end; align-items: center; color: rgba(239,220,181,.58); letter-spacing: .38em; font-size: 11px; }
-.get-face-brand-mark { position: absolute; z-index: 12; right: clamp(18px, 3vw, 46px); bottom: clamp(18px, 3vw, 42px); display: block; width: clamp(124px, 13vw, 190px); aspect-ratio: 3 / 1; overflow: hidden; pointer-events: none; filter: drop-shadow(0 5px 14px rgba(0,0,0,.58)); }
-.get-face-brand-mark-image { object-fit: cover; object-position: center; }
 .get-face-header small { font-size: 9px; }
 .ritual-question { position: relative; z-index: 2; min-height: 100svh; display: grid; place-content: center; justify-items: center; width: min(900px, 92vw); margin: auto; padding: 12vh 24px 8vh; text-align: center; animation: ritual-appear .8s ease both; }
 .ritual-question > span, .match-copy > span { color: #d2a858; letter-spacing: .64em; font-size: 11px; }
@@ -14,32 +12,36 @@
 .ritual-input-panel::before { content: ""; position: absolute; inset: 20% 10%; pointer-events: none; background: repeating-linear-gradient(96deg, rgba(238,215,166,.018) 0 1px, transparent 1px 9px); mask-image: linear-gradient(90deg, transparent, #000 18% 82%, transparent); }
 .ritual-input-panel input, .ritual-input-panel textarea { position: relative; z-index: 1; width: 100%; padding: 12px 8px; border: 0; outline: 0; resize: none; background: transparent; color: #f1e2c2; font-family: "STSong", "Songti SC", serif; font-size: clamp(17px, 2vw, 23px); line-height: 1.65; letter-spacing: .1em; text-align: center; }
 .ritual-input-panel input::placeholder, .ritual-input-panel textarea::placeholder { color: rgba(231,213,177,.34); }
-.ritual-input-panel button { position: absolute; z-index: 2; right: 7.3%; top: 50%; width: 46px; height: 46px; border: 1px solid rgba(229,190,110,.72); border-radius: 50%; background: radial-gradient(circle, rgba(141,54,35,.78), rgba(61,24,16,.9)); color: #f0cd82; cursor: pointer; font-size: 20px; transform: translateY(-50%); box-shadow: inset 0 0 0 4px rgba(224,177,92,.08), 0 0 20px rgba(179,90,41,.15); transition: transform .2s ease, filter .2s ease; }
-.ritual-input-panel button:hover, .ritual-input-panel button:focus-visible { transform: translateY(-50%) scale(1.07); filter: brightness(1.18); outline: none; }
+.ritual-input-panel button { position: absolute; z-index: 2; right: 5.8%; top: 50%; display: grid; width: 52px; height: 58px; min-height: 0; place-items: center; padding: 0; border-color: rgba(216,174,91,.58); background: linear-gradient(180deg, rgba(39,42,34,.82), rgba(9,13,11,.96)); color: #d7b465; cursor: pointer; font-size: 20px; transform: translateY(-50%); box-shadow: inset 3px 0 rgba(166,67,42,.18), 0 0 22px rgba(179,90,41,.08); transition: transform .2s ease, filter .2s ease, border-color .2s ease; }
+.ritual-input-panel:focus-within button { border-color: rgba(223,183,99,.92); box-shadow: inset 3px 0 #873d2b, 0 0 26px rgba(179,90,41,.14); }
+.ritual-input-panel button:hover, .ritual-input-panel button:focus-visible { transform: translateY(-50%) translateX(2px); filter: brightness(1.18); outline: none; }
 .ritual-error { margin-top: 15px !important; color: #e5ad83 !important; }
 .mask-match-stage { position: relative; min-height: 100svh; display: grid; place-items: center; perspective: 1300px; }
-.mask-orbit { position: absolute; top: 45%; left: 50%; width: min(900px, 92vw); height: min(580px, 63vh); transform: translate(-50%, -50%); transform-style: preserve-3d; }
-.orbit-mask { position: absolute; top: 50%; left: 50%; width: clamp(150px, 17vw, 260px); aspect-ratio: .75; transform-origin: center; transform-style: preserve-3d; transition: transform .85s cubic-bezier(.2,.75,.15,1), opacity .65s ease, filter .65s ease; filter: drop-shadow(0 18px 28px rgba(0,0,0,.55)); }
-.orbit-mask img { width: 100%; height: 100%; object-fit: contain; }
-.get-face-ritual[data-phase="matching"] .orbit-mask { animation: mask-orbit 2.3s linear infinite; animation-delay: calc(var(--mask-delay, 0) * -1s); }
-.get-face-ritual[data-phase="matching"] .orbit-mask-0 { --mask-delay: 0; }
-.get-face-ritual[data-phase="matching"] .orbit-mask-1 { --mask-delay: .58; }
-.get-face-ritual[data-phase="matching"] .orbit-mask-2 { --mask-delay: 1.16; }
-.get-face-ritual[data-phase="matching"] .orbit-mask-3 { --mask-delay: 1.74; }
-.orbit-mask.selected { transform: translate(-50%, -54%) translateZ(180px) scale(1.42); z-index: 8; filter: drop-shadow(0 0 24px rgba(229,179,81,.36)) drop-shadow(0 22px 38px rgba(0,0,0,.66)); }
-.orbit-mask.dismissed { transform: translate(-50%, -45%) scale(.35); opacity: 0; }
+.mask-orbit { position: absolute; top: 48%; left: 50%; width: min(1120px, 98vw); height: min(650px, 68vh); transform: translate(-50%, -50%); transform-style: preserve-3d; }
+.mask-orbit::before { content: ""; position: absolute; z-index: 9; inset: -18%; pointer-events: none; opacity: 0; background: radial-gradient(circle at 50% 47%, transparent 0 19%, rgba(4,4,3,.18) 32%, rgba(4,4,3,.68) 68%, rgba(4,4,3,.82)); transition: opacity .8s ease; }
+.mask-orbit[data-orbit-mode="result-ring"]::before { opacity: 1; }
+.orbit-mask { position: absolute; top: 50%; left: 50%; width: clamp(128px, 13.5vw, 216px); aspect-ratio: .78; transform: translate(-50%, -50%); transform-origin: center; transform-style: preserve-3d; will-change: transform, opacity, filter; transition: transform .92s cubic-bezier(.2,.75,.15,1), opacity .7s ease, filter .7s ease; }
+.ritual-mask-card { position: absolute; inset: 0; display: block; transform-style: preserve-3d; }
+.ritual-mask-face { position: absolute; inset: 0; display: grid; place-items: center; backface-visibility: hidden; -webkit-backface-visibility: hidden; transform-style: preserve-3d; }
+.ritual-mask-face img { width: 100%; height: 100%; object-fit: contain; }
+.ritual-mask-front { transform: translateZ(2px); }
+.ritual-mask-side { transform: rotateY(90deg) translateZ(2px); }
+.ritual-mask-back { transform: rotateY(180deg) translateZ(2px); }
+.orbit-mask.selected { z-index: 12; transform: translate(-50%, -62%) scale(1.82); filter: drop-shadow(0 0 34px rgba(229,179,81,.42)) drop-shadow(0 28px 46px rgba(0,0,0,.74)); }
+.orbit-mask.dismissed { z-index: 4; transform: translate(calc(-50% + var(--settle-x)), calc(-50% + var(--settle-y))) scale(.54); opacity: .38; filter: brightness(.42) saturate(.56) blur(.45px) drop-shadow(0 20px 28px rgba(0,0,0,.72)); }
 .match-copy { position: absolute; z-index: 10; left: 50%; bottom: 5.5vh; transform: translateX(-50%); width: min(760px, 90vw); text-align: center; }
 .match-copy h1 { margin: 10px 0 4px; font-size: clamp(30px, 4vw, 54px); }
 .match-copy p { margin: 0 auto 18px; color: rgba(239,225,193,.66); font: 13px/1.8 system-ui, sans-serif; }
 .enter-dream-button { padding: 12px 34px; border: 1px solid #dbb469; background: rgba(53,36,18,.82); color: #f1d698; letter-spacing: .55em; cursor: pointer; box-shadow: 0 0 28px rgba(212,164,79,.18); animation: ritual-appear .6s ease both; }
-.get-face-ritual[data-phase="wearing"] .orbit-mask.selected { animation: mask-wear .92s cubic-bezier(.76,.02,.72,.2) both; }
-.wearing-flash { position: fixed; inset: 0; z-index: 20; background: radial-gradient(circle, rgba(244,222,172,.9), rgba(16,11,6,.97) 58%); pointer-events: none; animation: wearing-blackout .92s ease-in both; }
-.get-face-return { position: absolute; z-index: 30; top: 20px; left: 24px; padding: 8px 12px; border: 1px solid rgba(208,173,98,.28); border-radius: 999px; background: rgba(8,7,6,.58); color: rgba(238,228,211,.72); cursor: pointer; font: 11px/1 system-ui, sans-serif; letter-spacing: .12em; backdrop-filter: blur(8px); transition: color .2s ease, border-color .2s ease, background .2s ease; }
+.get-face-ritual[data-phase="wearing"] .orbit-mask.selected .ritual-mask-card { animation: mask-turn-and-cover 1.32s cubic-bezier(.65,.02,.78,.25) both; }
+.wearing-flash { position: fixed; inset: 0; z-index: 20; background: radial-gradient(ellipse at 50% 45%, transparent 0 12%, rgba(13,10,7,.2) 27%, rgba(6,5,4,.98) 72%); pointer-events: none; animation: wearing-blackout 1.32s ease-in both; }
+.get-face-return { position: absolute; z-index: 30; top: 20px; left: 24px; padding: 9px 15px; border: 1px solid rgba(208,173,98,.28); border-radius: 0; background: rgba(8,7,6,.48); color: rgba(238,228,211,.68); cursor: pointer; font: 11px/1 "STSong", "Songti SC", serif; letter-spacing: .14em; backdrop-filter: blur(8px); transition: color .2s ease, border-color .2s ease, background .2s ease; }
 .get-face-return:hover, .get-face-return:focus-visible { border-color: rgba(208,173,98,.68); background: rgba(8,7,6,.78); color: #d0ad62; outline: none; }
+.get-face-brand-mark { position: absolute; z-index: 29; right: clamp(20px, 3vw, 48px); bottom: clamp(18px, 3vw, 42px); display: block; width: clamp(128px, 14vw, 190px); aspect-ratio: 3 / 1; overflow: hidden; pointer-events: none; filter: drop-shadow(0 7px 18px rgba(0,0,0,.72)); }
+.get-face-brand-mark img { object-fit: cover; object-position: center; }
 @keyframes ritual-appear { from { opacity: 0; transform: translateY(18px); } }
 @keyframes ritual-mist { to { transform: translateX(5vw) scale(1.1); opacity: .72; } }
-@keyframes mask-orbit { from { transform: translate(-50%,-50%) rotateY(0deg) translateZ(330px) scale(.78); opacity: .4; } 25% { opacity: .95; } 50% { transform: translate(-50%,-50%) rotateY(180deg) translateZ(330px) scale(1); opacity: .35; } 75% { opacity: .72; } to { transform: translate(-50%,-50%) rotateY(360deg) translateZ(330px) scale(.78); opacity: .4; } }
-@keyframes mask-wear { 0% { transform: translate(-50%,-54%) translateZ(180px) scale(1.42); } 68% { opacity: 1; } 100% { transform: translate(-50%,-50%) translateZ(1000px) scale(7.2); opacity: 0; } }
-@keyframes wearing-blackout { 0%, 50% { opacity: 0; } 76% { opacity: .6; } 100% { opacity: 1; } }
-@media (max-width: 700px) { .get-face-header { inset: 18px; } .get-face-return { top: 12px; left: 12px; display: grid; width: 38px; height: 38px; place-items: center; padding: 0; overflow: hidden; font-size: 0; } .get-face-return::before { content: "←"; font: 18px/1 system-ui, sans-serif; } .mask-orbit { top: 42%; } .orbit-mask { width: 36vw; } .match-copy { bottom: 8vh; } .ritual-question h1 { letter-spacing: .05em; } }
-@media (prefers-reduced-motion: reduce) { .get-face-mist, .get-face-ritual[data-phase="matching"] .orbit-mask, .get-face-ritual[data-phase="wearing"] .orbit-mask.selected, .wearing-flash { animation-duration: .01ms; } }
+@keyframes mask-turn-and-cover { 0% { transform: rotateY(0) scale(1); } 42% { transform: rotateY(92deg) scale(1.16); } 68% { transform: rotateY(180deg) scale(1.72); } 100% { transform: rotateY(180deg) translateZ(860px) scale(7.8); } }
+@keyframes wearing-blackout { 0%, 48% { opacity: 0; } 72% { opacity: .4; } 100% { opacity: 1; } }
+@media (max-width: 700px) { .get-face-header { inset: 18px; } .get-face-return { top: 12px; left: 12px; display: grid; width: 38px; height: 38px; place-items: center; padding: 0; overflow: hidden; font-size: 0; } .get-face-return::before { content: "←"; font: 18px/1 system-ui, sans-serif; } .mask-orbit { top: 44%; width: 112vw; } .orbit-mask { width: 28vw; } .match-copy { bottom: 6vh; } .ritual-question h1 { letter-spacing: .05em; } .get-face-brand-mark { width: 116px; } }
+@media (prefers-reduced-motion: reduce) { .get-face-mist, .get-face-ritual[data-phase="wearing"] .ritual-mask-card, .wearing-flash { animation-duration: .01ms; } }
