@@ -81,12 +81,20 @@ export function GetFaceRitual({ onReturn }: { onReturn: () => void }) {
   useEffect(() => {
     if (state.phase !== "wearing" || !state.cardId) return;
     const cardId = state.cardId;
+    let fallbackTimer = 0;
     const timer = window.setTimeout(() => {
-      dispatch({ type: "wearComplete" });
-      router.push(`/dream/${encodeURIComponent(cardId)}`);
+      const path = `/dream/${encodeURIComponent(cardId)}`;
+      writeGetFaceRitualSession(transitionGetFaceRitual(state, { type: "wearComplete" }));
+      router.push(path);
+      fallbackTimer = window.setTimeout(() => {
+        if (window.location.pathname !== path) window.location.assign(path);
+      }, 120);
     }, window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ? 40 : 920);
-    return () => window.clearTimeout(timer);
-  }, [router, state.cardId, state.phase]);
+    return () => {
+      window.clearTimeout(timer);
+      window.clearTimeout(fallbackTimer);
+    };
+  }, [router, state]);
 
   const submitName = useCallback((event: React.FormEvent) => {
     event.preventDefault();
