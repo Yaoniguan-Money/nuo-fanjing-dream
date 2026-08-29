@@ -2,9 +2,9 @@
 
 ## 体验链路
 
-产品主链路固定为 `Threshold → GetFaceRitual → DreamCard → GetFaceResult → Codex`。`Threshold` 负责连续入场镜头与门环交互；`GetFaceRitual` 负责名字、愿望、可选摄像头预览、三幕选择与面具确认；`DreamCard` 播放注册表中的固定幻梦；`GetFaceResult` 展示得面、签解、溯源和视觉变体；`Codex` 负责本机傩谱收录与浏览。
+产品主链路固定为 `Threshold → GetFaceRitual → DreamCard → GetFaceResult → Codex`。`Threshold` 负责连续入场镜头与门环交互；`GetFaceRitual` 负责名字、愿望、八面自动匹配与入戏确认；`DreamCard` 播放注册表中的固定幻梦；`GetFaceResult` 以完成的故事卡绑定得面、签解、溯源和视觉变体；`Codex` 负责本机傩谱收录与浏览。
 
-页面入口是 `src/app/page.tsx`、`src/app/dream/[cardId]/page.tsx` 和 `src/app/result/page.tsx`。幻梦播放结束后由结果页载入确定性解释，并在完成得面后进入 Codex 体验。
+页面入口是 `src/app/page.tsx`、`src/app/dream/[cardId]/page.tsx`、`src/app/result/page.tsx` 与演示用 `src/app/codex/page.tsx`。幻梦播放结束后由结果页载入故事绑定签解，并在确认收录后进入 Codex 体验。
 
 ## 权威边界
 
@@ -17,13 +17,13 @@
 
 ## 摄像头与本机数据
 
-摄像头是可选的本机预览。不得截帧、分析、保存或上传；页面隐藏、离页、刷新和确认操作都必须释放媒体轨道。会话存储只能保留继续体验所需的名字、愿望、选择与结果状态；本机傩谱不得保存愿望、人像、视频帧、摄像头状态或服务端配置，清空入口必须二次确认。
+当前核心链路不请求摄像头，只保存继续体验所需的名字、愿望、匹配卡片和面具索引。旧三幕选择与可选摄像头预览保留在 `src/features/get-face/get-face-ritual-legacy.tsx` 与 `src/domain/get-face/session-legacy.ts`，未来评估效果时再决定是否恢复；该 legacy 边界仍不得截帧、分析、保存或上传。会话存储不能保存愿望之外的人像、视频帧、摄像头状态或服务端配置；本机傩谱不得保存愿望，清空入口必须二次确认。
 
 ## 视觉与文化边界
 
 开场是单一连续镜头，控制在 1.2 至 1.6 秒，优先只动画 transform 与 opacity。傩门之前不出现文字或按钮，门环是第一次主动交互；主场保留龙坛、面具和输入接口，鼠标反馈只服务抓取、拖拽与确认。
 
-结尾先做 cinematic reveal，再进入神龛式角色墙，不回到四张卡片式总结。Codex 固定 12 格，其中 4 格映射现有视觉母体、8 格待补；同一面具只占一个位置，重复体验更新该位置最近一次结果。详情内的 3D 是由运行时 PNG 生成的浮雕网格，不标为文物扫描；结果页始终保留“历史身份及授权来源未提供”的声明。
+结尾先做 cinematic reveal，再进入神龛式八角色墙。Codex 固定八大职司：开路将军、先锋小姐、九位土地神、唐氏太婆、勾簿判官、扫地和尚、柳毅、阿布摩；同一面具只占一个位置，重复体验更新该位置最近一次结果。详情当前使用透明 PNG 与卡片式倾斜交互，正式模型接入前不得标注为文物扫描；结果页始终保留“历史身份及授权来源未提供”的声明。
 
 ## 性能与验证
 
