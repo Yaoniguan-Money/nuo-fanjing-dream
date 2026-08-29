@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import {
   advancePlayback,
   initialPlaybackState,
@@ -37,10 +38,10 @@ function ActHud({ act, actIndex, actCount, textIndex }: { act: DreamAct; actInde
   return <div className="act-hud"><div><div className="act-kicker">第 {actIndex + 1} 幕 · {act.id}</div><div className="act-title">{act.title}</div></div><div className="progress-dots" aria-hidden="true">{Array.from({ length: actCount }, (_, index) => <span className={index === actIndex ? "active" : index < actIndex ? "done" : ""} key={index} />)}</div><div className="line-position">{Math.max(0, textIndex + 1)} / {act.texts.length}</div></div>;
 }
 
-function DialoguePanel({ text, content }: { text: DreamText | null; content: string }) {
+function DialoguePanel({ text, content, actIndex }: { text: DreamText | null; content: string; actIndex: number }) {
   const kind = text?.extensions.sourceType ?? "narration";
   const classes = ["dialogue-panel", text?.extensions.self ? "self" : "", text?.extensions.mystic ? "mystic" : ""].filter(Boolean).join(" ");
-  return <div className={classes} data-kind={kind}><div className="speaker-name">{kind === "dialogue" ? text?.extensions.speakerName ?? text?.speakerId : ""}</div><div className={text ? "dialogue-content" : "dialogue-content act-ready"}>{text ? content : "点击继续，开始本幕。"}</div><div className="advance-hint">点击继续 ▽</div></div>;
+  return <div className={classes} data-kind={kind}><div className="speaker-name">{kind === "dialogue" ? text?.extensions.speakerName ?? text?.speakerId : ""}</div><div className={text ? "dialogue-content" : "dialogue-content act-ready"}>{text ? content : `第 ${actIndex + 1} 幕`}</div>{text ? <div className="advance-hint">点击继续 ▽</div> : null}</div>;
 }
 
 export interface DreamPlayerProps {
@@ -81,13 +82,15 @@ export function DreamPlayer({ card, onComplete, debugControls }: DreamPlayerProp
   return <main className={`dream-player-page${debugControls ? " with-debug" : ""}`}>
     {debugControls}
     <section className="player-shell" data-card-id={card.meta.id}>
+      <Link className="dream-home-link" href="/" aria-label="返回首页">← 返回首页</Link>
       <div className="background-placeholder" />
       {backgroundUrl ? <Image className="background-image" src={backgroundUrl} alt="" fill sizes="100vw" priority /> : null}
       <div className="stage-shade" /><div className="stage-fog" />
+      {playback.phase !== "playing" ? <span className="dream-player-brand-mark"><Image className="dream-player-brand-mark-image" src="/dream-assets/brand/nuo-dream-logo-dark.png" alt="大傩幻梦品牌标识" fill sizes="(max-width: 700px) 110px, 168px" /></span> : null}
       {playback.phase === "playing" ? <CharacterLayer characters={act.characters} activeSpeaker={currentText?.speakerId ?? ""} /> : null}
-      {playback.phase === "title" ? <section className="title-view"><div className="title-eyebrow">大 傩 幻 梦 · DREAM CARD</div><h1>{card.meta.title}</h1><div className="title-divider" /><p>{card.meta.synopsis}</p><div className="tag-list">{card.meta.match.tags.slice(0, 7).map((tag) => <span key={tag}>{tag}</span>)}</div><button className="ritual-button" type="button" onClick={next}>进 入 幻 梦</button></section> : null}
-      {playback.phase === "playing" ? <section className="play-view" onClick={next}><ActHud act={act} actIndex={playback.actIndex} actCount={card.data.acts.length} textIndex={playback.textIndex} /><DialoguePanel text={currentText} content={typewriter.content} /></section> : null}
-      {playback.phase === "finished" ? <section className="end-view"><div className="title-eyebrow">幻 梦 已 尽</div><h2>{card.meta.title}</h2><div className="title-divider" /><p>七幕已定，故事未被改写。现在去看这场幻梦映回你的愿望。</p><button className="ritual-button" type="button" onClick={() => onComplete?.(card)}>查 看 签 解</button><button className="text-button" type="button" onClick={() => setPlayback(initialPlaybackState)}>重新观看</button></section> : null}
+      {playback.phase === "title" ? <section className="title-view"><div className="title-eyebrow">幻梦卡 · DREAM CARD</div><h1>{card.meta.title}</h1><div className="title-divider" /><p>{card.meta.synopsis}</p><div className="tag-list">{card.meta.match.tags.slice(0, 7).map((tag) => <span key={tag}>{tag}</span>)}</div><button className="ritual-button" type="button" onClick={next}>进 入 幻 梦</button></section> : null}
+      {playback.phase === "playing" ? <section className="play-view" onClick={next}><ActHud act={act} actIndex={playback.actIndex} actCount={card.data.acts.length} textIndex={playback.textIndex} /><DialoguePanel text={currentText} content={typewriter.content} actIndex={playback.actIndex} /></section> : null}
+      {playback.phase === "finished" ? <section className="end-view"><div className="title-eyebrow">幻 梦 已 尽</div><h2>{card.meta.title}</h2><div className="title-divider" /><p>七幕已定。故事中的那一面，正在回到坛前。</p><button className="ritual-button" type="button" onClick={() => onComplete?.(card)}>出 戏 · 见 面</button><button className="text-button" type="button" onClick={() => setPlayback(initialPlaybackState)}>重新观看</button></section> : null}
       {issues.some((issue) => issue.severity === "error") ? <div className="player-error">卡片存在阻塞性错误，请前往开发卡池检查。</div> : null}
     </section>
   </main>;

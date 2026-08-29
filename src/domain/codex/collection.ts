@@ -29,6 +29,9 @@ export interface CodexEntryInput {
     status?: unknown;
     qian?: unknown;
     jie?: unknown;
+    grade?: unknown;
+    interpretation?: unknown;
+    reflection?: unknown;
   };
   collectedAt?: unknown;
 }
@@ -57,6 +60,9 @@ export interface CodexEntry {
     status: string;
     qian: string;
     jie: string;
+    grade: string;
+    interpretation: string;
+    reflection: string;
   };
   collectedAt: string;
   updatedAt: string;
@@ -157,7 +163,12 @@ function normalizeEntry(entry: CodexEntryInput, now = new Date().toISOString()):
     reasonText: asString(entry.reasonText),
     sources: Array.isArray(entry.sources) ? entry.sources.map(cleanSource) : [],
     omen: {
-      status: asString(entry.omen?.status, "idle"), qian: asString(entry.omen?.qian, "神意正在成形"), jie: asString(entry.omen?.jie, "傩解尚未成形。")
+      status: asString(entry.omen?.status, "idle"),
+      qian: asString(entry.omen?.qian, "神意正在成形"),
+      jie: asString(entry.omen?.jie, "傩解尚未成形。"),
+      grade: asString(entry.omen?.grade),
+      interpretation: asString(entry.omen?.interpretation),
+      reflection: asString(entry.omen?.reflection)
     },
     collectedAt: asString(entry.collectedAt, now),
     updatedAt: now

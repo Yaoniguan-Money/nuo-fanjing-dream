@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 900" fill="none">
+  <defs>
+    <linearGradient id="gold" x1="62" y1="34" x2="536" y2="868" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F0D79B"/><stop offset=".25" stop-color="#B98227"/><stop offset=".54" stop-color="#E4C57A"/><stop offset=".8" stop-color="#8C5C1E"/><stop offset="1" stop-color="#D6AF59"/>
+    </linearGradient>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect x="19" y="19" width="562" height="862" rx="18" stroke="url(#gold)" stroke-width="3"/>
+  <rect x="34" y="34" width="532" height="832" rx="12" stroke="url(#gold)" stroke-width="1.4" opacity=".78"/>
+  <path d="M68 81h124c24 0 45-12 58-32l8-12h84l8 12c13 20 34 32 58 32h124" stroke="url(#gold)" stroke-width="2"/>
+  <path d="M68 819h117c29 0 54 13 70 37l5 8h80l5-8c16-24 41-37 70-37h117" stroke="url(#gold)" stroke-width="2"/>
+  <path d="M63 43c3 36 23 59 58 69-23 9-38 26-47 51 2-30-9-49-34-59 23-12 31-32 23-61Z" stroke="url(#gold)" stroke-width="2"/>
+  <path d="M537 43c-3 36-23 59-58 69 23 9 38 26 47 51-2-30 9-49 34-59-23-12-31-32-23-61Z" stroke="url(#gold)" stroke-width="2"/>
+  <path d="M63 857c3-36 23-59 58-69-23-9-38-26-47-51 2 30-9 49-34 59 23 12 31 32 23 61Z" stroke="url(#gold)" stroke-width="2"/>
+  <path d="M537 857c-3-36-23-59-58-69 23-9 38-26 47-51-2 30 9 49 34 59-23 12-31 32-23 61Z" stroke="url(#gold)" stroke-width="2"/>
+  <path d="M50 218c28-19 49-49 62-91 10 33 4 61-19 83 23 8 36 24 39 49-18-20-38-26-59-18-6 21-14 40-23 57M550 218c-28-19-49-49-62-91-10 33-4 61 19 83-23 8-36 24-39 49 18-20 38-26 59-18 6 21 14 40 23 57" stroke="url(#gold)" stroke-width="1.6" opacity=".8"/>
+  <path d="M50 682c28 19 49 49 62 91 10-33 4-61-19-83 23-8 36-24 39-49-18 20-38 26-59 18-6-21-14-40-23-57M550 682c-28 19-49 49-62 91-10-33-4-61 19-83-23-8-36-24-39-49 18 20 38 26 59 18 6-21 14-40 23-57" stroke="url(#gold)" stroke-width="1.6" opacity=".8"/>
+  <path d="M151 89h298M151 811h298" stroke="url(#gold)" stroke-width="1" opacity=".45"/>
+  <circle cx="300" cy="61" r="15" stroke="url(#gold)" stroke-width="2" filter="url(#glow)"/><path d="m300 48 6 13-6 13-6-13 6-13Z" fill="#D6AF59"/>
+  <circle cx="300" cy="839" r="13" stroke="url(#gold)" stroke-width="1.6"/><path d="M287 839h26M300 826v26" stroke="url(#gold)" stroke-width="1"/>
+</svg>

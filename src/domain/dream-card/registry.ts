@@ -1,7 +1,10 @@
 import kailuJiangjunCardJson from "../../../content/dream-cards/dream.kailu-jiangjun.du-shan-ji.json";
+import xianfengXiaojieCardJson from "../../../content/dream-cards/dream.xianfeng-xiaojie.qian-jie-qiao.json";
+import jiuWeiTudiCardJson from "../../../content/dream-cards/dream.jiu-wei-tu-di-shen.di-jiu-tan.json";
+import tangshiTaipoCardJson from "../../../content/dream-cards/dream.tangshi-taipo.zhi-hun-ji.json";
 import { dreamCardSchema, type DreamCard } from "./schema";
 
-const registeredCards = [dreamCardSchema.parse(kailuJiangjunCardJson)] as const;
+const registeredCards = [kailuJiangjunCardJson, xianfengXiaojieCardJson, jiuWeiTudiCardJson, tangshiTaipoCardJson].map((card) => dreamCardSchema.parse(card));
 const cardsById = new Map<string, DreamCard>(registeredCards.map((card) => [card.meta.id, card]));
 
 export function listDreamCards(): DreamCard[] {

@@ -12,9 +12,11 @@ describe("DreamCard content contract", () => {
   it("parses every registered card and preserves the complete seven-act story", () => {
     const cards = listDreamCards();
     const validateJsonSchema = new Ajv2020({ allErrors: true }).compile(dreamCardJsonSchema);
-    expect(cards).toHaveLength(1);
-    expect(cards[0].data.acts).toHaveLength(7);
-    for (const card of cards) expect(validateJsonSchema(card), JSON.stringify(validateJsonSchema.errors)).toBe(true);
+    expect(cards).toHaveLength(4);
+    for (const card of cards) {
+      expect(card.data.acts).toHaveLength(7);
+      expect(validateJsonSchema(card), JSON.stringify(validateJsonSchema.errors)).toBe(true);
+    }
     expect(inspectDreamCard(cards[0]).filter((issue) => issue.severity === "error")).toEqual([]);
   });
 

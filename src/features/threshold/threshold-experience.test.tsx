@@ -1,37 +1,28 @@
 // @vitest-environment happy-dom
 
-import { render, waitFor } from "@testing-library/react";
+import { cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { ThresholdExperience } from "./threshold-experience";
-import { getThresholdRuntimeSnapshot, startTrackedRafLoop, trackScene } from "./runtime-lifecycle";
-import * as thresholdSceneModule from "./threshold-scene";
 
-describe("ThresholdExperience remount lifecycle", () => {
-  afterEach(() => vi.restoreAllMocks());
+describe("ThresholdExperience", () => {
+  afterEach(cleanup);
+  it("starts from the game logo and falls through when the intro video is not supplied", async () => {
+    const cross = vi.fn();
+    render(<ThresholdExperience onCrossThreshold={cross} />);
+    expect(screen.getByRole("button", { name: "开始入梦" })).toBeTruthy();
+    expect(screen.getByRole("link", { name: "直接进入图鉴" }).getAttribute("href")).toBe("/codex");
+    expect(screen.getByAltText("大傩幻梦")).toBeTruthy();
+    expect(screen.queryByText("戴上一面，成为戏中人")).toBeNull();
+    fireEvent.click(screen.getByRole("button", { name: "开始入梦" }));
+    await waitFor(() => expect(cross).toHaveBeenCalledTimes(1), { timeout: 2000 });
+  });
 
-  it("does not retain a scene, RAF loop or global listener after repeated leaves", async () => {
-    vi.spyOn(thresholdSceneModule, "createThresholdScene").mockImplementation(() => {
-      const releaseScene = trackScene();
-      const stopRaf = startTrackedRafLoop(() => undefined, () => 7, () => undefined);
-      let disposed = false;
-      return {
-        resize: () => undefined,
-        intro: async () => undefined,
-        openDoor: async () => undefined,
-        dispose: () => {
-          if (disposed) return;
-          disposed = true;
-          stopRaf();
-          releaseScene();
-        }
-      } as ReturnType<typeof thresholdSceneModule.createThresholdScene>;
-    });
-
-    for (let iteration = 0; iteration < 3; iteration += 1) {
-      const view = render(<ThresholdExperience onCrossThreshold={vi.fn()} />);
-      await waitFor(() => expect(getThresholdRuntimeSnapshot()).toEqual({ activeScenes: 1, activeRafLoops: 1, activeGlobalListeners: 3 }));
-      view.unmount();
-      expect(getThresholdRuntimeSnapshot()).toEqual({ activeScenes: 0, activeRafLoops: 0, activeGlobalListeners: 0 });
-    }
+  it("plays an optional video and crosses after it ends", async () => {
+    const cross = vi.fn();
+    render(<ThresholdExperience introVideoSrc="/intro.mp4" onCrossThreshold={cross} />);
+    fireEvent.click(screen.getByRole("button", { name: "开始入梦" }));
+    const video = await screen.findByLabelText("入梦开场影片");
+    fireEvent.ended(video);
+    expect(cross).toHaveBeenCalledTimes(1);
   });
 });

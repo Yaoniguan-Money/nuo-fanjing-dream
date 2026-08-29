@@ -42,6 +42,8 @@ CI 定义在 `.github/workflows/ci.yml`；`npm test` 只运行 Vitest。`npm run
 - `docs/dream-card/`：幻梦卡 schema、模板、素材规范与内容流程。
 - `next.config.ts`、`vitest.config.mts`、`package.json`：构建、测试与项目命令的配置来源。
 
+项目资料总导航位于 [docs/README.md](docs/README.md)。按体验阶段、技术目录、设计资产与当前责任查找文件时，从该页进入；所有交接文档使用相对路径。
+
 ## 隐私与产品边界
 
 摄像头仅用于本机预览，不截帧、不识别、不保存、不上传；离页、切后台和确认操作都会释放媒体轨道。愿望、人像、视频帧、摄像头状态和服务端配置不会写入本机傩谱，傩谱只保存面具、职司、傩签、傩解、溯源与视觉变体。

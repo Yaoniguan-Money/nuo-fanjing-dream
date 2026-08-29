@@ -1,0 +1,228 @@
+{
+  "$schema": "../../docs/dream-card/dream-card.schema.json",
+  "schemaVersion": "0.1.0",
+  "meta": {
+    "id": "dream.tangshi-taipo.zhi-hun-ji",
+    "version": "0.1.0",
+    "title": "织魂记",
+    "synopsis": "江南青溪镇的织娘阿绸十七岁那年被官府选织，锦缎送进宫中三日便被原样退回，批语八个字——匠气有余，灵韵不足。流言四起，她封了织机三年，把自己活成镇上人口中「被退回来的织娘」。一个春夜，戴白布面的神秘老妇上门讨水，一句「你自己怎么说」问得她答不上来，遂引她夜行镇外，看见散在风里的发光碎片——每一片都是被别人的话碰散的自己。阿绸在青溪河边一片一片收回它们，重回织机闭眼想着河水的流向，织出一幅碎过又拼起来的锦。清晨院中，老妇摘下面，揭晓为掌魂归其所的唐氏太婆：在你之前，也曾有人把自己一片一片收回；如今，你是那个把自己收回来的人。",
+    "match": {
+      "tags": ["唐氏太婆", "织娘", "织锦", "否定", "自我怀疑", "归魂", "碎片", "收回自我"],
+      "situations": ["长期被否定", "自我怀疑", "身份破碎", "活在他人评价中", "需要重建自我"],
+      "emotions": ["自卑", "压抑", "酸楚", "释然", "坚定"],
+      "dilemmas": ["别人的否定是否等于我的真相", "封存逃避还是重新拿起", "迎合评价还是接纳自己"],
+      "relationships": ["自己与自己", "邻里", "个人与评价"],
+      "excludeTags": []
+    },
+    "officeCandidates": [
+      {
+        "officeId": "office.gui-hun",
+        "fit": 1,
+        "reason": "故事核心是自我被评价撕散后亲手一片一片收回，扣归魂职司「收回散落的自我、重新整合」的叙事功能，结尾由唐氏太婆掌魂归其所的原型揭晓。"
+      }
+    ],
+    "tone": ["江南", "夜织", "压抑", "微光", "回甘"],
+    "estimatedDurationSeconds": 420,
+    "culturalSources": [
+      {
+        "id": "source.dejiang-nuotangxi-tangshi-taipo",
+        "title": "贵州傩堂戏唐氏太婆（傩坛二十四戏女性傩神）",
+        "region": "贵州德江",
+        "reference": "reference-materials/dream-card-source/唐氏太婆.md",
+        "note": "借用唐氏太婆（唐氏仙娘／太婆神）引魂、归魂、掌魂归其所的职能意象；青溪镇、阿绸、退锦批语与发光碎片均为本篇虚构。"
+      }
+    ],
+    "status": "draft"
+  },
+  "data": {
+    "acts": [
+      {
+        "id": "act-01",
+        "title": "封机之屋",
+        "backgroundAssetId": "background.weaving-hut-dust-day",
+        "characters": [
+          {"instanceId": "neighbor", "assetId": "character.neighbor-woman", "position": "left"},
+          {"instanceId": "achou", "assetId": "character.achou", "position": "right"}
+        ],
+        "texts": [
+          {"id": "act-01-text-01", "content": "千年前，有一座镇子，叫作青溪镇。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-01-text-02", "content": "镇上有位织娘，名叫阿绸。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-01-text-03", "content": "她从小爱织。别人织的是花，她织的是水，是云，是风吹过稻田的样子。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-01-text-04", "content": "十七岁那年，官府选织，她的锦被送进了宫里。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-01-text-05", "content": "三日后，锦被原样退回，上面批了八个字——匠气有余，灵韵不足。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-01-text-06", "content": "从那以后，她封了织机，再也不碰梭子。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-01-text-07", "content": "（门外探头）阿绸，还没开门呢？", "speakerId": "neighbor", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "邻居妇人"}},
+          {"id": "act-01-text-08", "content": "嗯。", "speakerId": "achou", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-01-text-09", "content": "前街王老板家嫁女儿，想请你——", "speakerId": "neighbor", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "邻居妇人"}},
+          {"id": "act-01-text-10", "content": "我不会。", "speakerId": "achou", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-01-text-11", "content": "（叹气）唉，这孩子……", "speakerId": "neighbor", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "邻居妇人"}},
+          {"id": "act-01-text-12", "content": "邻居妇人摇头走开。阿绸转过身，望向蒙着布的织机。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}}
+        ],
+        "choices": [],
+        "notes": "场景：织布屋｜日｜阴沉。蒙布织机、蛛网、落灰布帛。\n原始在场：我（织娘阿绸，二十岁上下） · 邻居妇人（拎菜篮路过）\n迁移备注：无。"
+      },
+      {
+        "id": "act-02",
+        "title": "退回的锦",
+        "backgroundAssetId": "background.weaving-hut-night-lamp",
+        "characters": [
+          {"instanceId": "achou", "assetId": "character.achou", "position": "center"}
+        ],
+        "texts": [
+          {"id": "act-02-text-01", "content": "三年了。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-02-text-02", "content": "这幅锦被退回的那天，批语很快传遍了全镇。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-02-text-03", "content": "「匠气有余，灵韵不足。」", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-02-text-04", "content": "阿绸把它锁进床底，也把自己锁了起来。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-02-text-05", "content": "有人说她可惜，有人说她本来就不行，有人说她装样子。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-02-text-06", "content": "到最后，连她自己也快相信了——我织的东西，不好。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-02-text-07", "content": "（手指抚过锦面上的河）", "speakerId": "achou", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "action", "speakerName": "我", "self": true}},
+          {"id": "act-02-text-08", "content": "……真的，不好吗？", "speakerId": "achou", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-02-text-09", "content": "（把那行字的地方折到里面，合上木匣）", "speakerId": "achou", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "action", "speakerName": "我", "self": true}},
+          {"id": "act-02-text-10", "content": "不好就不好吧。反正，我也不会再织了。", "speakerId": "achou", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-02-text-11", "content": "窗外传来几个孩子的声音——「看，就是那间屋，里面住着被宫里退回来的织娘。」阿绸的手顿了顿，把窗关上。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}}
+        ],
+        "choices": [],
+        "notes": "场景：织布屋内｜夜｜油灯。木匣、退回的锦、关窗动作。\n原始在场：我\n迁移备注：窗外孩童声并入旁白转述。"
+      },
+      {
+        "id": "act-03",
+        "title": "夜中来人",
+        "backgroundAssetId": "background.weaving-hut-deep-night",
+        "characters": [
+          {"instanceId": "achou", "assetId": "character.achou", "position": "left"},
+          {"instanceId": "mystic", "assetId": "character.mystic-old-woman", "position": "right"}
+        ],
+        "texts": [
+          {"id": "act-03-text-01", "content": "那一夜，风从门缝里钻进来。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-03-text-02", "content": "阿绸坐在织机前，像每一个夜里一样，什么也不做。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-03-text-03", "content": "然后，她听见了叩门声。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-03-text-04", "content": "不是邻居的声音，也不是镇上谁的声音。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-03-text-05", "content": "是一个她从未听过的声音——像风从很远的地方吹来。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-03-text-06", "content": "谁？", "speakerId": "achou", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-03-text-07", "content": "一个路过的老妇。天黑了，能不能讨口水喝？", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘老妇", "mystic": true}},
+          {"id": "act-03-text-08", "content": "（迟疑片刻，开门）……进来吧。", "speakerId": "achou", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-03-text-09", "content": "（进屋，目光落在蒙布的织机上）这机子，多久没响了？", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘老妇", "mystic": true}},
+          {"id": "act-03-text-10", "content": "（递水）……忘了。", "speakerId": "achou", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-03-text-11", "content": "（接过水，没喝）你以前，织得可好？", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘老妇", "mystic": true}},
+          {"id": "act-03-text-12", "content": "不好。宫里退回来的，说我匠气有余，灵韵不足。", "speakerId": "achou", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-03-text-13", "content": "宫里说不好，就是不好吗？", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘老妇", "mystic": true}},
+          {"id": "act-03-text-14", "content": "（沉默）……大家都这么说。", "speakerId": "achou", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-03-text-15", "content": "那——你自己，怎么说？", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘老妇", "mystic": true}},
+          {"id": "act-03-text-16", "content": "（张了张嘴，答不出来）", "speakerId": "achou", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "action", "speakerName": "我", "self": true}}
+        ],
+        "choices": [],
+        "notes": "场景：织布屋｜深夜｜月光。油灯微光、门槛月色、蒙布一角掀开。\n原始在场：我 · 戴面神秘老妇（首次现身，夜访讨水）\n迁移备注：无。"
+      },
+      {
+        "id": "act-04",
+        "title": "散落的碎片",
+        "backgroundAssetId": "background.town-outskirt-night",
+        "characters": [
+          {"instanceId": "achou", "assetId": "character.achou", "position": "left"},
+          {"instanceId": "mystic", "assetId": "character.mystic-old-woman", "position": "right"}
+        ],
+        "texts": [
+          {"id": "act-04-text-01", "content": "老妇没有再问。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-04-text-02", "content": "她转身走出门去。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-04-text-03", "content": "阿绸跟着她，走到了镇外。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-04-text-04", "content": "然后她看见了——那些散在风里的光。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-04-text-05", "content": "（惊讶）这是……什么？", "speakerId": "achou", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-04-text-06", "content": "是你。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘老妇", "mystic": true}},
+          {"id": "act-04-text-07", "content": "我？", "speakerId": "achou", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-04-text-08", "content": "你看那一片——是不是你第一次握梭子时，烫到了手，却不肯松开的那个你？", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘老妇", "mystic": true}},
+          {"id": "act-04-text-09", "content": "还有那一片——你蹲在河边看了一下午水流，想把它织进布里的那个你？", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘老妇", "mystic": true}},
+          {"id": "act-04-text-10", "content": "再看那一片——宫里的字批下来时，你站在堂前，把眼泪憋回去的那个你？", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘老妇", "mystic": true}},
+          {"id": "act-04-text-11", "content": "（伸手想碰，碎片却从指间飘走）它们……为什么都散在外面？", "speakerId": "achou", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-04-text-12", "content": "别人的话，像一阵一阵的风。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘老妇", "mystic": true}},
+          {"id": "act-04-text-13", "content": "风吹过来，你就碎了一片。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘老妇", "mystic": true}},
+          {"id": "act-04-text-14", "content": "到最后，你连自己哪一片在身上，哪一片飘走了，都不知道。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘老妇", "mystic": true}},
+          {"id": "act-04-text-15", "content": "（看着满天的碎片，喉咙发紧）……还能收回来吗？", "speakerId": "achou", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}}
+        ],
+        "choices": [],
+        "notes": "场景：镇外小路｜夜｜风。夜色、镇子轮廓、青溪月光、发光碎片。\n原始在场：我 · 戴面神秘老妇\n迁移备注：无。"
+      },
+      {
+        "id": "act-05",
+        "title": "一片一片收回",
+        "backgroundAssetId": "background.creek-bank-night",
+        "characters": [
+          {"instanceId": "achou", "assetId": "character.achou", "position": "center"},
+          {"instanceId": "mystic", "assetId": "character.mystic-old-woman", "position": "right"}
+        ],
+        "texts": [
+          {"id": "act-05-text-01", "content": "风还在吹。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-05-text-02", "content": "但阿绸不再躲了。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-05-text-03", "content": "她一片一片地，把那些飘走的自己，收回来。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-05-text-04", "content": "（伸手接住一片）这一片……是我十五岁，织出第一幅完整的布时，祖母摸着我的头笑。", "speakerId": "achou", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-05-text-05", "content": "（再伸手）这一片……是我给邻村小姑娘织的帕子，她带着帕子嫁了人，专门回来谢我。", "speakerId": "achou", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-05-text-06", "content": "（接住又一片）这一片……是我织那幅被退回的锦时，三天三夜没合眼，心里想的不是宫里怎么说，是河水怎么流。", "speakerId": "achou", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-05-text-07", "content": "（声音发颤）……我当时，真的很喜欢它。", "speakerId": "achou", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-05-text-08", "content": "别人说「不好」，不代表它就不是你喜欢的。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘老妇", "mystic": true}},
+          {"id": "act-05-text-09", "content": "（抱住怀里的光，低声）我真的……很喜欢织布。", "speakerId": "achou", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-05-text-10", "content": "那就把它收回来。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘老妇", "mystic": true}},
+          {"id": "act-05-text-11", "content": "不是收「好」的自己，也不是收「对」的自己——", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘老妇", "mystic": true}},
+          {"id": "act-05-text-12", "content": "是收「你的」自己。不管别人说什么，它都是你的。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘老妇", "mystic": true}},
+          {"id": "act-05-text-13", "content": "（把最后一片光按进心口，长舒一口气）……我把它们，都收回来了。", "speakerId": "achou", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-05-text-14", "content": "天边透出一线微光。阿绸低头看自己的手——握梭子的薄茧还在，只是不再发抖了。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}}
+        ],
+        "choices": [],
+        "notes": "场景：青溪河边｜最深夜｜破晓微光。溪水反光、碎片旋转、影子由碎变整。\n原始在场：我 · 戴面神秘老妇\n迁移备注：无。"
+      },
+      {
+        "id": "act-06",
+        "title": "织机重响",
+        "backgroundAssetId": "background.weaving-hut-dawn",
+        "characters": [
+          {"instanceId": "achou", "assetId": "character.achou", "position": "center"}
+        ],
+        "texts": [
+          {"id": "act-06-text-01", "content": "她回到织布屋，扯下了织机上的蒙布。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-06-text-02", "content": "没有稿子，没有图样。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-06-text-03", "content": "她甚至没有想，这次会不会又「不够好」。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-06-text-04", "content": "她只是——闭上眼，想起了那条河。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-06-text-05", "content": "（把梭子举到眼前，轻声）好久不见。", "speakerId": "achou", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-06-text-06", "content": "（闭眼，梭子第一次穿过经线）", "speakerId": "achou", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "action", "speakerName": "我", "self": true}},
+          {"id": "act-06-text-07", "content": "（嘴角微动，像在笑）……对，就是这样，水从这边流过去，又从那边绕回来。", "speakerId": "achou", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-06-text-08", "content": "（梭子一下一下穿过，织机发出熟悉的「咔嗒」声）", "speakerId": "achou", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "action", "speakerName": "我", "self": true}},
+          {"id": "act-06-text-09", "content": "（声音很轻，很稳）这次，我不织给宫里看，不织给镇上人看。", "speakerId": "achou", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-06-text-10", "content": "我织给我自己看。", "speakerId": "achou", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-06-text-11", "content": "夜色退去，晨光从窗格照进来。阿绸织了一夜，织机上出现一幅从未有过的锦——上面没有规整的花，只有散开又收回来的光，碎过又拼起来的纹，像一条被风吹乱、却终于回到河床里的河。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}}
+        ],
+        "choices": [],
+        "notes": "场景：织布屋｜破晓｜晨光。扯下的蒙布、织机、梭子、空经线、窗格晨光。\n原始在场：我\n迁移备注：无。"
+      },
+      {
+        "id": "act-07",
+        "title": "晨光中的太婆",
+        "backgroundAssetId": "background.courtyard-morning",
+        "characters": [
+          {"instanceId": "achou", "assetId": "character.achou", "position": "left"},
+          {"instanceId": "mystic", "assetId": "character.mystic-old-woman", "position": "right"}
+        ],
+        "texts": [
+          {"id": "act-07-text-01", "content": "天亮了。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-07-text-02", "content": "阿绸推开门，看见院中立着那个老妇。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-07-text-03", "content": "这一次，她没有低头，也没有闪躲。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-07-text-04", "content": "（举起锦）我织好了。", "speakerId": "achou", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-07-text-05", "content": "好看吗？", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘老妇", "mystic": true}},
+          {"id": "act-07-text-06", "content": "（低头看了看，笑了）……我觉得，好看。", "speakerId": "achou", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-07-text-07", "content": "（缓缓摘下布面）那就够了。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘老妇", "mystic": true}},
+          {"id": "act-07-text-08", "content": "布面落下。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-07-text-09", "content": "老妇的脸露出来——眉眼温和，眼角有深深的皱纹，像走过很多路，见过很多散了又收回来的人。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-07-text-10", "content": "我并非路过。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "唐氏太婆", "mystic": true}},
+          {"id": "act-07-text-11", "content": "千年前，我也曾见一个人，把自己散在了别人的话里，久久不肯收回。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "唐氏太婆", "mystic": true}},
+          {"id": "act-07-text-12", "content": "他们唤我——唐氏太婆，掌魂归其所。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "唐氏太婆", "mystic": true}},
+          {"id": "act-07-text-13", "content": "今日我来此，不是替你把名声争回来。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "唐氏太婆", "mystic": true}},
+          {"id": "act-07-text-14", "content": "是要让你知道——在你之前，也曾有人把自己一片一片收回。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "唐氏太婆", "mystic": true}},
+          {"id": "act-07-text-15", "content": "如今，你是那个把自己收回来的人了。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "唐氏太婆", "mystic": true}},
+          {"id": "act-07-text-16", "content": "唐氏太婆转身，走入晨光，身影渐淡，不复再见。阿绸站在院中，怀里抱着那幅锦，风从院门吹进来，把织好的纹吹得轻轻起伏。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-07-text-17", "content": "你求的不是一句「你很好」。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-07-text-18", "content": "你求的是——在所有人都说过「不够好」之后，还能不能把散了的自己收回来。千年前，曾有一位太婆，看过无数魂散在风里；千年前的那一夜，她曾遇见一个织娘，一片一片把自己收回。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-07-text-19", "content": "如今，那个织娘是你。你愿意，把那些散了的自己，一片一片收回来吗？", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}}
+        ],
+        "choices": [],
+        "notes": "场景：庭院｜清晨｜晨光。院门、新织锦、白布面傩面。\n原始在场：我 · 唐氏太婆（摘面揭晓）\n迁移备注：末段傩旁白向求愿者直接开口，均为固定句。"
+      }
+    ]
+  }
+}

@@ -24,4 +24,17 @@ describe("get-face domain", () => {
     expect(buildVariant(faceData, context, role)).toEqual(buildVariant(faceData, context, role));
     expect(chineseCount("阿岚 hello")).toBe(2);
   });
+
+  test("图鉴数据收录已补全内容的柳毅", () => {
+    expect(faceData.masks.some((mask) => mask.id === "liu-yi")).toBe(true);
+    expect(faceData.roles.some((role) => role.id === "message-bearer")).toBe(true);
+    expect(faceData.codex.slots.some((slot) => slot.id === "liu-yi")).toBe(true);
+  });
+
+  test("图鉴卡面只引用旧金线稿，不引用详情页优化面具", () => {
+    expect(faceData.masks.find((mask) => mask.id === "gou-bu-pan-guan")?.artwork?.card).toBe("/dream-assets/ui/codex/fronts/gou-bu-pan-guan-v3.png");
+    expect(faceData.masks.find((mask) => mask.id === "sao-di-he-shang")?.artwork?.card).toBe("/dream-assets/ui/codex/fronts/sao-di-he-shang-v6.png");
+    expect(faceData.masks.find((mask) => mask.id === "abu-mo")?.artwork?.card).toBe("/dream-assets/ui/codex/fronts/abu-mo-v2.png");
+    expect(faceData.masks.find((mask) => mask.id === "liu-yi")?.artwork?.card).toBe("/dream-assets/ui/codex/fronts/liu-yi-v2.png");
+  });
 });
