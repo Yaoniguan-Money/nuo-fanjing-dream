@@ -2,6 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { useCallback, useEffect, useState } from "react";
+import { preloadNextRitualStage } from "@/features/preload/resource-preloader";
 import { ThresholdExperience } from "./threshold-experience";
 
 const GetFaceRitual = dynamic(
@@ -12,6 +13,10 @@ const GetFaceRitual = dynamic(
 export function ThresholdShell() {
   const [stage, setStage] = useState<"intro" | "bridge" | "ritual">("intro");
   const cross = useCallback(() => setStage("bridge"), []);
+  const preloadRitual = useCallback(() => {
+    preloadNextRitualStage();
+    void import("@/features/get-face/get-face-ritual");
+  }, []);
   useEffect(() => {
     if (stage !== "bridge") return;
     const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ?? false;
@@ -25,5 +30,5 @@ export function ThresholdShell() {
     <div className="threshold-bridge-mist" aria-hidden="true" />
     <p>龙 · 坛 · 显 · 影</p>
   </main>;
-  return <ThresholdExperience introVideoSrc="/dream-assets/intro/opening.mp4" onCrossThreshold={cross} />;
+  return <ThresholdExperience introVideoSrc="/dream-assets/intro/opening.mp4" onCrossThreshold={cross} onIntroVideoStart={preloadRitual} />;
 }

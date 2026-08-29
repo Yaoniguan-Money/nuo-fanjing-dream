@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { createDreamSession, matchResponseSchema, type MatchResponse } from "@/domain/dream-session";
 import { writeDreamSession } from "@/domain/dream-session/storage";
 import { getFaceData, resolveVisual } from "@/domain/get-face";
+import { preloadMatchedDreamResources } from "@/features/preload/resource-preloader";
 import {
   clearGetFaceRitualSession,
   createInitialGetFaceRitualSession,
@@ -66,6 +67,7 @@ export function GetFaceRitual({ onReturn }: { onReturn: () => void }) {
       window.setTimeout(() => {
         if (!active) return;
         writeDreamSession(createDreamSession(state.wish, match));
+        void preloadMatchedDreamResources(match.cardId, "first-act");
         dispatch({ type: "matchResolved", cardId: match.cardId, maskIndex: maskIndexForCard(match.cardId) });
       }, remaining);
     });
@@ -79,9 +81,16 @@ export function GetFaceRitual({ onReturn }: { onReturn: () => void }) {
   }, [state.phase]);
 
   useEffect(() => {
+    if (state.phase !== "mask" || !state.cardId) return;
+    void preloadMatchedDreamResources(state.cardId, "story");
+    router.prefetch?.(`/dream/${encodeURIComponent(state.cardId)}`);
+  }, [router, state.cardId, state.phase]);
+
+  useEffect(() => {
     if (state.phase !== "wearing" || !state.cardId) return;
     const cardId = state.cardId;
     let fallbackTimer = 0;
+    void preloadMatchedDreamResources(cardId, "story");
     const timer = window.setTimeout(() => {
       const path = `/dream/${encodeURIComponent(cardId)}`;
       writeGetFaceRitualSession(transitionGetFaceRitual(state, { type: "wearComplete" }));
@@ -113,7 +122,7 @@ export function GetFaceRitual({ onReturn }: { onReturn: () => void }) {
     <div className="get-face-altar" aria-hidden="true" />
     <div className="get-face-mist" aria-hidden="true" />
     <header className="get-face-header"><small>龙 · 坛 · 请 · 面</small></header>
-    <span className="get-face-brand-mark"><Image className="get-face-brand-mark-image" src="/dream-assets/brand/nuo-dream-logo-dark.png" alt="大傩幻梦品牌标识" fill sizes="(max-width: 700px) 124px, 190px" priority /></span>
+    <span className="get-face-brand-mark"><Image className="get-face-brand-mark-image" src="/dream-assets/brand/nuo-dream-logo-dark.png" alt="大傩幻梦品牌标识" fill sizes="(max-width: 700px) 124px, 190px" loading="eager" /></span>
 
     {(state.phase === "name" || state.phase === "wish") ? <section className="ritual-question" aria-live="polite">
       <span>{state.phase === "name" ? "问 · 名" : "问 · 心"}</span>
@@ -128,8 +137,14 @@ export function GetFaceRitual({ onReturn }: { onReturn: () => void }) {
 
     {(state.phase === "matching" || state.phase === "mask" || state.phase === "wearing") ? <section className="mask-match-stage" aria-live="polite">
       <div className="mask-orbit" aria-label="八面傩面正在匹配">
-        {getFaceData.masks.slice(0, CARD_IDS.length).map((mask, index) => <div className={`orbit-mask orbit-mask-${index}${state.phase !== "matching" && index === selected ? " selected" : ""}${state.phase !== "matching" && index !== selected ? " dismissed" : ""}`} key={mask.id}>
-          <Image src={mask.asset} alt={MASK_TITLES[index] ?? mask.name} width={1086} height={1448} priority />
+        {getFaceData.masks.slice(0, CARD_IDS.length).map((mask, index) => <div
+          aria-label={MASK_TITLES[index] ?? mask.name}
+          className={`orbit-mask orbit-mask-${index}${state.phase !== "matching" && index === selected ? " selected" : ""}${state.phase !== "matching" && index !== selected ? " dismissed" : ""}`}
+          key={mask.id}
+          role="img"
+          style={{ "--mask-a": mask.visual.card.primary, "--mask-b": mask.visual.card.secondary } as React.CSSProperties}
+        >
+          <span className="orbit-mask-glyph" aria-hidden="true"><i>{MASK_TITLES[index]?.slice(0, 1) ?? "面"}</i></span>
         </div>)}
       </div>
       <div className="match-copy">

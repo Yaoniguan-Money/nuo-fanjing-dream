@@ -6,13 +6,18 @@ import { GET_FACE_RITUAL_STORAGE_KEY, writeGetFaceRitualSession } from "@/domain
 import { GetFaceRitual } from "./get-face-ritual";
 
 const router = vi.hoisted(() => ({ push: vi.fn() }));
+const preloader = vi.hoisted(() => ({
+  preloadMatchedDreamResources: vi.fn(async () => undefined)
+}));
 
-vi.mock("next/navigation", () => ({ useRouter: () => router }));
+vi.mock("next/navigation", () => ({ useRouter: () => ({ ...router, prefetch: vi.fn() }) }));
+vi.mock("@/features/preload/resource-preloader", () => preloader);
 
 afterEach(() => {
   cleanup();
   vi.useRealTimers();
   router.push.mockReset();
+  preloader.preloadMatchedDreamResources.mockClear();
   window.sessionStorage.removeItem(GET_FACE_RITUAL_STORAGE_KEY);
 });
 
@@ -41,6 +46,7 @@ describe("GetFaceRitual", () => {
     const { container } = render(<GetFaceRitual onReturn={vi.fn()} />);
 
     expect(container.querySelector(".mask-match-stage")).toBeTruthy();
+    expect(Array.from(container.querySelectorAll(".orbit-mask img")).map((image) => image.getAttribute("src"))).toEqual([]);
     expect(screen.queryByRole("button", { name: "入 戏" })).toBeNull();
 
     await act(async () => { await vi.advanceTimersByTimeAsync(520); });
@@ -49,5 +55,9 @@ describe("GetFaceRitual", () => {
     await act(async () => { await vi.advanceTimersByTimeAsync(920); });
 
     expect(router.push).toHaveBeenCalledWith("/dream/dream.kailu-jiangjun.du-shan-ji");
+    expect(preloader.preloadMatchedDreamResources).toHaveBeenCalledWith("dream.kailu-jiangjun.du-shan-ji", "story");
+    expect(preloader.preloadMatchedDreamResources).toHaveBeenCalledWith("dream.kailu-jiangjun.du-shan-ji", "story");
+    expect(preloader.preloadMatchedDreamResources).not.toHaveBeenCalledWith("dream.kailu-jiangjun.du-shan-ji", "codex");
+    expect(preloader.preloadMatchedDreamResources).not.toHaveBeenCalledWith("dream.kailu-jiangjun.du-shan-ji", "all");
   });
 });

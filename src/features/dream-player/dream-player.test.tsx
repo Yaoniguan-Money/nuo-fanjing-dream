@@ -1,9 +1,14 @@
 // @vitest-environment happy-dom
 
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
-import { afterEach, describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import { requireDreamCard } from "@/domain/dream-card";
 import { DreamPlayer } from "./dream-player";
+
+vi.mock("@/features/preload/resource-preloader", () => ({
+  preloadMatchedDreamResources: vi.fn(async () => undefined),
+  preloadUrls: vi.fn()
+}));
 
 afterEach(cleanup);
 

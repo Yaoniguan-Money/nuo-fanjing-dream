@@ -4,6 +4,7 @@ import { matchResponseSchema } from "@/domain/dream-session";
 import { interpretResponseSchema } from "@/domain/interpretation";
 import { POST as match } from "./match/route";
 import { POST as interpret } from "./interpret/route";
+import { GET as preload } from "./preload/[cardId]/route";
 
 function jsonRequest(body: unknown) {
   return new Request("http://localhost/api", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(body) });
@@ -32,5 +33,17 @@ describe("dream route handlers", () => {
     const response = await interpret(jsonRequest({ cardId, wish: "我想开始行动" }));
     expect(response.status).toBe(200);
     expect(interpretResponseSchema.parse(await response.json()).cardId).toBe(cardId);
+  });
+
+  it("returns only the selected card preload manifest", async () => {
+    const cardId = "dream.kailu-jiangjun.du-shan-ji";
+    const response = await preload(new Request(`http://localhost/api/dream/preload/${cardId}`), { params: Promise.resolve({ cardId }) });
+    expect(response.status).toBe(200);
+    const body = await response.json() as { firstAct: string[]; story: string[]; codex: string[] };
+    expect(body.firstAct.length).toBeLessThan(body.story.length);
+    expect(body.story.some((url) => url.includes("stone-sill-village"))).toBe(true);
+    expect(body.story.some((url) => url.includes("weaving-house"))).toBe(false);
+    expect(body.codex.some((url) => url.includes("details/kailu-jiangjun"))).toBe(true);
+    expect(body.codex.some((url) => url.includes("details/abu-mo"))).toBe(false);
   });
 });

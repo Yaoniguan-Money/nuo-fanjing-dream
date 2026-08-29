@@ -2,14 +2,15 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import "./threshold.css";
 
 type IntroStage = "title" | "dissolving" | "video";
 const MOTES = Array.from({ length: 28 }, (_, index) => index);
 
-export function ThresholdExperience({ onCrossThreshold, introVideoSrc }: { onCrossThreshold: () => void; introVideoSrc?: string }) {
+export function ThresholdExperience({ onCrossThreshold, onIntroVideoStart, introVideoSrc }: { onCrossThreshold: () => void; onIntroVideoStart?: () => void; introVideoSrc?: string }) {
   const [stage, setStage] = useState<IntroStage>("title");
+  const videoStartNotified = useRef(false);
 
   const start = useCallback(() => {
     if (stage !== "title") return;
@@ -26,13 +27,19 @@ export function ThresholdExperience({ onCrossThreshold, introVideoSrc }: { onCro
     return () => window.clearTimeout(timer);
   }, [introVideoSrc, onCrossThreshold, stage]);
 
+  useEffect(() => {
+    if (stage !== "video" || videoStartNotified.current) return;
+    videoStartNotified.current = true;
+    onIntroVideoStart?.();
+  }, [onIntroVideoStart, stage]);
+
   return <main className="threshold-experience" data-stage={stage}>
     <div className="threshold-dawn" aria-hidden="true" />
     <div className="threshold-cloud threshold-cloud-a" aria-hidden="true" />
     <div className="threshold-cloud threshold-cloud-b" aria-hidden="true" />
     {stage !== "video" ? <section className="threshold-title" aria-label="大傩幻梦开始画面">
       <div className="threshold-logo-wrap">
-        <Image className="threshold-logo" src="/dream-assets/brand/nuo-dream-logo-cover-clean.png" alt="大傩幻梦" fill sizes="(max-width: 700px) 96vw, 680px" priority />
+        <Image className="threshold-logo" src="/dream-assets/brand/nuo-dream-logo-cover-clean.png" alt="大傩幻梦" fill sizes="(max-width: 700px) 96vw, 680px" preload />
         <div className="threshold-particles" aria-hidden="true">{MOTES.map((mote) => <i key={mote} style={{ "--i": mote } as React.CSSProperties} />)}</div>
       </div>
       <button type="button" className="threshold-start" onClick={start} disabled={stage !== "title"}>开始入梦</button>
