@@ -1,0 +1,187 @@
+{
+  "$schema": "../../docs/dream-card/dream-card.schema.json",
+  "schemaVersion": "0.1.0",
+  "meta": {
+    "id": "dream.abumo.huang-nian-kai-huo",
+    "version": "0.1.0",
+    "title": "荒年开火",
+    "synopsis": "大旱过后的第二年，彝寨的人走了一半，青年阿卓守着爷爷的祖屋和一小袋荞种，灶冷了一冬——他认定“人活着到底图什么”没想明白，饭吃下去也是白吃。开荒的老人向他借火煮粥，只说“想不通的时候，饭更要吃，胃会替你想”；他跟着老人借牛开地，头一回开口求人，把爷爷的种一把一把撒进土里。老人带回逃荒的孤儿阿安，“你屋里有火”；两个人吃饭的日子里，那个问题开始不再拦着他。倒春寒夜满坡护苗，苗蔫了一小半、活了一大半——他不再问值不值，只把手里的事做完。入秋头一锅新荞饭敬过爷爷，老人显露半张横白纹的黑木旧面，自承是人们唤作阿布摩的老爷爷：你不必先彻底想明白人生，才有资格继续生活；答案不是想出来的，是在饭里、地里、人里，自己长出来的。",
+    "match": {
+      "tags": ["阿布摩", "撮泰吉", "荒年", "冷灶", "留种", "下地干活", "重新生活"],
+      "situations": ["找不到生活的意义", "想不明白就不敢行动", "用思考代替生活", "独自悬置在原地", "需要从废墟重新开始"],
+      "emotions": ["空悬", "麻木", "松动", "踏实", "敞亮"],
+      "dilemmas": ["没想明白是否就没资格生活", "答案没来时是否先动手", "收成补不回损失时是否继续承担"],
+      "relationships": ["祖孙", "邻里", "神灵与青年", "先人与后来者"],
+      "excludeTags": []
+    },
+    "officeCandidates": [
+      {
+        "officeId": "office.liu-zhong",
+        "fit": 1,
+        "reason": "故事核心是荒年后仍把种带进土里、从废墟中重新开始，吃剩的种照原样扎紧留给明年，结尾由阿布摩原型揭示交棒。"
+      }
+    ],
+    "tone": ["荒年", "古寨", "沉郁", "回暖", "启示"],
+    "estimatedDurationSeconds": 300,
+    "culturalSources": [
+      {
+        "id": "source.weining-cuotaiji-abumo",
+        "title": "威宁彝族撮泰吉“变人戏”阿布摩面具",
+        "region": "贵州威宁",
+        "reference": "reference-materials/中国傩戏网_面具图片/022_1500岁的阿布摩 撮泰吉面具_01.png",
+        "note": "借用阿布摩老爷爷灾荒后背负粮种入寨、教人开荒播种收获的留种母题；阿卓、老庚叔、阿达婶、冷灶、倒春寒与满坡护苗故事均为本篇虚构，孤儿阿安借自撮泰吉同名角色。"
+      }
+    ],
+    "status": "draft"
+  },
+  "data": {
+    "acts": [
+      {
+        "id": "act-01",
+        "title": "冷灶·空寨",
+        "backgroundAssetId": "background.cold-stove-cabin-dawn",
+        "characters": [
+          {"instanceId": "azhuo", "assetId": "character.azhuo", "position": "left"},
+          {"instanceId": "laogeng", "assetId": "character.laogeng", "position": "right"}
+        ],
+        "texts": [
+          {"id": "act-01-text-01", "content": "大旱过后的第二年，我们寨子的人，走了一半。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-01-text-02", "content": "我守着爷爷留下的老屋。屋里最值钱的，是他咽气前塞给我的那袋荞种。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-01-text-03", "content": "灶冷了一个冬天。不是没米，是我觉得——人活着到底图什么，我还没想明白，饭吃下去也是白吃。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-01-text-04", "content": "（背上褡裢，站在门口）卓娃，跟我下山吧。山下有活路，人多了热闹。", "speakerId": "laogeng", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "老庚叔"}},
+          {"id": "act-01-text-05", "content": "叔，我想留在这儿，把一件事想明白。", "speakerId": "azhuo", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-01-text-06", "content": "（叹气）想不明白的事，换个地方，兴许就想明白了。", "speakerId": "laogeng", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "老庚叔"}},
+          {"id": "act-01-text-07", "content": "（摇头）就是因为换了地方还想过，我才要留在这儿想。", "speakerId": "azhuo", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-01-text-08", "content": "老庚叔走了。我把那个问题又翻出来磨——它像推不动的磨盘，磨了一冬，磨不出一粒面。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-01-text-09", "content": "天亮了，灶还是冷的。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}}
+        ],
+        "choices": [],
+        "notes": "场景：屋内｜晨｜阴。冷灶、种袋。\n原始在场：我（阿卓，灾后留守的彝家小伙） · 老庚叔（收拾行李准备搬走的邻居猎户）\n迁移备注：无。"
+      },
+      {
+        "id": "act-02",
+        "title": "老林来客·一碗粥",
+        "backgroundAssetId": "background.courtyard-residual-snow",
+        "characters": [
+          {"instanceId": "azhuo", "assetId": "character.azhuo", "position": "left"},
+          {"instanceId": "mystic", "assetId": "character.mystic-abumo", "position": "right"}
+        ],
+        "texts": [
+          {"id": "act-02-text-01", "content": "晌午，我蹲在门槛上发呆。院门口不知什么时候立着个老人：黑巾在头上缠成尖尖的一锥，白胡子垂到胸口，半张脸是一块旧木面，面上有几道横着的白纹。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-02-text-02", "content": "（拱拱手）借你家灶，讨个火。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘人", "mystic": true}},
+          {"id": "act-02-text-03", "content": "他不问灾，不问荒，进屋蹲到火塘边就生火、淘米、架上陶罐。火苗舔上来，屋里头一回有了点动静。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-02-text-04", "content": "粥开了，他盛出头一碗，推到我面前。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-02-text-05", "content": "先吃饭。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘人", "mystic": true}},
+          {"id": "act-02-text-06", "content": "（没接碗）老人家，我想问个事。人活着，到底图什么？我想不通，这饭咽不下去。", "speakerId": "azhuo", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-02-text-07", "content": "（把碗又往前推了推）想不通的时候，饭更要吃。胃会替你想。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘人", "mystic": true}},
+          {"id": "act-02-text-08", "content": "他自己吃得很认真，一口一口，不说话，吃完把碗底刮得干干净净。那晚他睡在火塘边，鼾声又沉又稳。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-02-text-09", "content": "我捧着自己的碗，坐了半夜。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-02-text-10", "content": "（天亮时，忽然觉得饿）……先吃吧。吃了再想。", "speakerId": "azhuo", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-02-text-11", "content": "粥见了底。我说不清图什么，就是饿了——原来肚子比脑子诚实。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}}
+        ],
+        "choices": [],
+        "notes": "场景：院坝—屋内｜晌午—入夜｜残雪。火塘、陶罐。\n原始在场：我 · 神秘人（第一次现身）\n迁移备注：无。"
+      },
+      {
+        "id": "act-03",
+        "title": "借牛·开袋下种",
+        "backgroundAssetId": "background.sloping-field-plowing",
+        "characters": [
+          {"instanceId": "azhuo", "assetId": "character.azhuo", "position": "left"},
+          {"instanceId": "mystic", "assetId": "character.mystic-abumo", "position": "center"},
+          {"instanceId": "laogeng", "assetId": "character.laogeng", "position": "right"}
+        ],
+        "texts": [
+          {"id": "act-03-text-01", "content": "老人要开地。犁是断的，牛是没有的。他拍拍膝盖上的灰，径直往阿达婶家去，步子不快，腰板挺直。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-03-text-02", "content": "（站在人家门口，不闪不避）求你家牛，借三天。荒年借出去的人情，开春我都记着。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘人", "mystic": true}},
+          {"id": "act-03-text-03", "content": "他求人求得大大方方，一点不脸红。回来的路上跟我说：求人不丢人。种子落进土里，还得先求一场雨呢。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-03-text-04", "content": "轮到我去借修犁的木料，我站在老庚叔家门口，手心全是汗，话在喉咙里滚了三滚。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-03-text-05", "content": "叔……我想开地。求你，搭把手。", "speakerId": "azhuo", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-03-text-06", "content": "（愣了半天，把行李放下了）……等我想明白再走。走个啥。", "speakerId": "laogeng", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "老庚叔"}},
+          {"id": "act-03-text-07", "content": "断犁接好了榫。地开到第三垄，老人忽然停手，指了指我怀里那袋种。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-03-text-08", "content": "它在袋子里睡了一个冬天。等的不是你想明白，是地化冻。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘人", "mystic": true}},
+          {"id": "act-03-text-09", "content": "我解开麻绳。爷爷的手温早就没了，种子的气味还在。我一把一把往土里撒——心里那个问题还在，可我的手没停。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-03-text-10", "content": "（撒完最后一把，拍拍手上的土）爷爷，我先不想了。先种。", "speakerId": "azhuo", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}}
+        ],
+        "choices": [],
+        "notes": "场景：坡地｜日｜晴。断犁、种袋。\n原始在场：我 · 神秘人 · 阿达婶（寨里唯一留了牛的邻妇） · 老庚叔（没走成，留下来搭手）\n迁移备注：阿达婶无台词，按每幕3个前景人物上限作画外处理，借牛情节保留在文本中。"
+      },
+      {
+        "id": "act-04",
+        "title": "新火·两个人吃饭",
+        "backgroundAssetId": "background.cabin-newfire-night",
+        "characters": [
+          {"instanceId": "azhuo", "assetId": "character.azhuo", "position": "left"},
+          {"instanceId": "aan", "assetId": "character.aan", "position": "center"},
+          {"instanceId": "mystic", "assetId": "character.mystic-abumo", "position": "right"}
+        ],
+        "texts": [
+          {"id": "act-04-text-01", "content": "老人身后跟着个瘦得只剩一双大眼睛的娃——寨口的阿安，爹娘都没熬过那个旱年。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-04-text-02", "content": "你屋里有火。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘人", "mystic": true}},
+          {"id": "act-04-text-03", "content": "我张口想推辞，娃已经贴着墙根，一步一步往灶边挪。我把他拎到火塘边，添了一把柴。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-04-text-04", "content": "这回是我煮粥，学着老人的样子，米多放了一把。两个人吃饭，阿安吃得头都不抬。我头一回觉得，饭是香的。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-04-text-05", "content": "（抱着碗，小声）哥，明天还有吗？", "speakerId": "aan", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "阿安"}},
+          {"id": "act-04-text-06", "content": "（给他又添半勺）有。天天有。", "speakerId": "azhuo", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-04-text-07", "content": "夜里娃睡熟了，我坐在火边补衣裳。补着补着，忽然愣住——我有两天，没去磨那个问题了。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-04-text-08", "content": "心口那块推不动的磨盘，好像松了一颗扣。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-04-text-09", "content": "（不知什么时候立在门口，只说一句）灶上有火，屋里有活人，日子就算立住了。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘人", "mystic": true}},
+          {"id": "act-04-text-10", "content": "我回头，门口只有风。火塘里，新火正旺。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}}
+        ],
+        "choices": [],
+        "notes": "场景：屋内｜夜｜风。新火、粥罐。\n原始在场：我 · 阿安（逃荒没走脱的孤儿，呼应撮泰吉角色“阿安”） · 神秘人（第二次现身，门口）\n迁移备注：无。"
+      },
+      {
+        "id": "act-05",
+        "title": "倒春寒·满坡火",
+        "backgroundAssetId": "background.frost-field-bonfires",
+        "characters": [
+          {"instanceId": "azhuo", "assetId": "character.azhuo", "position": "left"},
+          {"instanceId": "laogeng", "assetId": "character.laogeng", "position": "center"},
+          {"instanceId": "mystic", "assetId": "character.mystic-abumo", "position": "right"}
+        ],
+        "texts": [
+          {"id": "act-05-text-01", "content": "倒春寒来得又急又狠。半寨的苗都出了头，一夜霜就要把它们全放倒。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-05-text-02", "content": "留守的人全上了坡。老庚叔带人堆烟堆，阿达婶抱来一捆捆干草，满坡的火把连成一条歪歪扭扭的龙。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-05-text-03", "content": "（把阿安裹进怀里，一遍遍往烟堆上添柴）熏！烟越浓越好！", "speakerId": "azhuo", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-05-text-04", "content": "烟熏得人睁不开眼，露水冻成了珠子。后半夜，坡那边还是传来一声喊——东头一片苗，蔫了。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-05-text-05", "content": "我跑过去扒开覆草。苗软软地贴在土上，一碰就断。那是我亲手撒下去的头一把种。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-05-text-06", "content": "（蹲在地上，嗓子发哑）想明白有什么用……人到底图什么，我到现在都没弄懂，连一垄苗都保不住……", "speakerId": "azhuo", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-05-text-07", "content": "火光里，那个老人不知什么时候蹲在了我旁边，伸手拨了拨快熄的烟堆。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-05-text-08", "content": "荒年的秋，补不回旱年的夏。可今晚这坡火，明年还会点。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘人", "mystic": true}},
+          {"id": "act-05-text-09", "content": "（把火把塞回我手里）苗蔫了看苗，烟堆矮了添柴。手里的事做完，再哭不迟。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘人", "mystic": true}},
+          {"id": "act-05-text-10", "content": "我抹了把脸，把没冻死的苗一株株扒开覆土，冻死的拔了补种。那一晚我没再问值不值，只管把手里的事做完。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-05-text-11", "content": "天亮的时候，苗蔫了一小半，活了一大半。霜，在火线以外停住了。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-05-text-12", "content": "（瘫坐在地埂上，忽然笑了）地都开出来了，我搬个啥。", "speakerId": "laogeng", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "老庚叔"}}
+        ],
+        "choices": [],
+        "notes": "场景：坡地｜深夜｜霜。烟堆、火把。\n原始在场：我 · 神秘人（第三次现身，动摇时开口） · 老庚叔 · 阿达婶 · 阿安 · 留守的寨人（环境人物）\n迁移备注：阿达婶与阿安按每幕3个前景人物上限作画外／环境人物处理，保留在文本与备注中。"
+      },
+      {
+        "id": "act-06",
+        "title": "新粮·梦醒",
+        "backgroundAssetId": "background.cabin-newgrain-morning",
+        "characters": [
+          {"instanceId": "azhuo", "assetId": "character.azhuo", "position": "left"},
+          {"instanceId": "mystic", "assetId": "character.mystic-abumo", "position": "right"}
+        ],
+        "texts": [
+          {"id": "act-06-text-01", "content": "入秋，头一锅新荞饭出锅，满屋都是甜香。我盛出头一碗，端到爷爷牌位前。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-06-text-02", "content": "爷爷，没想明白，饭先吃上了。你尝尝，今年的。", "speakerId": "azhuo", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-06-text-03", "content": "那袋种吃剩的最后一把，我照原样收进袋里，扎紧了口——明年的。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-06-text-04", "content": "老人明天就要走了。我给他装干粮，忍不住问：您到底是谁？", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-06-text-05", "content": "（敲了敲半张木面）人们叫我阿布摩——老爷爷。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘人", "mystic": true}},
+          {"id": "act-06-text-06", "content": "（想了很久）阿布摩，那个问题……我到底还是没想明白。", "speakerId": "azhuo", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-06-text-07", "content": "（笑了，白胡子抖了抖）可你吃了一年的饭，做了一年的活，还多了一个喊你哥的人。答案不在想里——它在饭里、地里、人里，自己长着呢。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘人", "mystic": true}},
+          {"id": "act-06-text-08", "content": "他背起种袋走到门口，忽然转过身来。木面上那几道横白纹，在晨光里像一圈一圈的年轮。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-06-text-09", "content": "求愿的人，梦到这儿，该醒了。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘人", "mystic": true}},
+          {"id": "act-06-text-10", "content": "你进来的时候，求的是什么，我都听见了。可我知道，真正拦住你的，是那个念头——要先把人生彻底想明白，才有资格接着往下活。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘人", "mystic": true}},
+          {"id": "act-06-text-11", "content": "不必。饭一口一口吃，活一天一天做，人一个一个帮。答案不是想出来的，是长出来的。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘人", "mystic": true}},
+          {"id": "act-06-text-12", "content": "种子入了土，秋天自己会来。去吧——荒年之后，把种带进土里的人，就是留种的人。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘人", "mystic": true}},
+          {"id": "act-06-text-13", "content": "他推门走进晨光里。粥香、火光、坡上的风，都退了。我摊开手心，好像还留着一粒荞种的凉。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}}
+        ],
+        "choices": [],
+        "notes": "场景：屋内｜晨｜晴。新荞饭、牌位、种袋。\n原始在场：我 · 神秘人（第四次现身，向求愿者直接开口） · 阿安（在灶边添柴，环境人物）\n迁移备注：原剧本神秘人第二句中的动态占位符（所求何事／深层情绪）已按交付决定改写为固定句。阿安作环境人物不作摆位。"
+      }
+    ]
+  }
+}

@@ -1,0 +1,219 @@
+{
+  "$schema": "../../docs/dream-card/dream-card.schema.json",
+  "schemaVersion": "0.1.0",
+  "meta": {
+    "id": "dream.tangshi-taipo.gui-zheng-ji",
+    "version": "0.1.0",
+    "title": "归正记",
+    "synopsis": "江南青溪镇外的小窑上，学徒阿泥手稳肯下苦，可镇上人人都能对她的坯说上两句——这位说口收太紧，那位说釉色该学镇东窑。她句句听进心里，手上就偏一下，坯歪一截，修了做、做了修，架上摆满歪坯，直到某夜忽然想不起自己原本想做啥样。一个春夜，戴布面的神秘老妇上门讨水，不评坯的好坏，只问她：“轮盘转起来的时候，这泥为啥立得住？”——“得先定中。”老妇让她转起轮盘，把镇上的话一句一句说给她听：话音一落，手就自己往旁边偏。阿泥这才看清，不是泥不听话，是手被话牵走了。她学着分辨拣选——“底足没修平”是实话，收下来；“学镇东窑才有出路”是闲话，放它走。放走一句，手上松一分。她重新捧泥定中，把实话落进坯里，其余全按自己的心思来，做出别人没做过、也学不像的样子。晨光院中，老妇摘下面——她是职司守界的唐氏太婆：把被话掰偏的手，从别人的话里领回来，安回自己的“中”上，这就是守界。如今，轮到你了。",
+    "match": {
+      "tags": ["唐氏太婆", "制陶", "学徒", "外界评价", "守界", "守中", "专注自身"],
+      "situations": ["意见太多不知听谁的", "随他人评价摇摆", "把心思花在迎合别人上", "无法专注自身成长", "需要守住心的边界"],
+      "emotions": ["慌乱", "自我怀疑", "醒悟", "松弛", "笃定"],
+      "dilemmas": ["别人的说法是否是量自己的尺子", "句句回应还是分辨拣选", "迎合众人还是按自己的心思做"],
+      "relationships": ["自己与自己", "邻里", "个人与评价", "点拨者与学徒"],
+      "excludeTags": []
+    },
+    "officeCandidates": [
+      {
+        "officeId": "office.shou-jie",
+        "fit": 1,
+        "reason": "故事核心是把被外界声音牵走的心领回自己的“中”上——有选择地接纳、守住心的边界，结尾由唐氏太婆职司守界揭晓交棒。"
+      }
+    ],
+    "tone": ["江南", "窑火", "钝痛", "定心", "晨光"],
+    "estimatedDurationSeconds": 480,
+    "culturalSources": [
+      {
+        "id": "source.dejiang-nuotangxi-tangshi-taipo",
+        "title": "贵州傩堂戏唐氏太婆（傩坛二十四戏女性傩神）",
+        "region": "贵州德江",
+        "reference": "reference-materials/dream-card-source/唐氏太婆.md",
+        "note": "借用唐氏太婆（唐氏仙娘／太婆神）职司“守界”——守门户之界，亦守人心之界——的职能意象；青溪镇、阿泥、制陶与摘面故事均为本篇虚构。"
+      }
+    ],
+    "status": "draft"
+  },
+  "data": {
+    "acts": [
+      {
+        "id": "act-01",
+        "title": "众口如风",
+        "backgroundAssetId": "background.pottery-workshop-morning",
+        "characters": [
+          {"instanceId": "ani", "assetId": "character.ani", "position": "left"},
+          {"instanceId": "neighbor", "assetId": "character.neighbor-woman", "position": "center"},
+          {"instanceId": "jiefang", "assetId": "character.jiefang", "position": "right"}
+        ],
+        "texts": [
+          {"id": "act-01-text-01", "content": "千年前，有一座镇子，叫作青溪镇。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-01-text-02", "content": "镇外有座小窑，窑上有位学徒，名叫阿泥。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-01-text-03", "content": "她手稳，肯下苦，天不亮就坐在轮盘前。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-01-text-04", "content": "坯是好坯。可镇上人人都能对它说上两句。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-01-text-05", "content": "（探头）阿泥，做的啥呢？", "speakerId": "neighbor", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "邻居妇人"}},
+          {"id": "act-01-text-06", "content": "新试的碗，您给看看？", "speakerId": "ani", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-01-text-07", "content": "（端详两眼）碗是好碗，就是口收得太紧了。要我说，敞着口才大气。", "speakerId": "neighbor", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "邻居妇人"}},
+          {"id": "act-01-text-08", "content": "……也是。（低头看了看坯）", "speakerId": "ani", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-01-text-09", "content": "（凑过来）我看挺好，收着口握着有味道。就是镇东窑那釉色卖得好，你要不要也学学？", "speakerId": "jiefang", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "街坊"}},
+          {"id": "act-01-text-10", "content": "（手里的篾片慢了下来）……我再想想吧。", "speakerId": "ani", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-01-text-11", "content": "两人说笑着走远。阿泥捏着篾片，看看坯，又看看棚门口。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}}
+        ],
+        "choices": [],
+        "notes": "场景：青溪镇外小窑作坊棚｜晨｜晴。晨光入棚、棚门敞开、轮盘上是一只新试的碗坯。\n原始在场：我（学徒阿泥，十六七岁） · 邻居妇人 · 街坊\n迁移备注：无。"
+      },
+      {
+        "id": "act-02",
+        "title": "泥失其正",
+        "backgroundAssetId": "background.pottery-workshop-night-lamp",
+        "characters": [
+          {"instanceId": "ani", "assetId": "character.ani", "position": "center"}
+        ],
+        "texts": [
+          {"id": "act-02-text-01", "content": "从那天起，阿泥开始改。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-02-text-02", "content": "今天听这位的，敞口。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-02-text-03", "content": "明天听那位学镇东窑。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-02-text-04", "content": "修了做，做了修。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-02-text-05", "content": "架上什么样子都有，就是越看，越不像她的坯。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-02-text-06", "content": "（把一只坯从架上拿下来）这个口，还是不对。", "speakerId": "ani", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-02-text-07", "content": "（蘸了水，又停手）不对，昨天那位说的是……唉，到底听谁的？", "speakerId": "ani", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-02-text-08", "content": "（拿起一只坯，翻过来看底，往桌上放了放，果然晃了晃）……那位老师傅说的，倒也不假。", "speakerId": "ani", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-02-text-09", "content": "（又看向满架子的坯，愣住）……我原本，是想做个啥样来着？", "speakerId": "ani", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-02-text-10", "content": "（想了半天，答不上来）算了。明天再说吧。", "speakerId": "ani", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-02-text-11", "content": "油灯的火苗晃了晃。阿泥吹灯，摸黑坐在轮盘边，没走。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}}
+        ],
+        "choices": [],
+        "notes": "场景：作坊棚内｜晚｜油灯。坯架上修了又改的歪坯、棚脚揉过的泥团、油灯。\n原始在场：我\n迁移备注：无。"
+      },
+      {
+        "id": "act-03",
+        "title": "月下叩门人",
+        "backgroundAssetId": "background.pottery-workshop-deep-night",
+        "characters": [
+          {"instanceId": "ani", "assetId": "character.ani", "position": "left"},
+          {"instanceId": "mystic", "assetId": "character.mystic-old-woman", "position": "right"}
+        ],
+        "texts": [
+          {"id": "act-03-text-01", "content": "那一夜，阿泥又对着轮盘坐到深夜。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-03-text-02", "content": "然后，她听见了叩门声。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-03-text-03", "content": "一个她从没听过的声音，说想讨口水喝。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-03-text-04", "content": "谁啊？", "speakerId": "ani", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-03-text-05", "content": "路过讨水的，叨扰了。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘老妇", "mystic": true}},
+          {"id": "act-03-text-06", "content": "（开门递水）您慢用。", "speakerId": "ani", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-03-text-07", "content": "（没喝，看着轮盘）姑娘手真稳。这坯，做给谁的？", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘老妇", "mystic": true}},
+          {"id": "act-03-text-08", "content": "……说不上来。人人都提了意见，我都在改。", "speakerId": "ani", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-03-text-09", "content": "那你自己的主意呢？", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘老妇", "mystic": true}},
+          {"id": "act-03-text-10", "content": "……改着改着，就没了。", "speakerId": "ani", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-03-text-11", "content": "我问你个事儿。轮盘转起来的时候，这泥为啥立得住？", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘老妇", "mystic": true}},
+          {"id": "act-03-text-12", "content": "得先定中。泥要在盘心正正当当的，才立得住。", "speakerId": "ani", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-03-text-13", "content": "那你这个人的“中”呢？我瞧谁说一句话，你的手就跟着偏一下。话还没落地，泥先替你歪了。你不嫌乱吗？", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘老妇", "mystic": true}},
+          {"id": "act-03-text-14", "content": "（愣住，半天没说出话）", "speakerId": "ani", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "action", "speakerName": "我", "self": true}}
+        ],
+        "choices": [],
+        "notes": "场景：作坊棚｜深夜｜月光。油灯微光、蒙坯布一角被风吹开、门槛月色。\n原始在场：我 · 戴面神秘老妇（首次现身，夜访讨水）\n迁移备注：无。"
+      },
+      {
+        "id": "act-04",
+        "title": "话有千手",
+        "backgroundAssetId": "background.pottery-workshop-deep-night",
+        "characters": [
+          {"instanceId": "ani", "assetId": "character.ani", "position": "left"},
+          {"instanceId": "mystic", "assetId": "character.mystic-old-woman", "position": "right"}
+        ],
+        "texts": [
+          {"id": "act-04-text-01", "content": "老妇没带她出棚。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-04-text-02", "content": "她只让阿泥转起轮盘，然后，把镇上的话，一句一句说给她听。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-04-text-03", "content": "阿泥这才看见，自己的手是怎么被话牵走的。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-04-text-04", "content": "（学着那妇人的腔调）“口收太紧喽——”", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘老妇", "mystic": true}},
+          {"id": "act-04-text-05", "content": "阿泥的手自己往口沿收了一下，坯歪了半分。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-04-text-06", "content": "（又学那街坊）“学学镇东窑嘛——”", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘老妇", "mystic": true}},
+          {"id": "act-04-text-07", "content": "阿泥的手又往一边带，泥跟着歪了一截。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-04-text-08", "content": "（盯着自己的手）这……这不是我想动的。", "speakerId": "ani", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-04-text-09", "content": "你数数，才这么几句，这泥歪成啥样了？", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘老妇", "mystic": true}},
+          {"id": "act-04-text-10", "content": "（看着那盘歪泥，半天）要是全镇的话都来一遍……", "speakerId": "ani", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-04-text-11", "content": "你一句一句去还嘴，一辈子也还不完，这泥也早塌了。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘老妇", "mystic": true}},
+          {"id": "act-04-text-12", "content": "那我咋办？", "speakerId": "ani", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-04-text-13", "content": "也不用都听。有的话是真在帮你——比如那句“底足没修平，放桌上会晃”。这种，收下来，能把手艺提上去。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘老妇", "mystic": true}},
+          {"id": "act-04-text-14", "content": "有的就是看个热闹，风一吹就散。这种，你攥在手里做啥？", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘老妇", "mystic": true}}
+        ],
+        "choices": [],
+        "notes": "场景：作坊棚｜深夜｜灯影。轮盘转起、盘心新泥（随话越转越歪）。\n原始在场：我 · 戴面神秘老妇\n迁移备注：无。"
+      },
+      {
+        "id": "act-05",
+        "title": "千言过手",
+        "backgroundAssetId": "background.pottery-workshop-deep-night",
+        "characters": [
+          {"instanceId": "ani", "assetId": "character.ani", "position": "left"},
+          {"instanceId": "mystic", "assetId": "character.mystic-old-woman", "position": "right"}
+        ],
+        "texts": [
+          {"id": "act-05-text-01", "content": "阿泥开始一句一句地掂。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-05-text-02", "content": "（蘸水，扶正泥团）“底足没修平”是句实话，我收下。这回把底足修得平平的。", "speakerId": "ani", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-05-text-03", "content": "（手上走了一道）那句“釉水匀”……不是我哄我，是真有的能耐，记下了。", "speakerId": "ani", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-05-text-04", "content": "（手上顿了顿，又松开）“学镇东窑才有出路”——这是句闲话。放它走。", "speakerId": "ani", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-05-text-05", "content": "（放走又一句，长出一口气）……手上真轻了。", "speakerId": "ani", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-05-text-06", "content": "记住这个劲儿。往后话进了耳朵，先掂一掂：有用的收下，没用的放行，手别跟着偏。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘老妇", "mystic": true}},
+          {"id": "act-05-text-07", "content": "那要是分不清呢？", "speakerId": "ani", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-05-text-08", "content": "那就先放一放，接着定你的泥。定着定着，自然就分清了。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘老妇", "mystic": true}},
+          {"id": "act-05-text-09", "content": "天边透出一点微光。阿泥低头看自己的手——茧还在，稳稳的。轮盘上那团泥，正正当当，立住了。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}}
+        ],
+        "choices": [],
+        "notes": "场景：作坊棚｜最深夜转破晓微光。掂话定中、由紧到松的身体感。\n原始在场：我 · 戴面神秘老妇\n迁移备注：无。"
+      },
+      {
+        "id": "act-06",
+        "title": "泥随心动",
+        "backgroundAssetId": "background.pottery-workshop-dawn",
+        "characters": [
+          {"instanceId": "ani", "assetId": "character.ani", "position": "center"}
+        ],
+        "texts": [
+          {"id": "act-06-text-01", "content": "阿泥回到轮盘前。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-06-text-02", "content": "这回，她没再去想镇上谁说了什么。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-06-text-03", "content": "她只想着一件事：青溪的水，是怎么从指缝里绕过去的。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-06-text-04", "content": "（定中）那句“底足没修平”，我记下了，这回修平实。", "speakerId": "ani", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-06-text-05", "content": "（手上起来）剩下的，就按我自己的心思来。", "speakerId": "ani", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-06-text-06", "content": "（拉坯，嘴角带笑）口是收得紧了点，可握着顺我的手……对，就是这个走法。", "speakerId": "ani", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-06-text-07", "content": "（声音稳了）碗是做给我自己的。谁的“要是我就”，都先放棚子外头。", "speakerId": "ani", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-06-text-08", "content": "晨光从棚口照进来。轮盘上是一只新坯：口沿微收，底足平正，她趁湿在坯身上留了一道水痕，是别人没做过、也学不像的样子。她把坯小心送进窑里——这一炉，正好赶上清晨开窑。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}}
+        ],
+        "choices": [],
+        "notes": "场景：作坊棚｜破晓｜晨光。干净轮盘、摔泥定中、新坯入窑。\n原始在场：我\n迁移备注：神秘老妇本幕留白不在场。"
+      },
+      {
+        "id": "act-07",
+        "title": "晨光摘面",
+        "backgroundAssetId": "background.kiln-courtyard-morning",
+        "characters": [
+          {"instanceId": "ani", "assetId": "character.ani", "position": "left"},
+          {"instanceId": "mystic", "assetId": "character.mystic-old-woman", "position": "right"}
+        ],
+        "texts": [
+          {"id": "act-07-text-01", "content": "天亮了。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-07-text-02", "content": "阿泥捧着碗走出来。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-07-text-03", "content": "这回，她走得稳稳的，没回头张望有没有人看。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-07-text-04", "content": "（把碗捧起）您看，出窑了。", "speakerId": "ani", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-07-text-05", "content": "镇上人还没看过呢。不等等他们夸？", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘老妇", "mystic": true}},
+          {"id": "act-07-text-06", "content": "不等了。我自己看着好，就够。他们往后要真提了有用的，我下回再改呗。", "speakerId": "ani", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-07-text-07", "content": "（笑，缓缓摘下布面）好。这话，是这窑的主人说得的了。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘老妇", "mystic": true}},
+          {"id": "act-07-text-08", "content": "布面落下来。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-07-text-09", "content": "老妇的眉眼露出来——温和，眼角有很深的纹路，像见过很多被话掰偏、又把心定回去的人。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-07-text-10", "content": "我并非路过。千年前，我见得多了——被各种话牵着走，把自个儿弄丢的人。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "唐氏太婆", "mystic": true}},
+          {"id": "act-07-text-11", "content": "他们唤我——唐氏太婆，职司守界。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "唐氏太婆", "mystic": true}},
+          {"id": "act-07-text-12", "content": "把被话掰偏的手，从别人的话里领回来，安回自己的“中”上，这就是守界。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "唐氏太婆", "mystic": true}},
+          {"id": "act-07-text-13", "content": "我今日来，不是替你评谁的理，是要让你知道：在我之前，也有人这样把心定了回来，把手艺提上去。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "唐氏太婆", "mystic": true}},
+          {"id": "act-07-text-14", "content": "如今，轮到你了。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "唐氏太婆", "mystic": true}},
+          {"id": "act-07-text-15", "content": "唐氏太婆转身走入晨光，身影渐淡，不复再见。阿泥站在院中，捧着那只碗，晨光落在釉面上，轻轻晃。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-07-text-16", "content": "你求的，不是让所有人闭嘴。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "final-narration"}},
+          {"id": "act-07-text-17", "content": "你求的是——话那么多，还能不能守住自己这个“中”：有用的收下，没用的放行，然后安安稳稳，做自己的活。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "final-narration"}},
+          {"id": "act-07-text-18", "content": "千年前，有位太婆，守过无数颗被牵走的心。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "final-narration"}},
+          {"id": "act-07-text-19", "content": "千年前那个清晨，她看着一个学徒把心定了回来。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "final-narration"}},
+          {"id": "act-07-text-20", "content": "如今，那个学徒是你。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "final-narration"}},
+          {"id": "act-07-text-21", "content": "你愿意，把被话掰偏的手领回来，安回自己的“中”上，一门心思，走自己的路吗？", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "final-narration"}}
+        ],
+        "choices": [],
+        "notes": "场景：窑前院落｜清晨｜晨光。出窑的青釉碗、白布面傩面。\n原始在场：我 · 戴面神秘老妇（摘面揭晓为唐氏太婆）\n迁移备注：末段傩旁白向求愿者直接开口，均为固定句。"
+      }
+    ]
+  }
+}
