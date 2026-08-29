@@ -249,362 +249,382 @@
     {
       "assetId": "background.pottery-workshop-morning",
       "type": "background",
-      "file": "backgrounds/placeholder.webp",
+      "file": "backgrounds/pottery-workshop-morning.webp",
       "mimeType": "image/webp",
       "width": 1920,
       "height": 1080,
-      "bytes": 3780,
+      "bytes": 12554,
       "colorSpace": "sRGB",
       "hasAlpha": false,
       "mirrorAllowed": false,
-      "status": "placeholder",
+      "status": "draft",
       "source": {
-        "type": "project",
+        "type": "generated",
+        "reference": "Programmatic draft generated from asset description: 镇外小窑作坊棚晨（唐氏太婆·归正记幕一）。",
         "license": "project-owned"
       },
-      "description": "镇外小窑作坊棚晨（唐氏太婆·归正记幕一）。暂用共享占位图。"
+      "description": "镇外小窑作坊棚晨（唐氏太婆·归正记幕一）。"
     },
     {
       "assetId": "background.pottery-workshop-night-lamp",
       "type": "background",
-      "file": "backgrounds/placeholder.webp",
+      "file": "backgrounds/pottery-workshop-night-lamp.webp",
       "mimeType": "image/webp",
       "width": 1920,
       "height": 1080,
-      "bytes": 3780,
+      "bytes": 10126,
       "colorSpace": "sRGB",
       "hasAlpha": false,
       "mirrorAllowed": false,
-      "status": "placeholder",
+      "status": "draft",
       "source": {
-        "type": "project",
+        "type": "generated",
+        "reference": "Programmatic draft generated from asset description: 作坊棚油灯夜（唐氏太婆·归正记幕二）。",
         "license": "project-owned"
       },
-      "description": "作坊棚油灯夜（唐氏太婆·归正记幕二）。暂用共享占位图。"
+      "description": "作坊棚油灯夜（唐氏太婆·归正记幕二）。"
     },
     {
       "assetId": "background.pottery-workshop-deep-night",
       "type": "background",
-      "file": "backgrounds/placeholder.webp",
+      "file": "backgrounds/pottery-workshop-deep-night.webp",
       "mimeType": "image/webp",
       "width": 1920,
       "height": 1080,
-      "bytes": 3780,
+      "bytes": 9372,
       "colorSpace": "sRGB",
       "hasAlpha": false,
       "mirrorAllowed": false,
-      "status": "placeholder",
+      "status": "draft",
       "source": {
-        "type": "project",
+        "type": "generated",
+        "reference": "Programmatic draft generated from asset description: 作坊棚深夜月光（唐氏太婆·归正记幕三至五）。",
         "license": "project-owned"
       },
-      "description": "作坊棚深夜月光（唐氏太婆·归正记幕三至五）。暂用共享占位图。"
+      "description": "作坊棚深夜月光（唐氏太婆·归正记幕三至五）。"
     },
     {
       "assetId": "background.pottery-workshop-dawn",
       "type": "background",
-      "file": "backgrounds/placeholder.webp",
+      "file": "backgrounds/pottery-workshop-dawn.webp",
       "mimeType": "image/webp",
       "width": 1920,
       "height": 1080,
-      "bytes": 3780,
+      "bytes": 12554,
       "colorSpace": "sRGB",
       "hasAlpha": false,
       "mirrorAllowed": false,
-      "status": "placeholder",
+      "status": "draft",
       "source": {
-        "type": "project",
+        "type": "generated",
+        "reference": "Programmatic draft generated from asset description: 作坊棚破晓（唐氏太婆·归正记幕六）。",
         "license": "project-owned"
       },
-      "description": "作坊棚破晓（唐氏太婆·归正记幕六）。暂用共享占位图。"
+      "description": "作坊棚破晓（唐氏太婆·归正记幕六）。"
     },
     {
       "assetId": "background.kiln-courtyard-morning",
       "type": "background",
-      "file": "backgrounds/placeholder.webp",
+      "file": "backgrounds/kiln-courtyard-morning.webp",
       "mimeType": "image/webp",
       "width": 1920,
       "height": 1080,
-      "bytes": 3780,
+      "bytes": 12554,
       "colorSpace": "sRGB",
       "hasAlpha": false,
       "mirrorAllowed": false,
-      "status": "placeholder",
+      "status": "draft",
       "source": {
-        "type": "project",
+        "type": "generated",
+        "reference": "Programmatic draft generated from asset description: 窑前院落清晨（唐氏太婆·归正记幕七）。",
         "license": "project-owned"
       },
-      "description": "窑前院落清晨（唐氏太婆·归正记幕七）。暂用共享占位图。"
+      "description": "窑前院落清晨（唐氏太婆·归正记幕七）。"
     },
     {
       "assetId": "character.ani",
       "type": "character",
-      "file": "characters/placeholder.png",
+      "file": "characters/ani.png",
       "mimeType": "image/png",
       "width": 1024,
       "height": 1536,
-      "bytes": 6212,
+      "bytes": 21744,
       "colorSpace": "sRGB",
       "hasAlpha": true,
       "mirrorAllowed": false,
-      "status": "placeholder",
+      "status": "draft",
       "source": {
-        "type": "project",
+        "type": "generated",
+        "reference": "Programmatic draft generated from asset description: 学徒阿泥，十六七岁，虎口有揉泥厚茧（唐氏太婆·归正记主角）。",
         "license": "project-owned"
       },
-      "description": "学徒阿泥，十六七岁，虎口有揉泥厚茧（唐氏太婆·归正记主角）。暂用共享占位图。"
+      "description": "学徒阿泥，十六七岁，虎口有揉泥厚茧（唐氏太婆·归正记主角）。"
     },
     {
       "assetId": "character.neighbor-woman",
       "type": "character",
-      "file": "characters/placeholder.png",
+      "file": "characters/neighbor-woman.png",
       "mimeType": "image/png",
       "width": 1024,
       "height": 1536,
-      "bytes": 6212,
+      "bytes": 21820,
       "colorSpace": "sRGB",
       "hasAlpha": true,
       "mirrorAllowed": false,
-      "status": "placeholder",
+      "status": "draft",
       "source": {
-        "type": "project",
+        "type": "generated",
+        "reference": "Programmatic draft generated from asset description: 邻居妇人，挎篮路过棚口（唐氏太婆·归正记幕一）。",
         "license": "project-owned"
       },
-      "description": "邻居妇人，挎篮路过棚口（唐氏太婆·归正记幕一）。暂用共享占位图。"
+      "description": "邻居妇人，挎篮路过棚口（唐氏太婆·归正记幕一）。"
     },
     {
       "assetId": "character.jiefang",
       "type": "character",
-      "file": "characters/placeholder.png",
+      "file": "characters/jiefang.png",
       "mimeType": "image/png",
       "width": 1024,
       "height": 1536,
-      "bytes": 6212,
+      "bytes": 21815,
       "colorSpace": "sRGB",
       "hasAlpha": true,
       "mirrorAllowed": false,
-      "status": "placeholder",
+      "status": "draft",
       "source": {
-        "type": "project",
+        "type": "generated",
+        "reference": "Programmatic draft generated from asset description: 街坊，凑热闹提建议的镇上人（唐氏太婆·归正记幕一）。",
         "license": "project-owned"
       },
-      "description": "街坊，凑热闹提建议的镇上人（唐氏太婆·归正记幕一）。暂用共享占位图。"
+      "description": "街坊，凑热闹提建议的镇上人（唐氏太婆·归正记幕一）。"
     },
     {
       "assetId": "character.mystic-old-woman",
       "type": "character",
-      "file": "characters/placeholder.png",
+      "file": "characters/mystic-old-woman.png",
       "mimeType": "image/png",
       "width": 1024,
       "height": 1536,
-      "bytes": 6212,
+      "bytes": 21863,
       "colorSpace": "sRGB",
       "hasAlpha": true,
       "mirrorAllowed": false,
-      "status": "placeholder",
+      "status": "draft",
       "source": {
-        "type": "project",
+        "type": "generated",
+        "reference": "Programmatic draft generated from asset description: 戴白布面的神秘老妇，后揭示为唐氏太婆（归正记）。",
         "license": "project-owned"
       },
-      "description": "戴白布面的神秘老妇，后揭示为唐氏太婆（归正记）。暂用共享占位图。"
+      "description": "戴白布面的神秘老妇，后揭示为唐氏太婆（归正记）。"
     },
     {
       "assetId": "background.weaving-house-day",
       "type": "background",
-      "file": "backgrounds/placeholder.webp",
+      "file": "backgrounds/weaving-house-day.webp",
       "mimeType": "image/webp",
       "width": 1920,
       "height": 1080,
-      "bytes": 3780,
+      "bytes": 13548,
       "colorSpace": "sRGB",
       "hasAlpha": false,
       "mirrorAllowed": false,
-      "status": "placeholder",
+      "status": "draft",
       "source": {
-        "type": "project",
+        "type": "generated",
+        "reference": "Programmatic draft generated from asset description: 山寨屋内织机日（先锋小姐·一梭花幕一）。",
         "license": "project-owned"
       },
-      "description": "山寨屋内织机日（先锋小姐·一梭花幕一）。暂用共享占位图。"
+      "description": "山寨屋内织机日（先锋小姐·一梭花幕一）。"
     },
     {
       "assetId": "background.village-gate-noon",
       "type": "background",
-      "file": "backgrounds/placeholder.webp",
+      "file": "backgrounds/village-gate-noon.webp",
       "mimeType": "image/webp",
       "width": 1920,
       "height": 1080,
-      "bytes": 3780,
+      "bytes": 11292,
       "colorSpace": "sRGB",
       "hasAlpha": false,
       "mirrorAllowed": false,
-      "status": "placeholder",
+      "status": "draft",
       "source": {
-        "type": "project",
+        "type": "generated",
+        "reference": "Programmatic draft generated from asset description: 寨口老槐树货郎担晌午（先锋小姐·一梭花幕二）。",
         "license": "project-owned"
       },
-      "description": "寨口老槐树货郎担晌午（先锋小姐·一梭花幕二）。暂用共享占位图。"
+      "description": "寨口老槐树货郎担晌午（先锋小姐·一梭花幕二）。"
     },
     {
       "assetId": "background.weaving-house-night",
       "type": "background",
-      "file": "backgrounds/placeholder.webp",
+      "file": "backgrounds/weaving-house-night.webp",
       "mimeType": "image/webp",
       "width": 1920,
       "height": 1080,
-      "bytes": 3780,
+      "bytes": 10600,
       "colorSpace": "sRGB",
       "hasAlpha": false,
       "mirrorAllowed": false,
-      "status": "placeholder",
+      "status": "draft",
       "source": {
-        "type": "project",
+        "type": "generated",
+        "reference": "Programmatic draft generated from asset description: 屋内油灯攒线夜（先锋小姐·一梭花幕三）。",
         "license": "project-owned"
       },
-      "description": "屋内油灯攒线夜（先锋小姐·一梭花幕三）。暂用共享占位图。"
+      "description": "屋内油灯攒线夜（先锋小姐·一梭花幕三）。"
     },
     {
       "assetId": "background.weaving-house-deep-night",
       "type": "background",
-      "file": "backgrounds/placeholder.webp",
+      "file": "backgrounds/weaving-house-deep-night.webp",
       "mimeType": "image/webp",
       "width": 1920,
       "height": 1080,
-      "bytes": 3780,
+      "bytes": 10600,
       "colorSpace": "sRGB",
       "hasAlpha": false,
       "mirrorAllowed": false,
-      "status": "placeholder",
+      "status": "draft",
       "source": {
-        "type": "project",
+        "type": "generated",
+        "reference": "Programmatic draft generated from asset description: 屋内深夜试花（先锋小姐·一梭花幕四）。",
         "license": "project-owned"
       },
-      "description": "屋内深夜试花（先锋小姐·一梭花幕四）。暂用共享占位图。"
+      "description": "屋内深夜试花（先锋小姐·一梭花幕四）。"
     },
     {
       "assetId": "background.weaving-house-storm-night",
       "type": "background",
-      "file": "backgrounds/placeholder.webp",
+      "file": "backgrounds/weaving-house-storm-night.webp",
       "mimeType": "image/webp",
       "width": 1920,
       "height": 1080,
-      "bytes": 3780,
+      "bytes": 15314,
       "colorSpace": "sRGB",
       "hasAlpha": false,
       "mirrorAllowed": false,
-      "status": "placeholder",
+      "status": "draft",
       "source": {
-        "type": "project",
+        "type": "generated",
+        "reference": "Programmatic draft generated from asset description: 屋内暴雨夜断轴（先锋小姐·一梭花幕五）。",
         "license": "project-owned"
       },
-      "description": "屋内暴雨夜断轴（先锋小姐·一梭花幕五）。暂用共享占位图。"
+      "description": "屋内暴雨夜断轴（先锋小姐·一梭花幕五）。"
     },
     {
       "assetId": "background.courtyard-noon",
       "type": "background",
-      "file": "backgrounds/placeholder.webp",
+      "file": "backgrounds/courtyard-noon.webp",
       "mimeType": "image/webp",
       "width": 1920,
       "height": 1080,
-      "bytes": 3780,
+      "bytes": 12096,
       "colorSpace": "sRGB",
       "hasAlpha": false,
       "mirrorAllowed": false,
-      "status": "placeholder",
+      "status": "draft",
       "source": {
-        "type": "project",
+        "type": "generated",
+        "reference": "Programmatic draft generated from asset description: 院坝晌午晒花布（先锋小姐·一梭花幕六）。",
         "license": "project-owned"
       },
-      "description": "院坝晌午晒花布（先锋小姐·一梭花幕六）。暂用共享占位图。"
+      "description": "院坝晌午晒花布（先锋小姐·一梭花幕六）。"
     },
     {
       "assetId": "background.village-morning-fog",
       "type": "background",
-      "file": "backgrounds/placeholder.webp",
+      "file": "backgrounds/village-morning-fog.webp",
       "mimeType": "image/webp",
       "width": 1920,
       "height": 1080,
-      "bytes": 3780,
+      "bytes": 12224,
       "colorSpace": "sRGB",
       "hasAlpha": false,
       "mirrorAllowed": false,
-      "status": "placeholder",
+      "status": "draft",
       "source": {
-        "type": "project",
+        "type": "generated",
+        "reference": "Programmatic draft generated from asset description: 寨中晨雾机声（先锋小姐·一梭花幕七）。",
         "license": "project-owned"
       },
-      "description": "寨中晨雾机声（先锋小姐·一梭花幕七）。暂用共享占位图。"
+      "description": "寨中晨雾机声（先锋小姐·一梭花幕七）。"
     },
     {
       "assetId": "character.asu",
       "type": "character",
-      "file": "characters/placeholder.png",
+      "file": "characters/asu.png",
       "mimeType": "image/png",
       "width": 1024,
       "height": 1536,
-      "bytes": 6212,
+      "bytes": 21189,
       "colorSpace": "sRGB",
       "hasAlpha": true,
       "mirrorAllowed": false,
-      "status": "placeholder",
+      "status": "draft",
       "source": {
-        "type": "project",
+        "type": "generated",
+        "reference": "Programmatic draft generated from asset description: 阿素，十七岁，山寨织布的姑娘（先锋小姐·一梭花主角）。",
         "license": "project-owned"
       },
-      "description": "阿素，十七岁，山寨织布的姑娘（先锋小姐·一梭花主角）。暂用共享占位图。"
+      "description": "阿素，十七岁，山寨织布的姑娘（先锋小姐·一梭花主角）。"
     },
     {
       "assetId": "character.niang",
       "type": "character",
-      "file": "characters/placeholder.png",
+      "file": "characters/niang.png",
       "mimeType": "image/png",
       "width": 1024,
       "height": 1536,
-      "bytes": 6212,
+      "bytes": 20961,
       "colorSpace": "sRGB",
       "hasAlpha": true,
       "mirrorAllowed": false,
-      "status": "placeholder",
+      "status": "draft",
       "source": {
-        "type": "project",
+        "type": "generated",
+        "reference": "Programmatic draft generated from asset description: 娘，浆洗织补操持家用（先锋小姐·一梭花）。",
         "license": "project-owned"
       },
-      "description": "娘，浆洗织补操持家用（先锋小姐·一梭花）。暂用共享占位图。"
+      "description": "娘，浆洗织补操持家用（先锋小姐·一梭花）。"
     },
     {
       "assetId": "character.huolang",
       "type": "character",
-      "file": "characters/placeholder.png",
+      "file": "characters/huolang.png",
       "mimeType": "image/png",
       "width": 1024,
       "height": 1536,
-      "bytes": 6212,
+      "bytes": 19193,
       "colorSpace": "sRGB",
       "hasAlpha": true,
       "mirrorAllowed": false,
-      "status": "placeholder",
+      "status": "draft",
       "source": {
-        "type": "project",
+        "type": "generated",
+        "reference": "Programmatic draft generated from asset description: 货郎，走山串寨的行商（先锋小姐·一梭花）。",
         "license": "project-owned"
       },
-      "description": "货郎，走山串寨的行商（先锋小姐·一梭花）。暂用共享占位图。"
+      "description": "货郎，走山串寨的行商（先锋小姐·一梭花）。"
     },
     {
       "assetId": "character.ximei",
       "type": "character",
-      "file": "characters/placeholder.png",
+      "file": "characters/ximei.png",
       "mimeType": "image/png",
       "width": 1024,
       "height": 1536,
-      "bytes": 6212,
+      "bytes": 21328,
       "colorSpace": "sRGB",
       "hasAlpha": true,
       "mirrorAllowed": false,
-      "status": "placeholder",
+      "status": "draft",
       "source": {
-        "type": "project",
+        "type": "generated",
+        "reference": "Programmatic draft generated from asset description: 细妹，邻家姐妹，也爱织布（先锋小姐·一梭花）。",
         "license": "project-owned"
       },
-      "description": "细妹，邻家姐妹，也爱织布（先锋小姐·一梭花）。暂用共享占位图。"
+      "description": "细妹，邻家姐妹，也爱织布（先锋小姐·一梭花）。"
     },
     {
       "assetId": "character.carpenter-shu",
@@ -627,614 +647,648 @@
     {
       "assetId": "character.mystic-gray",
       "type": "character",
-      "file": "characters/placeholder.png",
+      "file": "characters/mystic-gray.png",
       "mimeType": "image/png",
       "width": 1024,
       "height": 1536,
-      "bytes": 6212,
+      "bytes": 21459,
       "colorSpace": "sRGB",
       "hasAlpha": true,
       "mirrorAllowed": false,
-      "status": "placeholder",
+      "status": "draft",
       "source": {
-        "type": "project",
+        "type": "generated",
+        "reference": "Programmatic draft generated from asset description: 灰袍半面木面的神秘人（先锋小姐／九位土地神共用傩神现身形象）。",
         "license": "project-owned"
       },
-      "description": "灰袍半面木面的神秘人（先锋小姐／九位土地神共用傩神现身形象）。暂用共享占位图。"
+      "description": "灰袍半面木面的神秘人（先锋小姐／九位土地神共用傩神现身形象）。"
     },
     {
       "assetId": "background.nine-altars-day",
       "type": "background",
-      "file": "backgrounds/placeholder.webp",
+      "file": "backgrounds/nine-altars-day.webp",
       "mimeType": "image/webp",
       "width": 1920,
       "height": 1080,
-      "bytes": 3780,
+      "bytes": 11040,
       "colorSpace": "sRGB",
       "hasAlpha": false,
       "mirrorAllowed": false,
-      "status": "placeholder",
+      "status": "draft",
       "source": {
-        "type": "project",
+        "type": "generated",
+        "reference": "Programmatic draft generated from asset description: 坛坪白日（九位土地神·第九坛幕一）。",
         "license": "project-owned"
       },
-      "description": "坛坪白日（九位土地神·第九坛幕一）。暂用共享占位图。"
+      "description": "坛坪白日（九位土地神·第九坛幕一）。"
     },
     {
       "assetId": "background.market-town-entrance-noon",
       "type": "background",
-      "file": "backgrounds/placeholder.webp",
+      "file": "backgrounds/market-town-entrance-noon.webp",
       "mimeType": "image/webp",
       "width": 1920,
       "height": 1080,
-      "bytes": 3780,
+      "bytes": 12034,
       "colorSpace": "sRGB",
       "hasAlpha": false,
       "mirrorAllowed": false,
-      "status": "placeholder",
+      "status": "draft",
       "source": {
-        "type": "project",
+        "type": "generated",
+        "reference": "Programmatic draft generated from asset description: 县城街市晌午（九位土地神·第九坛幕二）。",
         "license": "project-owned"
       },
-      "description": "县城街市晌午（九位土地神·第九坛幕二）。暂用共享占位图。"
+      "description": "县城街市晌午（九位土地神·第九坛幕二）。"
     },
     {
       "assetId": "background.shrine-temple-night",
       "type": "background",
-      "file": "backgrounds/placeholder.webp",
+      "file": "backgrounds/shrine-temple-night.webp",
       "mimeType": "image/webp",
       "width": 1920,
       "height": 1080,
-      "bytes": 3780,
+      "bytes": 8520,
       "colorSpace": "sRGB",
       "hasAlpha": false,
       "mirrorAllowed": false,
-      "status": "placeholder",
+      "status": "draft",
       "source": {
-        "type": "project",
+        "type": "generated",
+        "reference": "Programmatic draft generated from asset description: 社庙夜（九位土地神·第九坛幕三）。",
         "license": "project-owned"
       },
-      "description": "社庙夜（九位土地神·第九坛幕三）。暂用共享占位图。"
+      "description": "社庙夜（九位土地神·第九坛幕三）。"
     },
     {
       "assetId": "background.rocky-slope-dry-night",
       "type": "background",
-      "file": "backgrounds/placeholder.webp",
+      "file": "backgrounds/rocky-slope-dry-night.webp",
       "mimeType": "image/webp",
       "width": 1920,
       "height": 1080,
-      "bytes": 3780,
+      "bytes": 18614,
       "colorSpace": "sRGB",
       "hasAlpha": false,
       "mirrorAllowed": false,
-      "status": "placeholder",
+      "status": "draft",
       "source": {
-        "type": "project",
+        "type": "generated",
+        "reference": "Programmatic draft generated from asset description: 乱石坡旱夜连日（九位土地神·第九坛幕四）。",
         "license": "project-owned"
       },
-      "description": "乱石坡旱夜连日（九位土地神·第九坛幕四）。暂用共享占位图。"
+      "description": "乱石坡旱夜连日（九位土地神·第九坛幕四）。"
     },
     {
       "assetId": "background.ninth-altar-morning-fog",
       "type": "background",
-      "file": "backgrounds/placeholder.webp",
+      "file": "backgrounds/ninth-altar-morning-fog.webp",
       "mimeType": "image/webp",
       "width": 1920,
       "height": 1080,
-      "bytes": 3780,
+      "bytes": 11372,
       "colorSpace": "sRGB",
       "hasAlpha": false,
       "mirrorAllowed": false,
-      "status": "placeholder",
+      "status": "draft",
       "source": {
-        "type": "project",
+        "type": "generated",
+        "reference": "Programmatic draft generated from asset description: 晨雾第九坛（九位土地神·第九坛幕五）。",
         "license": "project-owned"
       },
-      "description": "晨雾第九坛（九位土地神·第九坛幕五）。暂用共享占位图。"
+      "description": "晨雾第九坛（九位土地神·第九坛幕五）。"
     },
     {
       "assetId": "character.shi-sheng",
       "type": "character",
-      "file": "characters/placeholder.png",
+      "file": "characters/shi-sheng.png",
       "mimeType": "image/png",
       "width": 1024,
       "height": 1536,
-      "bytes": 6212,
+      "bytes": 18195,
       "colorSpace": "sRGB",
       "hasAlpha": true,
       "mirrorAllowed": false,
-      "status": "placeholder",
+      "status": "draft",
       "source": {
-        "type": "project",
+        "type": "generated",
+        "reference": "Programmatic draft generated from asset description: 石生，二十出头，第九坛坛户之子（九位土地神·第九坛主角）。",
         "license": "project-owned"
       },
-      "description": "石生，二十出头，第九坛坛户之子（九位土地神·第九坛主角）。暂用共享占位图。"
+      "description": "石生，二十出头，第九坛坛户之子（九位土地神·第九坛主角）。"
     },
     {
       "assetId": "character.fuqin",
       "type": "character",
-      "file": "characters/placeholder.png",
+      "file": "characters/fuqin.png",
       "mimeType": "image/png",
       "width": 1024,
       "height": 1536,
-      "bytes": 6212,
+      "bytes": 19557,
       "colorSpace": "sRGB",
       "hasAlpha": true,
       "mirrorAllowed": false,
-      "status": "placeholder",
+      "status": "draft",
       "source": {
-        "type": "project",
+        "type": "generated",
+        "reference": "Programmatic draft generated from asset description: 爹，老坛户，一辈子守第九坛（九位土地神·第九坛）。",
         "license": "project-owned"
       },
-      "description": "爹，老坛户，一辈子守第九坛（九位土地神·第九坛）。暂用共享占位图。"
+      "description": "爹，老坛户，一辈子守第九坛（九位土地神·第九坛）。"
     },
     {
       "assetId": "character.wen-sheng",
       "type": "character",
-      "file": "characters/placeholder.png",
+      "file": "characters/wen-sheng.png",
       "mimeType": "image/png",
       "width": 1024,
       "height": 1536,
-      "bytes": 6212,
+      "bytes": 20212,
       "colorSpace": "sRGB",
       "hasAlpha": true,
       "mirrorAllowed": false,
-      "status": "placeholder",
+      "status": "draft",
       "source": {
-        "type": "project",
+        "type": "generated",
+        "reference": "Programmatic draft generated from asset description: 文生，堂哥，中秀才在县衙当书办（九位土地神·第九坛）。",
         "license": "project-owned"
       },
-      "description": "文生，堂哥，中秀才在县衙当书办（九位土地神·第九坛）。暂用共享占位图。"
+      "description": "文生，堂哥，中秀才在县衙当书办（九位土地神·第九坛）。"
     },
     {
       "assetId": "character.san-shugong",
       "type": "character",
-      "file": "characters/placeholder.png",
+      "file": "characters/san-shugong.png",
       "mimeType": "image/png",
       "width": 1024,
       "height": 1536,
-      "bytes": 6212,
+      "bytes": 22099,
       "colorSpace": "sRGB",
       "hasAlpha": true,
       "mirrorAllowed": false,
-      "status": "placeholder",
+      "status": "draft",
       "source": {
-        "type": "project",
+        "type": "generated",
+        "reference": "Programmatic draft generated from asset description: 三叔公，族中尊长（九位土地神·第九坛／柳毅·一信渡水共用）。",
         "license": "project-owned"
       },
-      "description": "三叔公，族中尊长（九位土地神·第九坛／柳毅·一信渡水共用）。暂用共享占位图。"
+      "description": "三叔公，族中尊长（九位土地神·第九坛／柳毅·一信渡水共用）。"
     },
     {
       "assetId": "character.old-temple-keeper",
       "type": "character",
-      "file": "characters/placeholder.png",
+      "file": "characters/old-temple-keeper.png",
       "mimeType": "image/png",
       "width": 1024,
       "height": 1536,
-      "bytes": 6212,
+      "bytes": 20130,
       "colorSpace": "sRGB",
       "hasAlpha": true,
       "mirrorAllowed": false,
-      "status": "placeholder",
+      "status": "draft",
       "source": {
-        "type": "project",
+        "type": "generated",
+        "reference": "Programmatic draft generated from asset description: 老庙祝，守庙五十年的社庙看守（九位土地神·第九坛幕三）。",
         "license": "project-owned"
       },
-      "description": "老庙祝，守庙五十年的社庙看守（九位土地神·第九坛幕三）。暂用共享占位图。"
+      "description": "老庙祝，守庙五十年的社庙看守（九位土地神·第九坛幕三）。"
     },
     {
       "assetId": "background.cold-stove-cabin-dawn",
       "type": "background",
-      "file": "backgrounds/placeholder.webp",
+      "file": "backgrounds/cold-stove-cabin-dawn.webp",
       "mimeType": "image/webp",
       "width": 1920,
       "height": 1080,
-      "bytes": 3780,
+      "bytes": 12946,
       "colorSpace": "sRGB",
       "hasAlpha": false,
       "mirrorAllowed": false,
-      "status": "placeholder",
+      "status": "draft",
       "source": {
-        "type": "project",
+        "type": "generated",
+        "reference": "Programmatic draft generated from asset description: 彝寨老屋冷灶晨阴（阿布摩·荒年开火幕一）。",
         "license": "project-owned"
       },
-      "description": "彝寨老屋冷灶晨阴（阿布摩·荒年开火幕一）。暂用共享占位图。"
+      "description": "彝寨老屋冷灶晨阴（阿布摩·荒年开火幕一）。"
     },
     {
       "assetId": "background.courtyard-residual-snow",
       "type": "background",
-      "file": "backgrounds/placeholder.webp",
+      "file": "backgrounds/courtyard-residual-snow.webp",
       "mimeType": "image/webp",
       "width": 1920,
       "height": 1080,
-      "bytes": 3780,
+      "bytes": 12444,
       "colorSpace": "sRGB",
       "hasAlpha": false,
       "mirrorAllowed": false,
-      "status": "placeholder",
+      "status": "draft",
       "source": {
-        "type": "project",
+        "type": "generated",
+        "reference": "Programmatic draft generated from asset description: 屋院残雪晌午（阿布摩·荒年开火幕二）。",
         "license": "project-owned"
       },
-      "description": "屋院残雪晌午（阿布摩·荒年开火幕二）。暂用共享占位图。"
+      "description": "屋院残雪晌午（阿布摩·荒年开火幕二）。"
     },
     {
       "assetId": "background.sloping-field-plowing",
       "type": "background",
-      "file": "backgrounds/placeholder.webp",
+      "file": "backgrounds/sloping-field-plowing.webp",
       "mimeType": "image/webp",
       "width": 1920,
       "height": 1080,
-      "bytes": 3780,
+      "bytes": 16994,
       "colorSpace": "sRGB",
       "hasAlpha": false,
       "mirrorAllowed": false,
-      "status": "placeholder",
+      "status": "draft",
       "source": {
-        "type": "project",
+        "type": "generated",
+        "reference": "Programmatic draft generated from asset description: 坡地开犁下种（阿布摩·荒年开火幕三）。",
         "license": "project-owned"
       },
-      "description": "坡地开犁下种（阿布摩·荒年开火幕三）。暂用共享占位图。"
+      "description": "坡地开犁下种（阿布摩·荒年开火幕三）。"
     },
     {
       "assetId": "background.cabin-newfire-night",
       "type": "background",
-      "file": "backgrounds/placeholder.webp",
+      "file": "backgrounds/cabin-newfire-night.webp",
       "mimeType": "image/webp",
       "width": 1920,
       "height": 1080,
-      "bytes": 3780,
+      "bytes": 9098,
       "colorSpace": "sRGB",
       "hasAlpha": false,
       "mirrorAllowed": false,
-      "status": "placeholder",
+      "status": "draft",
       "source": {
-        "type": "project",
+        "type": "generated",
+        "reference": "Programmatic draft generated from asset description: 屋内新火油灯夜（阿布摩·荒年开火幕四）。",
         "license": "project-owned"
       },
-      "description": "屋内新火油灯夜（阿布摩·荒年开火幕四）。暂用共享占位图。"
+      "description": "屋内新火油灯夜（阿布摩·荒年开火幕四）。"
     },
     {
       "assetId": "background.frost-field-bonfires",
       "type": "background",
-      "file": "backgrounds/placeholder.webp",
+      "file": "backgrounds/frost-field-bonfires.webp",
       "mimeType": "image/webp",
       "width": 1920,
       "height": 1080,
-      "bytes": 3780,
+      "bytes": 16994,
       "colorSpace": "sRGB",
       "hasAlpha": false,
       "mirrorAllowed": false,
-      "status": "placeholder",
+      "status": "draft",
       "source": {
-        "type": "project",
+        "type": "generated",
+        "reference": "Programmatic draft generated from asset description: 倒春寒满坡烟堆火把（阿布摩·荒年开火幕五）。",
         "license": "project-owned"
       },
-      "description": "倒春寒满坡烟堆火把（阿布摩·荒年开火幕五）。暂用共享占位图。"
+      "description": "倒春寒满坡烟堆火把（阿布摩·荒年开火幕五）。"
     },
     {
       "assetId": "background.cabin-newgrain-morning",
       "type": "background",
-      "file": "backgrounds/placeholder.webp",
+      "file": "backgrounds/cabin-newgrain-morning.webp",
       "mimeType": "image/webp",
       "width": 1920,
       "height": 1080,
-      "bytes": 3780,
+      "bytes": 16044,
       "colorSpace": "sRGB",
       "hasAlpha": false,
       "mirrorAllowed": false,
-      "status": "placeholder",
+      "status": "draft",
       "source": {
-        "type": "project",
+        "type": "generated",
+        "reference": "Programmatic draft generated from asset description: 屋内新粮牌位晨（阿布摩·荒年开火幕六）。",
         "license": "project-owned"
       },
-      "description": "屋内新粮牌位晨（阿布摩·荒年开火幕六）。暂用共享占位图。"
+      "description": "屋内新粮牌位晨（阿布摩·荒年开火幕六）。"
     },
     {
       "assetId": "character.azhuo",
       "type": "character",
-      "file": "characters/placeholder.png",
+      "file": "characters/azhuo.png",
       "mimeType": "image/png",
       "width": 1024,
       "height": 1536,
-      "bytes": 6212,
+      "bytes": 21558,
       "colorSpace": "sRGB",
       "hasAlpha": true,
       "mirrorAllowed": false,
-      "status": "placeholder",
+      "status": "draft",
       "source": {
-        "type": "project",
+        "type": "generated",
+        "reference": "Programmatic draft generated from asset description: 阿卓，灾后留守的彝家小伙（阿布摩·荒年开火主角）。",
         "license": "project-owned"
       },
-      "description": "阿卓，灾后留守的彝家小伙（阿布摩·荒年开火主角）。暂用共享占位图。"
+      "description": "阿卓，灾后留守的彝家小伙（阿布摩·荒年开火主角）。"
     },
     {
       "assetId": "character.laogeng",
       "type": "character",
-      "file": "characters/placeholder.png",
+      "file": "characters/laogeng.png",
       "mimeType": "image/png",
       "width": 1024,
       "height": 1536,
-      "bytes": 6212,
+      "bytes": 22170,
       "colorSpace": "sRGB",
       "hasAlpha": true,
       "mirrorAllowed": false,
-      "status": "placeholder",
+      "status": "draft",
       "source": {
-        "type": "project",
+        "type": "generated",
+        "reference": "Programmatic draft generated from asset description: 老庚叔，准备搬走的邻居猎户（阿布摩·荒年开火）。",
         "license": "project-owned"
       },
-      "description": "老庚叔，准备搬走的邻居猎户（阿布摩·荒年开火）。暂用共享占位图。"
+      "description": "老庚叔，准备搬走的邻居猎户（阿布摩·荒年开火）。"
     },
     {
       "assetId": "character.aan",
       "type": "character",
-      "file": "characters/placeholder.png",
+      "file": "characters/aan.png",
       "mimeType": "image/png",
       "width": 1024,
       "height": 1536,
-      "bytes": 6212,
+      "bytes": 21725,
       "colorSpace": "sRGB",
       "hasAlpha": true,
       "mirrorAllowed": false,
-      "status": "placeholder",
+      "status": "draft",
       "source": {
-        "type": "project",
+        "type": "generated",
+        "reference": "Programmatic draft generated from asset description: 阿安，逃荒没走脱的孤儿，借撮泰吉同名角色（阿布摩·荒年开火）。",
         "license": "project-owned"
       },
-      "description": "阿安，逃荒没走脱的孤儿，借撮泰吉同名角色（阿布摩·荒年开火）。暂用共享占位图。"
+      "description": "阿安，逃荒没走脱的孤儿，借撮泰吉同名角色（阿布摩·荒年开火）。"
     },
     {
       "assetId": "character.mystic-abumo",
       "type": "character",
-      "file": "characters/placeholder.png",
+      "file": "characters/mystic-abumo.png",
       "mimeType": "image/png",
       "width": 1024,
       "height": 1536,
-      "bytes": 6212,
+      "bytes": 21291,
       "colorSpace": "sRGB",
       "hasAlpha": true,
       "mirrorAllowed": false,
-      "status": "placeholder",
+      "status": "draft",
       "source": {
-        "type": "project",
+        "type": "generated",
+        "reference": "Programmatic draft generated from asset description: 阿布摩模样的神秘人：黑巾锥头、垂白须、半张横白纹黑木旧面（阿布摩·荒年开火）。",
         "license": "project-owned"
       },
-      "description": "阿布摩模样的神秘人：黑巾锥头、垂白须、半张横白纹黑木旧面（阿布摩·荒年开火）。暂用共享占位图。"
+      "description": "阿布摩模样的神秘人：黑巾锥头、垂白须、半张横白纹黑木旧面（阿布摩·荒年开火）。"
     },
     {
       "assetId": "background.riverside-autumn-flood",
       "type": "background",
-      "file": "backgrounds/placeholder.webp",
+      "file": "backgrounds/riverside-autumn-flood.webp",
       "mimeType": "image/webp",
       "width": 1920,
       "height": 1080,
-      "bytes": 3780,
+      "bytes": 15528,
       "colorSpace": "sRGB",
       "hasAlpha": false,
       "mirrorAllowed": false,
-      "status": "placeholder",
+      "status": "draft",
       "source": {
-        "type": "project",
+        "type": "generated",
+        "reference": "Programmatic draft generated from asset description: 水乡河边秋汛晨（柳毅·一信渡水幕一）。",
         "license": "project-owned"
       },
-      "description": "水乡河边秋汛晨（柳毅·一信渡水幕一）。暂用共享占位图。"
+      "description": "水乡河边秋汛晨（柳毅·一信渡水幕一）。"
     },
     {
       "assetId": "background.cottage-lamp-night",
       "type": "background",
-      "file": "backgrounds/placeholder.webp",
+      "file": "backgrounds/cottage-lamp-night.webp",
       "mimeType": "image/webp",
       "width": 1920,
       "height": 1080,
-      "bytes": 3780,
+      "bytes": 10480,
       "colorSpace": "sRGB",
       "hasAlpha": false,
       "mirrorAllowed": false,
-      "status": "placeholder",
+      "status": "draft",
       "source": {
-        "type": "project",
+        "type": "generated",
+        "reference": "Programmatic draft generated from asset description: 屋内油灯土灶夜（柳毅·一信渡水幕二）。",
         "license": "project-owned"
       },
-      "description": "屋内油灯土灶夜（柳毅·一信渡水幕二）。暂用共享占位图。"
+      "description": "屋内油灯土灶夜（柳毅·一信渡水幕二）。"
     },
     {
       "assetId": "background.market-rain-mud",
       "type": "background",
-      "file": "backgrounds/placeholder.webp",
+      "file": "backgrounds/market-rain-mud.webp",
       "mimeType": "image/webp",
       "width": 1920,
       "height": 1080,
-      "bytes": 3780,
+      "bytes": 14600,
       "colorSpace": "sRGB",
       "hasAlpha": false,
       "mirrorAllowed": false,
-      "status": "placeholder",
+      "status": "draft",
       "source": {
-        "type": "project",
+        "type": "generated",
+        "reference": "Programmatic draft generated from asset description: 集市泥路落雨（柳毅·一信渡水幕三）。",
         "license": "project-owned"
       },
-      "description": "集市泥路落雨（柳毅·一信渡水幕三）。暂用共享占位图。"
+      "description": "集市泥路落雨（柳毅·一信渡水幕三）。"
     },
     {
       "assetId": "background.ferry-mist-dusk",
       "type": "background",
-      "file": "backgrounds/placeholder.webp",
+      "file": "backgrounds/ferry-mist-dusk.webp",
       "mimeType": "image/webp",
       "width": 1920,
       "height": 1080,
-      "bytes": 3780,
+      "bytes": 9654,
       "colorSpace": "sRGB",
       "hasAlpha": false,
       "mirrorAllowed": false,
-      "status": "placeholder",
+      "status": "draft",
       "source": {
-        "type": "project",
+        "type": "generated",
+        "reference": "Programmatic draft generated from asset description: 渡口老树暮雾（柳毅·一信渡水幕四）。",
         "license": "project-owned"
       },
-      "description": "渡口老树暮雾（柳毅·一信渡水幕四）。暂用共享占位图。"
+      "description": "渡口老树暮雾（柳毅·一信渡水幕四）。"
     },
     {
       "assetId": "background.clan-gate-night",
       "type": "background",
-      "file": "backgrounds/placeholder.webp",
+      "file": "backgrounds/clan-gate-night.webp",
       "mimeType": "image/webp",
       "width": 1920,
       "height": 1080,
-      "bytes": 3780,
+      "bytes": 9890,
       "colorSpace": "sRGB",
       "hasAlpha": false,
       "mirrorAllowed": false,
-      "status": "placeholder",
+      "status": "draft",
       "source": {
-        "type": "project",
+        "type": "generated",
+        "reference": "Programmatic draft generated from asset description: 青砖门楼宅门夜（柳毅·一信渡水幕五）。",
         "license": "project-owned"
       },
-      "description": "青砖门楼宅门夜（柳毅·一信渡水幕五）。暂用共享占位图。"
+      "description": "青砖门楼宅门夜（柳毅·一信渡水幕五）。"
     },
     {
       "assetId": "background.riverside-release-morning",
       "type": "background",
-      "file": "backgrounds/placeholder.webp",
+      "file": "backgrounds/riverside-release-morning.webp",
       "mimeType": "image/webp",
       "width": 1920,
       "height": 1080,
-      "bytes": 3780,
+      "bytes": 15400,
       "colorSpace": "sRGB",
       "hasAlpha": false,
       "mirrorAllowed": false,
-      "status": "placeholder",
+      "status": "draft",
       "source": {
-        "type": "project",
+        "type": "generated",
+        "reference": "Programmatic draft generated from asset description: 河边晨光水汽（柳毅·一信渡水幕六）。",
         "license": "project-owned"
       },
-      "description": "河边晨光水汽（柳毅·一信渡水幕六）。暂用共享占位图。"
+      "description": "河边晨光水汽（柳毅·一信渡水幕六）。"
     },
     {
       "assetId": "background.ferry-autumn-clear",
       "type": "background",
-      "file": "backgrounds/placeholder.webp",
+      "file": "backgrounds/ferry-autumn-clear.webp",
       "mimeType": "image/webp",
       "width": 1920,
       "height": 1080,
-      "bytes": 3780,
+      "bytes": 12074,
       "colorSpace": "sRGB",
       "hasAlpha": false,
       "mirrorAllowed": false,
-      "status": "placeholder",
+      "status": "draft",
       "source": {
-        "type": "project",
+        "type": "generated",
+        "reference": "Programmatic draft generated from asset description: 渡口秋阳澄水（柳毅·一信渡水幕七）。",
         "license": "project-owned"
       },
-      "description": "渡口秋阳澄水（柳毅·一信渡水幕七）。暂用共享占位图。"
+      "description": "渡口秋阳澄水（柳毅·一信渡水幕七）。"
     },
     {
       "assetId": "character.ayuan",
       "type": "character",
-      "file": "characters/placeholder.png",
+      "file": "characters/ayuan.png",
       "mimeType": "image/png",
       "width": 1024,
       "height": 1536,
-      "bytes": 6212,
+      "bytes": 21790,
       "colorSpace": "sRGB",
       "hasAlpha": true,
       "mirrorAllowed": false,
-      "status": "placeholder",
+      "status": "draft",
       "source": {
-        "type": "project",
+        "type": "generated",
+        "reference": "Programmatic draft generated from asset description: 阿沅，十五六岁，泽口村少女（柳毅·一信渡水主角）。",
         "license": "project-owned"
       },
-      "description": "阿沅，十五六岁，泽口村少女（柳毅·一信渡水主角）。暂用共享占位图。"
+      "description": "阿沅，十五六岁，泽口村少女（柳毅·一信渡水主角）。"
     },
     {
       "assetId": "character.xiyi-laofu",
       "type": "character",
-      "file": "characters/placeholder.png",
+      "file": "characters/xiyi-laofu.png",
       "mimeType": "image/png",
       "width": 1024,
       "height": 1536,
-      "bytes": 6212,
+      "bytes": 22023,
       "colorSpace": "sRGB",
       "hasAlpha": true,
       "mirrorAllowed": false,
-      "status": "placeholder",
+      "status": "draft",
       "source": {
-        "type": "project",
+        "type": "generated",
+        "reference": "Programmatic draft generated from asset description: 洗衣老妇，村中邻居（柳毅·一信渡水）。",
         "license": "project-owned"
       },
-      "description": "洗衣老妇，村中邻居（柳毅·一信渡水）。暂用共享占位图。"
+      "description": "洗衣老妇，村中邻居（柳毅·一信渡水）。"
     },
     {
       "assetId": "character.fuqin-ayuan",
       "type": "character",
-      "file": "characters/placeholder.png",
+      "file": "characters/fuqin-ayuan.png",
       "mimeType": "image/png",
       "width": 1024,
       "height": 1536,
-      "bytes": 6212,
+      "bytes": 22079,
       "colorSpace": "sRGB",
       "hasAlpha": true,
       "mirrorAllowed": false,
-      "status": "placeholder",
+      "status": "draft",
       "source": {
-        "type": "project",
+        "type": "generated",
+        "reference": "Programmatic draft generated from asset description: 父亲，病中的私塾先生（柳毅·一信渡水）。",
         "license": "project-owned"
       },
-      "description": "父亲，病中的私塾先生（柳毅·一信渡水）。暂用共享占位图。"
+      "description": "父亲，病中的私塾先生（柳毅·一信渡水）。"
     },
     {
       "assetId": "character.bufan",
       "type": "character",
-      "file": "characters/placeholder.png",
+      "file": "characters/bufan.png",
       "mimeType": "image/png",
       "width": 1024,
       "height": 1536,
-      "bytes": 6212,
+      "bytes": 21774,
       "colorSpace": "sRGB",
       "hasAlpha": true,
       "mirrorAllowed": false,
-      "status": "placeholder",
+      "status": "draft",
       "source": {
-        "type": "project",
+        "type": "generated",
+        "reference": "Programmatic draft generated from asset description: 布贩，集市收布的行商（柳毅·一信渡水）。",
         "license": "project-owned"
       },
-      "description": "布贩，集市收布的行商（柳毅·一信渡水）。暂用共享占位图。"
+      "description": "布贩，集市收布的行商（柳毅·一信渡水）。"
     },
     {
       "assetId": "character.shenzi",
       "type": "character",
-      "file": "characters/placeholder.png",
+      "file": "characters/shenzi.png",
       "mimeType": "image/png",
       "width": 1024,
       "height": 1536,
-      "bytes": 6212,
+      "bytes": 21877,
       "colorSpace": "sRGB",
       "hasAlpha": true,
       "mirrorAllowed": false,
-      "status": "placeholder",
+      "status": "draft",
       "source": {
-        "type": "project",
+        "type": "generated",
+        "reference": "Programmatic draft generated from asset description: 村中婶子，撑伞路过的邻居（柳毅·一信渡水）。",
         "license": "project-owned"
       },
-      "description": "村中婶子，撑伞路过的邻居（柳毅·一信渡水）。暂用共享占位图。"
+      "description": "村中婶子，撑伞路过的邻居（柳毅·一信渡水）。"
     },
     {
       "assetId": "character.mystic-liuyi",
       "type": "character",
-      "file": "characters/placeholder.png",
+      "file": "characters/mystic-liuyi.png",
       "mimeType": "image/png",
       "width": 1024,
       "height": 1536,
-      "bytes": 6212,
+      "bytes": 21857,
       "colorSpace": "sRGB",
       "hasAlpha": true,
       "mirrorAllowed": false,
-      "status": "placeholder",
+      "status": "draft",
       "source": {
-        "type": "project",
+        "type": "generated",
+        "reference": "Programmatic draft generated from asset description: 戴面送信人，后揭示为柳毅（柳毅·一信渡水）。",
         "license": "project-owned"
       },
-      "description": "戴面送信人，后揭示为柳毅（柳毅·一信渡水）。暂用共享占位图。"
+      "description": "戴面送信人，后揭示为柳毅（柳毅·一信渡水）。"
     },
     {
       "assetId": "background.rebuilt-house-courtyard-rain",
