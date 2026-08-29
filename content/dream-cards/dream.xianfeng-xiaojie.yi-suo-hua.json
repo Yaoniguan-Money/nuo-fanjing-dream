@@ -1,0 +1,217 @@
+{
+  "$schema": "../../docs/dream-card/dream-card.schema.json",
+  "schemaVersion": "0.1.0",
+  "meta": {
+    "id": "dream.xianfeng-xiaojie.yi-suo-hua",
+    "version": "0.1.0",
+    "title": "一梭花",
+    "synopsis": "山坳里的寨子家家有织机，十七岁的阿素手快，一天能织三尺平纹布，却一心想让布上开花。她买不起八十文一绞的红丝线，更买不起两百文的花本，便夜里拆旧衣攒线、照三年前货郎带来的花绦数纱，拿炭把花样描在木板上，一纱一纱自己试着起花。旧织机吃不住密花样断了轴，换轴要好料一百文，她一度说要把机子扛去集上卖了；灰袍木面的神秘人夜里拦在机前——线是一根一根攒的，钱不也一样？你的花，才走到半道上。她咬牙留下机子，白日织平布、夜里自己给断轴接榫。寨里人被这份不舍打动，细妹打头，姐妹们凑料凑线，木匠叔连夜给机子接骨。半个月后第一匹花布织成，货郎要全收，她却把自描的花本送出去两份——花样就是让人织的。晨雾中神秘人揭晓：头一个在布里走出新路的人，就是先锋。",
+    "match": {
+      "tags": ["先锋小姐", "织布", "花本", "攒线", "热爱", "断轴", "寨里相助"],
+      "situations": ["真心喜欢却被条件卡住", "买不起想要的工具材料", "没人教只能自己摸索", "一度想放弃所爱", "需要守住心头所愿"],
+      "emotions": ["痒", "闷", "着迷", "灰心", "滚烫", "敞亮"],
+      "dilemmas": ["条件不齐时是等还是先上手", "卖机认命还是咬牙留住", "花样传出去会不会吃亏"],
+      "relationships": ["母女", "邻里姐妹", "个人与所爱", "个人与寨子"],
+      "excludeTags": []
+    },
+    "officeCandidates": [
+      {
+        "officeId": "office.kailu",
+        "fit": 1,
+        "reason": "故事核心是不等条件齐、一梭一梭把心头所愿织出来，头一个在布里走出新路并引众人同织，结尾由先锋小姐原型揭示交棒。"
+      }
+    ],
+    "tone": ["山寨", "机声", "闷痒", "炽热", "敞亮"],
+    "estimatedDurationSeconds": 420,
+    "culturalSources": [
+      {
+        "id": "source.dejiang-nuotangxi-xianfeng-xiaojie",
+        "title": "贵州傩堂戏《霸王抢仙锋》先锋小姐",
+        "region": "贵州德江",
+        "reference": "reference-materials/dream-card-source/先锋小姐.md",
+        "note": "借用先锋小姐（崔良玉／仙锋小姐／武先锋）走在众神之前、敢于开路的精神内核；阿素、山寨、花绦、织机断轴与花布故事均为本篇虚构。"
+      }
+    ],
+    "status": "draft"
+  },
+  "data": {
+    "acts": [
+      {
+        "id": "act-01",
+        "title": "机上·平纹",
+        "backgroundAssetId": "background.weaving-house-day",
+        "characters": [
+          {"instanceId": "asu", "assetId": "character.asu", "position": "left"},
+          {"instanceId": "niang", "assetId": "character.niang", "position": "right"}
+        ],
+        "texts": [
+          {"id": "act-01-text-01", "content": "我们寨子在山坳里，家家有织机，机声从早响到晚。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-01-text-02", "content": "我的手快，一天能织三尺平纹布。布交到贩子手里，换回来的米刚够吃。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-01-text-03", "content": "（织着布，摸了摸怀里）娘，那角花绦我再看看行不行？", "speakerId": "asu", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-01-text-04", "content": "（头也不抬）都看三年了，还看不够。省着点眼力，看布。", "speakerId": "niang", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "娘"}},
+          {"id": "act-01-text-05", "content": "那角花绦是三年前货郎带来的，外头的花样，红一层绿一层，我在布上没见过的开法。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-01-text-06", "content": "我把它贴身藏着，白天想，夜里也想——原来布上还能开出这样的花。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-01-text-07", "content": "娘，咱家的布上，能不能也开花？", "speakerId": "asu", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-01-text-08", "content": "（手里的梭子顿了顿）花线金贵，花本更金贵。素儿，咱家线里省不出花。", "speakerId": "niang", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "娘"}},
+          {"id": "act-01-text-09", "content": "我没接话。脚下的踏板一下一下，布面平平地长，长得再快，也是素白的。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}}
+        ],
+        "choices": [],
+        "notes": "场景：屋内｜日｜晴。织机、花绦。\n原始在场：我（阿素，十七岁，山寨里织布的姑娘） · 娘（浆洗织补，操持家用）\n迁移备注：无。"
+      },
+      {
+        "id": "act-02",
+        "title": "货郎担·集",
+        "backgroundAssetId": "background.village-gate-noon",
+        "characters": [
+          {"instanceId": "asu", "assetId": "character.asu", "position": "left"},
+          {"instanceId": "huolang", "assetId": "character.huolang", "position": "center"},
+          {"instanceId": "mystic", "assetId": "character.mystic-gray", "position": "right"}
+        ],
+        "texts": [
+          {"id": "act-02-text-01", "content": "货郎的担子一进寨，姑娘们都围上去。我直奔那卷彩线。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-02-text-02", "content": "（捏着钱）老板，一绞红丝线，多少钱？", "speakerId": "asu", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-02-text-03", "content": "八十文。你要真想织花样，光有线不顶用，得配一张花本，照着挑花才不走样。", "speakerId": "huolang", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "货郎"}},
+          {"id": "act-02-text-04", "content": "花本什么价？", "speakerId": "asu", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-02-text-05", "content": "好点的两百文。再不然，请个会花样的师傅手把手教，工钱另算。", "speakerId": "huolang", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "货郎"}},
+          {"id": "act-02-text-06", "content": "我把手心里的钱攥出了汗。八十文，是我不吃不喝织半个月布的钱。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-02-text-07", "content": "（把钱放回去）……那我先不要了。", "speakerId": "asu", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-02-text-08", "content": "人散了。寨口老槐树底下，不知什么时候立着个灰袍人，半张旧木面，像站了有一会儿了。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-02-text-09", "content": "线是一根一根攒的。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘人", "mystic": true}},
+          {"id": "act-02-text-10", "content": "（回头）您说什么？", "speakerId": "asu", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-02-text-11", "content": "树下空空的，只有货郎担子留下的辙印，弯弯地出了寨。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}}
+        ],
+        "choices": [],
+        "notes": "场景：寨口｜晌午｜晴。货郎担、老槐树。\n原始在场：我 · 货郎（走山串寨的行商，三年前带来花绦的也是他） · 神秘人（第一次现身，老槐树下）\n迁移备注：无。"
+      },
+      {
+        "id": "act-03",
+        "title": "灯下·攒线",
+        "backgroundAssetId": "background.weaving-house-night",
+        "characters": [
+          {"instanceId": "asu", "assetId": "character.asu", "position": "left"},
+          {"instanceId": "niang", "assetId": "character.niang", "position": "right"}
+        ],
+        "texts": [
+          {"id": "act-03-text-01", "content": "打那天起，我白天照旧织平布，夜里点灯干自己的事。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-03-text-02", "content": "旧衣裳的边角拆出线来，红的归红的，绿的归绿的，一把一把攒进笸箩。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-03-text-03", "content": "没有花本，我就拿炭把花绦上的花样描在木板上，凑到灯下，一纱一纱地数：几根起花，几根落地。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-03-text-04", "content": "（数着数着笑出声）……原来是这样走的线。", "speakerId": "asu", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-03-text-05", "content": "（推门进来，站了半天）半夜三更，笑什么？", "speakerId": "niang", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "娘"}},
+          {"id": "act-03-text-06", "content": "娘，我在学。没有花本，我自己数；没有彩线，我自己攒。", "speakerId": "asu", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-03-text-07", "content": "（半天没说话，转身出去，回来时手里多了几绞旧红线）……我陪嫁的。搁着也是搁着。", "speakerId": "niang", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "娘"}},
+          {"id": "act-03-text-08", "content": "红线绞搁在我膝盖上，还带着樟木箱子的气味。我攥在手里，半天没敢动。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-03-text-09", "content": "那晚灯芯结了三回花。我低着头数纱，一纱，又一纱。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}}
+        ],
+        "choices": [],
+        "notes": "场景：屋内｜夜｜月。油灯、线笸箩。\n原始在场：我 · 娘\n迁移备注：无。"
+      },
+      {
+        "id": "act-04",
+        "title": "机上·试花",
+        "backgroundAssetId": "background.weaving-house-deep-night",
+        "characters": [
+          {"instanceId": "asu", "assetId": "character.asu", "position": "left"},
+          {"instanceId": "ximei", "assetId": "character.ximei", "position": "center"},
+          {"instanceId": "mystic", "assetId": "character.mystic-gray", "position": "right"}
+        ],
+        "texts": [
+          {"id": "act-04-text-01", "content": "攒了一个月，笸箩满了。我把红线一根根接进经线里，关起门来试花。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-04-text-02", "content": "头一回，数错两根纱，起的花歪着肩膀，我咬咬牙，拆了。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-04-text-03", "content": "（重新穿综）拆吧拆吧，线还在，手还在。", "speakerId": "asu", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-04-text-04", "content": "第二回，第三回。夜里织，鸡叫了接着织。布面上的花，一次比一次站得直。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-04-text-05", "content": "（扒着门缝）素儿，你机子上织的什么呀？红红的一小朵——", "speakerId": "ximei", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "细妹"}},
+          {"id": "act-04-text-06", "content": "（头也不抬）花。还没成形的。等我织成形了，描给你。", "speakerId": "asu", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-04-text-07", "content": "那一晚我织到三更，手酸了就歇，歇了又上。梭子在经线里穿来穿去，像自己认得路。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-04-text-08", "content": "灯花爆了一声。我抬头，窗外立着个灰袍影子，半张木面在灯影里。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-04-text-09", "content": "梭子认得路。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘人", "mystic": true}},
+          {"id": "act-04-text-10", "content": "（起身开门）您是谁？进来坐呀，我正想跟人说说这个花样——", "speakerId": "asu", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-04-text-11", "content": "院里没有人。机上的红线在灯下一明一暗，像在应我。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}}
+        ],
+        "choices": [],
+        "notes": "场景：屋内｜深夜｜晴。经线、炭画木板。\n原始在场：我 · 细妹（邻家姐妹，也爱织布） · 神秘人（第二次现身，窗外）\n迁移备注：神秘人立于窗外，摆位以窗边身影示意。"
+      },
+      {
+        "id": "act-05",
+        "title": "断轴·夜",
+        "backgroundAssetId": "background.weaving-house-storm-night",
+        "characters": [
+          {"instanceId": "ximei", "assetId": "character.ximei", "position": "left"},
+          {"instanceId": "asu", "assetId": "character.asu", "position": "center"},
+          {"instanceId": "mystic", "assetId": "character.mystic-gray", "position": "right"}
+        ],
+        "texts": [
+          {"id": "act-05-text-01", "content": "花越织越密，旧机子吃不住了。那晚我刚换完一梭，“咔”一声——机轴断了。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-05-text-02", "content": "（抱着断轴，半天没动）三个月……就卡在这儿了。", "speakerId": "asu", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-05-text-03", "content": "第二天，我抱着断轴挨家问价：换新轴，好料要一百文。修不起。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-05-text-04", "content": "（回家坐在断机前）娘，明天把机子扛去集上卖了吧。横着也是闲着。", "speakerId": "asu", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-05-text-05", "content": "（半天没说话）……你说了算。", "speakerId": "niang", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "娘"}},
+          {"id": "act-05-text-06", "content": "夜里睡不着，我摸黑坐在机子跟前。一抬头，机前立着个灰袍人，半张旧木面，不知什么时候来的。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-05-text-07", "content": "真要卖？", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘人", "mystic": true}},
+          {"id": "act-05-text-08", "content": "（半天）……修不起。攒到哪年去啊。", "speakerId": "asu", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-05-text-09", "content": "线是一根一根攒的，钱不也一样？你的花，才走到半道上。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘人", "mystic": true}},
+          {"id": "act-05-text-10", "content": "我摸着冰凉的机架，摸到那道织了一半的花边，眼泪一下子下来了。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-05-text-11", "content": "（把断轴抱进怀里）……不卖了。我攒。", "speakerId": "asu", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-05-text-12", "content": "我再抬头，机前空了。灯芯上，灯花结了一朵。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-05-text-13", "content": "打那天起，白日织平布，一文一文往瓦罐里放；夜里点灯，自己琢磨着给断轴接榫。手上扎满木刺，也不觉得疼。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-05-text-14", "content": "第七天晚上，院门外热闹起来。细妹打头，身后一串姐妹，人手一把火把、一根木料。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-05-text-15", "content": "（把火把插在檐下）素儿！都当你要卖机子了——前晚路过，看你灯还亮着，你在自己接轴！", "speakerId": "ximei", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "细妹"}},
+          {"id": "act-05-text-16", "content": "（扛着新料进来）接轴是木匠的活计，哪能让你一个人瞎琢磨。料大家凑好了，今晚就给机子接骨！", "speakerId": "mujiangshu", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "木匠叔"}},
+          {"id": "act-05-text-17", "content": "姐妹们把自家攒的彩线一把把放进我笸箩里，都是各家省出来的。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-05-text-18", "content": "后半夜，新轴落进榫眼，机子“吱呀”一声，又活了。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-05-text-19", "content": "（挨个看那些火把，嗓子发紧）……等花织成了，我一个样一个样描给你们，谁想学我教谁。", "speakerId": "asu", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-05-text-20", "content": "（拍手）那我头一个报名！", "speakerId": "ximei", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "细妹"}}
+        ],
+        "choices": [],
+        "notes": "场景：屋内｜雨夜｜暴雨。断轴、火把。\n原始在场：我 · 娘 · 木匠叔（寨里的老木匠） · 细妹 · 神秘人（第三次现身，机前开口鼓励） · 姐妹们（环境人物，越聚越多）\n迁移备注：受 characters maxItems=3 限制，娘与木匠叔的台词保留为文本说话人，不作摆位；姐妹们作背景远景。"
+      },
+      {
+        "id": "act-06",
+        "title": "机上·花成",
+        "backgroundAssetId": "background.courtyard-noon",
+        "characters": [
+          {"instanceId": "asu", "assetId": "character.asu", "position": "left"},
+          {"instanceId": "niang", "assetId": "character.niang", "position": "center"},
+          {"instanceId": "huolang", "assetId": "character.huolang", "position": "right"}
+        ],
+        "texts": [
+          {"id": "act-06-text-01", "content": "机子修好后，我织得比先前更慢，也更稳。一梭花，一梭地，花样顺着布面一寸一寸长。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-06-text-02", "content": "半个月后，最后一梭落下来。我把布从机上取下来，铺开在院子里。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-06-text-03", "content": "红的花，绿的叶，一整片，在日头底下亮闪闪的。我蹲在布边上看了又看，怎么看也看不够。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-06-text-04", "content": "（摸着布面，笑着笑着眼睛就热了）……真的开花了。", "speakerId": "asu", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-06-text-05", "content": "（站在布前看了很久）比那角花绦，还好看。", "speakerId": "niang", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "娘"}},
+          {"id": "act-06-text-06", "content": "巧的是货郎那天进寨，一眼看见院里的布，担子都放下了。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-06-text-07", "content": "（围着布转了两圈）姑娘，这匹我全要了，价钱你开！这样的花样，山外头也没有！", "speakerId": "huolang", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "货郎"}},
+          {"id": "act-06-text-08", "content": "（想了想）卖可以。但这张花本——（扬扬手里的木板）我描了三份，一份留给我，两份送人。", "speakerId": "asu", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-06-text-09", "content": "（愣住）花样给了人家，你就不怕……", "speakerId": "huolang", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "货郎"}},
+          {"id": "act-06-text-10", "content": "不怕。花样就是让人织的。她们织出别的样子来，我还等着学呢。", "speakerId": "asu", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}}
+        ],
+        "choices": [],
+        "notes": "场景：院坝｜晌午｜晴。花布、木板花本。\n原始在场：我 · 娘 · 货郎（恰巧进寨）\n迁移备注：无。"
+      },
+      {
+        "id": "act-07",
+        "title": "机声·晨雾",
+        "backgroundAssetId": "background.village-morning-fog",
+        "characters": [
+          {"instanceId": "asu", "assetId": "character.asu", "position": "left"},
+          {"instanceId": "mystic", "assetId": "character.mystic-gray", "position": "right"}
+        ],
+        "texts": [
+          {"id": "act-07-text-01", "content": "后来的事，说起来都很平常。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-07-text-02", "content": "寨里的机声变了调。这家机上开我那朵花，那家改了改，红叶换成了紫的；还有细妹，自作主张把花织到了衣领上。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-07-text-03", "content": "她们织出新的样子，就拿来给我看。我看一回，学一回，手心里痒一回。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-07-text-04", "content": "这天早起，雾漫进寨子，家家机声都响着，像在应和。我坐在机前，才发现机旁不知什么时候立着那个灰袍人。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-07-text-05", "content": "姑娘——不，该改口了。求愿的人，梦到这儿，该醒了。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘人", "mystic": true}},
+          {"id": "act-07-text-06", "content": "你进来的时候，求的是什么，我都听见了。可我知道，你心里一直痒着的，是那件真心喜欢、却总等不到条件齐的事。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘人", "mystic": true}},
+          {"id": "act-07-text-07", "content": "痒着不怕。你看这满寨的机声——没有一样是等来的，都是一梭一梭、一绞线一绞线攒出来的。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘人", "mystic": true}},
+          {"id": "act-07-text-08", "content": "往后你喜欢什么，还是会赶上“线不够”“机子旧”“还不到时候”。你记住今天就行——欢喜不用等条件齐，先上手，条件会跟上你的手。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘人", "mystic": true}},
+          {"id": "act-07-text-09", "content": "我在你窗前说过的话不多。剩下的路，你自己会走。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘人", "mystic": true}},
+          {"id": "act-07-text-10", "content": "去吧。先锋不在别处——头一个在布里走出新路的人，就是先锋。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘人", "mystic": true}},
+          {"id": "act-07-text-11", "content": "他转身走进雾里。机声、雾声都退了。我摊开手心，好像还留着一线红线勒出来的痕。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}}
+        ],
+        "choices": [],
+        "notes": "场景：寨中｜晨｜雾。机声、晨雾。\n原始在场：我 · 姐妹们（机声，环境人物） · 神秘人（第四次现身，机旁，向求愿者直接开口）\n迁移备注：姐妹们作背景声景，不作摆位。原剧本神秘人第二句中的动态占位符（所求何事／深层情绪）已按交付决定改写为固定句。"
+      }
+    ]
+  }
+}
