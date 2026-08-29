@@ -5,9 +5,9 @@
     "id": "dream.xianfeng-xiaojie.yi-suo-hua",
     "version": "0.1.0",
     "title": "一梭花",
-    "synopsis": "山坳里的寨子家家有织机，十七岁的阿素手快，一天能织三尺平纹布，却一心想让布上开花。她买不起八十文一绞的红丝线，更买不起两百文的花本，便夜里拆旧衣攒线、照三年前货郎带来的花绦数纱，拿炭把花样描在木板上，一纱一纱自己试着起花。旧织机吃不住密花样断了轴，换轴要好料一百文，她一度说要把机子扛去集上卖了；灰袍木面的神秘人夜里拦在机前——线是一根一根攒的，钱不也一样？你的花，才走到半道上。她咬牙留下机子，白日织平布、夜里自己给断轴接榫。寨里人被这份不舍打动，细妹打头，姐妹们凑料凑线，木匠叔连夜给机子接骨。半个月后第一匹花布织成，货郎要全收，她却把自描的花本送出去两份——花样就是让人织的。晨雾中神秘人揭晓：头一个在布里走出新路的人，就是先锋。",
+    "synopsis": "山坳里的寨子家家有织机，十七岁的阿素手快，一天能织三尺平纹布，却一心想让布上开花。她买不起八十文一绞的红丝线，更买不起两百文的花本，便夜里拆旧衣攒线、照三年前货郎带来的花绦数纱，拿炭把花样描在木板上，一纱一纱自己试着起花。旧织机吃不住密花样断了轴，换轴要好料一百文，她一度说要把机子扛去集上卖了；灰袍木面的神秘人夜里拦在机前——线是一根一根攒的，钱不也一样？你的花，才走到半道上。她咬牙留下机子，白日织平布、夜里自己给断轴接榫。寨里人被这份不舍打动，细妹打头，姐妹们凑料凑线，木匠叔连夜给机子接骨。半个月后第一匹花布织成，货郎要全收，她却把自描的花本送出去两份——花样就是让人织的。晨雾中神秘人揭晓：愿望不能只藏在心里，敢把心头所愿接到手上、一梭一梭织成形的人，就是承愿者。",
     "match": {
-      "tags": ["先锋小姐", "织布", "花本", "攒线", "热爱", "断轴", "寨里相助"],
+      "tags": ["先锋小姐", "承愿", "织布", "花本", "攒线", "热爱", "断轴", "寨里相助"],
       "situations": ["真心喜欢却被条件卡住", "买不起想要的工具材料", "没人教只能自己摸索", "一度想放弃所爱", "需要守住心头所愿"],
       "emotions": ["痒", "闷", "着迷", "灰心", "滚烫", "敞亮"],
       "dilemmas": ["条件不齐时是等还是先上手", "卖机认命还是咬牙留住", "花样传出去会不会吃亏"],
@@ -16,9 +16,9 @@
     },
     "officeCandidates": [
       {
-        "officeId": "office.kailu",
+        "officeId": "office.cheng-yuan",
         "fit": 1,
-        "reason": "故事核心是不等条件齐、一梭一梭把心头所愿织出来，头一个在布里走出新路并引众人同织，结尾由先锋小姐原型揭示交棒。"
+        "reason": "故事核心不是等条件齐才行动，而是把心头所愿认下来、接到手上，一梭一梭织成现实，结尾由先锋小姐的催愿、勾愿职能揭示承愿交棒。"
       }
     ],
     "tone": ["山寨", "机声", "闷痒", "炽热", "敞亮"],
@@ -29,7 +29,7 @@
         "title": "贵州傩堂戏《霸王抢仙锋》先锋小姐",
         "region": "贵州德江",
         "reference": "reference-materials/dream-card-source/先锋小姐.md",
-        "note": "借用先锋小姐（崔良玉／仙锋小姐／武先锋）走在众神之前、敢于开路的精神内核；阿素、山寨、花绦、织机断轴与花布故事均为本篇虚构。"
+        "note": "借用先锋小姐（崔良玉／仙锋小姐／武先锋）催愿、勾愿与让愿望进入行动的精神内核；阿素、山寨、花绦、织机断轴与花布故事均为本篇虚构。"
       }
     ],
     "status": "draft"
@@ -206,7 +206,7 @@
           {"id": "act-07-text-07", "content": "痒着不怕。你看这满寨的机声——没有一样是等来的，都是一梭一梭、一绞线一绞线攒出来的。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘人", "mystic": true}},
           {"id": "act-07-text-08", "content": "往后你喜欢什么，还是会赶上“线不够”“机子旧”“还不到时候”。你记住今天就行——欢喜不用等条件齐，先上手，条件会跟上你的手。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘人", "mystic": true}},
           {"id": "act-07-text-09", "content": "我在你窗前说过的话不多。剩下的路，你自己会走。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘人", "mystic": true}},
-          {"id": "act-07-text-10", "content": "去吧。先锋不在别处——头一个在布里走出新路的人，就是先锋。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘人", "mystic": true}},
+          {"id": "act-07-text-10", "content": "去吧。承愿不在别处——敢把心头所愿接到手上，一梭一梭织成形的人，就是承愿者。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘人", "mystic": true}},
           {"id": "act-07-text-11", "content": "他转身走进雾里。机声、雾声都退了。我摊开手心，好像还留着一线红线勒出来的痕。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}}
         ],
         "choices": [],

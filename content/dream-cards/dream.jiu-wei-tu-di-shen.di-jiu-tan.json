@@ -5,9 +5,9 @@
     "id": "dream.jiu-wei-tu-di-shen.di-jiu-tan",
     "version": "0.2.0",
     "title": "第九坛",
-    "synopsis": "九坛村外九座社坛一字排开，头坛香火最旺，第九坛只管村尾一片乱石坡。“我”家祖辈守着第九坛，却嫌它误了前程——备考县试、想跟堂哥文生进衙门当差、又跟货郎学算账，四样心思一把抓，样样做不精：县试批语“字是好字，心是散的”，衙门缺额早被占，货栈的账也扒拉不对。灰袍木面的神秘人先问“两只手都攥着，你到底想拿哪一样”；老庙祝点破“坛是人分的大小，神自己没分过，守坛不丢人，丢人的是守着坛，心里没坛”。天旱泉眼将淤，“我”在坡上被神秘人点醒——心一直搁在泉和渠里，遂认准“把坡上的水治明白”，把书帖压在界石底下，连淘五日泉、垒通旧渠，水进秧田，旱情得解。次年春社，“我”认下这个不起眼的岗位：差事小，得有人当真办；把最想办的事办出滋味、把手头的差事办出光亮的人，就是守界人。",
+    "synopsis": "九坛村外九座社坛一字排开，头坛香火最旺，第九坛只管村尾一片乱石坡。“我”家祖辈守着第九坛，却嫌它误了前程——备考县试、想跟堂哥文生进衙门当差、又跟货郎学算账，四样心思一把抓，样样做不精：县试批语“字是好字，心是散的”，衙门缺额早被占，货栈的账也扒拉不对。灰袍木面的神秘人先问“两只手都攥着，你到底想拿哪一样”；老庙祝点破“坛是人分的大小，神自己没分过，九位爷各有其位，村里的水、田、路、林才不乱”。天旱泉眼将淤，“我”在坡上被神秘人点醒——心一直搁在泉和渠里，遂认准“把坡上的水治明白”，把书帖压在界石底下，连淘五日泉、垒通旧渠，水进秧田，旱情得解。次年春社，“我”认下这个不起眼的岗位：差事有大小，轻重有先后；能把散乱的心力安回各自位置、让手头那一处重新运转的人，就是持衡者。",
     "match": {
-      "tags": ["九位土地神", "土地公", "社坛", "守界", "样样想抓", "主次不分", "淘泉治水"],
+      "tags": ["九位土地神", "土地公", "社坛", "持衡", "样样想抓", "主次不分", "淘泉治水"],
       "situations": ["什么都想要样样做不精", "被他人的成功标准裹挟", "看不清自己最想做的那件事", "本职被冷落出现险情", "需要认准一件事持续发力"],
       "emotions": ["心气高", "发虚", "不服", "咯噔自省", "踏实发热"],
       "dilemmas": ["四样心思先抓哪一样", "考功名还是守好本职", "承认自己未必样样出众还是继续摊开抓"],
@@ -16,9 +16,9 @@
     },
     "officeCandidates": [
       {
-        "officeId": "office.shou-jie",
+        "officeId": "office.chi-heng",
         "fit": 1,
-        "reason": "故事核心是分清主次、认准最想办的一件事，并在不显眼的差事上持续发力办出成果，结尾由守界职司交棒。"
+        "reason": "故事核心是把散乱心力重新分位、定序、调度，认清哪件事该由自己先承接，并让被忽略的一处重新运转，结尾由九位土地神的分职系统揭示持衡交棒。"
       }
     ],
     "tone": ["社日", "山村", "心散", "踏实", "立住"],
@@ -29,7 +29,7 @@
         "title": "土地神（社神）信仰与春社秋社祭社传统",
         "region": "中国乡土／贵州傩堂戏",
         "reference": "reference-materials/dream-card-source/九位土地神.md",
-        "note": "借用社神信仰与傩堂戏土地角色（引路、问事、护坛）的守地意象；九坛村、“九坛有大小”设定、石生、文生、县试与淘泉风波均为本篇虚构。"
+        "note": "借用社神信仰与傩堂戏九位土地各司其职、分位调度的持衡意象；九坛村、“九坛有大小”设定、石生、文生、县试与淘泉风波均为本篇虚构。"
       }
     ],
     "status": "draft"
@@ -163,7 +163,7 @@
           {"id": "act-05-text-10", "content": "你进来的时候，求的是什么，我都听见了。那时候你手里攥着四样东西，样样都想要，样样都没攥牢。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘人", "mystic": true}},
           {"id": "act-05-text-11", "content": "后来你想清楚了，认下最想办的那一件，一天一天往里使劲——这坛上的活水，就是你使出来的劲。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘人", "mystic": true}},
           {"id": "act-05-text-12", "content": "官帽是旁人的坛，你的泉，浇的是你的田。坛有大小，可没有哪座坛，生来就该荒着。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘人", "mystic": true}},
-          {"id": "act-05-text-13", "content": "把最想办的事办出滋味、把手头的差事办出光亮的人，就是守界人。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘人", "mystic": true}},
+          {"id": "act-05-text-13", "content": "不是所有事都该攥在同一只手里。能分清轻重，把散乱的心力安回各自位置，让手头这一处重新运转的人，就是持衡者。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘人", "mystic": true}},
           {"id": "act-05-text-14", "content": "他转身走进雾里。坡下的社鼓声退去。我摊开手心，掌纹里全是新渠的泥，沉甸甸的。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}}
         ],
         "choices": [],
