@@ -873,6 +873,367 @@
       "description": "戴白布面的神秘老妇，后揭示为唐氏太婆（织魂记）。暂用共享占位图。"
     },
     {
+      "assetId": "background.rebuilt-house-courtyard-rain",
+      "type": "background",
+      "file": "backgrounds/rebuilt-house-courtyard-rain.webp",
+      "mimeType": "image/webp",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 217902,
+      "colorSpace": "sRGB",
+      "hasAlpha": false,
+      "mirrorAllowed": false,
+      "status": "draft",
+      "source": {
+        "type": "generated",
+        "reference": "docs/dream-card/余火记-资产清单.md; built-in image generation, 2026-08-29.",
+        "license": "project-owned"
+      },
+      "description": "雨后木寨新屋外院、门前焦梁与冷棚（扫地和尚·余火记幕一／幕四）。"
+    },
+    {
+      "assetId": "background.old-ash-hearth-cold",
+      "type": "background",
+      "file": "backgrounds/old-ash-hearth-cold.webp",
+      "mimeType": "image/webp",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 107892,
+      "colorSpace": "sRGB",
+      "hasAlpha": false,
+      "mirrorAllowed": false,
+      "status": "draft",
+      "source": {
+        "type": "generated",
+        "reference": "docs/dream-card/余火记-资产清单.md; built-in image generation, 2026-08-29.",
+        "license": "project-owned"
+      },
+      "description": "新屋内的冷火塘、旧灰与凉饭（扫地和尚·余火记幕二／幕三）。"
+    },
+    {
+      "assetId": "background.hearth-relit-dawn",
+      "type": "background",
+      "file": "backgrounds/hearth-relit-dawn.webp",
+      "mimeType": "image/webp",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 154616,
+      "colorSpace": "sRGB",
+      "hasAlpha": false,
+      "mirrorAllowed": false,
+      "status": "draft",
+      "source": {
+        "type": "generated",
+        "reference": "docs/dream-card/余火记-资产清单.md; built-in image generation, 2026-08-29.",
+        "license": "project-owned"
+      },
+      "description": "焦梁移走、火塘重燃的木屋破晓（扫地和尚·余火记幕五／幕六）。"
+    },
+    {
+      "assetId": "character.mu-sang",
+      "type": "character",
+      "file": "characters/mu-sang.png",
+      "mimeType": "image/png",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 1427064,
+      "colorSpace": "sRGB",
+      "hasAlpha": true,
+      "mirrorAllowed": false,
+      "status": "draft",
+      "source": {
+        "type": "generated",
+        "reference": "docs/dream-card/余火记-资产清单.md; built-in image generation, 2026-08-29.",
+        "license": "project-owned"
+      },
+      "description": "青年木匠木桑（扫地和尚·余火记主角）。"
+    },
+    {
+      "assetId": "character.a-geng-bo",
+      "type": "character",
+      "file": "characters/a-geng-bo.png",
+      "mimeType": "image/png",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 1694085,
+      "colorSpace": "sRGB",
+      "hasAlpha": true,
+      "mirrorAllowed": false,
+      "status": "draft",
+      "source": {
+        "type": "generated",
+        "reference": "docs/dream-card/余火记-资产清单.md; built-in image generation, 2026-08-29.",
+        "license": "project-owned"
+      },
+      "description": "失火粮屋的主人阿耿伯（扫地和尚·余火记）。"
+    },
+    {
+      "assetId": "character.xiao-he",
+      "type": "character",
+      "file": "characters/xiao-he.png",
+      "mimeType": "image/png",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 1305619,
+      "colorSpace": "sRGB",
+      "hasAlpha": true,
+      "mirrorAllowed": false,
+      "status": "draft",
+      "source": {
+        "type": "generated",
+        "reference": "docs/dream-card/余火记-资产清单.md; built-in image generation, 2026-08-29.",
+        "license": "project-owned"
+      },
+      "description": "木桑年幼的妹妹小禾（扫地和尚·余火记）。"
+    },
+    {
+      "assetId": "character.saodi-heshang",
+      "type": "character",
+      "file": "characters/saodi-heshang.png",
+      "mimeType": "image/png",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 1706444,
+      "colorSpace": "sRGB",
+      "hasAlpha": true,
+      "mirrorAllowed": false,
+      "status": "draft",
+      "source": {
+        "type": "generated",
+        "reference": "docs/dream-card/余火记-资产清单.md; built-in image generation, 2026-08-29.",
+        "license": "project-owned"
+      },
+      "description": "秃头圆脸、笑相、额有福包并持竹帚的扫地和尚正式形象（余火记幕六）。"
+    },
+    {
+      "assetId": "background.river-valley-crossroads-dusk",
+      "type": "background",
+      "file": "backgrounds/river-valley-crossroads-dusk.webp",
+      "mimeType": "image/webp",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 114046,
+      "colorSpace": "sRGB",
+      "hasAlpha": false,
+      "mirrorAllowed": false,
+      "status": "draft",
+      "source": {
+        "type": "generated",
+        "reference": "docs/dream-card/合页记-资产生成记录.md",
+        "license": "project-owned"
+      },
+      "description": "山雾升起的河谷三岔路与远处马帮（勾簿判官·合页记幕一）。"
+    },
+    {
+      "assetId": "background.river-valley-hearth-night",
+      "type": "background",
+      "file": "backgrounds/river-valley-hearth-night.webp",
+      "mimeType": "image/webp",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 90578,
+      "colorSpace": "sRGB",
+      "hasAlpha": false,
+      "mirrorAllowed": false,
+      "status": "draft",
+      "source": {
+        "type": "generated",
+        "reference": "docs/dream-card/合页记-资产生成记录.md",
+        "license": "project-owned"
+      },
+      "description": "围绕盐包、旧锄、账签与竹蜻蜓的河谷火塘夜景（合页记幕二）。"
+    },
+    {
+      "assetId": "background.rainy-valley-broken-promises",
+      "type": "background",
+      "file": "backgrounds/rainy-valley-broken-promises.webp",
+      "mimeType": "image/webp",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 214716,
+      "colorSpace": "sRGB",
+      "hasAlpha": false,
+      "mirrorAllowed": false,
+      "status": "draft",
+      "source": {
+        "type": "generated",
+        "reference": "docs/dream-card/合页记-资产生成记录.md",
+        "license": "project-owned"
+      },
+      "description": "旧寨梯地、河谷货棚与雨中家门相互牵扯的综合意象（合页记幕三）。"
+    },
+    {
+      "assetId": "background.abandoned-post-station-night",
+      "type": "background",
+      "file": "backgrounds/abandoned-post-station-night.webp",
+      "mimeType": "image/webp",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 93286,
+      "colorSpace": "sRGB",
+      "hasAlpha": false,
+      "mirrorAllowed": false,
+      "status": "draft",
+      "source": {
+        "type": "generated",
+        "reference": "docs/dream-card/合页记-资产生成记录.md",
+        "license": "project-owned"
+      },
+      "description": "漏雨的山口旧驿棚、长案油灯与四张空白散页（合页记幕四）。"
+    },
+    {
+      "assetId": "background.mountain-village-after-rain",
+      "type": "background",
+      "file": "backgrounds/mountain-village-after-rain.webp",
+      "mimeType": "image/webp",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 212922,
+      "colorSpace": "sRGB",
+      "hasAlpha": false,
+      "mirrorAllowed": false,
+      "status": "draft",
+      "source": {
+        "type": "generated",
+        "reference": "docs/dream-card/合页记-资产生成记录.md",
+        "license": "project-owned"
+      },
+      "description": "雨后马帮、旧寨梯地与河谷家中连续场景的综合山寨背景（合页记幕五）。"
+    },
+    {
+      "assetId": "background.riverbank-after-rain",
+      "type": "background",
+      "file": "backgrounds/riverbank-after-rain.webp",
+      "mimeType": "image/webp",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 142348,
+      "colorSpace": "sRGB",
+      "hasAlpha": false,
+      "mirrorAllowed": false,
+      "status": "draft",
+      "source": {
+        "type": "generated",
+        "reference": "docs/dream-card/合页记-资产生成记录.md",
+        "license": "project-owned"
+      },
+      "description": "雨后浅滩、白石、薄雾与水面倒影（合页记幕六）。"
+    },
+    {
+      "assetId": "character.a-yan",
+      "type": "character",
+      "file": "characters/a-yan.png",
+      "mimeType": "image/png",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 462433,
+      "colorSpace": "sRGB",
+      "hasAlpha": true,
+      "mirrorAllowed": false,
+      "status": "draft",
+      "source": {
+        "type": "generated",
+        "reference": "docs/dream-card/合页记-资产生成记录.md",
+        "license": "project-owned"
+      },
+      "description": "马帮领路人与行商阿岩（勾簿判官·合页记主角）。"
+    },
+    {
+      "assetId": "character.a-yue",
+      "type": "character",
+      "file": "characters/a-yue.png",
+      "mimeType": "image/png",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 376199,
+      "colorSpace": "sRGB",
+      "hasAlpha": true,
+      "mirrorAllowed": false,
+      "status": "draft",
+      "source": {
+        "type": "generated",
+        "reference": "docs/dream-card/合页记-资产生成记录.md",
+        "license": "project-owned"
+      },
+      "description": "阿岩的妻子阿月（勾簿判官·合页记）。"
+    },
+    {
+      "assetId": "character.a-po",
+      "type": "character",
+      "file": "characters/a-po.png",
+      "mimeType": "image/png",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 461378,
+      "colorSpace": "sRGB",
+      "hasAlpha": true,
+      "mirrorAllowed": false,
+      "status": "draft",
+      "source": {
+        "type": "generated",
+        "reference": "docs/dream-card/合页记-资产生成记录.md",
+        "license": "project-owned"
+      },
+      "description": "居住在旧寨的阿岩母亲阿婆（勾簿判官·合页记）。"
+    },
+    {
+      "assetId": "character.he-sui",
+      "type": "character",
+      "file": "characters/he-sui.png",
+      "mimeType": "image/png",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 385121,
+      "colorSpace": "sRGB",
+      "hasAlpha": true,
+      "mirrorAllowed": false,
+      "status": "draft",
+      "source": {
+        "type": "generated",
+        "reference": "docs/dream-card/合页记-资产生成记录.md",
+        "license": "project-owned"
+      },
+      "description": "阿岩年幼的女儿禾穗（勾簿判官·合页记）。"
+    },
+    {
+      "assetId": "character.mystic-goubu-panguan",
+      "type": "character",
+      "file": "characters/mystic-goubu-panguan.png",
+      "mimeType": "image/png",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 461496,
+      "colorSpace": "sRGB",
+      "hasAlpha": true,
+      "mirrorAllowed": false,
+      "status": "draft",
+      "source": {
+        "type": "generated",
+        "reference": "docs/dream-card/合页记-资产生成记录.md",
+        "license": "project-owned"
+      },
+      "description": "旧驿棚中戴旧官帽、持簿朱笔的神秘簿吏（合页记幕四）。"
+    },
+    {
+      "assetId": "character.goubu-panguan",
+      "type": "character",
+      "file": "characters/goubu-panguan.png",
+      "mimeType": "image/png",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 570525,
+      "colorSpace": "sRGB",
+      "hasAlpha": true,
+      "mirrorAllowed": false,
+      "status": "draft",
+      "source": {
+        "type": "generated",
+        "reference": "docs/dream-card/合页记-资产生成记录.md",
+        "license": "project-owned"
+      },
+      "description": "官帽高耸、火焰眉、鼓眼露獠牙并执簿朱笔的勾簿判官正式形象（合页记幕六）。"
+    },
+    {
       "assetId": "threshold.fanjing-backdrop",
       "type": "threshold",
       "file": "threshold/fanjing-backdrop-v2.webp",
@@ -881,7 +1242,10 @@
       "height": 941,
       "bytes": 169724,
       "status": "draft",
-      "source": { "type": "project", "license": "project-owned" },
+      "source": {
+        "type": "project",
+        "license": "project-owned"
+      },
       "description": "梵净山入场远景。"
     },
     {
@@ -893,7 +1257,10 @@
       "height": 941,
       "bytes": 137130,
       "status": "draft",
-      "source": { "type": "project", "license": "project-owned" },
+      "source": {
+        "type": "project",
+        "license": "project-owned"
+      },
       "description": "梵净山村寨共享背景。"
     },
     {
@@ -905,7 +1272,10 @@
       "height": 941,
       "bytes": 87684,
       "status": "draft",
-      "source": { "type": "project", "license": "project-owned" },
+      "source": {
+        "type": "project",
+        "license": "project-owned"
+      },
       "description": "门后仪式空间。"
     },
     {
@@ -917,7 +1287,10 @@
       "height": 941,
       "bytes": 415422,
       "status": "draft",
-      "source": { "type": "project", "license": "project-owned" },
+      "source": {
+        "type": "project",
+        "license": "project-owned"
+      },
       "description": "村寨门面与门环入场前景。"
     }
   ],

@@ -1,0 +1,1483 @@
+{
+  "$schema": "../../docs/dream-card/dream-card.schema.json",
+  "schemaVersion": "0.1.0",
+  "meta": {
+    "id": "dream.saodi-heshang.yu-huo-ji",
+    "version": "0.1.0",
+    "title": "余火记",
+    "synopsis": "旧时黔东北木寨里，青年木匠木桑曾因没有妥善收拢火塘余火，引燃邻家粮屋。两年后，粮食已经赔清，木屋也已重建，他却仍睡在冷棚、夜夜翻查冷灰，并把一根焦梁横在新屋门前，用持续受苦证明自己没有忘记。寒雨夜里，他因妹妹小禾点起一小簇火而失控，终于看见自己的自罚正在冻住新的生活。一个戴着圆润木面的扫地和尚把竹帚停在焦梁前，只让木桑自己分辨什么该留、什么该走。木桑最终留下一块刻有失火日子和守火规矩的焦木，亲手搬走旧梁、扫出旧灰、重新点火。清晨，和尚显露扫地和尚的笑相，木桑也明白：扫余不是抹掉过去，而是留下教训，不再让余波占据今天。",
+    "match": {
+      "tags": [
+        "扫余",
+        "扫地和尚",
+        "余火",
+        "焦梁",
+        "火塘",
+        "自我惩罚",
+        "有效收尾"
+      ],
+      "situations": [
+        "事情结束后仍反复重演",
+        "完成赔偿后仍无法停止自责",
+        "危机解除后仍长期警觉",
+        "不敢清除承载过去的旧物",
+        "需要为一段经历举行收尾"
+      ],
+      "emotions": [
+        "愧疚",
+        "警觉",
+        "疲惫",
+        "恐惧",
+        "松动",
+        "安定"
+      ],
+      "dilemmas": [
+        "停止受苦是否等于逃避责任",
+        "清走旧物是否等于背叛记忆",
+        "如何留下教训却不继续重演过去"
+      ],
+      "relationships": [
+        "兄妹",
+        "过失者与受损者",
+        "个人与寨中日常",
+        "神秘面角色与求愿者"
+      ],
+      "excludeTags": [
+        "仍在持续的现实伤害",
+        "需要立即追责",
+        "希望彻底遗忘"
+      ]
+    },
+    "officeCandidates": [
+      {
+        "officeId": "office.saoyu",
+        "fit": 1,
+        "reason": "主角亲手把应当保存的责任和教训留在有限的焦木与守火规矩中，同时清走不再有用的旧灰与自罚，完整体现扫余职司。"
+      }
+    ],
+    "tone": [
+      "寒雨",
+      "木寨",
+      "冷灰",
+      "克制",
+      "微暖",
+      "余韵"
+    ],
+    "estimatedDurationSeconds": 420,
+    "culturalSources": [
+      {
+        "id": "source.guizhou-nuo-museum-heshang",
+        "title": "傩堂戏——和尚",
+        "region": "贵州",
+        "reference": "https://www.gznwh.cn/article/detail/news-10313.html",
+        "note": "用于核对扫地和尚、检斋和尚、减灾和尚等称谓，以及秃头圆脸、笑相、额有福包、表演诙谐和检斋职能；扫余仍为项目现代转译。"
+      },
+      {
+        "id": "source.guizhou-nuo-museum-mask-collection",
+        "title": "贵州傩文化博物馆馆藏傩面具图组",
+        "region": "贵州",
+        "reference": "https://www.gznwh.cn/article/detail/photos-10486.html",
+        "note": "馆藏图组第 5 件标注为扫地和尚，用作角色轮廓与面具视觉锚点；页面图片不默认具有项目复用授权。"
+      }
+    ],
+    "status": "draft"
+  },
+  "data": {
+    "acts": [
+      {
+        "id": "act-01",
+        "title": "新屋旧梁",
+        "backgroundAssetId": "background.rebuilt-house-courtyard-rain",
+        "characters": [
+          {
+            "instanceId": "musang",
+            "assetId": "character.mu-sang",
+            "position": "left"
+          },
+          {
+            "instanceId": "agengbo",
+            "assetId": "character.a-geng-bo",
+            "position": "center"
+          },
+          {
+            "instanceId": "xiaohe",
+            "assetId": "character.xiao-he",
+            "position": "right"
+          }
+        ],
+        "texts": [
+          {
+            "id": "act-01-text-01",
+            "content": "很久以前，黔东北山里有一座木寨。寨里的木屋一间挨着一间，做饭、取暖，都离不开屋中的火塘。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "narrator",
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-01-text-02",
+            "content": "两年前，木桑临睡前没有收好余火。半夜风起，一粒火星越过屋檐，点着阿耿伯家的粮屋，又牵连了隔壁的木屋。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "narrator",
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-01-text-03",
+            "content": "那场火没有伤人，却烧掉了两家的屋舍和存粮。木桑用了两年还粮、修屋；寨里重新升起炊烟以后，他仍留下了一根烧黑的旧梁。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "narrator",
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-01-text-04",
+            "content": "两排木屋顺着山坡铺开。新瓦被雨打成深青色，各家屋顶已经起了炊烟。阿耿伯家的粮屋前支着木梯，木桑站在梯顶撬一块檐板。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "narrator",
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-01-text-05",
+            "content": "下来。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "agengbo",
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "阿耿伯"
+            }
+          },
+          {
+            "id": "act-01-text-06",
+            "content": "这块颜色发白，吃了潮气。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "musang",
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "我",
+              "self": true
+            }
+          },
+          {
+            "id": "act-01-text-07",
+            "content": "那是新木。上月你才换的。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "agengbo",
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "阿耿伯"
+            }
+          },
+          {
+            "id": "act-01-text-08",
+            "content": "木桑用拇指压了压木板，没有下来，又把钉子往里敲了一寸。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "narrator",
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-01-text-09",
+            "content": "粮账清了，屋也早上了梁。你还要替我修到什么时候？",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "agengbo",
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "阿耿伯"
+            }
+          },
+          {
+            "id": "act-01-text-10",
+            "content": "（从隔壁院门探头）哥，冷棚漏雨了。你的被子湿了一角。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "xiaohe",
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "小禾"
+            }
+          },
+          {
+            "id": "act-01-text-11",
+            "content": "拿个簸箕接着。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "musang",
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "我",
+              "self": true
+            }
+          },
+          {
+            "id": "act-01-text-12",
+            "content": "新屋里不漏。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "xiaohe",
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "小禾"
+            }
+          },
+          {
+            "id": "act-01-text-13",
+            "content": "木桑下了梯。他背起工具，走到自家院门前，又停住。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "narrator",
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-01-text-14",
+            "content": "一根烧黑的旧梁横在门边。梁下垫着两块石头，只留出一条侧身能过的窄缝。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "narrator",
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-01-text-15",
+            "content": "这根梁怎么还在？",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "agengbo",
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "阿耿伯"
+            }
+          },
+          {
+            "id": "act-01-text-16",
+            "content": "没碍着别人。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "musang",
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "我",
+              "self": true
+            }
+          },
+          {
+            "id": "act-01-text-17",
+            "content": "（看了一眼冷棚）是没碍着别人。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "agengbo",
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "阿耿伯"
+            }
+          },
+          {
+            "id": "act-01-text-18",
+            "content": "木桑从窄缝里侧身过去，径直走向冷棚。小禾站在新屋门内，手里还抱着他的半床湿被子。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "narrator",
+            "extensions": {
+              "sourceType": "narration"
+            }
+          }
+        ],
+        "choices": [],
+        "notes": "场景：木寨新屋外院｜傍晚｜细雨初起。新屋已经修好，焦梁横在门前，冷棚与远处炊烟构成外部完成、内部停滞的反差。"
+      },
+      {
+        "id": "act-02",
+        "title": "日日守灰",
+        "backgroundAssetId": "background.old-ash-hearth-cold",
+        "characters": [
+          {
+            "instanceId": "musang",
+            "assetId": "character.mu-sang",
+            "position": "left"
+          },
+          {
+            "instanceId": "xiaohe",
+            "assetId": "character.xiao-he",
+            "position": "right"
+          }
+        ],
+        "texts": [
+          {
+            "id": "act-02-text-01",
+            "content": "新屋盖好以后，木桑一次也没在里面过夜。他白天替寨里人做木工，夜里回家，第一件事总是翻看那塘冷灰。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "narrator",
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-02-text-02",
+            "content": "新砌的火塘没有生火，塘里铺着冷灰。木桑推门进来时，小禾趴在两碗冷饭中间睡着了。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "narrator",
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-02-text-03",
+            "content": "锅里还有饭。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "xiaohe",
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "小禾"
+            }
+          },
+          {
+            "id": "act-02-text-04",
+            "content": "你吃过没有？",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "musang",
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "我",
+              "self": true
+            }
+          },
+          {
+            "id": "act-02-text-05",
+            "content": "等你回来一起吃。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "xiaohe",
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "小禾"
+            }
+          },
+          {
+            "id": "act-02-text-06",
+            "content": "木桑端起碗吃了一口，目光落在火塘上。他放下碗，扒开冷灰，把手探到底；走到门边，又折回来摸了一遍。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "narrator",
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-02-text-07",
+            "content": "里面没有火。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "xiaohe",
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "小禾"
+            }
+          },
+          {
+            "id": "act-02-text-08",
+            "content": "没有也得看。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "musang",
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "我",
+              "self": true
+            }
+          },
+          {
+            "id": "act-02-text-09",
+            "content": "昨晚看了三遍，前晚也看了三遍。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "xiaohe",
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "小禾"
+            }
+          },
+          {
+            "id": "act-02-text-10",
+            "content": "木桑从灰里捡出一粒黑炭，在指间捻碎。炭粉落回塘里。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "narrator",
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-02-text-11",
+            "content": "这些灰能不能倒了？风一吹，饭里都是。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "xiaohe",
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "小禾"
+            }
+          },
+          {
+            "id": "act-02-text-12",
+            "content": "别动。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "musang",
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "我",
+              "self": true
+            }
+          },
+          {
+            "id": "act-02-text-13",
+            "content": "你白天替别人修灶，回来又不许自家点火。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "xiaohe",
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "小禾"
+            }
+          },
+          {
+            "id": "act-02-text-14",
+            "content": "两个人端起冷饭。屋外传来柴火爆开的轻响和一阵说笑声。木桑吃完，把冷灰重新拢平，拿起湿被子回了冷棚。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "narrator",
+            "extensions": {
+              "sourceType": "narration"
+            }
+          }
+        ],
+        "choices": [],
+        "notes": "场景：木桑家新屋｜深夜｜雨。冷火塘、旧灰、凉饭与木工家什。木桑的责任感已经转化为反复检查和对日常生活的占据。"
+      },
+      {
+        "id": "act-03",
+        "title": "新火被拒",
+        "backgroundAssetId": "background.old-ash-hearth-cold",
+        "characters": [
+          {
+            "instanceId": "agengbo",
+            "assetId": "character.a-geng-bo",
+            "position": "left"
+          },
+          {
+            "instanceId": "musang",
+            "assetId": "character.mu-sang",
+            "position": "center"
+          },
+          {
+            "instanceId": "xiaohe",
+            "assetId": "character.xiao-he",
+            "position": "right"
+          }
+        ],
+        "texts": [
+          {
+            "id": "act-03-text-01",
+            "content": "入冬后最冷的一场雨下了整夜。小禾没有叫醒冷棚里的木桑，天亮前独自去邻家借了一块红炭。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "narrator",
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-03-text-02",
+            "content": "屋里比夜里更冷。小禾蹲在火塘边，用一小块从邻家借来的红炭点着引火草，又把半瓢水架到火上。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "narrator",
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-03-text-03",
+            "content": "烧开就压掉。就烧一锅水。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "xiaohe",
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "小禾"
+            }
+          },
+          {
+            "id": "act-03-text-04",
+            "content": "风掀开门帘。木桑从冷棚冲进来，一脚踩进火塘，把刚燃起来的草火踩灭。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "narrator",
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-03-text-05",
+            "content": "陶锅被碰歪，半瓢冷水泼在灰里。屋内响起一阵湿灰的嘶声。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "narrator",
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-03-text-06",
+            "content": "谁让你点的？",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "musang",
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "我",
+              "self": true
+            }
+          },
+          {
+            "id": "act-03-text-07",
+            "content": "我冷。我守在旁边呢。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "xiaohe",
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "小禾"
+            }
+          },
+          {
+            "id": "act-03-text-08",
+            "content": "风这么大，你看不见？",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "musang",
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "我",
+              "self": true
+            }
+          },
+          {
+            "id": "act-03-text-09",
+            "content": "木桑用脚把最后一点红炭碾黑。小禾蹲在原处，两只手还保持着护火的姿势。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "narrator",
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-03-text-10",
+            "content": "（推门进来）谁家着了？隔着墙都听见你喊。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "agengbo",
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "阿耿伯"
+            }
+          },
+          {
+            "id": "act-03-text-11",
+            "content": "没有。刚点着。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "xiaohe",
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "小禾"
+            }
+          },
+          {
+            "id": "act-03-text-12",
+            "content": "阿耿伯看看湿透的火塘，又看看桌上的冷饭。他把歪掉的陶锅扶正。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "narrator",
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-03-text-13",
+            "content": "我家新屋都生了两冬火。你这屋还不许烧一锅水？",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "agengbo",
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "阿耿伯"
+            }
+          },
+          {
+            "id": "act-03-text-14",
+            "content": "火是从我手里跑出去的。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "musang",
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "我",
+              "self": true
+            }
+          },
+          {
+            "id": "act-03-text-15",
+            "content": "那就把它看住。老踩灭算什么本事。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "agengbo",
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "阿耿伯"
+            }
+          },
+          {
+            "id": "act-03-text-16",
+            "content": "（走到门口，又转过身）还有，我家西边那块檐板，晌午以前给我装回去。好木头不是这么糟蹋的。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "agengbo",
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "阿耿伯"
+            }
+          },
+          {
+            "id": "act-03-text-17",
+            "content": "门帘落下。木桑站在湿灰里，看见小禾把已经凉透的陶锅重新抱回桌边。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "narrator",
+            "extensions": {
+              "sourceType": "narration"
+            }
+          }
+        ],
+        "choices": [],
+        "notes": "场景：木桑家新屋｜清晨前｜寒雨。小禾借来红炭只想烧一锅水，木桑却把新火踩灭。阿耿伯确认现实责任已经了结，也点明真正的本事是把火看住，而非永远不许生火。"
+      },
+      {
+        "id": "act-04",
+        "title": "和尚停帚",
+        "backgroundAssetId": "background.rebuilt-house-courtyard-rain",
+        "characters": [
+          {
+            "instanceId": "musang",
+            "assetId": "character.mu-sang",
+            "position": "left"
+          },
+          {
+            "instanceId": "monk",
+            "assetId": "character.saodi-heshang",
+            "position": "right"
+          }
+        ],
+        "texts": [
+          {
+            "id": "act-04-text-01",
+            "content": "晌午，木桑照阿耿伯的话，把那块新檐板原样装了回去。入夜后雨停了，小禾早早睡下，木桑却一直坐在焦梁旁。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "narrator",
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-04-text-02",
+            "content": "院地湿亮，落叶贴在石缝里。焦梁仍横在新屋门边，冷棚檐下挂着一盏小油灯。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "narrator",
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-04-text-03",
+            "content": "木桑坐在焦梁旁磨刨刀。院门外忽然传来“沙、沙”的响声。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "narrator",
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-04-text-04",
+            "content": "一把竹帚先伸进院门。紧接着，一个穿灰黄旧衣的和尚倒退进来，把门外的湿叶扫成一小堆。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "narrator",
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-04-text-05",
+            "content": "你扫错院子了。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "musang",
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "我",
+              "self": true
+            }
+          },
+          {
+            "id": "act-04-text-06",
+            "content": "和尚沿墙根往里扫。湿叶滚过石阶，细灰跟在叶后，一直扫到焦梁边。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "narrator",
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-04-text-07",
+            "content": "竹帚一推，灰在梁前积成一道黑线。和尚换到另一边又扫，灰仍过不了门槛。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "narrator",
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-04-text-08",
+            "content": "别碰那根梁。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "musang",
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "我",
+              "self": true
+            }
+          },
+          {
+            "id": "act-04-text-09",
+            "content": "和尚低头看看焦梁，又看看堵在梁边的灰。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "narrator",
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-04-text-10",
+            "content": "我没碰。是它挡着灰。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "monk",
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "扫地和尚"
+            }
+          },
+          {
+            "id": "act-04-text-11",
+            "content": "他把竹帚递到木桑面前。木桑没有接。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "narrator",
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-04-text-12",
+            "content": "和尚也不催，把扫帚靠在焦梁上，坐到檐下脱了鞋，倒出半鞋雨水。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "narrator",
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-04-text-13",
+            "content": "一阵风从新屋穿过。梁边的灰扬起来，碰到焦木，又落回原处。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "narrator",
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-04-text-14",
+            "content": "木桑看了很久，伸手握住竹帚。和尚已经穿好鞋，靠着柱子闭上了眼。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "narrator",
+            "extensions": {
+              "sourceType": "narration"
+            }
+          }
+        ],
+        "choices": [],
+        "notes": "场景：木桑家外院｜当夜｜雨歇。扫地和尚只用竹帚显出焦梁正在阻挡旧灰离开，随后留下扫帚，不触碰焦梁，也不替木桑完成清理。"
+      },
+      {
+        "id": "act-05",
+        "title": "留炭扫灰",
+        "backgroundAssetId": "background.hearth-relit-dawn",
+        "characters": [
+          {
+            "instanceId": "musang",
+            "assetId": "character.mu-sang",
+            "position": "center"
+          }
+        ],
+        "texts": [
+          {
+            "id": "act-05-text-01",
+            "content": "和尚把扫帚靠在梁边，再没有开口。夜深以后，木桑拿起那把扫帚，从新屋最里面开始扫。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "narrator",
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-05-text-02",
+            "content": "灰到了焦梁边，又堆成一道黑线。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "narrator",
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-05-text-03",
+            "content": "他把扫帚放下，双手抱住焦梁。梁只抬起半寸，又重重落回石垫上。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "narrator",
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-05-text-04",
+            "content": "木桑回到工具箱前，摸过木槌、刨刀，最后取出一把短锯。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "narrator",
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-05-text-05",
+            "content": "锯齿咬进焦木。黑灰落在他脚边，露出里面暗褐色的木纹。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "narrator",
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-05-text-06",
+            "content": "他从梁端锯下一块巴掌大的焦木，没有扔，放到桌上。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "narrator",
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-05-text-07",
+            "content": "木桑翻过焦木，在背面刻下失火的日子。又削出一块窄木牌，刻了八个字：风夜封火，临睡再看。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "narrator",
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-05-text-08",
+            "content": "他把焦木和木牌嵌进新火塘旁的墙缝，用木楔一点点敲紧。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "narrator",
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-05-text-09",
+            "content": "剩下的焦梁被他扛到肩上。梁头撞了一次门框，他退回来，换了个方向，才把梁搬出院门。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "narrator",
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-05-text-10",
+            "content": "院外堆着拆下来的旧木。木桑把焦梁平放在最上面，没有劈，也没有烧。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "narrator",
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-05-text-11",
+            "content": "他回屋拿起竹帚。墙角的灰、梁脚的灰、火塘里的灰，一帚接一帚扫过门槛。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "narrator",
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-05-text-12",
+            "content": "最后一层灰很薄，贴在石缝里。木桑蹲下来，用竹帚尖慢慢把它剔出来。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "narrator",
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-05-text-13",
+            "content": "门口不再有梁。扫出去的灰在院边堆成一小堆，晨风一吹，最上面一层散进湿土。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "narrator",
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-05-text-14",
+            "content": "木桑重新码好火塘里的石围，放进干草和细柴。他拿起火镰，第一下没有火星，第二下也没有。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "narrator",
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-05-text-15",
+            "content": "第三下，火星落进草绒。木桑下意识伸手去压，手停在半空。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "narrator",
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-05-text-16",
+            "content": "他转头看过门帘、风口和屋檐，把一块挡风的石片挪近火塘。小火没有熄。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "narrator",
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-05-text-17",
+            "content": "木桑坐在火塘前。天色一点点变白，屋里只剩柴火噼啪作响。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "narrator",
+            "extensions": {
+              "sourceType": "narration"
+            }
+          }
+        ],
+        "choices": [],
+        "notes": "场景：木桑家新屋｜后半夜至破晓｜雨后。主角独自锯下并保存一块焦木、刻下守火规矩，继而搬梁、扫灰、点火；和尚不得在本幕出现或提供帮助。"
+      },
+      {
+        "id": "act-06",
+        "title": "火仍会烫",
+        "backgroundAssetId": "background.hearth-relit-dawn",
+        "characters": [
+          {
+            "instanceId": "musang",
+            "assetId": "character.mu-sang",
+            "position": "left"
+          },
+          {
+            "instanceId": "xiaohe",
+            "assetId": "character.xiao-he",
+            "position": "center"
+          },
+          {
+            "instanceId": "monk",
+            "assetId": "character.saodi-heshang",
+            "position": "right"
+          }
+        ],
+        "texts": [
+          {
+            "id": "act-06-text-01",
+            "content": "天亮时，那根焦梁已经不在门口。小禾闻见柴火和米汤的气味，在门外站了许久。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "narrator",
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-06-text-02",
+            "content": "火塘里燃着一簇不大的火。陶锅冒着热气，门口只剩焦梁压过的一道浅印。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "narrator",
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-06-text-03",
+            "content": "小禾站在门边。木桑盛好一碗热粥，放到她常坐的位置。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "narrator",
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-06-text-04",
+            "content": "进来。把勺拿上。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "musang",
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "我",
+              "self": true
+            }
+          },
+          {
+            "id": "act-06-text-05",
+            "content": "烧多久？",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "xiaohe",
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "小禾"
+            }
+          },
+          {
+            "id": "act-06-text-06",
+            "content": "饭熟了再说。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "musang",
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "我",
+              "self": true
+            }
+          },
+          {
+            "id": "act-06-text-07",
+            "content": "小禾在火塘另一边坐下。柴火忽然爆开，一点火星滚到石围外。木桑肩膀一紧，拿起火钳把火星夹回塘里，又看了一眼风口。他放下火钳，没有把整塘火压灭。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "narrator",
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-06-text-08",
+            "content": "锅开了。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "xiaohe",
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "小禾"
+            }
+          },
+          {
+            "id": "act-06-text-09",
+            "content": "那就吃饭。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "musang",
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "我",
+              "self": true
+            }
+          },
+          {
+            "id": "act-06-text-10",
+            "content": "两个人刚端起碗，阿耿伯扛着一根新檩子从院外经过。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "narrator",
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-06-text-11",
+            "content": "东头屋脊还缺一根。吃完过来搭把手。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "agengbo",
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "阿耿伯"
+            }
+          },
+          {
+            "id": "act-06-text-12",
+            "content": "好。吃完就来。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "musang",
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "我",
+              "self": true
+            }
+          },
+          {
+            "id": "act-06-text-13",
+            "content": "慢慢吃。檩子不会跑。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "agengbo",
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "阿耿伯"
+            }
+          },
+          {
+            "id": "act-06-text-14",
+            "content": "阿耿伯走远。院外又响起“沙、沙”声。昨夜的和尚站在晨光里，把散进湿土的灰扫拢。他已经取下半张旧木面，露出秃头圆脸、慈眉笑眼和额头上的圆福包。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "narrator",
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-06-text-15",
+            "content": "你的扫帚。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "musang",
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "我",
+              "self": true
+            }
+          },
+          {
+            "id": "act-06-text-16",
+            "content": "木桑把竹帚递过去。帚尖已经沾黑了。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "narrator",
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-06-text-17",
+            "content": "和尚接过竹帚，看了看发黑的帚尖，把它搭上肩。他走出院门，走了几步，又回过头。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "narrator",
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-06-text-18",
+            "content": "灰还会落。落了，再扫。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "monk",
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "扫地和尚"
+            }
+          },
+          {
+            "id": "act-06-text-19",
+            "content": "和尚沿山路走进晨雾。木桑回到屋里时，小禾已经把热粥分成两碗。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "narrator",
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-06-text-20",
+            "content": "火塘里又爆开一点火星。木桑伸出火钳，把它拨回石围内。屋门开着，火光落在墙边那块巴掌大的焦木上，也落在两只冒着热气的饭碗上。",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "speakerId": "narrator",
+            "extensions": {
+              "sourceType": "narration"
+            }
+          }
+        ],
+        "choices": [],
+        "notes": "场景：木桑家新屋｜清晨｜雨停。火仍会烫、记忆仍会回来，但木桑重新吃饭和接活，说明余痛已不再支配生活。阿耿伯只作院外画外人物，不占前景槽位。扫地和尚在结尾正式显形并揭示扫余职司。"
+      }
+    ]
+  }
+}

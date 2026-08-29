@@ -1,0 +1,1529 @@
+{
+  "$schema": "../../docs/dream-card/dream-card.schema.json",
+  "schemaVersion": "0.1.0",
+  "meta": {
+    "id": "dream.goubu-panguan.he-ye-ji",
+    "version": "0.1.0",
+    "title": "合页记",
+    "synopsis": "旧时黔地，马帮领路人阿岩同时被母亲、妻女、货商和马帮召唤。他向每一种身份都许下完整承诺，却一次次只带着四分之一的自己赴约。雨夜里，他在山口旧驿棚遇见执簿朱笔的神秘簿吏，看见写有长子、领路人、行商、丈夫与父亲的四张散页。簿吏告诉他，归魂不是删页，而是由自己决定何页已经写完、何页仍要续下、此刻该把哪一页翻到眼前。阿岩随后交出长路领铃，完成对母亲的具体承诺，结清旧账，并用红线把四页亲手缝成一册。河岸上，他选择今日先做女儿的父亲；水中簿吏显露勾簿判官真容，以朱线贯穿全册，见证一册终于有主。",
+    "match": {
+      "tags": [
+        "归魂",
+        "勾簿判官",
+        "多重身份",
+        "角色冲突",
+        "承诺",
+        "选择先后",
+        "自我整合"
+      ],
+      "situations": [
+        "同时承担多种身份与责任",
+        "习惯答应所有人却不断失约",
+        "总由下一件急事决定生活方向",
+        "担心选择优先级等于否认其他自己",
+        "需要结束旧角色并重新安排当下生活"
+      ],
+      "emotions": [
+        "忙乱",
+        "愧疚",
+        "撕裂",
+        "迟疑",
+        "清醒",
+        "安定"
+      ],
+      "dilemmas": [
+        "众多真实身份之间是否必须舍弃一个",
+        "为生活排列先后是否必然辜负别人",
+        "如何承认过去的自己又不再被旧称呼支配"
+      ],
+      "relationships": [
+        "夫妻",
+        "父女",
+        "母子",
+        "领路人与马帮",
+        "行商与商人",
+        "神秘面角色与求愿者"
+      ],
+      "excludeTags": [
+        "逃避全部责任",
+        "要求替自己作决定",
+        "否认既有关系",
+        "单纯时间管理"
+      ]
+    },
+    "officeCandidates": [
+      {
+        "officeId": "office.gui-hun",
+        "fit": 1,
+        "reason": "阿岩没有从多重身份中寻找唯一真身，而是辨认哪些已经写完、哪些仍愿承担，再亲手排列先后并将散页装订成册，完整体现归魂职司的自我认领与整合。"
+      }
+    ],
+    "tone": [
+      "山雾",
+      "马铃",
+      "风雨",
+      "旧纸",
+      "朱砂",
+      "克制",
+      "清明"
+    ],
+    "estimatedDurationSeconds": 420,
+    "culturalSources": [
+      {
+        "id": "source.zgnuoxi-goubu-panguan",
+        "title": "勾簿判官面具与角色介绍",
+        "region": "贵州德江",
+        "reference": "https://www.zgnuoxi.com/mianju/view_37.html",
+        "note": "用于勾簿判官的官帽、火焰眉、鼓眼、獠牙及执簿朱笔等形象依据；归魂与多重身份装订为项目现代转译。"
+      },
+      {
+        "id": "source.guizhou-nuo-museum-goubu-panguan",
+        "title": "傩堂戏——勾簿判官",
+        "region": "贵州",
+        "reference": "https://www.gznwh.cn/article/detail/news-10278.html",
+        "note": "用于核对勾簿判官在傩堂戏中的传统来源；《合页记》人物、事件与归魂职司均为当代产品叙事。"
+      }
+    ],
+    "status": "draft"
+  },
+  "data": {
+    "acts": [
+      {
+        "id": "act-01",
+        "title": "四声相迎",
+        "backgroundAssetId": "background.river-valley-crossroads-dusk",
+        "characters": [
+          {
+            "instanceId": "hesui",
+            "assetId": "character.he-sui",
+            "position": "left"
+          },
+          {
+            "instanceId": "ayan",
+            "assetId": "character.a-yan",
+            "position": "center"
+          },
+          {
+            "instanceId": "ayue",
+            "assetId": "character.a-yue",
+            "position": "right"
+          }
+        ],
+        "texts": [
+          {
+            "id": "act-01-text-01",
+            "content": "黄昏，山雾沿着峡谷缓慢升起。马帮从石路尽头进入河谷，驮马身上的铜铃此起彼伏；阿岩走在最前面，肩上搭着雨披，腰间挂着领铃，身后的货筐里装着盐、布匹和晒干的药材。",
+            "speakerId": "narrator",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-01-text-02",
+            "content": "道路前方分成三处：一条通向河谷中的家，一条翻山回到母亲居住的旧寨，另一条继续通往集市。不同方向的声音几乎同时响起。",
+            "speakerId": "narrator",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-01-text-03",
+            "content": "岩头领！三日后还是老时辰？过了雨口，这条路可就难走了！",
+            "speakerId": "mabang",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "马帮众声（远处）"
+            }
+          },
+          {
+            "id": "act-01-text-04",
+            "content": "岩掌柜，下一批盐布还等你押路，可别让我们空等！",
+            "speakerId": "merchant",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "集市商人（画外）"
+            }
+          },
+          {
+            "id": "act-01-text-05",
+            "content": "阿岩抬手回应，还没有开口，旧寨方向又传来母亲的声音。",
+            "speakerId": "narrator",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-01-text-06",
+            "content": "岩伢！是岩伢回来了吗？",
+            "speakerId": "apo",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "阿婆（画外）"
+            }
+          },
+          {
+            "id": "act-01-text-07",
+            "content": "阿岩停住。他回头看向旧寨，又看向河谷。禾穗站在家门旁，半个身子藏在阿月身后；她认得父亲腰间的铃，却不敢上前。",
+            "speakerId": "narrator",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-01-text-08",
+            "content": "是我。都别急，我回来了。",
+            "speakerId": "ayan",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "我",
+              "self": true
+            }
+          },
+          {
+            "id": "act-01-text-09",
+            "content": "你说的是回哪一处？",
+            "speakerId": "ayue",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "阿月"
+            }
+          },
+          {
+            "id": "act-01-text-10",
+            "content": "阿岩没有回答。他摘下领铃，想递给女儿，禾穗却后退一步。马铃仍在身后响着，像有另一条路不断催促他转身。",
+            "speakerId": "narrator",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-01-text-11",
+            "content": "那一日，四种称呼从四处落在阿岩身上。声声都没有叫错，声声却只唤走了他的一部分。",
+            "speakerId": "narrator",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "narration"
+            }
+          }
+        ],
+        "choices": [],
+        "notes": "场景：河谷分岔路｜黄昏｜山雾升起。阿岩位于回家、回旧寨与继续去集市的道路交叉处；阿婆、马帮与集市商人均为画外声音。"
+      },
+      {
+        "id": "act-02",
+        "title": "一身四诺",
+        "backgroundAssetId": "background.river-valley-hearth-night",
+        "characters": [
+          {
+            "instanceId": "hesui",
+            "assetId": "character.he-sui",
+            "position": "left"
+          },
+          {
+            "instanceId": "ayan",
+            "assetId": "character.a-yan",
+            "position": "center"
+          },
+          {
+            "instanceId": "ayue",
+            "assetId": "character.a-yue",
+            "position": "right"
+          }
+        ],
+        "texts": [
+          {
+            "id": "act-02-text-01",
+            "content": "夜晚，河谷家中的火塘烧得正旺。地上摆着尚未拆开的盐包、母亲托人送来的旧锄、商人的木质账签，以及禾穗白日里放在门边的一只小竹蜻蜓。四件物品围在阿岩身旁，分别指向他的四种生活。",
+            "speakerId": "narrator",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-02-text-02",
+            "content": "阿婆从旧寨赶来，裤脚沾着泥。她把旧锄放在火塘旁。",
+            "speakerId": "narrator",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-02-text-03",
+            "content": "你阿爹留下的那两层梯地塌了半边。再过十来日就要落大雨，你若肯留下，我们还能把地扶起来。",
+            "speakerId": "apo",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "阿婆"
+            }
+          },
+          {
+            "id": "act-02-text-04",
+            "content": "我明早就去。屋顶也一并替你补了。",
+            "speakerId": "ayan",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "我",
+              "self": true
+            }
+          },
+          {
+            "id": "act-02-text-05",
+            "content": "门外响起急促的马铃，一名脚夫送来口信，说北面的货队已经在等阿岩领路。",
+            "speakerId": "narrator",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-02-text-06",
+            "content": "三日后出山，一个人都不能迟！",
+            "speakerId": "mabang",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "马帮众声（画外）"
+            }
+          },
+          {
+            "id": "act-02-text-07",
+            "content": "告诉他们，我不会误事。",
+            "speakerId": "ayan",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "我",
+              "self": true
+            }
+          },
+          {
+            "id": "act-02-text-08",
+            "content": "阿月把商人的账签推到阿岩面前。",
+            "speakerId": "narrator",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-02-text-09",
+            "content": "你还答应替集市送完这一批货。修地、补屋、押货、领队，你准备把自己劈成几个人？",
+            "speakerId": "ayue",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "阿月"
+            }
+          },
+          {
+            "id": "act-02-text-10",
+            "content": "都是已经答应的事。欠下的，总要做完。",
+            "speakerId": "ayan",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "我",
+              "self": true
+            }
+          },
+          {
+            "id": "act-02-text-11",
+            "content": "禾穗轻轻拉住他的袖口。",
+            "speakerId": "narrator",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-02-text-12",
+            "content": "阿爹，明日能陪我去河边找白石吗？别家的孩子说，你只活在马铃里。",
+            "speakerId": "hesui",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "禾穗"
+            }
+          },
+          {
+            "id": "act-02-text-13",
+            "content": "阿岩怔了一下，随即蹲下身。",
+            "speakerId": "narrator",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-02-text-14",
+            "content": "明日。等我修完外婆的梯地，天黑以前一定回来。",
+            "speakerId": "ayan",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "我",
+              "self": true
+            }
+          },
+          {
+            "id": "act-02-text-15",
+            "content": "阿月看着他，没有再争辩。阿岩将四件物品依次收拢到身边，仿佛只要把它们都抱住，就没有辜负任何一处。",
+            "speakerId": "narrator",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-02-text-16",
+            "content": "他向每一种身份都许下完整的诺言，却没有给任何一种生活留下完整的自己。",
+            "speakerId": "narrator",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "narration"
+            }
+          }
+        ],
+        "choices": [],
+        "notes": "场景：河谷家中｜夜晚｜火塘正旺。盐包、旧锄、账签和竹蜻蜓分别指向阿岩的四种生活；阿婆在场但受三人物槽位限制，不占前景槽位。"
+      },
+      {
+        "id": "act-03",
+        "title": "处处失约",
+        "backgroundAssetId": "background.rainy-valley-broken-promises",
+        "characters": [
+          {
+            "instanceId": "hesui",
+            "assetId": "character.he-sui",
+            "position": "left"
+          },
+          {
+            "instanceId": "ayan",
+            "assetId": "character.a-yan",
+            "position": "center"
+          },
+          {
+            "instanceId": "ayue",
+            "assetId": "character.a-yue",
+            "position": "right"
+          }
+        ],
+        "texts": [
+          {
+            "id": "act-03-text-01",
+            "content": "次日清晨，云层低压在山腰。阿岩在梯地边垒石，刚扶起一段塌墙，山下便传来催促清点货物的铜锣声。他停下手，望向河谷，最终把锄头搁在未垒完的石墙上。",
+            "speakerId": "narrator",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-03-text-02",
+            "content": "你要走，就走吧。",
+            "speakerId": "apo",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "阿婆"
+            }
+          },
+          {
+            "id": "act-03-text-03",
+            "content": "我只是下去一会儿。午后一定回来。",
+            "speakerId": "ayan",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "我",
+              "self": true
+            }
+          },
+          {
+            "id": "act-03-text-04",
+            "content": "你这些年说得最多的，就是“一会儿回来”。",
+            "speakerId": "apo",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "阿婆"
+            }
+          },
+          {
+            "id": "act-03-text-05",
+            "content": "阿岩赶到货棚，飞快核对盐包与账签。商人问他北路是否还能照旧通行，他一边回答，一边望着逐渐西斜的太阳。等他发现禾穗留下的小竹蜻蜓时，天边已经响起闷雷。",
+            "speakerId": "narrator",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-03-text-06",
+            "content": "雨落下来。禾穗独自坐在门槛上，怀里抱着一个盛白石的空竹篮。阿岩浑身湿透地回来，手上还握着商人的账签。",
+            "speakerId": "narrator",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-03-text-07",
+            "content": "禾穗，明日我——",
+            "speakerId": "ayan",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "我",
+              "self": true
+            }
+          },
+          {
+            "id": "act-03-text-08",
+            "content": "禾穗起身，把空篮放回门后，没有说话。",
+            "speakerId": "narrator",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-03-text-09",
+            "content": "你并非不想做一个好儿子、好领路人、好丈夫、好父亲。可你每到一处，都只带回来四分之一的人。",
+            "speakerId": "ayue",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "阿月"
+            }
+          },
+          {
+            "id": "act-03-text-10",
+            "content": "若我不管，旧寨的地谁修？货队的路谁领？欠人的货谁还？",
+            "speakerId": "ayan",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "我",
+              "self": true
+            }
+          },
+          {
+            "id": "act-03-text-11",
+            "content": "所以你什么都管，却没有一件事知道你究竟站在哪里。",
+            "speakerId": "ayue",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "阿月"
+            }
+          },
+          {
+            "id": "act-03-text-12",
+            "content": "难道要我从中挑一个，剩下的全都不要？",
+            "speakerId": "ayan",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "我",
+              "self": true
+            }
+          },
+          {
+            "id": "act-03-text-13",
+            "content": "我不知道。可这件事不能永远由下一声马铃替你决定。",
+            "speakerId": "ayue",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "阿月"
+            }
+          },
+          {
+            "id": "act-03-text-14",
+            "content": "阿岩猛地抓起领铃，独自走入雨中。画面中，他的影子被门内火光、山间闪电和远处货棚的灯同时拉向不同方向。",
+            "speakerId": "narrator",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "narration"
+            }
+          }
+        ],
+        "choices": [],
+        "notes": "连续场景：旧寨梯地 → 河谷货棚 → 家门前。背景资产概括雨中河谷与被多处召唤的视觉意象；阿婆只在第一段出现，不占前景槽位。"
+      },
+      {
+        "id": "act-04",
+        "title": "散页之簿",
+        "backgroundAssetId": "background.abandoned-post-station-night",
+        "characters": [
+          {
+            "instanceId": "ayan",
+            "assetId": "character.a-yan",
+            "position": "left"
+          },
+          {
+            "instanceId": "clerk",
+            "assetId": "character.mystic-goubu-panguan",
+            "position": "right"
+          }
+        ],
+        "texts": [
+          {
+            "id": "act-04-text-01",
+            "content": "深夜，山口旧驿棚。屋顶漏雨，残破的木门在风中开合；一盏油灯放在长案中央，灯后坐着一名看不清面目的簿吏。桌上没有完整账册，只有四张被石块压住的散页。",
+            "speakerId": "narrator",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-04-text-02",
+            "content": "阿岩进门避雨。簿吏没有抬头，只用朱笔轻轻敲了敲桌面。",
+            "speakerId": "narrator",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-04-text-03",
+            "content": "深夜带铃入门。你来勾哪一笔？",
+            "speakerId": "clerk",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "簿吏",
+              "mystic": true
+            }
+          },
+          {
+            "id": "act-04-text-04",
+            "content": "我不来勾账，只来躲雨。",
+            "speakerId": "ayan",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "我",
+              "self": true
+            }
+          },
+          {
+            "id": "act-04-text-05",
+            "content": "不勾账，为何身后四路都有人等你？",
+            "speakerId": "clerk",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "簿吏",
+              "mystic": true
+            }
+          },
+          {
+            "id": "act-04-text-06",
+            "content": "阿岩看向桌面。第一张纸写着“长子”，旁边压着一小块梯地上的黑石；第二张写着“领路人”，压着一枚旧马蹄铁；第三张写着“行商”，压着木质账签；第四张写着“丈夫、父亲”，压着那只小竹蜻蜓。",
+            "speakerId": "narrator",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-04-text-07",
+            "content": "你从哪里拿来的？",
+            "speakerId": "ayan",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "我",
+              "self": true
+            }
+          },
+          {
+            "id": "act-04-text-08",
+            "content": "从你一路不敢回头的地方。",
+            "speakerId": "clerk",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "簿吏",
+              "mystic": true
+            }
+          },
+          {
+            "id": "act-04-text-09",
+            "content": "簿吏把四张散页推到阿岩面前。",
+            "speakerId": "narrator",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-04-text-10",
+            "content": "看看。哪一页是假？",
+            "speakerId": "clerk",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "簿吏",
+              "mystic": true
+            }
+          },
+          {
+            "id": "act-04-text-11",
+            "content": "阿岩先拿起“长子”，又看向“领路人”。他一页页翻过，最终摇头。",
+            "speakerId": "narrator",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-04-text-12",
+            "content": "没有假的。地是我家的，路是我带人走出来的，货是我亲手接下的，阿月和禾穗也确实在等我。",
+            "speakerId": "ayan",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "我",
+              "self": true
+            }
+          },
+          {
+            "id": "act-04-text-13",
+            "content": "既然页页都真，为何你无处安身？",
+            "speakerId": "clerk",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "簿吏",
+              "mystic": true
+            }
+          },
+          {
+            "id": "act-04-text-14",
+            "content": "一阵山风撞开木门，四张散页同时被吹起。阿岩慌忙伸手，抓住一页，另外三页便从指间滑走；他转身去追另三页，手中的那一页也再次脱落。",
+            "speakerId": "narrator",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-04-text-15",
+            "content": "一页便是一生，页页都争着做封面。你有四种称呼，却没有一册由自己作主的命。",
+            "speakerId": "clerk",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "簿吏",
+              "mystic": true
+            }
+          },
+          {
+            "id": "act-04-text-16",
+            "content": "那我该撕掉哪一页？",
+            "speakerId": "ayan",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "我",
+              "self": true
+            }
+          },
+          {
+            "id": "act-04-text-17",
+            "content": "归魂，不是删页。",
+            "speakerId": "clerk",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "簿吏",
+              "mystic": true
+            }
+          },
+          {
+            "id": "act-04-text-18",
+            "content": "簿吏取出一根染成暗红色的麻线，放在散页之间。",
+            "speakerId": "narrator",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-04-text-19",
+            "content": "何页已经写完，何页仍要续下；何页只该留在册中，何页可以翻到眼前——这些都该由你定。若连先后都不肯选，旁人的每一声呼唤，都会替你翻页。",
+            "speakerId": "clerk",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "簿吏",
+              "mystic": true
+            }
+          },
+          {
+            "id": "act-04-text-20",
+            "content": "可我无论怎样选，都会辜负一些人。",
+            "speakerId": "ayan",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "我",
+              "self": true
+            }
+          },
+          {
+            "id": "act-04-text-21",
+            "content": "你早已在辜负他们。只不过从前，你让所有人陪你一起等。",
+            "speakerId": "clerk",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "簿吏",
+              "mystic": true
+            }
+          },
+          {
+            "id": "act-04-text-22",
+            "content": "簿吏将朱笔递向阿岩，却在他伸手时重新收回。",
+            "speakerId": "narrator",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-04-text-23",
+            "content": "我的笔只能记账，不能替你过日子。等你知道这几页如何装订，再来取这一勾。",
+            "speakerId": "clerk",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "簿吏",
+              "mystic": true
+            }
+          },
+          {
+            "id": "act-04-text-24",
+            "content": "油灯骤然熄灭。闪电照亮簿吏的侧脸，依稀可见高耸的官帽与火焰状眉影；下一次雷声响起时，长案后已经空无一人，只剩四张散页和一根红线。",
+            "speakerId": "narrator",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "narration"
+            }
+          }
+        ],
+        "choices": [],
+        "notes": "场景：山口废弃驿棚｜深夜｜风雨。神秘簿吏、四张散页、暗红麻线与朱笔构成归魂职司的首次显影。"
+      },
+      {
+        "id": "act-05",
+        "title": "亲手合页",
+        "backgroundAssetId": "background.mountain-village-after-rain",
+        "characters": [
+          {
+            "instanceId": "apo",
+            "assetId": "character.a-po",
+            "position": "left"
+          },
+          {
+            "instanceId": "ayan",
+            "assetId": "character.a-yan",
+            "position": "center"
+          },
+          {
+            "instanceId": "ayue",
+            "assetId": "character.a-yue",
+            "position": "right"
+          }
+        ],
+        "texts": [
+          {
+            "id": "act-05-text-01",
+            "content": "雨停后的清晨，雾气尚未散尽。马帮已经套好货筐，众人等待阿岩摇响领铃。阿岩站在队伍前，手中握着那枚陪伴他多年的铜铃。",
+            "speakerId": "narrator",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-05-text-02",
+            "content": "岩头领，时辰到了！",
+            "speakerId": "mabang",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "马帮众声"
+            }
+          },
+          {
+            "id": "act-05-text-03",
+            "content": "阿岩没有像往常一样举铃。他走到一名年轻脚夫面前，把领铃放入对方手中，又取出画着水口、陡坡和避雨洞的旧路线图。",
+            "speakerId": "narrator",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-05-text-04",
+            "content": "北路我已经带你走过七趟。哪处雨后会滑，哪家寨子可以借宿，都在图上。从今日起，你领头。",
+            "speakerId": "ayan",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "我",
+              "self": true
+            }
+          },
+          {
+            "id": "act-05-text-05",
+            "content": "那你呢？",
+            "speakerId": "porter",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "年轻脚夫"
+            }
+          },
+          {
+            "id": "act-05-text-06",
+            "content": "这一页，我已经写完了。往后若有短程货路，我仍会走；但我不再让每一声铃都替我决定去处。",
+            "speakerId": "ayan",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "我",
+              "self": true
+            }
+          },
+          {
+            "id": "act-05-text-07",
+            "content": "阿岩解下腰间挂铃的旧绳。马帮重新上路，领铃第一次从另一个人的手中响起；阿岩站在原地，没有追上去。",
+            "speakerId": "narrator",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-05-text-08",
+            "content": "阿岩回到梯地，将昨日没有垒完的石墙扶正，又爬上母亲的木屋修补漏雨处。阿婆坐在檐下，看见他腰间已经没有领铃。",
+            "speakerId": "narrator",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-05-text-09",
+            "content": "不走了？",
+            "speakerId": "apo",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "阿婆"
+            }
+          },
+          {
+            "id": "act-05-text-10",
+            "content": "长路不再领了。但我也不会回到旧寨，重新做那个从没离开过山的岩伢。雨季以前我替你修屋、扶地；往后每季回来一趟。你若愿意，冬天也可以到河谷同我们住。",
+            "speakerId": "ayan",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "我",
+              "self": true
+            }
+          },
+          {
+            "id": "act-05-text-11",
+            "content": "阿婆沉默片刻，把旧锄接回自己手中。",
+            "speakerId": "narrator",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-05-text-12",
+            "content": "我叫你回来，是想见我的儿。不是要你变成守着旧屋的一道影子。",
+            "speakerId": "apo",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "阿婆"
+            }
+          },
+          {
+            "id": "act-05-text-13",
+            "content": "阿岩点头。他没有继续垒第二层梯地，而是在做完已经答应的事情后，第一次主动停下。",
+            "speakerId": "narrator",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-05-text-14",
+            "content": "黄昏，阿岩将已经核清的账签交给商人，说明以后只承接雨季前后的近程货路。商人虽然不满，最终仍收回账签。阿岩回到火塘旁，把马帮路线图、旧寨黑石、结清的账签和小竹蜻蜓依次放在四张散页上，再用红线将它们缝成一册。",
+            "speakerId": "narrator",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-05-text-15",
+            "content": "你找到哪一个才是自己了？",
+            "speakerId": "ayue",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "阿月"
+            }
+          },
+          {
+            "id": "act-05-text-16",
+            "content": "没有哪一个能单独算我。",
+            "speakerId": "ayan",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "我",
+              "self": true
+            }
+          },
+          {
+            "id": "act-05-text-17",
+            "content": "他翻过写着“领路人”的一页，把它装订在前半册；随后将写着“丈夫、父亲”的一页翻到眼前。",
+            "speakerId": "narrator",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-05-text-18",
+            "content": "有些事已经做完，有些事仍然属于我。以前我怕选了先后，就等于否认其他的自己。如今才知道，不肯选择，才会让每一个自己都只活到一半。",
+            "speakerId": "ayan",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "我",
+              "self": true
+            }
+          },
+          {
+            "id": "act-05-text-19",
+            "content": "阿月没有立刻原谅，也没有露出笑容。她只是把门后的空竹篮拿出来，放到阿岩面前。",
+            "speakerId": "narrator",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-05-text-20",
+            "content": "河边的白石还在。你答应禾穗的事，也还在。",
+            "speakerId": "ayue",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "阿月"
+            }
+          },
+          {
+            "id": "act-05-text-21",
+            "content": "阿岩接过竹篮，走向门外。",
+            "speakerId": "narrator",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "narration"
+            }
+          }
+        ],
+        "choices": [],
+        "notes": "连续场景：马帮出发地 → 旧寨 → 河谷家中。阿岩依次交出长路领铃、完成对母亲的具体承诺、结清旧账，并亲手用红线装订四张散页；马帮与年轻脚夫作为画外人物。"
+      },
+      {
+        "id": "act-06",
+        "title": "一册有主",
+        "backgroundAssetId": "background.riverbank-after-rain",
+        "characters": [
+          {
+            "instanceId": "ayan",
+            "assetId": "character.a-yan",
+            "position": "left"
+          },
+          {
+            "instanceId": "hesui",
+            "assetId": "character.he-sui",
+            "position": "center"
+          },
+          {
+            "instanceId": "judge",
+            "assetId": "character.goubu-panguan",
+            "position": "right"
+          }
+        ],
+        "texts": [
+          {
+            "id": "act-06-text-01",
+            "content": "雨后的河岸，水声清亮，远山被薄雾分成数层。禾穗蹲在浅滩边挑选白石，阿岩替她提着竹篮；远处偶尔传来已经离山的马铃，但阿岩没有回头。",
+            "speakerId": "narrator",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-06-text-02",
+            "content": "禾穗捡起一块带红纹的石头，放在阿岩掌心。",
+            "speakerId": "narrator",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-06-text-03",
+            "content": "他们都叫你岩头领，外婆叫你岩伢，集市的人叫你岩掌柜。你到底是哪一个？",
+            "speakerId": "hesui",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "禾穗"
+            }
+          },
+          {
+            "id": "act-06-text-04",
+            "content": "阿岩看着掌心的石头，没有立即回答。",
+            "speakerId": "narrator",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-06-text-05",
+            "content": "这些都是我走过的页。今日这一页，我先做你阿爹。",
+            "speakerId": "ayan",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "我",
+              "self": true
+            }
+          },
+          {
+            "id": "act-06-text-06",
+            "content": "那明日呢？",
+            "speakerId": "hesui",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "禾穗"
+            }
+          },
+          {
+            "id": "act-06-text-07",
+            "content": "明日到了，我自己翻。",
+            "speakerId": "ayan",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "我",
+              "self": true
+            }
+          },
+          {
+            "id": "act-06-text-08",
+            "content": "禾穗终于笑起来，把更多白石放进竹篮。阿岩坐在河岸，将缝好的册子放在膝上；风吹动书页，却没有再把它们吹散。",
+            "speakerId": "narrator",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-06-text-09",
+            "content": "水面忽然映出旧驿棚中的油灯。簿吏站在倒影另一端，左手托簿，右手执朱笔。他的面容在水波中逐渐显现：官帽高耸，眉如火焰，双目圆睁，口露獠牙，正是勾簿判官。",
+            "speakerId": "narrator",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-06-text-10",
+            "content": "判官的朱笔落下，没有勾去册中任何一页，而是在所有书页的装订处画出一条贯穿始终的红线。",
+            "speakerId": "narrator",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-06-text-11",
+            "content": "诸名不必相争，诸身自有先后。册既有主，魂自归身。",
+            "speakerId": "judge",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "dialogue",
+              "speakerName": "勾簿判官",
+              "mystic": true
+            }
+          },
+          {
+            "id": "act-06-text-12",
+            "content": "水波散开，倒影消失。阿岩合上册子，牵起禾穗的手，沿河岸向家中走去。",
+            "speakerId": "narrator",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "narration"
+            }
+          },
+          {
+            "id": "act-06-text-13",
+            "content": "他没有寻回一个从未改变的自己。他只是终于肯承认，走过的每一程都是自己的路；而往后的页，应由自己亲手翻动。",
+            "speakerId": "narrator",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "final-narration"
+            }
+          },
+          {
+            "id": "act-06-text-14",
+            "content": "画面渐暗，只留下册页合拢的声音。",
+            "speakerId": "narrator",
+            "display": {
+              "mode": "typewriter",
+              "advance": "manual"
+            },
+            "extensions": {
+              "sourceType": "narration"
+            }
+          }
+        ],
+        "choices": [],
+        "notes": "场景：雨后河岸｜薄雾。阿岩选择此刻先做禾穗的父亲；簿吏在水面倒影中显露为勾簿判官，以朱线贯穿全册而不删去任何一页。"
+      }
+    ]
+  }
+}
