@@ -30,6 +30,13 @@ afterEach(() => {
 });
 
 describe("CodexExperience", () => {
+  test("exposes the codex as a keyboard-focusable scroll region", () => {
+    render(<CodexExperience data={faceData} entries={{}} />);
+
+    const scrollRegion = screen.getByRole("main", { name: "面具图鉴滚动区域" });
+    expect(scrollRegion.getAttribute("tabindex")).toBe("0");
+  });
+
   test("renders the configured tiled slots and opens a collected mask in a fullscreen dialog", async () => {
     render(<CodexExperience data={faceData} entries={{ "crown-beard": collectedEntry }} />);
     expect(screen.getByText(`已收录 1 / ${faceData.codex.slots.length}`)).toBeTruthy();

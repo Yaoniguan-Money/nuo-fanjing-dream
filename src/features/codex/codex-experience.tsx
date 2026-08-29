@@ -418,7 +418,12 @@ export function CodexExperience({ data = faceData, entries: controlledEntries, c
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [activeSlot, close]);
 
-  return <main className="codex-experience" style={{ "--codex-altar": `url("${data.codex.altar.background}")` } as CSSProperties}>
+  return <main
+    aria-label="面具图鉴滚动区域"
+    className="codex-experience"
+    style={{ "--codex-altar": `url("${data.codex.altar.background}")` } as CSSProperties}
+    tabIndex={0}
+  >
     <header className="codex-title"><div className="codex-kicker">傩 · 谱 · 收 · 录</div><h1>面具图鉴 <span className="codex-title-count">({count} / {data.codex.slots.length})</span></h1><p>完成一条幻梦，点亮一位历史角色。点击已收录卡面，可旋转傩面并重读故事回响。</p></header>
     <div className="codex-actions"><p aria-live="polite">已收录 {count} / {data.codex.slots.length}</p><button className="codex-reset-button" type="button" onClick={clear} aria-label="清空本机收录" title="清空本机收录">↻</button>{demoMode ? <label className="codex-demo-select">演示 <select value={demoVariant} onChange={(event) => event.target.value === "all" ? unlockAll() : leaveDemo()}><option value="normal">普通模式</option><option value="all">解锁全部面具</option></select></label> : null}<label className="codex-story-select">剧情体验 <select defaultValue="" onChange={(event) => { if (event.target.value) router.push(`/dream/${encodeURIComponent(event.target.value)}`); }}><option value="">选择已制作剧情</option>{STORY_PATHS.map(([name, id]) => <option value={id} key={id}>{name}</option>)}</select></label><Link className="codex-nav-link" href="/">返回首页</Link></div>
     {demoMode && demoVariant === "all" ? <p className="codex-demo-hint">演示版：全部可用面具已点亮，可点击卡面查看翻转与详情；也可关闭演示恢复本机收录。</p> : null}
