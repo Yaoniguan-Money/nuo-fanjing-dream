@@ -258,8 +258,8 @@
         "backgroundAssetId": "background.river-valley-hearth-night",
         "characters": [
           {
-            "instanceId": "hesui",
-            "assetId": "character.he-sui",
+            "instanceId": "apo",
+            "assetId": "character.a-po",
             "position": "left"
           },
           {
@@ -480,7 +480,7 @@
           }
         ],
         "choices": [],
-        "notes": "场景：河谷家中｜夜晚｜火塘正旺。盐包、旧锄、账签和竹蜻蜓分别指向阿岩的四种生活；阿婆在场但受三人物槽位限制，不占前景槽位。"
+        "notes": "场景：河谷家中｜夜晚｜火塘正旺。盐包、旧锄、账签和竹蜻蜓分别指向阿岩的四种生活；阿婆在场并占左侧前景槽位，禾穗以旁白动作与短句出现，不占前景槽位。"
       },
       {
         "id": "act-03",
@@ -488,8 +488,8 @@
         "backgroundAssetId": "background.rainy-valley-broken-promises",
         "characters": [
           {
-            "instanceId": "hesui",
-            "assetId": "character.he-sui",
+            "instanceId": "apo",
+            "assetId": "character.a-po",
             "position": "left"
           },
           {
@@ -687,7 +687,7 @@
           }
         ],
         "choices": [],
-        "notes": "连续场景：旧寨梯地 → 河谷货棚 → 家门前。背景资产概括雨中河谷与被多处召唤的视觉意象；阿婆只在第一段出现，不占前景槽位。"
+        "notes": "连续场景：旧寨梯地 → 河谷货棚 → 家门前。背景资产概括雨中河谷与被多处召唤的视觉意象；阿婆承接旧寨梯地段落并占左侧前景槽位，禾穗只作为失约后果在旁白动作中出现。"
       },
       {
         "id": "act-04",
