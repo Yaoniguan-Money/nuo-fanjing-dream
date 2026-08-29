@@ -46,7 +46,10 @@ describe("GetFaceRitual", () => {
     const { container } = render(<GetFaceRitual onReturn={vi.fn()} />);
 
     expect(container.querySelector(".mask-match-stage")).toBeTruthy();
-    expect(Array.from(container.querySelectorAll(".orbit-mask img")).map((image) => image.getAttribute("src"))).toEqual([]);
+    const orbitImages = Array.from(container.querySelectorAll(".orbit-mask img")).map((image) => image.getAttribute("src") ?? "");
+    expect(orbitImages).toHaveLength(8);
+    expect(orbitImages.every((src) => src.includes("/dream-assets/ui/ritual/masks/"))).toBe(true);
+    expect(orbitImages.every((src) => !src.includes("/ui/codex/details/"))).toBe(true);
     expect(screen.queryByRole("button", { name: "入 戏" })).toBeNull();
 
     await act(async () => { await vi.advanceTimersByTimeAsync(520); });

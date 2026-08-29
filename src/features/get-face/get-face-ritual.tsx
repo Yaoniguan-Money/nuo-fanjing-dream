@@ -5,7 +5,7 @@ import { useCallback, useEffect, useReducer, useState } from "react";
 import { useRouter } from "next/navigation";
 import { createDreamSession, matchResponseSchema, type MatchResponse } from "@/domain/dream-session";
 import { writeDreamSession } from "@/domain/dream-session/storage";
-import { getFaceData, resolveVisual } from "@/domain/get-face";
+import { getFaceData, resolveVisual, RITUAL_MASK_THUMBNAILS } from "@/domain/get-face";
 import { preloadMatchedDreamResources } from "@/features/preload/resource-preloader";
 import {
   clearGetFaceRitualSession,
@@ -144,7 +144,7 @@ export function GetFaceRitual({ onReturn }: { onReturn: () => void }) {
           role="img"
           style={{ "--mask-a": mask.visual.card.primary, "--mask-b": mask.visual.card.secondary } as React.CSSProperties}
         >
-          <span className="orbit-mask-glyph" aria-hidden="true"><i>{MASK_TITLES[index]?.slice(0, 1) ?? "面"}</i></span>
+          <Image className="orbit-mask-thumbnail" src={RITUAL_MASK_THUMBNAILS[index]} alt="" width={150} height={200} loading="eager" unoptimized />
         </div>)}
       </div>
       <div className="match-copy">
