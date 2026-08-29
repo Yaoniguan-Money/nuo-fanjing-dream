@@ -1,8 +1,13 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useCallback, useEffect, useState } from "react";
 import { ThresholdExperience } from "./threshold-experience";
-import { GetFaceRitual } from "@/features/get-face/get-face-ritual";
+
+const GetFaceRitual = dynamic(
+  () => import("@/features/get-face/get-face-ritual").then((module) => module.GetFaceRitual),
+  { ssr: false }
+);
 
 export function ThresholdShell() {
   const [stage, setStage] = useState<"intro" | "bridge" | "ritual">("intro");
