@@ -36,7 +36,7 @@ export function ThresholdExperience({ onCrossThreshold, introVideoSrc }: { onCro
         <div className="threshold-particles" aria-hidden="true">{MOTES.map((mote) => <i key={mote} style={{ "--i": mote } as React.CSSProperties} />)}</div>
       </div>
       <button type="button" className="threshold-start" onClick={start} disabled={stage !== "title"}>开始入梦</button>
-      <Link className="threshold-codex-link" href="/codex">直接进入图鉴</Link>
+      <Link className="threshold-codex-link" href="/codex" prefetch={false}>直接进入图鉴</Link>
       <small>贵州傩文化·沉浸式数字幻梦</small>
     </section> : null}
     {stage === "video" && introVideoSrc ? <section className="threshold-video-stage">
