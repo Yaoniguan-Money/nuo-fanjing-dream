@@ -1,0 +1,262 @@
+{
+  "$schema": "../../docs/dream-card/dream-card.schema.json",
+  "schemaVersion": "0.1.0",
+  "meta": {
+    "id": "dream.liuyi.yi-xin-du-shui",
+    "version": "0.1.0",
+    "title": "一信渡水",
+    "synopsis": "千年前，江南水乡泽口村秋汛毁田、租税不减，少女阿沅的父亲护田病倒。她宁可替人浆洗、夜里织布，也不肯开口向族中三叔公求助——怕被看轻，怕给父亲丢脸，一封写好的求援信被压在枕下。独撑数日，卖布被压价，药包摔进雨水泥洼，她在河边摸出火折子欲烧信。渡口雾中，戴木面的神秘人现身，讲起千年前泾河边牧羊女向陌生书生开口求援的故事：信不送出去就只是一张纸，开口不是认输，是把声音送到能回应它的人那里。阿沅攥信走到三叔公门前，三次转身后终于叩门开口，粮与大夫当夜而至。数日后她把那封未送出的信放入河水，戴面人摘面自承是千年前替开口女子送信的柳毅——先开口的那个人，不丢人。",
+    "match": {
+      "tags": ["柳毅", "传书", "水乡", "秋汛", "求援信", "开口求助", "渡口"],
+      "situations": ["羞于开口求助", "怕被看轻怕欠人情", "话到嘴边咽下", "独自硬撑家中难处", "需要第一次开口"],
+      "emotions": ["羞怯", "倔强", "挣扎", "释然", "被接住"],
+      "dilemmas": ["开口是否等于丢脸", "求助是否等于交出命运", "回应不保证时是否开口"],
+      "relationships": ["父女", "族亲邻里", "神灵与少女", "求助者与回应者"],
+      "excludeTags": []
+    },
+    "officeCandidates": [
+      {
+        "officeId": "office.chuan-sheng",
+        "fit": 1,
+        "reason": "故事核心是把写好未送的话当面开口，让声音抵达能回应它的人，结尾由柳毅摘面揭示交棒。"
+      }
+    ],
+    "tone": ["水乡", "秋汛", "低回", "紧绷", "释然"],
+    "estimatedDurationSeconds": 480,
+    "culturalSources": [
+      {
+        "id": "source.fuquan-yangxi-liuyi",
+        "title": "贵州福泉阳戏《龙王女》《柳毅传书》",
+        "region": "贵州福泉",
+        "reference": "傩戏“三女戏”系统传书母题；原始剧本《一信渡水》暂未归档至 reference-materials，待补",
+        "note": "借用柳毅承信渡水、龙女敢向陌生书生开口的传书母题；阿沅、泽口村、秋汛、求援信与三叔公故事均为本篇虚构。"
+      }
+    ],
+    "status": "draft"
+  },
+  "data": {
+    "acts": [
+      {
+        "id": "act-01",
+        "title": "秋汛之村",
+        "backgroundAssetId": "background.riverside-autumn-flood",
+        "characters": [
+          {"instanceId": "ayuan", "assetId": "character.ayuan", "position": "left"},
+          {"instanceId": "laofu", "assetId": "character.xiyi-laofu", "position": "right"}
+        ],
+        "texts": [
+          {"id": "act-01-text-01", "content": "千年前，江南水乡，有一座临河的小村，叫作泽口村。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-01-text-02", "content": "这一年秋汛凶猛，河水漫过田埂，冲毁了村里的稻田。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-01-text-03", "content": "汛退之后，官府的租税，一两也没有减。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-01-text-04", "content": "少女的父亲下田抢护，在冷水里泡了两日，病倒了。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-01-text-05", "content": "村里人各自忙着修补自家屋舍。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-01-text-06", "content": "只有族中的三叔公家，粮仓还是满的。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-01-text-07", "content": "阿沅，又来替人浆洗？", "speakerId": "laofu", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "洗衣老妇"}},
+          {"id": "act-01-text-08", "content": "嗯。张家两件，李家一件。", "speakerId": "ayuan", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-01-text-09", "content": "你爹的病，好些了吗？", "speakerId": "laofu", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "洗衣老妇"}},
+          {"id": "act-01-text-10", "content": "好些了。", "speakerId": "ayuan", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-01-text-11", "content": "（叹气）你三叔公家，粮仓是满的。一句求人的话，不值几个钱的。", "speakerId": "laofu", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "洗衣老妇"}},
+          {"id": "act-01-text-12", "content": "（搓着衣裳，不抬头）我爹说，我这双手，帮得了别人，张不开口帮自家。", "speakerId": "ayuan", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-01-text-13", "content": "（摇头）手是硬的，话是硬的，肚子是空的。", "speakerId": "laofu", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "洗衣老妇"}}
+        ],
+        "choices": [],
+        "notes": "场景：河边｜日｜阴沉。秋汛浑水、浆洗衣物。\n原始在场：我（阿沅，十五六岁少女） · 洗衣老妇（村中邻居） · 远处修补屋舍的村民（数人，不出声）\n迁移备注：远处村民作背景远景，不作摆位。"
+      },
+      {
+        "id": "act-02",
+        "title": "咽下的话",
+        "backgroundAssetId": "background.cottage-lamp-night",
+        "characters": [
+          {"instanceId": "ayuan", "assetId": "character.ayuan", "position": "left"},
+          {"instanceId": "fuqin", "assetId": "character.fuqin-ayuan", "position": "right"}
+        ],
+        "texts": [
+          {"id": "act-02-text-01", "content": "少女的父亲，曾是村里私塾的先生。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-02-text-02", "content": "三叔公的孙儿，认的头几个字，就是他教的。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-02-text-03", "content": "如今他卧在草席上，咳一声，要缓半晌。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-02-text-04", "content": "他看得出来，女儿在硬撑。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-02-text-05", "content": "（咳）阿沅……", "speakerId": "fuqin", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "父亲"}},
+          {"id": "act-02-text-06", "content": "爹，我在。药快熬好了。", "speakerId": "ayuan", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-02-text-07", "content": "药先停一停。你去一趟村东头。", "speakerId": "fuqin", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "父亲"}},
+          {"id": "act-02-text-08", "content": "去做什么？", "speakerId": "ayuan", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-02-text-09", "content": "去求你三叔公。他孙儿……认的头几个字，是你爹教的。", "speakerId": "fuqin", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "父亲"}},
+          {"id": "act-02-text-10", "content": "（背过身去添柴）家里还撑得住。", "speakerId": "ayuan", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-02-text-11", "content": "撑不住的。爹这身子，爹自己晓得。", "speakerId": "fuqin", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "父亲"}},
+          {"id": "act-02-text-12", "content": "撑得住。", "speakerId": "ayuan", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-02-text-13", "content": "（长久沉默）……阿沅。求人，不丢人。", "speakerId": "fuqin", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "父亲"}},
+          {"id": "act-02-text-14", "content": "（低声）睡了，爹。", "speakerId": "ayuan", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-02-text-15", "content": "深夜。父亲睡熟。少女在灯下磨墨，铺开一张纸，一笔一笔写下一封信。写完，读了一遍，又读一遍。最终，她把信折好，塞进了枕头底下。", "speakerId": "stage", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "action"}},
+          {"id": "act-02-text-16", "content": "话写下来了。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-02-text-17", "content": "咽下去了。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}}
+        ],
+        "choices": [],
+        "notes": "场景：屋内｜夜｜油灯。土灶余温、草席、药包、织机。\n原始在场：我 · 父亲（病中，卧于草席）\n迁移备注：书信、药包、织机为场景道具，暂不单独建 assetId。"
+      },
+      {
+        "id": "act-03",
+        "title": "独撑",
+        "backgroundAssetId": "background.market-rain-mud",
+        "characters": [
+          {"instanceId": "ayuan", "assetId": "character.ayuan", "position": "left"},
+          {"instanceId": "bufan", "assetId": "character.bufan", "position": "center"},
+          {"instanceId": "shenzi", "assetId": "character.shenzi", "position": "right"}
+        ],
+        "texts": [
+          {"id": "act-03-text-01", "content": "少女独自撑了三日。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-03-text-02", "content": "白天替人浆洗，夜里织布，天亮去集市卖。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-03-text-03", "content": "织了三夜的布，布贩只肯给一半的价。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-03-text-04", "content": "换来的钱，换不来一帖好药。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-03-text-05", "content": "这布走线粗了，还压了水渍。五文。", "speakerId": "bufan", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "布贩"}},
+          {"id": "act-03-text-06", "content": "这是三夜的活。", "speakerId": "ayuan", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-03-text-07", "content": "爱卖不卖。泽口村如今，谁家不缺钱。", "speakerId": "bufan", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "布贩"}},
+          {"id": "act-03-text-08", "content": "（接过钱，攥紧）……卖。", "speakerId": "ayuan", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-03-text-09", "content": "归途落雨。她把药包揣进怀里，脚下一滑，摔在泥水里。药包散了，药材浸进水洼。她跪在水里一包一包地捡，雨越下越大。", "speakerId": "stage", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "action"}},
+          {"id": "act-03-text-10", "content": "（撑伞路过）哎哟，阿沅？要不要去你三叔公家避避？", "speakerId": "shenzi", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "村中婶子"}},
+          {"id": "act-03-text-11", "content": "（捡药材，头也不抬）不了，家里还有事。", "speakerId": "ayuan", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-03-text-12", "content": "（欲言又止）你这孩子……", "speakerId": "shenzi", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "村中婶子"}},
+          {"id": "act-03-text-13", "content": "河边。雨小了。她坐在石阶上，浑身湿透，从怀里掏出那封信——信角已被汗和水浸软。她摸出火折子，划了一下。", "speakerId": "stage", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "action"}},
+          {"id": "act-03-text-14", "content": "（盯着信）写好了，又有什么用。", "speakerId": "ayuan", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-03-text-15", "content": "开口也没用。开口，就是让人看轻我爹。", "speakerId": "ayuan", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-03-text-16", "content": "泽口阿沅，不求人。", "speakerId": "ayuan", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-03-text-17", "content": "火折子的火苗映在她脸上，一明一暗。", "speakerId": "stage", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "action"}}
+        ],
+        "choices": [],
+        "notes": "场景：集市—雨路—河边｜午后｜雨。药包、书信、火折子。\n原始在场：我 · 布贩（1人） · 村中婶子（撑伞路过）\n迁移备注：无。"
+      },
+      {
+        "id": "act-04",
+        "title": "河边来客",
+        "backgroundAssetId": "background.ferry-mist-dusk",
+        "characters": [
+          {"instanceId": "ayuan", "assetId": "character.ayuan", "position": "left"},
+          {"instanceId": "mystic", "assetId": "character.mystic-liuyi", "position": "right"}
+        ],
+        "texts": [
+          {"id": "act-04-text-01", "content": "火苗将熄未熄。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-04-text-02", "content": "河雾深处，忽然传来一个声音。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-04-text-03", "content": "少女回头，渡口的老树下，立着一个戴木面的人。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-04-text-04", "content": "看不清脸。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-04-text-05", "content": "那封信，写了多久了？", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘人", "mystic": true}},
+          {"id": "act-04-text-06", "content": "（慌忙收信）你——你是谁？", "speakerId": "ayuan", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-04-text-07", "content": "一个送过信的人。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘人", "mystic": true}},
+          {"id": "act-04-text-08", "content": "这里没有信。", "speakerId": "ayuan", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-04-text-09", "content": "信在你怀里，人在河边。写了三日，压了三日。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘人", "mystic": true}},
+          {"id": "act-04-text-10", "content": "（攥紧信）你到底想说什么？", "speakerId": "ayuan", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-04-text-11", "content": "千年前，我在泾河边，遇见过一个牧羊的女子。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘人", "mystic": true}},
+          {"id": "act-04-text-12", "content": "牧羊的女子？", "speakerId": "ayuan", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-04-text-13", "content": "她困于泾川，被人欺辱，音讯难通。衣衫褴褛，狼狈得很。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘人", "mystic": true}},
+          {"id": "act-04-text-14", "content": "可她看见一个路过的赶考书生，就开口了——把自己的处境，一字一字，说给一个陌生人听。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘人", "mystic": true}},
+          {"id": "act-04-text-15", "content": "她……不怕被看轻吗？", "speakerId": "ayuan", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-04-text-16", "content": "她的家在千里水路之外。她不开口，就死在水里，也没有人知道她的名字。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘人", "mystic": true}},
+          {"id": "act-04-text-17", "content": "（沉默）", "speakerId": "ayuan", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-04-text-18", "content": "她的信，要过千里水路才有人接。你的回应，走过去只要一炷香。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘人", "mystic": true}},
+          {"id": "act-04-text-19", "content": "（低头看信）要是开了口，人家不肯帮呢？", "speakerId": "ayuan", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-04-text-20", "content": "开口，不保证回应。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘人", "mystic": true}},
+          {"id": "act-04-text-21", "content": "可信不送出去，就只是一张纸；话不开口，就只是一口气。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘人", "mystic": true}},
+          {"id": "act-04-text-22", "content": "开口不是认输——是把声音，送到能回应它的人那里。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘人", "mystic": true}},
+          {"id": "act-04-text-23", "content": "她抬头想再问，雾漫上渡口，树下已空无一人。", "speakerId": "stage", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "action"}}
+        ],
+        "choices": [],
+        "notes": "场景：渡口｜暮色｜雨后水雾。系缆石桩、半旧渡船、老树。\n原始在场：我 · 戴面神秘人（雾中显现，身份未明）\n迁移备注：无。"
+      },
+      {
+        "id": "act-05",
+        "title": "一炷香的路",
+        "backgroundAssetId": "background.clan-gate-night",
+        "characters": [
+          {"instanceId": "ayuan", "assetId": "character.ayuan", "position": "left"},
+          {"instanceId": "shugong", "assetId": "character.san-shugong", "position": "right"}
+        ],
+        "texts": [
+          {"id": "act-05-text-01", "content": "一炷香的路，少女走了半宿。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-05-text-02", "content": "她在门前站了三次，转身两次。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-05-text-03", "content": "第一次，她告诉自己：我是来还书的。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-05-text-04", "content": "第二次，她告诉自己：明日再来。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-05-text-05", "content": "第三次，她抬起了手。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-05-text-06", "content": "（抬手，停在半空）……我是来给阿弟还书的。", "speakerId": "ayuan", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-05-text-07", "content": "（手垂下）不对。书在屋里，没带来。", "speakerId": "ayuan", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-05-text-08", "content": "（立于门前，忽然想起什么）她敢向生人开口。我为什么，不敢向熟人开口？", "speakerId": "ayuan", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-05-text-09", "content": "她从怀里掏出那封信，捏了捏，又塞回怀里最深处。伸手，叩门。", "speakerId": "stage", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "action"}},
+          {"id": "act-05-text-10", "content": "（开门）……阿沅？这么晚了，有事？", "speakerId": "shugong", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "三叔公"}},
+          {"id": "act-05-text-11", "content": "（张口，声音发紧）我……", "speakerId": "ayuan", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-05-text-12", "content": "慢慢说。", "speakerId": "shugong", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "三叔公"}},
+          {"id": "act-05-text-13", "content": "（把信按进怀里，抬起头）叔公，我来求个帮衬。", "speakerId": "ayuan", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-05-text-14", "content": "我家，过不了这个冬了。", "speakerId": "ayuan", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-05-text-15", "content": "我爹病着，田毁了，税没减。我想借粮，想请大夫。我记着数，往后一升一升地还。", "speakerId": "ayuan", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-05-text-16", "content": "（长久地看着她）……", "speakerId": "shugong", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "三叔公"}},
+          {"id": "act-05-text-17", "content": "你怎么不早说！", "speakerId": "shugong", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "三叔公"}},
+          {"id": "act-05-text-18", "content": "（一怔）……", "speakerId": "ayuan", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-05-text-19", "content": "你爹当年，把我孙儿一个字一个字教出来。他病着，你瞒着——你叫叔公说什么好！", "speakerId": "shugong", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "三叔公"}},
+          {"id": "act-05-text-20", "content": "（转身进院，大声）老婆子！点灯！把西屋的粮垛开了！大夫今晚就去请——不，我这就叫人套车，现在就去！", "speakerId": "shugong", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "三叔公"}},
+          {"id": "act-05-text-21", "content": "少女立在门口，攥着那封没能送出去的信，眼泪掉了下来。", "speakerId": "stage", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "action"}},
+          {"id": "act-05-text-22", "content": "（哽咽）叔公……", "speakerId": "ayuan", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-05-text-23", "content": "（回头）傻孩子。开口，又不是割你的肉。", "speakerId": "shugong", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "三叔公"}}
+        ],
+        "choices": [],
+        "notes": "场景：村东头宅门｜夜。青砖门楼、门环、门内灯火。\n原始在场：我 · 三叔公（年长，族中尊长，开门人）\n迁移备注：复用全局占位立绘 character.san-shugong（与九位土地神卡共用的“三叔公”原型）。"
+      },
+      {
+        "id": "act-06",
+        "title": "水送信",
+        "backgroundAssetId": "background.riverside-release-morning",
+        "characters": [
+          {"instanceId": "ayuan", "assetId": "character.ayuan", "position": "left"},
+          {"instanceId": "fuqin", "assetId": "character.fuqin-ayuan", "position": "right"}
+        ],
+        "texts": [
+          {"id": "act-06-text-01", "content": "当夜，大夫到了。三日后，粮满了缸。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-06-text-02", "content": "父亲喝了药，能倚坐起来了。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-06-text-03", "content": "他还不知道，女儿在河边的雾里，遇见过什么。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-06-text-04", "content": "（放下药碗）阿沅，粮是哪来的？", "speakerId": "fuqin", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "父亲"}},
+          {"id": "act-06-text-05", "content": "借的。", "speakerId": "ayuan", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-06-text-06", "content": "跟谁借的？", "speakerId": "fuqin", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "父亲"}},
+          {"id": "act-06-text-07", "content": "跟三叔公。（顿了顿）爹，我去求他了。", "speakerId": "ayuan", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-06-text-08", "content": "（看她良久）……不亏。", "speakerId": "fuqin", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "父亲"}},
+          {"id": "act-06-text-09", "content": "嗯。不亏。", "speakerId": "ayuan", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-06-text-10", "content": "河边。她取出那封信——它终究没有被送出去。她蹲下身，把信轻轻放在水面上。信纸浮浮沉沉，顺流而去。", "speakerId": "stage", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "action"}},
+          {"id": "act-06-text-11", "content": "该由嘴说出的话，已经说出了口。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-06-text-12", "content": "纸，就还给水吧。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-06-text-13", "content": "千里水路之外，据说有一位神明，专收人间的音讯。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-06-text-14", "content": "这封信，就当是寄给他的——一封没有求什么的信。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-06-text-15", "content": "她起身回望渡口。老树下，空无一人。", "speakerId": "stage", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "action"}}
+        ],
+        "choices": [],
+        "notes": "场景：屋内—河边｜晨。药碗、书信、开阔水面。\n原始在场：我 · 父亲（屋内，倚坐） · 三叔公家送粮的族人（数人，屋外搬运，不出声）\n迁移备注：送粮族人作环境人物，不作摆位。"
+      },
+      {
+        "id": "act-07",
+        "title": "渡口摘面",
+        "backgroundAssetId": "background.ferry-autumn-clear",
+        "characters": [
+          {"instanceId": "ayuan", "assetId": "character.ayuan", "position": "left"},
+          {"instanceId": "mystic", "assetId": "character.mystic-liuyi", "position": "right"}
+        ],
+        "texts": [
+          {"id": "act-07-text-01", "content": "这一日，少女从镇上回来。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-07-text-02", "content": "渡口的老树下，立着那个戴面的人。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-07-text-03", "content": "她走过去。这一次，她没有躲。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-07-text-04", "content": "（走近，福身）那夜渡口，是你。", "speakerId": "ayuan", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-07-text-05", "content": "是我。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘人", "mystic": true}},
+          {"id": "act-07-text-06", "content": "请受阿沅一拜。（拜）拜你那几句话。", "speakerId": "ayuan", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-07-text-07", "content": "不必谢我。话是你自己开口的，路是你自己走完的。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘人", "mystic": true}},
+          {"id": "act-07-text-08", "content": "（抬头）还没请教恩人名姓。", "speakerId": "ayuan", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-07-text-09", "content": "（缓缓摘下面）我不是恩人。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘人", "mystic": true}},
+          {"id": "act-07-text-10", "content": "千年前，我也曾是一个书生，路过泾河，替一个开口的女子送过一封信。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘人", "mystic": true}},
+          {"id": "act-07-text-11", "content": "后来，他们唤我——柳毅。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘人", "mystic": true}},
+          {"id": "act-07-text-12", "content": "柳毅……", "speakerId": "ayuan", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-07-text-13", "content": "我今日来此，不是替你说话。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘人", "mystic": true}},
+          {"id": "act-07-text-14", "content": "是要让你知道——先开口的那个人，不丢人。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘人", "mystic": true}},
+          {"id": "act-07-text-15", "content": "他戴回木面，转身走入河雾。雾散，渡口空空，唯闻水声。", "speakerId": "stage", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "action"}},
+          {"id": "act-07-text-16", "content": "你求的是一句回应。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "final-narration"}},
+          {"id": "act-07-text-17", "content": "可你把话，咽了多久了？", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "final-narration"}},
+          {"id": "act-07-text-18", "content": "千年前，有一女子困于泾川，向陌生书生开了口，一句求援渡了千里水路；", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "final-narration"}},
+          {"id": "act-07-text-19", "content": "千年前的那一夜，戴面的人在河边，遇见了一个终于开口的少女。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "final-narration"}},
+          {"id": "act-07-text-20", "content": "如今，那个开口的人，是你。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "final-narration"}},
+          {"id": "act-07-text-21", "content": "你愿意，把咽着的那句话，说出口吗？", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "final-narration"}}
+        ],
+        "choices": [],
+        "notes": "场景：渡口｜数日后｜秋阳。药囊、老树、澄澈河水。\n原始在场：我 · 戴面神秘人（揭晓为柳毅）\n迁移备注：末段傩旁白按样例卡做法以 final-narration 直接面向求愿者。"
+      }
+    ]
+  }
+}

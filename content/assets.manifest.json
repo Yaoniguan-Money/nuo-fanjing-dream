@@ -4,7 +4,9 @@
     "dream.kailu-jiangjun.du-shan-ji",
     "dream.xianfeng-xiaojie.yi-suo-hua",
     "dream.jiu-wei-tu-di-shen.di-jiu-tan",
-    "dream.tangshi-taipo.gui-zheng-ji"
+    "dream.tangshi-taipo.gui-zheng-ji",
+    "dream.abumo.huang-nian-kai-huo",
+    "dream.liuyi.yi-xin-du-shui"
   ],
   "styleReferences": [
     {
@@ -798,7 +800,7 @@
         "type": "project",
         "license": "project-owned"
       },
-      "description": "三叔公，管族里坛务的（九位土地神·第九坛）。暂用共享占位图。"
+      "description": "三叔公，族中尊长（九位土地神·第九坛／柳毅·一信渡水共用）。暂用共享占位图。"
     },
     {
       "assetId": "character.old-temple-keeper",
@@ -817,6 +819,420 @@
         "license": "project-owned"
       },
       "description": "老庙祝，守庙五十年的社庙看守（九位土地神·第九坛幕三）。暂用共享占位图。"
+    },
+    {
+      "assetId": "background.cold-stove-cabin-dawn",
+      "type": "background",
+      "file": "backgrounds/placeholder.webp",
+      "mimeType": "image/webp",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 3780,
+      "colorSpace": "sRGB",
+      "hasAlpha": false,
+      "mirrorAllowed": false,
+      "status": "placeholder",
+      "source": {
+        "type": "project",
+        "license": "project-owned"
+      },
+      "description": "彝寨老屋冷灶晨阴（阿布摩·荒年开火幕一）。暂用共享占位图。"
+    },
+    {
+      "assetId": "background.courtyard-residual-snow",
+      "type": "background",
+      "file": "backgrounds/placeholder.webp",
+      "mimeType": "image/webp",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 3780,
+      "colorSpace": "sRGB",
+      "hasAlpha": false,
+      "mirrorAllowed": false,
+      "status": "placeholder",
+      "source": {
+        "type": "project",
+        "license": "project-owned"
+      },
+      "description": "屋院残雪晌午（阿布摩·荒年开火幕二）。暂用共享占位图。"
+    },
+    {
+      "assetId": "background.sloping-field-plowing",
+      "type": "background",
+      "file": "backgrounds/placeholder.webp",
+      "mimeType": "image/webp",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 3780,
+      "colorSpace": "sRGB",
+      "hasAlpha": false,
+      "mirrorAllowed": false,
+      "status": "placeholder",
+      "source": {
+        "type": "project",
+        "license": "project-owned"
+      },
+      "description": "坡地开犁下种（阿布摩·荒年开火幕三）。暂用共享占位图。"
+    },
+    {
+      "assetId": "background.cabin-newfire-night",
+      "type": "background",
+      "file": "backgrounds/placeholder.webp",
+      "mimeType": "image/webp",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 3780,
+      "colorSpace": "sRGB",
+      "hasAlpha": false,
+      "mirrorAllowed": false,
+      "status": "placeholder",
+      "source": {
+        "type": "project",
+        "license": "project-owned"
+      },
+      "description": "屋内新火油灯夜（阿布摩·荒年开火幕四）。暂用共享占位图。"
+    },
+    {
+      "assetId": "background.frost-field-bonfires",
+      "type": "background",
+      "file": "backgrounds/placeholder.webp",
+      "mimeType": "image/webp",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 3780,
+      "colorSpace": "sRGB",
+      "hasAlpha": false,
+      "mirrorAllowed": false,
+      "status": "placeholder",
+      "source": {
+        "type": "project",
+        "license": "project-owned"
+      },
+      "description": "倒春寒满坡烟堆火把（阿布摩·荒年开火幕五）。暂用共享占位图。"
+    },
+    {
+      "assetId": "background.cabin-newgrain-morning",
+      "type": "background",
+      "file": "backgrounds/placeholder.webp",
+      "mimeType": "image/webp",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 3780,
+      "colorSpace": "sRGB",
+      "hasAlpha": false,
+      "mirrorAllowed": false,
+      "status": "placeholder",
+      "source": {
+        "type": "project",
+        "license": "project-owned"
+      },
+      "description": "屋内新粮牌位晨（阿布摩·荒年开火幕六）。暂用共享占位图。"
+    },
+    {
+      "assetId": "character.azhuo",
+      "type": "character",
+      "file": "characters/placeholder.png",
+      "mimeType": "image/png",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 6212,
+      "colorSpace": "sRGB",
+      "hasAlpha": true,
+      "mirrorAllowed": false,
+      "status": "placeholder",
+      "source": {
+        "type": "project",
+        "license": "project-owned"
+      },
+      "description": "阿卓，灾后留守的彝家小伙（阿布摩·荒年开火主角）。暂用共享占位图。"
+    },
+    {
+      "assetId": "character.laogeng",
+      "type": "character",
+      "file": "characters/placeholder.png",
+      "mimeType": "image/png",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 6212,
+      "colorSpace": "sRGB",
+      "hasAlpha": true,
+      "mirrorAllowed": false,
+      "status": "placeholder",
+      "source": {
+        "type": "project",
+        "license": "project-owned"
+      },
+      "description": "老庚叔，准备搬走的邻居猎户（阿布摩·荒年开火）。暂用共享占位图。"
+    },
+    {
+      "assetId": "character.aan",
+      "type": "character",
+      "file": "characters/placeholder.png",
+      "mimeType": "image/png",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 6212,
+      "colorSpace": "sRGB",
+      "hasAlpha": true,
+      "mirrorAllowed": false,
+      "status": "placeholder",
+      "source": {
+        "type": "project",
+        "license": "project-owned"
+      },
+      "description": "阿安，逃荒没走脱的孤儿，借撮泰吉同名角色（阿布摩·荒年开火）。暂用共享占位图。"
+    },
+    {
+      "assetId": "character.mystic-abumo",
+      "type": "character",
+      "file": "characters/placeholder.png",
+      "mimeType": "image/png",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 6212,
+      "colorSpace": "sRGB",
+      "hasAlpha": true,
+      "mirrorAllowed": false,
+      "status": "placeholder",
+      "source": {
+        "type": "project",
+        "license": "project-owned"
+      },
+      "description": "阿布摩模样的神秘人：黑巾锥头、垂白须、半张横白纹黑木旧面（阿布摩·荒年开火）。暂用共享占位图。"
+    },
+    {
+      "assetId": "background.riverside-autumn-flood",
+      "type": "background",
+      "file": "backgrounds/placeholder.webp",
+      "mimeType": "image/webp",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 3780,
+      "colorSpace": "sRGB",
+      "hasAlpha": false,
+      "mirrorAllowed": false,
+      "status": "placeholder",
+      "source": {
+        "type": "project",
+        "license": "project-owned"
+      },
+      "description": "水乡河边秋汛晨（柳毅·一信渡水幕一）。暂用共享占位图。"
+    },
+    {
+      "assetId": "background.cottage-lamp-night",
+      "type": "background",
+      "file": "backgrounds/placeholder.webp",
+      "mimeType": "image/webp",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 3780,
+      "colorSpace": "sRGB",
+      "hasAlpha": false,
+      "mirrorAllowed": false,
+      "status": "placeholder",
+      "source": {
+        "type": "project",
+        "license": "project-owned"
+      },
+      "description": "屋内油灯土灶夜（柳毅·一信渡水幕二）。暂用共享占位图。"
+    },
+    {
+      "assetId": "background.market-rain-mud",
+      "type": "background",
+      "file": "backgrounds/placeholder.webp",
+      "mimeType": "image/webp",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 3780,
+      "colorSpace": "sRGB",
+      "hasAlpha": false,
+      "mirrorAllowed": false,
+      "status": "placeholder",
+      "source": {
+        "type": "project",
+        "license": "project-owned"
+      },
+      "description": "集市泥路落雨（柳毅·一信渡水幕三）。暂用共享占位图。"
+    },
+    {
+      "assetId": "background.ferry-mist-dusk",
+      "type": "background",
+      "file": "backgrounds/placeholder.webp",
+      "mimeType": "image/webp",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 3780,
+      "colorSpace": "sRGB",
+      "hasAlpha": false,
+      "mirrorAllowed": false,
+      "status": "placeholder",
+      "source": {
+        "type": "project",
+        "license": "project-owned"
+      },
+      "description": "渡口老树暮雾（柳毅·一信渡水幕四）。暂用共享占位图。"
+    },
+    {
+      "assetId": "background.clan-gate-night",
+      "type": "background",
+      "file": "backgrounds/placeholder.webp",
+      "mimeType": "image/webp",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 3780,
+      "colorSpace": "sRGB",
+      "hasAlpha": false,
+      "mirrorAllowed": false,
+      "status": "placeholder",
+      "source": {
+        "type": "project",
+        "license": "project-owned"
+      },
+      "description": "青砖门楼宅门夜（柳毅·一信渡水幕五）。暂用共享占位图。"
+    },
+    {
+      "assetId": "background.riverside-release-morning",
+      "type": "background",
+      "file": "backgrounds/placeholder.webp",
+      "mimeType": "image/webp",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 3780,
+      "colorSpace": "sRGB",
+      "hasAlpha": false,
+      "mirrorAllowed": false,
+      "status": "placeholder",
+      "source": {
+        "type": "project",
+        "license": "project-owned"
+      },
+      "description": "河边晨光水汽（柳毅·一信渡水幕六）。暂用共享占位图。"
+    },
+    {
+      "assetId": "background.ferry-autumn-clear",
+      "type": "background",
+      "file": "backgrounds/placeholder.webp",
+      "mimeType": "image/webp",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 3780,
+      "colorSpace": "sRGB",
+      "hasAlpha": false,
+      "mirrorAllowed": false,
+      "status": "placeholder",
+      "source": {
+        "type": "project",
+        "license": "project-owned"
+      },
+      "description": "渡口秋阳澄水（柳毅·一信渡水幕七）。暂用共享占位图。"
+    },
+    {
+      "assetId": "character.ayuan",
+      "type": "character",
+      "file": "characters/placeholder.png",
+      "mimeType": "image/png",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 6212,
+      "colorSpace": "sRGB",
+      "hasAlpha": true,
+      "mirrorAllowed": false,
+      "status": "placeholder",
+      "source": {
+        "type": "project",
+        "license": "project-owned"
+      },
+      "description": "阿沅，十五六岁，泽口村少女（柳毅·一信渡水主角）。暂用共享占位图。"
+    },
+    {
+      "assetId": "character.xiyi-laofu",
+      "type": "character",
+      "file": "characters/placeholder.png",
+      "mimeType": "image/png",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 6212,
+      "colorSpace": "sRGB",
+      "hasAlpha": true,
+      "mirrorAllowed": false,
+      "status": "placeholder",
+      "source": {
+        "type": "project",
+        "license": "project-owned"
+      },
+      "description": "洗衣老妇，村中邻居（柳毅·一信渡水）。暂用共享占位图。"
+    },
+    {
+      "assetId": "character.fuqin-ayuan",
+      "type": "character",
+      "file": "characters/placeholder.png",
+      "mimeType": "image/png",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 6212,
+      "colorSpace": "sRGB",
+      "hasAlpha": true,
+      "mirrorAllowed": false,
+      "status": "placeholder",
+      "source": {
+        "type": "project",
+        "license": "project-owned"
+      },
+      "description": "父亲，病中的私塾先生（柳毅·一信渡水）。暂用共享占位图。"
+    },
+    {
+      "assetId": "character.bufan",
+      "type": "character",
+      "file": "characters/placeholder.png",
+      "mimeType": "image/png",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 6212,
+      "colorSpace": "sRGB",
+      "hasAlpha": true,
+      "mirrorAllowed": false,
+      "status": "placeholder",
+      "source": {
+        "type": "project",
+        "license": "project-owned"
+      },
+      "description": "布贩，集市收布的行商（柳毅·一信渡水）。暂用共享占位图。"
+    },
+    {
+      "assetId": "character.shenzi",
+      "type": "character",
+      "file": "characters/placeholder.png",
+      "mimeType": "image/png",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 6212,
+      "colorSpace": "sRGB",
+      "hasAlpha": true,
+      "mirrorAllowed": false,
+      "status": "placeholder",
+      "source": {
+        "type": "project",
+        "license": "project-owned"
+      },
+      "description": "村中婶子，撑伞路过的邻居（柳毅·一信渡水）。暂用共享占位图。"
+    },
+    {
+      "assetId": "character.mystic-liuyi",
+      "type": "character",
+      "file": "characters/placeholder.png",
+      "mimeType": "image/png",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 6212,
+      "colorSpace": "sRGB",
+      "hasAlpha": true,
+      "mirrorAllowed": false,
+      "status": "placeholder",
+      "source": {
+        "type": "project",
+        "license": "project-owned"
+      },
+      "description": "戴面送信人，后揭示为柳毅（柳毅·一信渡水）。暂用共享占位图。"
     },
     {
       "assetId": "threshold.fanjing-backdrop",
@@ -869,6 +1285,7 @@
   ],
   "notes": [
     "AI generation prompts were recorded in the conversation stream; future production workflow should persist full prompts in a dedicated provenance field or sidecar file.",
-    "2026-08-29: 三张幻梦卡按新版剧本重写（归正记／一梭花／第九坛），旧故事的专属占位素材已移除；开路将军卡的真实生成素材保持不变。"
+    "2026-08-29: 三张幻梦卡按新版剧本重写（归正记／一梭花／第九坛），旧故事的专属占位素材已移除；开路将军卡的真实生成素材保持不变。",
+    "2026-08-29: 新增阿布摩·荒年开火与柳毅·一信渡水两张幻梦卡，专属素材暂用共享占位图；柳毅卡复用 character.san-shugong 共用三叔公立绘。"
   ]
 }

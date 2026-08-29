@@ -1,14 +1,18 @@
+import abumoCardJson from "../../../content/dream-cards/dream.abumo.huang-nian-kai-huo.json";
 import jiuWeiTuDiShenCardJson from "../../../content/dream-cards/dream.jiu-wei-tu-di-shen.di-jiu-tan.json";
 import kailuJiangjunCardJson from "../../../content/dream-cards/dream.kailu-jiangjun.du-shan-ji.json";
-import tangshiTaipoCardJson from "../../../content/dream-cards/dream.tangshi-taipo.zhi-hun-ji.json";
-import xianfengXiaojieCardJson from "../../../content/dream-cards/dream.xianfeng-xiaojie.qian-jie-qiao.json";
+import liuyiCardJson from "../../../content/dream-cards/dream.liuyi.yi-xin-du-shui.json";
+import tangshiTaipoCardJson from "../../../content/dream-cards/dream.tangshi-taipo.gui-zheng-ji.json";
+import xianfengXiaojieCardJson from "../../../content/dream-cards/dream.xianfeng-xiaojie.yi-suo-hua.json";
 import { dreamCardSchema, type DreamCard } from "./schema";
 
 const registeredCards = [
   dreamCardSchema.parse(kailuJiangjunCardJson),
   dreamCardSchema.parse(xianfengXiaojieCardJson),
   dreamCardSchema.parse(jiuWeiTuDiShenCardJson),
-  dreamCardSchema.parse(tangshiTaipoCardJson)
+  dreamCardSchema.parse(tangshiTaipoCardJson),
+  dreamCardSchema.parse(abumoCardJson),
+  dreamCardSchema.parse(liuyiCardJson)
 ] as const;
 const cardsById = new Map<string, DreamCard>(registeredCards.map((card) => [card.meta.id, card]));
 
