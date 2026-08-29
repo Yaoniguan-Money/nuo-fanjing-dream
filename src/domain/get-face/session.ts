@@ -38,6 +38,15 @@ export function createInitialGetFaceRitualSession(): GetFaceRitualSession {
 
 function cleanText(value: string, maxLength: number): string { return value.trim().slice(0, maxLength); }
 
+export function createWishEntryGetFaceRitualSession(previous: GetFaceRitualSession | null): GetFaceRitualSession {
+  const name = cleanText(previous?.name ?? "", 80);
+  return {
+    ...createInitialGetFaceRitualSession(),
+    phase: name ? "wish" : "name",
+    name
+  };
+}
+
 export function transitionGetFaceRitual(state: GetFaceRitualSession, event: GetFaceRitualEvent): GetFaceRitualSession {
   if (event.type === "restore") return getFaceRitualSessionSchema.parse(event.state);
   if (event.type === "reset") return createInitialGetFaceRitualSession();

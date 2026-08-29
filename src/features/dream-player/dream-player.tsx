@@ -15,6 +15,7 @@ import {
   type DreamText
 } from "@/domain/dream-card";
 import { useTypewriter } from "./use-typewriter";
+import { StoryMusicControl } from "./story-music-control";
 import "./dream-player.css";
 
 function characterHorizontalPosition(position: DreamCharacter["position"], characterCount: number): number {
@@ -83,6 +84,7 @@ export function DreamPlayer({ card, onComplete, debugControls }: DreamPlayerProp
     {debugControls}
     <section className="player-shell" data-card-id={card.meta.id}>
       <Link className="dream-home-link ui-return-control" href="/" aria-label="返回首页">← 返回首页</Link>
+      {playback.phase === "playing" ? <StoryMusicControl /> : null}
       <div className="background-placeholder" />
       {backgroundUrl ? <Image className="background-image" src={backgroundUrl} alt="" fill sizes="100vw" priority /> : null}
       <div className="stage-shade" /><div className="stage-fog" />

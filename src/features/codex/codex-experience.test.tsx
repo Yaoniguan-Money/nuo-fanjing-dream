@@ -37,6 +37,12 @@ describe("CodexExperience", () => {
     expect(scrollRegion.getAttribute("tabindex")).toBe("0");
   });
 
+  test("offers a direct route to ask another wish without replaying the intro", () => {
+    render(<CodexExperience data={faceData} entries={{}} />);
+
+    expect(screen.getByRole("link", { name: "再问一愿" }).getAttribute("href")).toBe("/wish");
+  });
+
   test("renders the configured tiled slots and opens a collected mask in a fullscreen dialog", async () => {
     render(<CodexExperience data={faceData} entries={{ "crown-beard": collectedEntry }} />);
     expect(screen.getByText(`已收录 1 / ${faceData.codex.slots.length}`)).toBeTruthy();

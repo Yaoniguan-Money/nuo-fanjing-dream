@@ -7,10 +7,12 @@ import { useCallback, useEffect, useLayoutEffect, useReducer, useRef, useState }
 import { useRouter } from "next/navigation";
 import { createDreamSession, matchResponseSchema, type MatchResponse } from "@/domain/dream-session";
 import { writeDreamSession } from "@/domain/dream-session/storage";
+import { clearDreamSession } from "@/domain/dream-session/storage";
 import { getFaceData, resolveRitualTarget, resolveVisual, ritualMaskById, RITUAL_MASKS } from "@/domain/get-face";
 import {
   clearGetFaceRitualSession,
   createInitialGetFaceRitualSession,
+  createWishEntryGetFaceRitualSession,
   readGetFaceRitualSession,
   transitionGetFaceRitual,
   writeGetFaceRitualSession,
@@ -40,9 +42,13 @@ async function requestMatch(wish: string): Promise<MatchResponse> {
   } catch { return localMatch(wish); }
 }
 
-export function GetFaceRitual({ onReturn }: { onReturn: () => void }) {
+export function GetFaceRitual({ entryMode = "default", onReturn }: { entryMode?: "default" | "wish"; onReturn: () => void }) {
   const router = useRouter();
-  const [state, dispatch] = useReducer(reducer, undefined, () => typeof window === "undefined" ? createInitialGetFaceRitualSession() : (readGetFaceRitualSession() ?? createInitialGetFaceRitualSession()));
+  const [state, dispatch] = useReducer(reducer, entryMode, (mode) => {
+    if (typeof window === "undefined") return createInitialGetFaceRitualSession();
+    const previous = readGetFaceRitualSession();
+    return mode === "wish" ? createWishEntryGetFaceRitualSession(previous) : (previous ?? createInitialGetFaceRitualSession());
+  });
   const [nameInput, setNameInput] = useState(state.name);
   const [wishInput, setWishInput] = useState(state.wish);
   const [error, setError] = useState("");
@@ -51,6 +57,10 @@ export function GetFaceRitual({ onReturn }: { onReturn: () => void }) {
   const orbitMaskRefs = useRef<Array<HTMLDivElement | null>>([]);
 
   useEffect(() => { writeGetFaceRitualSession(state); }, [state]);
+
+  useEffect(() => {
+    if (entryMode === "wish") clearDreamSession();
+  }, [entryMode]);
 
   useEffect(() => {
     if (state.phase !== "matching") return;
@@ -174,7 +184,7 @@ export function GetFaceRitual({ onReturn }: { onReturn: () => void }) {
       {state.phase === "wearing" ? <div className="wearing-flash" aria-hidden="true" /> : null}
     </section> : null}
 
-    <button className="get-face-return ui-return-control" type="button" aria-label="返回首页" onClick={() => { clearGetFaceRitualSession(); onReturn(); }}>← 返回首页</button>
+    <button className="get-face-return ui-return-control" type="button" aria-label={entryMode === "wish" ? "返回图鉴" : "返回首页"} onClick={() => { clearGetFaceRitualSession(); onReturn(); }}>← {entryMode === "wish" ? "返回图鉴" : "返回首页"}</button>
     <span className="get-face-brand-mark"><Image src="/dream-assets/brand/nuo-dream-logo-dark.png" alt="大傩幻梦品牌标识" fill sizes="(max-width: 700px) 116px, 190px" /></span>
   </main>;
 }

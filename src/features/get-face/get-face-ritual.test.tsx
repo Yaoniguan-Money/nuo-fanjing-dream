@@ -31,6 +31,24 @@ describe("GetFaceRitual", () => {
     expect(screen.getByRole("button", { name: "继续" }).className).toContain("ui-continue-control");
   });
 
+  it("enters directly at the wish question with the saved name", () => {
+    writeGetFaceRitualSession({
+      schemaVersion: "2.0.0",
+      phase: "complete",
+      name: "阿渡",
+      wish: "旧困惑",
+      selectedMaskIndex: null,
+      selectedMaskId: "bound-hair",
+      cardId: "dream.jiu-wei-tu-di-shen.di-jiu-tan"
+    });
+
+    render(<GetFaceRitual entryMode="wish" onReturn={vi.fn()} />);
+
+    expect(screen.getByRole("heading", { name: "阿渡，此刻何事令你止步？" })).toBeTruthy();
+    expect((screen.getByRole("textbox", { name: "现实困惑" }) as HTMLTextAreaElement).value).toBe("");
+    expect(screen.getByRole("button", { name: "返回图鉴" })).toBeTruthy();
+  });
+
   it("renders all eight masks as front-and-back ritual objects", () => {
     const matching: GetFaceRitualSession = {
       schemaVersion: "2.0.0",
