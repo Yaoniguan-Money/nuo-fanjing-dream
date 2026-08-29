@@ -3,11 +3,10 @@ import { faceData } from "@/domain/get-face";
 import { buildCodexSlots, collectedCount, codexNumber, slotLabel } from "./codex-model";
 
 describe("codex feature model", () => {
-  test("always exposes four mask slots followed by eight reserved slots", () => {
+  test("exposes the eight configured mask slots", () => {
     const slots = buildCodexSlots(faceData, {});
-    expect(slots).toHaveLength(12);
-    expect(slots.slice(0, 4).every((slot) => slot.kind === "mask" && slot.state === "locked")).toBe(true);
-    expect(slots.slice(4).every((slot) => slot.kind === "reserved" && slot.state === "reserved")).toBe(true);
+    expect(slots).toHaveLength(8);
+    expect(slots.every((slot) => slot.kind === "mask" && slot.state === "locked")).toBe(true);
   });
 
   test("counts only collected masks and labels every unavailable position as locked", () => {

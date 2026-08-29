@@ -1,24 +1,20 @@
 // @vitest-environment happy-dom
 
-import { fireEvent, render, screen } from "@testing-library/react";
-import { afterEach, describe, expect, test, vi } from "vitest";
-import { listDreamCards } from "@/domain/dream-card";
+import { cleanup, fireEvent, render, screen } from "@testing-library/react";
+import { afterEach, describe, expect, it } from "vitest";
+import { requireDreamCard } from "@/domain/dream-card";
 import { DreamPlayer } from "./dream-player";
 
-vi.mock("next/image", () => ({
-  // The test double keeps the rendered accessibility surface without invoking Next's image runtime.
-  // eslint-disable-next-line @next/next/no-img-element
-  default: ({ alt, ...props }: React.ImgHTMLAttributes<HTMLImageElement>) => <img alt={alt} {...props} />
-}));
+afterEach(cleanup);
 
-afterEach(() => vi.restoreAllMocks());
+describe("DreamPlayer", () => {
+  it("shows only the act number before the first line", () => {
+    render(<DreamPlayer card={requireDreamCard("dream.kailu-jiangjun.du-shan-ji")} />);
 
-describe("DreamPlayer mobile affordances", () => {
-  test("keeps pointer and touch-specific advance hints available to responsive CSS", () => {
-    render(<DreamPlayer card={listDreamCards()[0]} />);
     fireEvent.click(screen.getByRole("button", { name: "进 入 幻 梦" }));
 
-    expect(screen.getByText("点击继续", { selector: ".pointer-advance-hint" })).toBeTruthy();
-    expect(screen.getByText("轻触继续", { selector: ".touch-advance-hint" })).toBeTruthy();
+    expect(screen.getAllByText("第 1 幕").length).toBeGreaterThan(0);
+    expect(screen.queryByText("点击继续，开始本幕。", { exact: true })).toBeNull();
+    expect(screen.queryByText("点击继续 ▽", { exact: true })).toBeNull();
   });
 });

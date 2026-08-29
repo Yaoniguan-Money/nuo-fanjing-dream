@@ -1,201 +1,118 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import type { Interpretation } from "@/domain/interpretation";
-import { createCodexCollection, type CodexCollection, type CodexEntryInput, type StorageLike } from "@/domain/codex";
-import { buildVariant, getFaceData, resolveRole, type FaceRoleResolution, type FaceVariant } from "@/domain/get-face";
+import Link from "next/link";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import type { DreamCard } from "@/domain/dream-card";
+import { createCodexCollection, type CodexEntryInput, type StorageLike } from "@/domain/codex";
+import { getFaceData, getStoryOmen } from "@/domain/get-face";
 import type { GetFaceRitualSession } from "@/domain/get-face/session";
 import { CodexExperience } from "@/features/codex/codex-experience";
 import "./get-face-result.css";
 
-export type FaceOmenStatus = "idle" | "pending" | "ready" | "error";
-
-export interface FaceOmen {
-  status: FaceOmenStatus;
-  qian: string;
-  jie: string;
-  error?: string;
-  /** Kept in memory for diagnostics only; never sent to the codex boundary. */
-  meta?: unknown;
-}
-
-export interface GetFaceResultModel {
-  role: FaceRoleResolution["role"];
-  mask: FaceRoleResolution["mask"];
-  variant: FaceVariant;
-  choices: [number, number, number];
-  sources: typeof getFaceData.sources;
-  visualText: string;
-  reasonText: string;
-}
-
-export interface GetFaceResultProps {
-  session: GetFaceRitualSession;
-  interpretation: Interpretation;
-  collection?: CodexCollection;
-  storage?: StorageLike;
-  onRestart: () => void;
-}
-
-const pendingOmen: FaceOmen = {
-  status: "pending",
-  qian: "神意正在成形",
-  jie: "傩引正在结签，请稍候。"
+const STORY_ROLES: Record<string, { id: string; name: string; duty: string; signs: string[] }> = {
+  "crown-beard": { id: "kailu-jiangjun", name: "开路将军", duty: "勇气与开始", signs: ["翘冠", "长须", "开路"] },
+  "square-crown": { id: "xianfeng-xiaojie", name: "先锋小姐", duty: "承愿与践行", signs: ["先锋", "承愿", "先行"] },
+  "bound-hair": { id: "jiu-wei-tu-di-shen", name: "九位土地神", duty: "同辈比较与寻找位置", signs: ["社坛", "界石", "守土"] },
+  "high-crown": { id: "tangshi-taipo", name: "唐氏太婆", duty: "守界与自我重建", signs: ["钥匙", "洞门", "守界"] },
+  "gou-bu-pan-guan": { id: "gou-bu-pan-guan", name: "勾簿判官", duty: "归档旧事，认回自己", signs: ["官帽", "朱笔", "簿册"] },
+  "sao-di-he-shang": { id: "sao-di-he-shang", name: "扫地和尚", duty: "清理事后滞留的牵挂", signs: ["圆脸", "竹帚", "尘环"] },
+  "liu-yi": { id: "liu-yi", name: "柳毅", duty: "传声", signs: ["方巾", "长髭", "书信"] },
+  "abu-mo": { id: "abu-mo", name: "阿布摩", duty: "在失序之后保存未来", signs: ["黑木", "白波", "种袋"] }
 };
 
-function choicesOf(session: GetFaceRitualSession): [number, number, number] {
-  const choices = session.choices.slice(0, 3).map((choice) => choice === 1 ? 1 : 0);
-  return [choices[0] ?? 0, choices[1] ?? 0, choices[2] ?? 0];
-}
+const STORY_MASK_ID: Record<string, string> = {
+  "dream.kailu-jiangjun.du-shan-ji": "crown-beard",
+  "dream.xianfeng-xiaojie.yi-suo-hua": "square-crown",
+  "dream.jiu-wei-tu-di-shen.di-jiu-tan": "bound-hair",
+  "dream.tangshi-taipo.gui-zheng-ji": "high-crown",
+  "dream.goubu-panguan.he-ye-ji": "gou-bu-pan-guan",
+  "dream.saodi-heshang.yu-huo-ji": "sao-di-he-shang",
+  "dream.liuyi.yi-xin-du-shui": "liu-yi",
+  "dream.abumo.huang-nian-kai-huo": "abu-mo"
+};
 
-export function resolveGetFaceResult(session: GetFaceRitualSession): GetFaceResultModel {
-  const choices = choicesOf(session);
-  const resolved = resolveRole(getFaceData, {
-    name: session.name,
-    wish: session.wish,
-    choices,
-    maskIndex: session.selectedMaskIndex ?? undefined
-  });
-  const variant = buildVariant(getFaceData, { name: session.name, wish: session.wish, choices }, resolved.role);
-  const sources = resolved.role.sources
-    .map((id) => getFaceData.sources.find((source) => source.id === id))
-    .filter((source): source is (typeof getFaceData.sources)[number] => Boolean(source));
-  return {
-    role: resolved.role,
-    mask: resolved.mask,
-    variant,
-    choices,
-    sources,
-    visualText: `视觉母体：${resolved.mask.name}。固定标志为${resolved.role.signs.join("、")}；本回变体采用${variant.tint}色调与${variant.mark}，以象征剪影入坛。`,
-    reasonText: `本回愿望主题与三幕选择共同指向此面。${resolved.role.reason}`
-  };
-}
+const STORY_REVEAL_ASSET: Record<string, string> = {
+  "crown-beard": "/dream-assets/ui/codex/details/kailu-jiangjun/main-mask-v3.png",
+  "square-crown": "/dream-assets/ui/codex/details/xianfeng-xiaojie/main-mask.png",
+  "bound-hair": "/dream-assets/ui/codex/details/yabing-tudi/main-mask.png",
+  "high-crown": "/dream-assets/ui/codex/details/tangshi-taipo/main-mask-v2.png",
+  "gou-bu-pan-guan": "/dream-assets/ui/codex/details/gou-bu-pan-guan/main-mask.png",
+  "sao-di-he-shang": "/dream-assets/ui/codex/details/sao-di-he-shang/main-mask.png",
+  "liu-yi": "/dream-assets/ui/codex/details/liu-yi/main-mask.png",
+  "abu-mo": "/dream-assets/ui/codex/details/abu-mo/main-mask.png"
+};
 
-export function makeGetFaceCodexEntry(result: GetFaceResultModel, omen: FaceOmen): CodexEntryInput {
-  return {
-    mask: result.mask,
-    role: result.role,
-    variant: result.variant,
-    visualText: result.visualText,
-    reasonText: result.reasonText,
-    sources: result.sources,
-    // Deliberately select only qian/jie/status. API metadata, wish and portrait
-    // are transient and must not cross into localStorage.
-    omen: { status: omen.status, qian: omen.qian, jie: omen.jie }
-  };
-}
-
-export function persistGetFaceResult(result: GetFaceResultModel, omen: FaceOmen, collection: CodexCollection): boolean {
-  return collection.upsert(getFaceData.codex.storageKey, makeGetFaceCodexEntry(result, omen)).ok;
+function storyMaskIndex(card: DreamCard, session: GetFaceRitualSession): number {
+  const mappedMaskId = STORY_MASK_ID[card.meta.id];
+  if (mappedMaskId) {
+    const mappedIndex = getFaceData.masks.findIndex((mask) => mask.id === mappedMaskId);
+    if (mappedIndex >= 0) return mappedIndex;
+  }
+  return session.selectedMaskIndex ?? 0;
 }
 
 function browserStorage(): StorageLike | null {
   if (typeof window === "undefined") return null;
-  try {
-    return window.localStorage ?? null;
-  } catch {
-    return null;
-  }
+  try { return window.localStorage; } catch { return null; }
 }
 
-async function requestOmen(result: GetFaceResultModel, session: GetFaceRitualSession): Promise<FaceOmen> {
-  const response = await fetch("/api/v1/omen", {
-    method: "POST",
-    headers: { "content-type": "application/json" },
-    body: JSON.stringify({
-      wish: session.wish,
-      choices: result.choices,
-      role: { id: result.role.id, name: result.role.name, duty: result.role.duty, reason: result.role.reason, kind: result.role.kind },
-      evidence: { mask_id: result.mask.id, signs: result.role.signs, prompt_version: getFaceData.promptVersion }
-    })
-  });
-  let body: unknown = {};
-  try {
-    body = await response.json();
-  } catch {
-    // The status below still gives the visitor an explicit local fallback.
-  }
-  if (!response.ok) {
-    const message = body && typeof body === "object" && "message" in body && typeof body.message === "string" ? body.message : "傩引暂时无法回应。";
-    throw new Error(message);
-  }
-  if (!body || typeof body !== "object" || typeof (body as { qian?: unknown }).qian !== "string" || typeof (body as { jie?: unknown }).jie !== "string") {
-    throw new Error("傩引返回的签解无法读取。");
-  }
-  const payload = body as { qian: string; jie: string; meta?: unknown };
-  return { status: "ready", qian: payload.qian, jie: payload.jie, meta: payload.meta };
+export function makeStoryCodexEntry(session: GetFaceRitualSession, card: DreamCard): CodexEntryInput {
+  const index = storyMaskIndex(card, session);
+  const mask = getFaceData.masks[index] ?? getFaceData.masks[0];
+  const role = STORY_ROLES[mask.id] ?? STORY_ROLES["crown-beard"];
+  const office = card.meta.officeCandidates[0];
+  const omen = getStoryOmen(card.meta.id);
+  return {
+    mask,
+    role: { ...role, kind: "traditional_reference", background: card.meta.synopsis },
+    variant: { seed: index + 1, ...mask.visual },
+    visualText: `傩面对应历史角色「${role.name}」，在本次幻梦中承担「${role.duty}」的现实映照。`,
+    reasonText: office?.reason ?? card.meta.synopsis,
+    sources: getFaceData.sources,
+    omen: omen ? { status: "story", qian: omen.qian, jie: omen.interpretation, grade: omen.grade, interpretation: omen.interpretation, reflection: omen.reflection } : { status: "story", qian: card.meta.title, jie: "傩解尚未收录。" }
+  };
 }
 
-function omenStatusText(omen: FaceOmen): string {
-  if (omen.status === "pending") return "傩引正在结签，先看见属于你的这一面。";
-  if (omen.status === "error") return `傩签未成，已降级为本地确定性解读：${omen.error || "本地傩引不可用。"}`;
-  if (omen.status === "idle") return "本地确定性解读已保留；网络可用时可以重新求签。";
-  return "傩签已成形。";
-}
-
-export function GetFaceResult({ session, interpretation, collection: controlledCollection, storage, onRestart }: GetFaceResultProps) {
-  const result = useMemo(() => resolveGetFaceResult(session), [session]);
-  const [omen, setOmen] = useState<FaceOmen>(pendingOmen);
+export function GetFaceResult({ session, card, storage, onRestart }: { session: GetFaceRitualSession; card: DreamCard; storage?: StorageLike; onRestart: () => void }) {
   const [revealed, setRevealed] = useState(false);
+  const [collecting, setCollecting] = useState(false);
   const [showCodex, setShowCodex] = useState(false);
-  const requestStarted = useRef(false);
-  const browser = browserStorage();
-  const collection = useMemo(() => controlledCollection ?? ((storage ?? browser) ? createCodexCollection(storage ?? browser!) : null), [browser, controlledCollection, storage]);
-
-  const retryOmen = useCallback(() => {
-    if (omen.status === "pending") return;
-    setOmen(pendingOmen);
-    void requestOmen(result, session).then(setOmen).catch((error: unknown) => {
-      setOmen({ status: "error", qian: "神意未成", jie: "这一次傩引未能结出文字。你可以保留已得之面，或在网络与本地服务可用后重新求签。", error: error instanceof Error ? error.message : "请求失败" });
-    });
-  }, [omen.status, result, session]);
+  const localStorage = browserStorage();
+  const collection = useMemo(() => (storage ?? localStorage) ? createCodexCollection((storage ?? localStorage)!) : null, [localStorage, storage]);
+  const entry = useMemo(() => makeStoryCodexEntry(session, card), [card, session]);
+  const index = storyMaskIndex(card, session);
+  const mask = getFaceData.masks[index] ?? getFaceData.masks[0];
+  const role = STORY_ROLES[mask.id] ?? STORY_ROLES["crown-beard"];
+  const revealAsset = STORY_REVEAL_ASSET[mask.id] ?? mask.asset;
 
   useEffect(() => {
-    const timer = window.setTimeout(() => setRevealed(true), 40);
-    if (!requestStarted.current) {
-      requestStarted.current = true;
-      void requestOmen(result, session).then(setOmen).catch((error: unknown) => {
-        setOmen({ status: "error", qian: "神意未成", jie: "这一次傩引未能结出文字。你可以保留已得之面，或在网络与本地服务可用后重新求签。", error: error instanceof Error ? error.message : "请求失败" });
-      });
-    }
+    const timer = window.setTimeout(() => setRevealed(true), 60);
     return () => window.clearTimeout(timer);
-  }, [result, session]);
+  }, []);
 
-  const enterCodex = useCallback(() => {
-    if (collection) persistGetFaceResult(result, omen, collection);
-    setShowCodex(true);
-    // Navigation into the existing codex is not blocked by a best-effort
-    // localStorage write; the collection boundary itself reports failures.
-  }, [collection, omen, result]);
+  const collect = useCallback(() => {
+    if (!collection || collecting) return;
+    const saved = collection.upsert(getFaceData.codex.storageKey, entry);
+    if (!saved.ok) return;
+    setCollecting(true);
+    const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ?? false;
+    window.setTimeout(() => setShowCodex(true), reduced ? 30 : 920);
+  }, [collecting, collection, entry]);
 
-  if (showCodex) {
-    return <CodexExperience data={getFaceData} collection={collection ?? undefined} storage={storage} onRestart={onRestart} />;
-  }
+  if (showCodex) return <CodexExperience collection={collection ?? undefined} newlyCollectedMaskId={mask.id} onRestart={onRestart} demoMode />;
 
-  const sourceKind = result.role.kind === "traditional_reference" ? "传统职司借鉴" : "项目新创";
-  return <main className="face-result-page" data-revealed={revealed ? "true" : "false"}>
-    <section className="face-result-cinematic" aria-labelledby="face-result-title">
-      <div className="face-result-haze" aria-hidden="true" />
-      <div className="face-result-mask-wrap"><Image src={result.mask.asset} alt={result.mask.name} width={1086} height={1448} priority /></div>
-      <span className="face-result-kicker">得 · 面 · 已 · 成</span>
-      <h1 id="face-result-title">傩 · {result.role.name}</h1>
-      <p className="face-result-duty">职司 · {result.role.duty}</p>
-      <p className="face-result-omen-status" role="status">{omenStatusText(omen)}</p>
-      <blockquote className="face-result-qian">{omen.qian}</blockquote>
-      <button type="button" className="face-result-confirm" onClick={enterCodex} disabled={!revealed || !collection}>确认此面，入傩谱</button>
-      {!collection ? <p className="face-result-storage-error">本机收录不可用，但本次得面与确定性解读仍可查看。</p> : null}
-    </section>
-
-    <section className="face-result-scroll" aria-label="得面结果详情">
-      <div className="face-result-section"><span>傩 · 面</span><p>{result.visualText}</p><p>变体 · {result.variant.tint} · {result.variant.mark} · 种子 {result.variant.seed}</p></div>
-      <div className="face-result-section"><span>职司 · 类 · 型</span><p>{sourceKind}。{result.role.duty}</p></div>
-      <div className="face-result-section"><span>授 · 面 · 理 · 由</span><p>{result.reasonText}</p></div>
-      <div className="face-result-section"><span>角 · 色 · 背 · 景</span><p>{result.role.background}</p></div>
-      <div className="face-result-section face-result-omen"><span>傩 · 解</span><p>{omen.jie}</p><button type="button" onClick={retryOmen} disabled={omen.status === "pending"}>{omen.status === "pending" ? "傩引正在结签" : "重新求签"}</button></div>
-      <div className="face-result-section"><span>幻 · 梦 · 确 · 定 · 性 · 解 · 读</span><h2>{interpretation.title}</h2><blockquote>{interpretation.sign}</blockquote><p>{interpretation.reflection}</p><ol>{interpretation.actions.map((action) => <li key={action}>{action}</li>)}</ol><small>{interpretation.boundary}</small></div>
-      <div className="face-result-section"><span>溯 · 源</span><p className="face-result-source-kind">{sourceKind} · {getFaceData.localAssetNotice}</p>{result.sources.length ? result.sources.map((source) => <a className="face-result-source" key={source.id} href={source.url} target="_blank" rel="noreferrer"><strong>{source.title}</strong><small>{source.institution} · {source.accessedAt}</small><em>{source.meaning}</em><i>{source.imageRights}</i></a>) : <p>本回没有额外溯源条目。</p>}</div>
-      <p className="face-result-asset-notice">本地资产声明：{getFaceData.localAssetNotice}</p>
+  return <main className="face-result-page" data-revealed={revealed} data-collecting={collecting}>
+    <div className="face-result-rays" aria-hidden="true" />
+    <Link className="face-result-home" href="/" aria-label="返回首页">← 返回首页</Link>
+    <section className="face-result-cinematic" aria-labelledby="reveal-title">
+      <span className="face-result-kicker">幻 梦 已 尽 · 得 面 已 成</span>
+      <div className="face-result-mask-wrap"><Image src={revealAsset} alt={`${role.name}傩面`} width={1086} height={1448} priority /></div>
+      <h1 id="reveal-title">{role.name}</h1>
+      <p className="face-result-duty">职司 · {role.duty}</p>
+      <p className="face-result-story">《{card.meta.title}》</p>
+      <button type="button" className="face-result-confirm" onClick={collect} disabled={!revealed || collecting || !collection}>{collecting ? "正在归入傩谱" : "收录此面"}</button>
+      {!collection ? <p className="face-result-storage-error">本机存储不可用，暂时无法收录。</p> : null}
     </section>
   </main>;
 }
