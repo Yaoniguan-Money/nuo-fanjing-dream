@@ -2,7 +2,7 @@
 
 ## 体验链路
 
-产品主链路固定为 `Threshold → GetFaceRitual → DreamCard → GetFaceResult → Codex`。`Threshold` 负责连续入场镜头与门环交互；`GetFaceRitual` 负责名字、愿望、八面自动匹配与入戏确认；`DreamCard` 播放注册表中的固定幻梦；`GetFaceResult` 以完成的故事卡绑定得面、签解、溯源和视觉变体；`Codex` 负责本机傩谱收录与浏览。
+产品主链路固定为 `Threshold → GetFaceRitual → DreamCard → GetFaceResult → Codex`。`Threshold` 负责封面、开场影片和龙坛过门；`GetFaceRitual` 负责名字、愿望、八面自动匹配与入戏确认；`DreamCard` 播放注册表中的固定幻梦；`GetFaceResult` 以完成的故事卡绑定得面、签解、溯源和视觉变体；`Codex` 负责本机傩谱收录与浏览。
 
 页面入口是 `src/app/page.tsx`、`src/app/dream/[cardId]/page.tsx`、`src/app/result/page.tsx` 与演示用 `src/app/codex/page.tsx`。幻梦播放结束后由结果页载入故事绑定签解，并在确认收录后进入 Codex 体验。
 
@@ -21,12 +21,12 @@
 
 ## 视觉与文化边界
 
-开场是单一连续镜头，控制在 1.2 至 1.6 秒，优先只动画 transform 与 opacity。傩门之前不出现文字或按钮，门环是第一次主动交互；主场保留龙坛、面具和输入接口，鼠标反馈只服务抓取、拖拽与确认。
+开场由封面、入梦影片和龙坛过门组成，交互入口是封面上的“开始入梦”；主场保留龙坛、面具和输入接口，鼠标反馈只服务抓取、拖拽与确认。
 
 结尾先做 cinematic reveal，再进入神龛式八角色墙。Codex 固定八大职司：开路将军、先锋小姐、九位土地神、唐氏太婆、勾簿判官、扫地和尚、柳毅、阿布摩；同一面具只占一个位置，重复体验更新该位置最近一次结果。详情当前使用透明 PNG 与卡片式倾斜交互，正式模型接入前不得标注为文物扫描；结果页始终保留“历史身份及授权来源未提供”的声明。
 
 ## 性能与验证
 
-开场最多 8 至 12 个主要 DOM 节点，粒子数量不超过 30，避免在 pointermove 中同时更新大量元素；WebGL 卸载时释放 renderer、RAF、GSAP timeline、几何、材质、纹理与全局监听，GSAP tween 使用 `overwrite: auto`。
+开场最多 8 至 12 个主要 DOM 节点，粒子数量不超过 30，避免在 pointermove 中同时更新大量元素；动画优先使用 transform 与 opacity，视频失败时必须直接进入龙坛过门。
 
 唯一完整验证命令见 [README.md](README.md) 的“唯一验证流程”，顺序为 lint、typecheck、Vitest、内容校验、standalone build、audit 与 diff check。构建配置由 `next.config.ts` 的 `output: "standalone"` 负责，CI 以 `.github/workflows/ci.yml` 为准。

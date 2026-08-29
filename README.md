@@ -1,6 +1,6 @@
 # 入梦黔境
 
-入梦黔境是运行在 Next.js App Router 上的贵州傩文化互动幻梦原型。唯一体验链路为 `Threshold → GetFaceRitual → DreamCard → GetFaceResult → Codex`：穿过山门后留下名字与现实困惑，由本地规则或匹配接口自动请出相照的面具并进入固定幻梦，最后查看得面签解并收录到本机傩谱。
+入梦黔境是运行在 Next.js App Router 上的贵州傩文化互动幻梦原型。唯一体验链路为 `Threshold → GetFaceRitual → DreamCard → GetFaceResult → Codex`：从封面与开场影片进入龙坛，留下名字与现实困惑，由本地规则或匹配接口自动请出相照的面具并进入固定幻梦，最后查看得面签解并收录到本机傩谱。
 
 ## 运行
 
@@ -31,7 +31,7 @@ CI 定义在 `.github/workflows/ci.yml`；`npm test` 只运行 Vitest。`npm run
 
 ## 路由与权威路径
 
-- `src/app/`：App Router 页面与 Route Handler 入口；主要页面是山门 `/`、幻梦 `/dream/[cardId]`、结果 `/result`，傩引接口为 `POST /api/v1/omen`。
+- `src/app/`：App Router 页面与 Route Handler 入口；主要页面是开场首页 `/`、幻梦 `/dream/[cardId]`、结果 `/result`，傩引接口为 `POST /api/v1/omen`。
 - `src/features/`：Threshold、GetFaceRitual、DreamCard 播放、GetFaceResult 与 Codex 的界面和运行时效果。
 - `src/domain/`：领域模型、状态机、校验与持久化边界；得面权威数据在 `src/domain/get-face/`，幻梦权威注册在 `src/domain/dream-card/`，傩谱边界在 `src/domain/codex/`。旧三幕选择与摄像头流程保留在 `session-legacy.ts` 和 `get-face-ritual-legacy.tsx`，但不再属于核心链路。
 - `src/server/`：服务端 AI provider 与外部模型代理；密钥和 provider 细节不得进入浏览器。
