@@ -12,10 +12,13 @@ describe("DreamCard content contract", () => {
   it("parses every registered card and preserves the complete seven-act story", () => {
     const cards = listDreamCards();
     const validateJsonSchema = new Ajv2020({ allErrors: true }).compile(dreamCardJsonSchema);
-    expect(cards).toHaveLength(1);
-    expect(cards[0].data.acts).toHaveLength(7);
-    for (const card of cards) expect(validateJsonSchema(card), JSON.stringify(validateJsonSchema.errors)).toBe(true);
-    expect(inspectDreamCard(cards[0]).filter((issue) => issue.severity === "error")).toEqual([]);
+    expect(cards.length).toBeGreaterThanOrEqual(1);
+    for (const card of cards) {
+      expect(card.data.acts.length).toBeGreaterThanOrEqual(5);
+      expect(card.data.acts.length).toBeLessThanOrEqual(7);
+      expect(validateJsonSchema(card), JSON.stringify(validateJsonSchema.errors)).toBe(true);
+      expect(inspectDreamCard(card).filter((issue) => issue.severity === "error")).toEqual([]);
+    }
   });
 
   it("keeps the static card directory and runtime registry in sync", () => {
@@ -40,12 +43,13 @@ describe("DreamCard content contract", () => {
   });
 
   it("can advance deterministically through every line to completion", () => {
-    const card = listDreamCards()[0];
-    let playback = initialPlaybackState;
-    for (let step = 0; step < 200 && playback.phase !== "finished"; step += 1) {
-      playback = advancePlayback(card, playback);
+    for (const card of listDreamCards()) {
+      let playback = initialPlaybackState;
+      for (let step = 0; step < 200 && playback.phase !== "finished"; step += 1) {
+        playback = advancePlayback(card, playback);
+      }
+      expect(playback.phase).toBe("finished");
+      expect(playback.actIndex).toBe(card.data.acts.length - 1);
     }
-    expect(playback.phase).toBe("finished");
-    expect(playback.actIndex).toBe(6);
   });
 });

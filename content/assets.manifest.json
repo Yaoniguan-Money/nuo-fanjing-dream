@@ -1,7 +1,10 @@
 {
   "schemaVersion": "0.1.0",
   "sourceDreamCards": [
-    "dream.kailu-jiangjun.du-shan-ji"
+    "dream.kailu-jiangjun.du-shan-ji",
+    "dream.xianfeng-xiaojie.qian-jie-qiao",
+    "dream.jiu-wei-tu-di-shen.di-jiu-tan",
+    "dream.tangshi-taipo.zhi-hun-ji"
   ],
   "styleReferences": [
     {
@@ -238,6 +241,636 @@
         "license": "project-owned"
       },
       "description": "戴面神秘人，后揭示为开路将军。"
+    },
+    {
+      "assetId": "background.rainy-hut-night",
+      "type": "background",
+      "file": "backgrounds/placeholder.webp",
+      "mimeType": "image/webp",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 3780,
+      "colorSpace": "sRGB",
+      "hasAlpha": false,
+      "mirrorAllowed": false,
+      "status": "placeholder",
+      "source": {
+        "type": "project",
+        "license": "project-owned"
+      },
+      "description": "雨夜山村小屋（先锋小姐·千结桥幕一）。暂用共享占位图。"
+    },
+    {
+      "assetId": "background.river-ferry-morning",
+      "type": "background",
+      "file": "backgrounds/placeholder.webp",
+      "mimeType": "image/webp",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 3780,
+      "colorSpace": "sRGB",
+      "hasAlpha": false,
+      "mirrorAllowed": false,
+      "status": "placeholder",
+      "source": {
+        "type": "project",
+        "license": "project-owned"
+      },
+      "description": "雷家渡清晨渡口（先锋小姐·千结桥幕二）。暂用共享占位图。"
+    },
+    {
+      "assetId": "background.rope-workshop-night",
+      "type": "background",
+      "file": "backgrounds/placeholder.webp",
+      "mimeType": "image/webp",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 3780,
+      "colorSpace": "sRGB",
+      "hasAlpha": false,
+      "mirrorAllowed": false,
+      "status": "placeholder",
+      "source": {
+        "type": "project",
+        "license": "project-owned"
+      },
+      "description": "封条旧工棚夜（先锋小姐·千结桥幕三）。暂用共享占位图。"
+    },
+    {
+      "assetId": "background.cliff-ravine-night",
+      "type": "background",
+      "file": "backgrounds/placeholder.webp",
+      "mimeType": "image/webp",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 3780,
+      "colorSpace": "sRGB",
+      "hasAlpha": false,
+      "mirrorAllowed": false,
+      "status": "placeholder",
+      "source": {
+        "type": "project",
+        "license": "project-owned"
+      },
+      "description": "老鸦口崖边夜架（先锋小姐·千结桥幕四）。暂用共享占位图。"
+    },
+    {
+      "assetId": "background.cliff-ravine-morning",
+      "type": "background",
+      "file": "backgrounds/placeholder.webp",
+      "mimeType": "image/webp",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 3780,
+      "colorSpace": "sRGB",
+      "hasAlpha": false,
+      "mirrorAllowed": false,
+      "status": "placeholder",
+      "source": {
+        "type": "project",
+        "license": "project-owned"
+      },
+      "description": "老鸦口崖边清晨断索（先锋小姐·千结桥幕五）。暂用共享占位图。"
+    },
+    {
+      "assetId": "background.new-bridge-day",
+      "type": "background",
+      "file": "backgrounds/placeholder.webp",
+      "mimeType": "image/webp",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 3780,
+      "colorSpace": "sRGB",
+      "hasAlpha": false,
+      "mirrorAllowed": false,
+      "status": "placeholder",
+      "source": {
+        "type": "project",
+        "license": "project-owned"
+      },
+      "description": "新桥落成白日（先锋小姐·千结桥幕六）。暂用共享占位图。"
+    },
+    {
+      "assetId": "background.bridge-fog-morning",
+      "type": "background",
+      "file": "backgrounds/placeholder.webp",
+      "mimeType": "image/webp",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 3780,
+      "colorSpace": "sRGB",
+      "hasAlpha": false,
+      "mirrorAllowed": false,
+      "status": "placeholder",
+      "source": {
+        "type": "project",
+        "license": "project-owned"
+      },
+      "description": "晨雾桥头（先锋小姐·千结桥幕七）。暂用共享占位图。"
+    },
+    {
+      "assetId": "background.nine-altars-day",
+      "type": "background",
+      "file": "backgrounds/placeholder.webp",
+      "mimeType": "image/webp",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 3780,
+      "colorSpace": "sRGB",
+      "hasAlpha": false,
+      "mirrorAllowed": false,
+      "status": "placeholder",
+      "source": {
+        "type": "project",
+        "license": "project-owned"
+      },
+      "description": "坛坪白日（九位土地神·第九坛幕一）。暂用共享占位图。"
+    },
+    {
+      "assetId": "background.village-home-lamp-night",
+      "type": "background",
+      "file": "backgrounds/placeholder.webp",
+      "mimeType": "image/webp",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 3780,
+      "colorSpace": "sRGB",
+      "hasAlpha": false,
+      "mirrorAllowed": false,
+      "status": "placeholder",
+      "source": {
+        "type": "project",
+        "license": "project-owned"
+      },
+      "description": "村居灯下夜（九位土地神·第九坛幕二）。暂用共享占位图。"
+    },
+    {
+      "assetId": "background.market-town-entrance-noon",
+      "type": "background",
+      "file": "backgrounds/placeholder.webp",
+      "mimeType": "image/webp",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 3780,
+      "colorSpace": "sRGB",
+      "hasAlpha": false,
+      "mirrorAllowed": false,
+      "status": "placeholder",
+      "source": {
+        "type": "project",
+        "license": "project-owned"
+      },
+      "description": "集市镇口正午（九位土地神·第九坛幕三）。暂用共享占位图。"
+    },
+    {
+      "assetId": "background.shrine-temple-night",
+      "type": "background",
+      "file": "backgrounds/placeholder.webp",
+      "mimeType": "image/webp",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 3780,
+      "colorSpace": "sRGB",
+      "hasAlpha": false,
+      "mirrorAllowed": false,
+      "status": "placeholder",
+      "source": {
+        "type": "project",
+        "license": "project-owned"
+      },
+      "description": "山神庙夜（九位土地神·第九坛幕四）。暂用共享占位图。"
+    },
+    {
+      "assetId": "background.rocky-slope-storm-night",
+      "type": "background",
+      "file": "backgrounds/placeholder.webp",
+      "mimeType": "image/webp",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 3780,
+      "colorSpace": "sRGB",
+      "hasAlpha": false,
+      "mirrorAllowed": false,
+      "status": "placeholder",
+      "source": {
+        "type": "project",
+        "license": "project-owned"
+      },
+      "description": "风雨乱石坡夜（九位土地神·第九坛幕五）。暂用共享占位图。"
+    },
+    {
+      "assetId": "background.ninth-altar-repair-day",
+      "type": "background",
+      "file": "backgrounds/placeholder.webp",
+      "mimeType": "image/webp",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 3780,
+      "colorSpace": "sRGB",
+      "hasAlpha": false,
+      "mirrorAllowed": false,
+      "status": "placeholder",
+      "source": {
+        "type": "project",
+        "license": "project-owned"
+      },
+      "description": "修坛白日（九位土地神·第九坛幕六）。暂用共享占位图。"
+    },
+    {
+      "assetId": "background.ninth-altar-morning-fog",
+      "type": "background",
+      "file": "backgrounds/placeholder.webp",
+      "mimeType": "image/webp",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 3780,
+      "colorSpace": "sRGB",
+      "hasAlpha": false,
+      "mirrorAllowed": false,
+      "status": "placeholder",
+      "source": {
+        "type": "project",
+        "license": "project-owned"
+      },
+      "description": "晨雾第九坛（九位土地神·第九坛幕七）。暂用共享占位图。"
+    },
+    {
+      "assetId": "background.weaving-hut-dust-day",
+      "type": "background",
+      "file": "backgrounds/placeholder.webp",
+      "mimeType": "image/webp",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 3780,
+      "colorSpace": "sRGB",
+      "hasAlpha": false,
+      "mirrorAllowed": false,
+      "status": "placeholder",
+      "source": {
+        "type": "project",
+        "license": "project-owned"
+      },
+      "description": "封机织布屋阴沉日（唐氏太婆·织魂记幕一）。暂用共享占位图。"
+    },
+    {
+      "assetId": "background.weaving-hut-night-lamp",
+      "type": "background",
+      "file": "backgrounds/placeholder.webp",
+      "mimeType": "image/webp",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 3780,
+      "colorSpace": "sRGB",
+      "hasAlpha": false,
+      "mirrorAllowed": false,
+      "status": "placeholder",
+      "source": {
+        "type": "project",
+        "license": "project-owned"
+      },
+      "description": "织布屋油灯夜（唐氏太婆·织魂记幕二）。暂用共享占位图。"
+    },
+    {
+      "assetId": "background.weaving-hut-deep-night",
+      "type": "background",
+      "file": "backgrounds/placeholder.webp",
+      "mimeType": "image/webp",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 3780,
+      "colorSpace": "sRGB",
+      "hasAlpha": false,
+      "mirrorAllowed": false,
+      "status": "placeholder",
+      "source": {
+        "type": "project",
+        "license": "project-owned"
+      },
+      "description": "织布屋深夜月光（唐氏太婆·织魂记幕三）。暂用共享占位图。"
+    },
+    {
+      "assetId": "background.town-outskirt-night",
+      "type": "background",
+      "file": "backgrounds/placeholder.webp",
+      "mimeType": "image/webp",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 3780,
+      "colorSpace": "sRGB",
+      "hasAlpha": false,
+      "mirrorAllowed": false,
+      "status": "placeholder",
+      "source": {
+        "type": "project",
+        "license": "project-owned"
+      },
+      "description": "镇外小路夜与发光碎片（唐氏太婆·织魂记幕四）。暂用共享占位图。"
+    },
+    {
+      "assetId": "background.creek-bank-night",
+      "type": "background",
+      "file": "backgrounds/placeholder.webp",
+      "mimeType": "image/webp",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 3780,
+      "colorSpace": "sRGB",
+      "hasAlpha": false,
+      "mirrorAllowed": false,
+      "status": "placeholder",
+      "source": {
+        "type": "project",
+        "license": "project-owned"
+      },
+      "description": "青溪河边深夜（唐氏太婆·织魂记幕五）。暂用共享占位图。"
+    },
+    {
+      "assetId": "background.weaving-hut-dawn",
+      "type": "background",
+      "file": "backgrounds/placeholder.webp",
+      "mimeType": "image/webp",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 3780,
+      "colorSpace": "sRGB",
+      "hasAlpha": false,
+      "mirrorAllowed": false,
+      "status": "placeholder",
+      "source": {
+        "type": "project",
+        "license": "project-owned"
+      },
+      "description": "织布屋破晓（唐氏太婆·织魂记幕六）。暂用共享占位图。"
+    },
+    {
+      "assetId": "background.courtyard-morning",
+      "type": "background",
+      "file": "backgrounds/placeholder.webp",
+      "mimeType": "image/webp",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 3780,
+      "colorSpace": "sRGB",
+      "hasAlpha": false,
+      "mirrorAllowed": false,
+      "status": "placeholder",
+      "source": {
+        "type": "project",
+        "license": "project-owned"
+      },
+      "description": "庭院清晨晨光（唐氏太婆·织魂记幕七）。暂用共享占位图。"
+    },
+    {
+      "assetId": "character.apo",
+      "type": "character",
+      "file": "characters/placeholder.png",
+      "mimeType": "image/png",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 6212,
+      "colorSpace": "sRGB",
+      "hasAlpha": true,
+      "mirrorAllowed": false,
+      "status": "placeholder",
+      "source": {
+        "type": "project",
+        "license": "project-owned"
+      },
+      "description": "阿婆，病重的祖母（先锋小姐·千结桥）。暂用共享占位图。"
+    },
+    {
+      "assetId": "character.awan",
+      "type": "character",
+      "file": "characters/placeholder.png",
+      "mimeType": "image/png",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 6212,
+      "colorSpace": "sRGB",
+      "hasAlpha": true,
+      "mirrorAllowed": false,
+      "status": "placeholder",
+      "source": {
+        "type": "project",
+        "license": "project-owned"
+      },
+      "description": "阿绾，十七岁的索桥匠之女（先锋小姐·千结桥主角）。暂用共享占位图。"
+    },
+    {
+      "assetId": "character.old-villager",
+      "type": "character",
+      "file": "characters/placeholder.png",
+      "mimeType": "image/png",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 6212,
+      "colorSpace": "sRGB",
+      "hasAlpha": true,
+      "mirrorAllowed": false,
+      "status": "placeholder",
+      "source": {
+        "type": "project",
+        "license": "project-owned"
+      },
+      "description": "求渡老汉（先锋小姐·千结桥幕二）。暂用共享占位图。"
+    },
+    {
+      "assetId": "character.lei-wu",
+      "type": "character",
+      "file": "characters/placeholder.png",
+      "mimeType": "image/png",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 6212,
+      "colorSpace": "sRGB",
+      "hasAlpha": true,
+      "mirrorAllowed": false,
+      "status": "placeholder",
+      "source": {
+        "type": "project",
+        "license": "project-owned"
+      },
+      "description": "雷五，渡主，人称雷半江（先锋小姐·千结桥）。暂用共享占位图。"
+    },
+    {
+      "assetId": "character.ya-shu",
+      "type": "character",
+      "file": "characters/placeholder.png",
+      "mimeType": "image/png",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 6212,
+      "colorSpace": "sRGB",
+      "hasAlpha": true,
+      "mirrorAllowed": false,
+      "status": "placeholder",
+      "source": {
+        "type": "project",
+        "license": "project-owned"
+      },
+      "description": "哑叔，爹当年的架桥搭手（先锋小姐·千结桥）。暂用共享占位图。"
+    },
+    {
+      "assetId": "character.mystic-gray",
+      "type": "character",
+      "file": "characters/placeholder.png",
+      "mimeType": "image/png",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 6212,
+      "colorSpace": "sRGB",
+      "hasAlpha": true,
+      "mirrorAllowed": false,
+      "status": "placeholder",
+      "source": {
+        "type": "project",
+        "license": "project-owned"
+      },
+      "description": "灰袍半面木面的神秘人（先锋小姐／九位土地神共用傩神现身形象）。暂用共享占位图。"
+    },
+    {
+      "assetId": "character.shi-sheng",
+      "type": "character",
+      "file": "characters/placeholder.png",
+      "mimeType": "image/png",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 6212,
+      "colorSpace": "sRGB",
+      "hasAlpha": true,
+      "mirrorAllowed": false,
+      "status": "placeholder",
+      "source": {
+        "type": "project",
+        "license": "project-owned"
+      },
+      "description": "石生，少年主角（九位土地神·第九坛）。暂用共享占位图。"
+    },
+    {
+      "assetId": "character.bao-sheng",
+      "type": "character",
+      "file": "characters/placeholder.png",
+      "mimeType": "image/png",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 6212,
+      "colorSpace": "sRGB",
+      "hasAlpha": true,
+      "mirrorAllowed": false,
+      "status": "placeholder",
+      "source": {
+        "type": "project",
+        "license": "project-owned"
+      },
+      "description": "宝生（九位土地神·第九坛）。暂用共享占位图。"
+    },
+    {
+      "assetId": "character.san-shugong",
+      "type": "character",
+      "file": "characters/placeholder.png",
+      "mimeType": "image/png",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 6212,
+      "colorSpace": "sRGB",
+      "hasAlpha": true,
+      "mirrorAllowed": false,
+      "status": "placeholder",
+      "source": {
+        "type": "project",
+        "license": "project-owned"
+      },
+      "description": "三叔公（九位土地神·第九坛）。暂用共享占位图。"
+    },
+    {
+      "assetId": "character.tanhu-father",
+      "type": "character",
+      "file": "characters/placeholder.png",
+      "mimeType": "image/png",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 6212,
+      "colorSpace": "sRGB",
+      "hasAlpha": true,
+      "mirrorAllowed": false,
+      "status": "placeholder",
+      "source": {
+        "type": "project",
+        "license": "project-owned"
+      },
+      "description": "谭虎父亲（九位土地神·第九坛）。暂用共享占位图。"
+    },
+    {
+      "assetId": "character.old-temple-keeper",
+      "type": "character",
+      "file": "characters/placeholder.png",
+      "mimeType": "image/png",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 6212,
+      "colorSpace": "sRGB",
+      "hasAlpha": true,
+      "mirrorAllowed": false,
+      "status": "placeholder",
+      "source": {
+        "type": "project",
+        "license": "project-owned"
+      },
+      "description": "老庙祝（九位土地神·第九坛幕四）。暂用共享占位图。"
+    },
+    {
+      "assetId": "character.achou",
+      "type": "character",
+      "file": "characters/placeholder.png",
+      "mimeType": "image/png",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 6212,
+      "colorSpace": "sRGB",
+      "hasAlpha": true,
+      "mirrorAllowed": false,
+      "status": "placeholder",
+      "source": {
+        "type": "project",
+        "license": "project-owned"
+      },
+      "description": "织娘阿绸（唐氏太婆·织魂记主角）。暂用共享占位图。"
+    },
+    {
+      "assetId": "character.neighbor-woman",
+      "type": "character",
+      "file": "characters/placeholder.png",
+      "mimeType": "image/png",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 6212,
+      "colorSpace": "sRGB",
+      "hasAlpha": true,
+      "mirrorAllowed": false,
+      "status": "placeholder",
+      "source": {
+        "type": "project",
+        "license": "project-owned"
+      },
+      "description": "邻居妇人（唐氏太婆·织魂记幕一）。暂用共享占位图。"
+    },
+    {
+      "assetId": "character.mystic-old-woman",
+      "type": "character",
+      "file": "characters/placeholder.png",
+      "mimeType": "image/png",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 6212,
+      "colorSpace": "sRGB",
+      "hasAlpha": true,
+      "mirrorAllowed": false,
+      "status": "placeholder",
+      "source": {
+        "type": "project",
+        "license": "project-owned"
+      },
+      "description": "戴白布面的神秘老妇，后揭示为唐氏太婆（织魂记）。暂用共享占位图。"
     },
     {
       "assetId": "threshold.fanjing-backdrop",

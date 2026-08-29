@@ -1,0 +1,211 @@
+{
+  "$schema": "../../docs/dream-card/dream-card.schema.json",
+  "schemaVersion": "0.1.0",
+  "meta": {
+    "id": "dream.jiu-wei-tu-di-shen.di-jiu-tan",
+    "version": "0.1.0",
+    "title": "第九坛",
+    "synopsis": "九坛村外九座社坛一字排开，头坛香火最旺，\"我\"家祖祖辈辈守着只管一片乱石坡的第九坛。二十出头的石生嫌自家的坛丢人，想去投奔贩山货发财的堂哥宝生，却被一句\"那活儿适合你\"堵在镇口；守庙五十年的老庙祝告诉他：坛是人分的大小，神自己没分过。当族里议定秋社并坛，石生在暴雨夜的乱石坡上想起坡上的泉眼、修渠的石料和救过全村的秋草，认下了这片养着村子却没人谢的地。秋社当天他当众拦下并坛，扶正界石、重修坛墙、凿新的青石香炉，为第九坛上了头一炷新香。次年春社，灰袍木面的神秘人告知：把自己的地守明白的人，就是守界人。",
+    "match": {
+      "tags": ["九位土地神", "土地公", "社坛", "守界", "职业羞耻", "并坛", "界石"],
+      "situations": ["被同龄人比下去", "被他人定义位置", "看轻自己的出身与职责", "外部评价压来", "需要守住自己的位置"],
+      "emotions": ["羞耻", "不服", "委屈", "醒悟", "笃定"],
+      "dilemmas": ["别人的成功是否是量自己的尺子", "守着没出息的位置还是去跑人家的码头", "当众反对族中议定还是随大流"],
+      "relationships": ["父子", "同族", "同龄人", "个人与香火"],
+      "excludeTags": []
+    },
+    "officeCandidates": [
+      {
+        "officeId": "office.shou-jie",
+        "fit": 1,
+        "reason": "故事核心是分清何者属于自己并守住必要边界：当众拦下并坛、扶正界石、重上香火，结尾由守界职司交棒。"
+      }
+    ],
+    "tone": ["社日", "山村", "钝痛", "醒悟", "立住"],
+    "estimatedDurationSeconds": 380,
+    "culturalSources": [
+      {
+        "id": "source.tudi-shen-she-jisi",
+        "title": "土地神（社神）信仰与春社秋社祭社传统",
+        "region": "中国乡土／贵州傩堂戏",
+        "reference": "reference-materials/dream-card-source/九位土地神.md",
+        "note": "借用社神信仰与傩堂戏土地角色（引路、问事、护坛）的守地意象；九坛村、\"九坛有大小\"设定、石生、宝生与并坛风波均为本篇虚构。"
+      }
+    ],
+    "status": "draft"
+  },
+  "data": {
+    "acts": [
+      {
+        "id": "act-01",
+        "title": "九坛·春社",
+        "backgroundAssetId": "background.nine-altars-day",
+        "characters": [
+          {"instanceId": "shisheng", "assetId": "character.shi-sheng", "position": "left"},
+          {"instanceId": "baosheng", "assetId": "character.bao-sheng", "position": "center"},
+          {"instanceId": "sanshugong", "assetId": "character.san-shugong", "position": "right"}
+        ],
+        "texts": [
+          {"id": "act-01-text-01", "content": "我们村叫九坛村，村外九座社坛一字排开，一位土地爷守一座坛。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-01-text-02", "content": "头一坛管着全村最好的坝子田，香火最旺。往后一座薄过一座，到第九坛，只管着村尾一片乱石坡。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-01-text-03", "content": "我家祖上传下来的差事，就是守第九坛。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-01-text-04", "content": "今年春社，头坛前围满了人。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-01-text-05", "content": "（给头坛献上新香炉）各位叔伯，宝生在外头贩山货，还算顺当！添个香炉，谢土地爷！", "speakerId": "baosheng", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "宝生"}},
+          {"id": "act-01-text-06", "content": "好！咱族里就数你有出息！", "speakerId": "sanshugong", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "三叔公"}},
+          {"id": "act-01-text-07", "content": "人群让开一条道，人人都要跟宝生说句话。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-01-text-08", "content": "（瞥见我们爷俩）石生也来了？你家那坛，社日都过半了，香灰拢没一捧吧？", "speakerId": "sanshugong", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "三叔公"}},
+          {"id": "act-01-text-09", "content": "好几个人笑了。爹拉着我的袖子，匆匆磕了个头，拉着我退出人群，头都没抬。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-01-text-10", "content": "（回头望了一眼头坛的香炉）爹，那香炉，是铜的吧。", "speakerId": "shisheng", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}}
+        ],
+        "choices": [],
+        "notes": "场景：九坛｜日｜晴。香炉、社旗、祭肉，头坛香火旺、九坛渐冷清。\n原始在场：我（石生，二十出头，第九坛坛户之子） · 爹（老坛户） · 三叔公（管族里坛务的） · 宝生（堂哥，贩山货发了财） · 九村乡民（环境人物）\n迁移备注：受 characters maxItems=3 限制，爹以旁白动作呈现，乡民作背景远景。"
+      },
+      {
+        "id": "act-02",
+        "title": "屋内·灯下",
+        "backgroundAssetId": "background.village-home-lamp-night",
+        "characters": [
+          {"instanceId": "shisheng", "assetId": "character.shi-sheng", "position": "left"},
+          {"instanceId": "fuqin", "assetId": "character.tanhu-father", "position": "right"}
+        ],
+        "texts": [
+          {"id": "act-02-text-01", "content": "爹把第九坛的旧香炉擦了一遍，又擦一遍。陶的，耳朵缺了一只。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-02-text-02", "content": "爹，我想好了。把咱家的坛并给头坛吧，差事并了，你省心，我也轻松。", "speakerId": "shisheng", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-02-text-03", "content": "（停了手）胡说啥。这坛是你太爷爷手里接的。", "speakerId": "fuqin", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "爹"}},
+          {"id": "act-02-text-04", "content": "守着它有啥用？全村谁正眼看过咱家？宝生为啥行？人家跑的是大码头，守的是大坛！", "speakerId": "shisheng", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-02-text-05", "content": "……", "speakerId": "fuqin", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "爹"}},
+          {"id": "act-02-text-06", "content": "我不想一辈子让人笑话。我不想当守破坛的。", "speakerId": "shisheng", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-02-text-07", "content": "（吹了灯，黑地里就一句）坛塌在你手里，你太爷爷跟前，你自己交代。", "speakerId": "fuqin", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "爹"}},
+          {"id": "act-02-text-08", "content": "那晚我睡不着。说到底，我不怕穷——我怕的是白天那些笑。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}}
+        ],
+        "choices": [],
+        "notes": "场景：屋内｜夜｜晴。油灯、缺耳的陶香炉、旧坛幡。\n原始在场：我 · 爹（老坛户）\n迁移备注：无。"
+      },
+      {
+        "id": "act-03",
+        "title": "镇口·碰壁",
+        "backgroundAssetId": "background.market-town-entrance-noon",
+        "characters": [
+          {"instanceId": "shisheng", "assetId": "character.shi-sheng", "position": "left"},
+          {"instanceId": "baosheng", "assetId": "character.bao-sheng", "position": "right"}
+        ],
+        "texts": [
+          {"id": "act-03-text-01", "content": "宝生这趟回来收山货，在镇口装了半车货。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-03-text-02", "content": "（硬着头皮）哥，带上我吧。贩货、算账，我学得会。", "speakerId": "shisheng", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-03-text-03", "content": "（拍拍我肩膀）兄弟，不是哥不带你。这行熬人，起早贪黑，还得看人脸色。", "speakerId": "baosheng", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "宝生"}},
+          {"id": "act-03-text-04", "content": "你不一样，你家守着坛，吃穿不愁，清清闲闲——那活儿适合你。", "speakerId": "baosheng", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "宝生"}},
+          {"id": "act-03-text-05", "content": "\"适合\"两个字，他说得轻飘飘，砸在我心口上。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-03-text-06", "content": "我……", "speakerId": "shisheng", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-03-text-07", "content": "（被脚夫喊走了）改天哥给你捎镇上的糖！回吧！", "speakerId": "baosheng", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "宝生"}},
+          {"id": "act-03-text-08", "content": "我站在镇口，车轱辘声出去老远。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-03-text-09", "content": "凭什么说我适合？我自己都不知道我适合什么，他一句话就替我答了。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-03-text-10", "content": "回村的路过乱石坡。坡口站着个灰袍人，半张木面，不知站了多久。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-03-text-11", "content": "跑人家的码头，累不累？", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘人", "mystic": true}},
+          {"id": "act-03-text-12", "content": "我想答话，一转眼，坡上只剩风。坡里的酸枣红了，我头一回没心思看。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}}
+        ],
+        "choices": [],
+        "notes": "场景：镇口｜晌午｜晴。货担、骡车、店铺幌子。\n原始在场：我 · 宝生 · 脚夫（环境人物）\n迁移备注：末段神秘人现身于回村路上的乱石坡，与幕首镇口异地；受单幕单背景限制，神秘人以画外文本保留，不作摆位。脚夫作背景远景。"
+      },
+      {
+        "id": "act-04",
+        "title": "社庙·夜谈",
+        "backgroundAssetId": "background.shrine-temple-night",
+        "characters": [
+          {"instanceId": "miaozhu", "assetId": "character.old-temple-keeper", "position": "left"},
+          {"instanceId": "shisheng", "assetId": "character.shi-sheng", "position": "right"}
+        ],
+        "texts": [
+          {"id": "act-04-text-01", "content": "（灯下擦着九块小牌位）又来了？这回脸拉这么长。", "speakerId": "miaozhu", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "老庙祝"}},
+          {"id": "act-04-text-02", "content": "庙祝爷爷，我问你句实话。九位土地爷，是不是也分大小？头坛那位，是不是官最大？", "speakerId": "shisheng", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-04-text-03", "content": "（乐了）坛是人分的大小，神自己没分过。", "speakerId": "miaozhu", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "老庙祝"}},
+          {"id": "act-04-text-04", "content": "可头坛管百亩好田，第九坛管什么？管一片荒坡？", "speakerId": "shisheng", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-04-text-05", "content": "谁跟你说那是荒坡？坡上有泉眼，天再旱，村西的秧水是它补的；坡上出石料，前年发大水修渠，石头是一块块从那儿背的；坡上的秋草，救过全村的羊。", "speakerId": "miaozhu", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "老庙祝"}},
+          {"id": "act-04-text-06", "content": "那为啥没人给它上香？", "speakerId": "shisheng", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-04-text-07", "content": "香是人乐意烧的，地是神一直守的。九位爷守了一千年，没一位嫌自个儿的坛小，也没一位跑去别人的坛上凑热闹。", "speakerId": "miaozhu", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "老庙祝"}},
+          {"id": "act-04-text-08", "content": "（低声）人，是分大小的。", "speakerId": "shisheng", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-04-text-09", "content": "（把牌位摆正）我问你。你在那坡上跑了二十年，坡里有几眼泉，冬天哪眼不冻，你知道吗？", "speakerId": "miaozhu", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "老庙祝"}},
+          {"id": "act-04-text-10", "content": "我张了张嘴。我知道。我闭着眼都知道。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-04-text-11", "content": "知道就好。有块地一直在等你——等你守明白喽。", "speakerId": "miaozhu", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "老庙祝"}}
+        ],
+        "choices": [],
+        "notes": "场景：社庙｜夜｜月。油灯、九块牌位、坛幡。\n原始在场：我 · 老庙祝（守庙五十年的社庙看守）\n迁移备注：无。"
+      },
+      {
+        "id": "act-05",
+        "title": "乱石坡·雨夜",
+        "backgroundAssetId": "background.rocky-slope-storm-night",
+        "characters": [
+          {"instanceId": "shisheng", "assetId": "character.shi-sheng", "position": "center"},
+          {"instanceId": "mystic", "assetId": "character.mystic-gray", "position": "right"}
+        ],
+        "texts": [
+          {"id": "act-05-text-01", "content": "第二天，三叔公托人带话：并坛的事，族里议妥了，秋社当众宣布。说这样我家省心，村里体面。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-05-text-02", "content": "我一口气跑上乱石坡，站在第九坛前。雨点子砸下来。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-05-text-03", "content": "（冲着坛喊）我守你守了二十年！你给过我什么？一炉香都挣不来！", "speakerId": "shisheng", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-05-text-04", "content": "脚下一滑，我踹在界石上，石头歪了。我蹲下去扶，扶着扶着，手停住了。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-05-text-05", "content": "石头根上的土是湿的。这坡上哪块石头底下有泉，哪眼泉冬天不冻，我闭着眼都摸得到。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-05-text-06", "content": "前年发大水，修渠的石料，是我带着人一块块从这儿背下山的。去年牲口缺草料，是这坡的秋草救的急。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-05-text-07", "content": "这片坡一直在养着村子。养得悄悄的，没人记得谢——连我都嫌它丢人。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-05-text-08", "content": "（雨里）旁人的坛再旺，也是旁人的地界。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘人", "mystic": true}},
+          {"id": "act-05-text-09", "content": "雨太大了，我听不清——", "speakerId": "shisheng", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-05-text-10", "content": "你守得住自家的坛。你是拿别人的香火，量自家的地。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘人", "mystic": true}},
+          {"id": "act-05-text-11", "content": "我一抬头，雨幕里已经没人的影子。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-05-text-12", "content": "雷声里，坛墙塌的那一角又掉下半块砖。我没躲，伸手接住了。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}}
+        ],
+        "choices": [],
+        "notes": "场景：乱石坡｜夜｜暴雨。塌了半边的坛、歪倒的界石、雷雨。\n原始在场：我 · 神秘人（第二次现身）\n迁移备注：无。"
+      },
+      {
+        "id": "act-06",
+        "title": "第九坛·扶坛",
+        "backgroundAssetId": "background.ninth-altar-repair-day",
+        "characters": [
+          {"instanceId": "shisheng", "assetId": "character.shi-sheng", "position": "left"},
+          {"instanceId": "fuqin", "assetId": "character.tanhu-father", "position": "center"},
+          {"instanceId": "sanshugong", "assetId": "character.san-shugong", "position": "right"}
+        ],
+        "texts": [
+          {"id": "act-06-text-01", "content": "秋社那天，九村的人都聚齐了。三叔公站上高台，当众宣布并坛。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-06-text-02", "content": "往后香火归头坛，差事并了——省事，也体面！", "speakerId": "sanshugong", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "三叔公"}},
+          {"id": "act-06-text-03", "content": "一片叫好声里，我站了出来。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-06-text-04", "content": "三叔公，并不得。", "speakerId": "shisheng", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-06-text-05", "content": "（皱眉）石生，你可想好喽。守那破坛，你图啥？", "speakerId": "sanshugong", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "三叔公"}},
+          {"id": "act-06-text-06", "content": "图啥？前年发大水，修渠的石头是哪来的？今年天旱，村西的秧水是哪补的？是第九坛那片坡！并了坛，坡没人守，泉没人淘，遭殃的是坝子里的好田！", "speakerId": "shisheng", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-06-text-07", "content": "有人小声嘀咕：守破坛的，还替土地爷撑起腰来了。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-06-text-08", "content": "（不接那个话，扛起镢头）坛小，不能没。这坛，我修。", "speakerId": "shisheng", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "我", "self": true}},
+          {"id": "act-06-text-09", "content": "我上了坡。塌了半边的坛墙，一块砖一块砖垒回去；歪倒的界石，一块一块扶正。香炉是我拿坡上的青石凿的，凿了三个晚上。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-06-text-10", "content": "爹不知道什么时候上来了，没说话，蹲在旁边帮我和泥。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-06-text-11", "content": "几个半大孩子也凑上来，帮我搬石头，搬得满头汗。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-06-text-12", "content": "人群外头，那个灰袍木面的人站了一会儿，朝我点了点头，转身走了。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-06-text-13", "content": "日头落山，坛墙齐了，界石正了。我给第九坛土地爷，上了头一炷新香。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}}
+        ],
+        "choices": [],
+        "notes": "场景：第九坛｜日｜晴。塌了半边的坛墙、歪倒的界石、新凿的青石香炉。\n原始在场：我 · 三叔公 · 爹（默默帮工） · 神秘人（第三次现身，人群外，无言） · 乡民（环境人物）\n迁移备注：受 characters maxItems=3 限制，神秘人无言现身以旁白保留，乡民与孩子作背景远景。"
+      },
+      {
+        "id": "act-07",
+        "title": "第九坛·春社",
+        "backgroundAssetId": "background.ninth-altar-morning-fog",
+        "characters": [
+          {"instanceId": "shisheng", "assetId": "character.shi-sheng", "position": "left"},
+          {"instanceId": "fuqin", "assetId": "character.tanhu-father", "position": "center"},
+          {"instanceId": "mystic", "assetId": "character.mystic-gray", "position": "right"}
+        ],
+        "texts": [
+          {"id": "act-07-text-01", "content": "第二年春社，头坛前照旧挤满了人。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-07-text-02", "content": "第九坛前冷清，可不再空着。放羊的老倌路过，点了三炷香；村西头的田户挑水路过，也点了三炷。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-07-text-03", "content": "（把新坛幡挂上去，退后看了看）比你太爷爷那会儿的，还周正。", "speakerId": "fuqin", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "爹"}},
+          {"id": "act-07-text-04", "content": "雾从坡下漫上来。那个灰袍人立在坛前，半张木面朝着晨光，像等了有些时候了。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}},
+          {"id": "act-07-text-05", "content": "石生——不，该改口了。求愿的人，梦到这儿，该醒了。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘人", "mystic": true}},
+          {"id": "act-07-text-06", "content": "你进来的时候，心里憋着的那件事，我都听见了。可你真正想要的，是找到自个儿那块地，对不对？", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘人", "mystic": true}},
+          {"id": "act-07-text-07", "content": "香火有旺有淡，地界有肥有薄。九位爷守了一千年，比的不是谁的坛大，是谁的地，一直有人守着。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘人", "mystic": true}},
+          {"id": "act-07-text-08", "content": "往后还有人笑话你的坛小，也还有人夸别人跑得远。你记住今天就行——旁人的香，烧不热你的坛；你的泉，浇的是你的田。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘人", "mystic": true}},
+          {"id": "act-07-text-09", "content": "去吧。守界的不在别处——把自己的地守明白的人，就是守界人。", "speakerId": "mystic", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "dialogue", "speakerName": "神秘人", "mystic": true}},
+          {"id": "act-07-text-10", "content": "他转身走进雾里。坡下的社鼓声退去。我摊开手心，好像还留着那块界石的凉。", "speakerId": "narrator", "display": {"mode": "typewriter", "advance": "manual"}, "extensions": {"sourceType": "narration"}}
+        ],
+        "choices": [],
+        "notes": "场景：第九坛｜晨｜雾。修好的坛、扶正的界石、几炷香。\n原始在场：我 · 爹（一句） · 神秘人（第四次现身，坛前，向求愿者直接开口） · 上香的村人（环境人物）\n迁移备注：原剧本 act-07-text-06 中的动态占位符（所求何事）已按交付决定改写为固定句。上香村人作背景远景。"
+      }
+    ]
+  }
+}
