@@ -8,14 +8,15 @@ import "./threshold.css";
 type IntroStage = "title" | "dissolving" | "video";
 const MOTES = Array.from({ length: 28 }, (_, index) => index);
 
-export function ThresholdExperience({ onCrossThreshold, onIntroVideoStart, introVideoSrc }: { onCrossThreshold: () => void; onIntroVideoStart?: () => void; introVideoSrc?: string }) {
+export function ThresholdExperience({ onCrossThreshold, onIntroVideoStart, onStart, introVideoSrc }: { onCrossThreshold: () => void; onIntroVideoStart?: () => void; onStart?: () => void; introVideoSrc?: string }) {
   const [stage, setStage] = useState<IntroStage>("title");
   const videoStartNotified = useRef(false);
 
   const start = useCallback(() => {
     if (stage !== "title") return;
+    onStart?.();
     setStage("dissolving");
-  }, [stage]);
+  }, [onStart, stage]);
 
   useEffect(() => {
     if (stage !== "dissolving") return;
