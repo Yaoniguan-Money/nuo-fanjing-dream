@@ -5,6 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   advancePlayback,
+  getDreamActAssetUrls,
+  getDreamCardAssetUrls,
   initialPlaybackState,
   inspectDreamCard,
   resolveAssetId,
@@ -14,6 +16,7 @@ import {
   type DreamCharacter,
   type DreamText
 } from "@/domain/dream-card";
+import { preloadMatchedDreamResources, preloadUrls } from "@/features/preload/resource-preloader";
 import { useTypewriter } from "./use-typewriter";
 import "./dream-player.css";
 
@@ -29,7 +32,7 @@ function CharacterLayer({ characters, activeSpeaker }: { characters: DreamCharac
     const character = byPosition.get(position);
     const assetUrl = character ? resolveAssetId(character.assetId) : null;
     return <div className={`character-slot character-${position}${character?.instanceId === activeSpeaker ? " active" : ""}`} key={position} style={{ left: `${characterHorizontalPosition(position, characters.length)}%` }}>
-      {character && assetUrl ? <Image className="character-image" src={assetUrl} alt="" width={1024} height={1536} priority={position === "center"} /> : null}
+      {character && assetUrl ? <Image className="character-image" src={assetUrl} alt="" width={1024} height={1536} loading={position === "center" ? "eager" : "lazy"} /> : null}
     </div>;
   })}</div>;
 }
@@ -79,12 +82,23 @@ export function DreamPlayer({ card, onComplete, debugControls }: DreamPlayerProp
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [next, previous]);
 
+  useEffect(() => {
+    preloadUrls(getDreamCardAssetUrls(card), { strategy: "idle", concurrency: 2 });
+    void preloadMatchedDreamResources(card.meta.id, "codex");
+  }, [card]);
+
+  useEffect(() => {
+    const nextAct = card.data.acts[playback.actIndex + 1];
+    if (!nextAct) return;
+    preloadUrls(getDreamActAssetUrls(nextAct), { strategy: "idle", concurrency: 2 });
+  }, [card, playback.actIndex]);
+
   return <main className={`dream-player-page${debugControls ? " with-debug" : ""}`}>
     {debugControls}
     <section className="player-shell" data-card-id={card.meta.id}>
-      <Link className="dream-home-link" href="/" aria-label="返回首页">← 返回首页</Link>
+      <Link className="dream-home-link" href="/" prefetch={false} aria-label="返回首页">← 返回首页</Link>
       <div className="background-placeholder" />
-      {backgroundUrl ? <Image className="background-image" src={backgroundUrl} alt="" fill sizes="100vw" priority /> : null}
+      {backgroundUrl ? <Image className="background-image" src={backgroundUrl} alt="" fill sizes="100vw" loading="eager" fetchPriority="high" /> : null}
       <div className="stage-shade" /><div className="stage-fog" />
       {playback.phase !== "playing" ? <span className="dream-player-brand-mark"><Image className="dream-player-brand-mark-image" src="/dream-assets/brand/nuo-dream-logo-dark.png" alt="大傩幻梦品牌标识" fill sizes="(max-width: 700px) 110px, 168px" /></span> : null}
       {playback.phase === "playing" ? <CharacterLayer characters={act.characters} activeSpeaker={currentText?.speakerId ?? ""} /> : null}
