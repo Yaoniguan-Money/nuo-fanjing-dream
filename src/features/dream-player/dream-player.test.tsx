@@ -63,7 +63,7 @@ describe("DreamPlayer", () => {
     expect(screen.queryByText("点击继续 ▽", { exact: true })).toBeNull();
   });
 
-  it("在用户点击手势内播放，并可切换四首本地音乐与暂停", async () => {
+  it("在用户点击手势内播放，并可切换三首不同的本地音乐与暂停", async () => {
     const play = vi.spyOn(HTMLMediaElement.prototype, "play").mockResolvedValue(undefined);
     const pause = vi.spyOn(HTMLMediaElement.prototype, "pause").mockImplementation(() => undefined);
     vi.spyOn(HTMLMediaElement.prototype, "load").mockImplementation(() => undefined);
@@ -79,7 +79,6 @@ describe("DreamPlayer", () => {
     fireEvent.click(screen.getByRole("button", { name: "选择故事音乐" }));
     expect(screen.getAllByRole("menuitemradio").map((item) => item.textContent)).toEqual([
       "中式弦歌一",
-      "中式弦歌二",
       "古意行旅",
       "中式和鸣"
     ]);
@@ -103,6 +102,38 @@ describe("DreamPlayer", () => {
 
     expect(play).toHaveBeenCalledOnce();
     expect(screen.getByRole("button", { name: "暂停故事音乐" })).toBeTruthy();
+  });
+
+  it("在用户选择或播放前不预先绑定媒体音源", () => {
+    render(<DreamPlayer card={requireDreamCard("dream.kailu-jiangjun.du-shan-ji")} />);
+    fireEvent.click(screen.getByRole("button", { name: "进 入 幻 梦" }));
+
+    expect(screen.getByLabelText("故事背景音乐").getAttribute("src")).toBeNull();
+  });
+
+  it("切换曲目时不在播放请求前强制重载音频", () => {
+    const load = vi.spyOn(HTMLMediaElement.prototype, "load").mockImplementation(() => undefined);
+    vi.spyOn(HTMLMediaElement.prototype, "play").mockResolvedValue(undefined);
+    render(<DreamPlayer card={requireDreamCard("dream.kailu-jiangjun.du-shan-ji")} />);
+    fireEvent.click(screen.getByRole("button", { name: "进 入 幻 梦" }));
+
+    fireEvent.click(screen.getByRole("button", { name: "选择故事音乐" }));
+    fireEvent.click(screen.getByRole("menuitemradio", { name: "古意行旅" }));
+
+    expect(load).not.toHaveBeenCalled();
+  });
+
+  it("切换曲目时通过媒体 src 属性启动新的音源", () => {
+    const setSource = vi.spyOn(HTMLMediaElement.prototype, "src", "set");
+    vi.spyOn(HTMLMediaElement.prototype, "play").mockResolvedValue(undefined);
+    render(<DreamPlayer card={requireDreamCard("dream.kailu-jiangjun.du-shan-ji")} />);
+    setSource.mockClear();
+    fireEvent.click(screen.getByRole("button", { name: "进 入 幻 梦" }));
+
+    fireEvent.click(screen.getByRole("button", { name: "选择故事音乐" }));
+    fireEvent.click(screen.getByRole("menuitemradio", { name: "古意行旅" }));
+
+    expect(setSource).toHaveBeenCalled();
   });
 
   it("浏览器拒绝播放时恢复为未播放状态", async () => {

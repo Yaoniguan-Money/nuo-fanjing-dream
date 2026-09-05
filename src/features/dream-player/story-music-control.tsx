@@ -4,7 +4,6 @@ import { useRef, useState } from "react";
 
 const STORY_MUSIC_TRACKS = [
   { id: "chinese-music-a", name: "中式弦歌一", src: "/dream-assets/audio/music/chinese-music-a.mp3" },
-  { id: "chinese-music-b", name: "中式弦歌二", src: "/dream-assets/audio/music/chinese-music-b.mp3" },
   { id: "ancient-journey", name: "古意行旅", src: "/dream-assets/audio/music/ancient-journey.mp3" },
   { id: "chinese-harmony", name: "中式和鸣", src: "/dream-assets/audio/music/chinese-harmony.mp3" }
 ] as const;
@@ -22,8 +21,7 @@ export function StoryMusicControl() {
     const audio = audioRef.current;
     if (!audio) return;
     if (audio.getAttribute("src") !== nextTrack.src) {
-      audio.setAttribute("src", nextTrack.src);
-      audio.load();
+      audio.src = nextTrack.src;
     }
     setPlaying(true);
     void audio.play().catch(() => setPlaying(false));
@@ -47,7 +45,7 @@ export function StoryMusicControl() {
   };
 
   return <div className="story-music-control" data-open={open ? "true" : "false"} onClick={(event) => event.stopPropagation()} onPointerDown={(event) => event.stopPropagation()}>
-    <audio ref={audioRef} aria-label="故事背景音乐" src={track.src} loop preload="none" />
+    <audio ref={audioRef} aria-label="故事背景音乐" loop preload="none" />
     <button
       aria-label={playing ? "暂停故事音乐" : "播放故事音乐"}
       aria-pressed={playing}
