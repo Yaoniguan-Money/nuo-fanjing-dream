@@ -2,12 +2,13 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { DreamCard } from "@/domain/dream-card";
 import { createCodexCollection, type CodexEntryInput, type StorageLike } from "@/domain/codex";
 import { getFaceData, getStoryOmen } from "@/domain/get-face";
 import type { GetFaceRitualSession } from "@/domain/get-face/session";
 import { CodexExperience } from "@/features/codex/codex-experience";
+import type { CollectionFlightRect } from "@/features/codex/collection-flight";
 import "./get-face-result.css";
 
 const STORY_ROLES: Record<string, { id: string; name: string; duty: string; signs: string[] }> = {
@@ -49,6 +50,10 @@ function storyMaskIndex(card: DreamCard, session: GetFaceRitualSession): number 
     const mappedIndex = getFaceData.masks.findIndex((mask) => mask.id === mappedMaskId);
     if (mappedIndex >= 0) return mappedIndex;
   }
+  if (session.selectedMaskId) {
+    const selectedIndex = getFaceData.masks.findIndex((mask) => mask.id === session.selectedMaskId);
+    if (selectedIndex >= 0) return selectedIndex;
+  }
   return session.selectedMaskIndex ?? 0;
 }
 
@@ -78,6 +83,8 @@ export function GetFaceResult({ session, card, storage, onRestart }: { session: 
   const [revealed, setRevealed] = useState(false);
   const [collecting, setCollecting] = useState(false);
   const [showCodex, setShowCodex] = useState(false);
+  const [sourceRect, setSourceRect] = useState<CollectionFlightRect | null>(null);
+  const maskRef = useRef<HTMLDivElement>(null);
   const localStorage = browserStorage();
   const collection = useMemo(() => (storage ?? localStorage) ? createCodexCollection((storage ?? localStorage)!) : null, [localStorage, storage]);
   const entry = useMemo(() => makeStoryCodexEntry(session, card), [card, session]);
@@ -95,23 +102,23 @@ export function GetFaceResult({ session, card, storage, onRestart }: { session: 
     if (!collection || collecting) return;
     const saved = collection.upsert(getFaceData.codex.storageKey, entry);
     if (!saved.ok) return;
+    const rect = maskRef.current?.getBoundingClientRect();
+    setSourceRect(rect ? { left: rect.left, top: rect.top, width: rect.width, height: rect.height } : null);
     setCollecting(true);
-    const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ?? false;
-    window.setTimeout(() => setShowCodex(true), reduced ? 30 : 920);
+    setShowCodex(true);
   }, [collecting, collection, entry]);
 
-  if (showCodex) return <CodexExperience collection={collection ?? undefined} newlyCollectedMaskId={mask.id} onRestart={onRestart} demoMode />;
+  if (showCodex) return <CodexExperience collection={collection ?? undefined} newlyCollectedMaskId={mask.id} collectionArrival={sourceRect ? { maskId: mask.id, asset: revealAsset, sourceRect } : undefined} onRestart={onRestart} demoMode />;
 
   return <main className="face-result-page" data-revealed={revealed} data-collecting={collecting}>
-    <div className="face-result-rays" aria-hidden="true" />
-    <Link className="face-result-home" href="/" aria-label="返回首页">← 返回首页</Link>
+    <Link className="face-result-home ui-return-control" href="/" aria-label="返回首页">← 返回首页</Link>
     <section className="face-result-cinematic" aria-labelledby="reveal-title">
       <span className="face-result-kicker">幻 梦 已 尽 · 得 面 已 成</span>
-      <div className="face-result-mask-wrap"><Image src={revealAsset} alt={`${role.name}傩面`} width={1086} height={1448} priority /></div>
+      <div ref={maskRef} className="face-result-mask-wrap"><Image src={revealAsset} alt={`${role.name}傩面`} width={1086} height={1448} priority /></div>
       <h1 id="reveal-title">{role.name}</h1>
       <p className="face-result-duty">职司 · {role.duty}</p>
       <p className="face-result-story">《{card.meta.title}》</p>
-      <button type="button" className="face-result-confirm" onClick={collect} disabled={!revealed || collecting || !collection}>{collecting ? "正在归入傩谱" : "收录此面"}</button>
+      <button type="button" className="face-result-confirm ui-primary-cta" onClick={collect} disabled={!revealed || collecting || !collection}>{collecting ? "正在归入傩谱" : "收录此面"}</button>
       {!collection ? <p className="face-result-storage-error">本机存储不可用，暂时无法收录。</p> : null}
     </section>
   </main>;

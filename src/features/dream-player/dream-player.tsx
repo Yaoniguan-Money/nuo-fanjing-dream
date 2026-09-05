@@ -17,6 +17,8 @@ import {
   type DreamText
 } from "@/domain/dream-card";
 import { preloadMatchedDreamResources, preloadUrls } from "@/features/preload/resource-preloader";
+import { StoryMusicControl } from "./story-music-control";
+import { useStoryActTransition } from "./use-story-act-transition";
 import { useTypewriter } from "./use-typewriter";
 import "./dream-player.css";
 
@@ -60,12 +62,18 @@ export function DreamPlayer({ card, onComplete, debugControls }: DreamPlayerProp
   const typewriter = useTypewriter(currentText);
   const backgroundUrl = resolveAssetId(act.backgroundAssetId);
   const issues = useMemo(() => inspectDreamCard(card), [card]);
+  const actTransition = useStoryActTransition({ card, playback, setPlayback });
 
   const next = useCallback(() => {
+    if (actTransition.isRunning()) return;
     if (typewriter.isTyping) return typewriter.complete();
+    if (actTransition.begin()) return;
     setPlayback((current) => advancePlayback(card, current));
-  }, [card, typewriter]);
-  const previous = useCallback(() => setPlayback((current) => retreatPlayback(card, current)), [card]);
+  }, [actTransition, card, typewriter]);
+  const previous = useCallback(() => {
+    if (actTransition.isRunning()) return;
+    setPlayback((current) => retreatPlayback(card, current));
+  }, [actTransition, card]);
 
   useEffect(() => {
     if (!currentText || typewriter.isTyping || currentText.display.advance !== "auto") return;
@@ -95,8 +103,9 @@ export function DreamPlayer({ card, onComplete, debugControls }: DreamPlayerProp
 
   return <main className={`dream-player-page${debugControls ? " with-debug" : ""}`}>
     {debugControls}
-    <section className="player-shell" data-card-id={card.meta.id}>
+    <section className="player-shell" data-act-transition={actTransition.phase} data-card-id={card.meta.id}>
       <Link className="dream-home-link" href="/" prefetch={false} aria-label="返回首页">← 返回首页</Link>
+      {playback.phase === "playing" ? <StoryMusicControl /> : null}
       <div className="background-placeholder" />
       {backgroundUrl ? <Image className="background-image" src={backgroundUrl} alt="" fill sizes="100vw" loading="eager" fetchPriority="high" /> : null}
       <div className="stage-shade" /><div className="stage-fog" />
@@ -104,6 +113,7 @@ export function DreamPlayer({ card, onComplete, debugControls }: DreamPlayerProp
       {playback.phase === "playing" ? <CharacterLayer characters={act.characters} activeSpeaker={currentText?.speakerId ?? ""} /> : null}
       {playback.phase === "title" ? <section className="title-view"><div className="title-eyebrow">幻梦卡 · DREAM CARD</div><h1>{card.meta.title}</h1><div className="title-divider" /><p>{card.meta.synopsis}</p><div className="tag-list">{card.meta.match.tags.slice(0, 7).map((tag) => <span key={tag}>{tag}</span>)}</div><button className="ritual-button" type="button" onClick={next}>进 入 幻 梦</button></section> : null}
       {playback.phase === "playing" ? <section className="play-view" onClick={next}><ActHud act={act} actIndex={playback.actIndex} actCount={card.data.acts.length} textIndex={playback.textIndex} /><DialoguePanel text={currentText} content={typewriter.content} actIndex={playback.actIndex} /></section> : null}
+      <div className="act-transition-curtain" aria-hidden="true" />
       {playback.phase === "finished" ? <section className="end-view"><div className="title-eyebrow">幻 梦 已 尽</div><h2>{card.meta.title}</h2><div className="title-divider" /><p>七幕已定。故事中的那一面，正在回到坛前。</p><button className="ritual-button" type="button" onClick={() => onComplete?.(card)}>出 戏 · 见 面</button><button className="text-button" type="button" onClick={() => setPlayback(initialPlaybackState)}>重新观看</button></section> : null}
       {issues.some((issue) => issue.severity === "error") ? <div className="player-error">卡片存在阻塞性错误，请前往开发卡池检查。</div> : null}
     </section>

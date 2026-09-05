@@ -4,7 +4,6 @@ import dynamic from "next/dynamic";
 import { useCallback, useEffect, useState } from "react";
 import { clearDreamSession } from "@/domain/dream-session/storage";
 import { clearGetFaceRitualSession } from "@/domain/get-face/session";
-import { preloadNextRitualStage } from "@/features/preload/resource-preloader";
 import { ThresholdExperience } from "./threshold-experience";
 
 const GetFaceRitual = dynamic(
@@ -20,7 +19,6 @@ export function ThresholdShell() {
     clearGetFaceRitualSession();
   }, []);
   const preloadRitual = useCallback(() => {
-    preloadNextRitualStage();
     void import("@/features/get-face/get-face-ritual");
   }, []);
   useEffect(() => {
@@ -36,5 +34,5 @@ export function ThresholdShell() {
     <div className="threshold-bridge-mist" aria-hidden="true" />
     <p>龙 · 坛 · 显 · 影</p>
   </main>;
-  return <ThresholdExperience introVideoSrc="/dream-assets/intro/opening.mp4" onCrossThreshold={cross} onIntroVideoStart={preloadRitual} onStart={startDream} />;
+  return <ThresholdExperience introVideoSrc="/dream-assets/intro/opening.mp4" onCrossThreshold={cross} onLoadingStart={preloadRitual} onStart={startDream} />;
 }

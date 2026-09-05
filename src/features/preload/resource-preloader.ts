@@ -1,5 +1,7 @@
 "use client";
 
+import { RITUAL_MASK_THUMBNAILS } from "@/domain/get-face/ritual-mask-thumbnails";
+
 export type PreloadStrategy = "immediate" | "idle";
 
 export interface PreloadOptions {
@@ -13,7 +15,8 @@ export const NEXT_RITUAL_STAGE_URLS = [
   "/dream-assets/intro/opening-last-frame.png",
   "/dream-assets/altar/dragon-altar-style.png",
   "/dream-assets/brand/nuo-dream-logo-dark.png",
-  "/dream-assets/ui/ritual/answer-frame-v2.svg"
+  "/dream-assets/ui/ritual/answer-frame-v2.svg",
+  ...RITUAL_MASK_THUMBNAILS
 ] as const;
 
 const seen = new Set<string>();
@@ -97,8 +100,47 @@ async function loadDreamPreloadManifest(cardId: string): Promise<DreamPreloadMan
   return manifestCache.get(cardId)!;
 }
 
-export function preloadNextRitualStage(): void {
-  preloadUrls(NEXT_RITUAL_STAGE_URLS, { strategy: "immediate", concurrency: 2 });
+function preloadTrackedImage(url: string, signal?: AbortSignal): Promise<void> {
+  if (typeof window === "undefined" || signal?.aborted) return Promise.resolve();
+  return new Promise((resolve) => {
+    const image = new Image();
+    let settled = false;
+    const finish = () => {
+      if (settled) return;
+      settled = true;
+      image.onload = null;
+      image.onerror = null;
+      signal?.removeEventListener("abort", abort);
+      resolve();
+    };
+    const abort = () => {
+      image.src = "";
+      finish();
+    };
+    image.decoding = "async";
+    image.onload = finish;
+    image.onerror = finish;
+    signal?.addEventListener("abort", abort, { once: true });
+    image.src = url;
+  });
+}
+
+export async function preloadNextRitualStage(onProgress: (value: number) => void = () => undefined, signal?: AbortSignal): Promise<void> {
+  const urls = normalizePreloadUrls(NEXT_RITUAL_STAGE_URLS);
+  let cursor = 0;
+  let completed = 0;
+  onProgress(0);
+  const workers = Array.from({ length: Math.min(3, urls.length) }, async () => {
+    while (cursor < urls.length && !signal?.aborted) {
+      const url = urls[cursor];
+      cursor += 1;
+      await preloadTrackedImage(url, signal);
+      if (signal?.aborted) return;
+      completed += 1;
+      onProgress(Math.round(completed / urls.length * 100));
+    }
+  });
+  await Promise.all(workers);
 }
 
 export async function preloadMatchedDreamResources(cardId: string, scope: "first-act" | "story" | "codex" | "all"): Promise<void> {

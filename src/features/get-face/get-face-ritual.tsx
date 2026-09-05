@@ -10,6 +10,7 @@ import { preloadMatchedDreamResources } from "@/features/preload/resource-preloa
 import {
   clearGetFaceRitualSession,
   createInitialGetFaceRitualSession,
+  createWishEntryGetFaceRitualSession,
   readGetFaceRitualSession,
   transitionGetFaceRitual,
   writeGetFaceRitualSession,
@@ -48,9 +49,12 @@ async function requestMatch(wish: string): Promise<MatchResponse> {
   } catch { return localMatch(wish); }
 }
 
-export function GetFaceRitual({ onReturn }: { onReturn: () => void }) {
+export function GetFaceRitual({ entryMode = "default", onReturn }: { entryMode?: "default" | "wish"; onReturn: () => void }) {
   const router = useRouter();
-  const [state, dispatch] = useReducer(reducer, undefined, () => typeof window === "undefined" ? createInitialGetFaceRitualSession() : (readGetFaceRitualSession() ?? createInitialGetFaceRitualSession()));
+  const [state, dispatch] = useReducer(reducer, undefined, () => {
+    const saved = typeof window === "undefined" ? null : readGetFaceRitualSession();
+    return entryMode === "wish" ? createWishEntryGetFaceRitualSession(saved) : (saved ?? createInitialGetFaceRitualSession());
+  });
   const [nameInput, setNameInput] = useState(state.name);
   const [wishInput, setWishInput] = useState(state.wish);
   const [error, setError] = useState("");
@@ -68,7 +72,8 @@ export function GetFaceRitual({ onReturn }: { onReturn: () => void }) {
         if (!active) return;
         writeDreamSession(createDreamSession(state.wish, match));
         void preloadMatchedDreamResources(match.cardId, "first-act");
-        dispatch({ type: "matchResolved", cardId: match.cardId, maskIndex: maskIndexForCard(match.cardId) });
+        const maskIndex = maskIndexForCard(match.cardId);
+        dispatch({ type: "matchResolved", cardId: match.cardId, maskIndex, maskId: getFaceData.masks[maskIndex]?.id });
       }, remaining);
     });
     return () => { active = false; };
@@ -156,6 +161,6 @@ export function GetFaceRitual({ onReturn }: { onReturn: () => void }) {
       {state.phase === "wearing" ? <div className="wearing-flash" aria-hidden="true" /> : null}
     </section> : null}
 
-    <button className="get-face-return" type="button" aria-label="返回首页" onClick={() => { clearGetFaceRitualSession(); onReturn(); }}>← 返回首页</button>
+    <button className="get-face-return" type="button" aria-label={entryMode === "wish" ? "返回图鉴" : "返回首页"} onClick={() => { if (entryMode !== "wish") clearGetFaceRitualSession(); onReturn(); }}>← {entryMode === "wish" ? "返回图鉴" : "返回首页"}</button>
   </main>;
 }

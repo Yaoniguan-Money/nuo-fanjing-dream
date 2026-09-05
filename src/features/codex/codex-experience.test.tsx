@@ -30,6 +30,41 @@ afterEach(() => {
 });
 
 describe("CodexExperience", () => {
+  test("renders a collection flight from the reveal position toward the newly unlocked card", () => {
+    render(<CodexExperience
+      data={faceData}
+      entries={{ "crown-beard": collectedEntry }}
+      newlyCollectedMaskId="crown-beard"
+      collectionArrival={{
+        maskId: "crown-beard",
+        asset: "/dream-assets/ui/codex/details/kailu-jiangjun/main-mask-v3.png",
+        sourceRect: { left: 400, top: 200, width: 200, height: 300 }
+      }}
+    />);
+
+    const flight = document.querySelector(".codex-collection-flight");
+    expect(flight?.getAttribute("data-mask-id")).toBe("crown-beard");
+    expect(flight?.getAttribute("data-phase")).toBe("departing");
+  });
+
+  test("exposes the codex root as a keyboard-focusable scroll region", () => {
+    render(<CodexExperience data={faceData} entries={{}} />);
+
+    const scrollRegion = screen.getByRole("main", { name: "面具图鉴滚动区域" });
+    expect(scrollRegion.getAttribute("tabindex")).toBe("0");
+    scrollRegion.focus();
+    expect(document.activeElement).toBe(scrollRegion);
+  });
+
+  test("offers a keyboard-accessible route to ask another wish", () => {
+    render(<CodexExperience data={faceData} entries={{}} />);
+
+    const link = screen.getByRole("link", { name: "再问一愿" });
+    expect(link.getAttribute("href")).toBe("/wish");
+    link.focus();
+    expect(document.activeElement).toBe(link);
+  });
+
   test("renders the configured tiled slots and opens a collected mask in a fullscreen dialog", async () => {
     render(<CodexExperience data={faceData} entries={{ "crown-beard": collectedEntry }} />);
     expect(screen.getByText(`已收录 1 / ${faceData.codex.slots.length}`)).toBeTruthy();

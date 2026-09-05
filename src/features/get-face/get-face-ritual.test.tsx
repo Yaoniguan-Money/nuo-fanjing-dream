@@ -22,6 +22,25 @@ afterEach(() => {
 });
 
 describe("GetFaceRitual", () => {
+  it("enters directly at the wish question with the saved name and can return to the codex", () => {
+    writeGetFaceRitualSession({
+      schemaVersion: "2.0.0",
+      phase: "complete",
+      name: "阿渡",
+      wish: "旧困惑",
+      selectedMaskIndex: 2,
+      cardId: "dream.jiu-wei-tu-di-shen.di-jiu-tan"
+    });
+    const onReturn = vi.fn();
+
+    render(<GetFaceRitual entryMode="wish" onReturn={onReturn} />);
+
+    expect(screen.getByRole("heading", { name: "阿渡，此刻何事令你止步？" })).toBeTruthy();
+    expect((screen.getByRole("textbox", { name: "现实困惑" }) as HTMLTextAreaElement).value).toBe("");
+    fireEvent.click(screen.getByRole("button", { name: "返回图鉴" }));
+    expect(onReturn).toHaveBeenCalledOnce();
+  });
+
   it("renders the brand mark in the lower-right corner before asking for a name", () => {
     const onReturn = vi.fn();
     const { container } = render(<GetFaceRitual onReturn={onReturn} />);

@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   createInitialGetFaceRitualSession,
+  createWishEntryGetFaceRitualSession,
   getFaceRitualSessionSchema,
   readGetFaceRitualSession,
   transitionGetFaceRitual,
@@ -19,6 +20,26 @@ function storage() {
 }
 
 describe("get-face ritual session", () => {
+  it("starts a new wish from the saved name while clearing the previous transient match", () => {
+    const previous: GetFaceRitualSession = {
+      schemaVersion: "2.0.0",
+      phase: "complete",
+      name: "阿渡",
+      wish: "上一轮困惑",
+      selectedMaskIndex: 2,
+      cardId: "dream.jiu-wei-tu-di-shen.di-jiu-tan"
+    };
+
+    expect(createWishEntryGetFaceRitualSession(previous)).toEqual({
+      schemaVersion: "2.0.0",
+      phase: "wish",
+      name: "阿渡",
+      wish: "",
+      selectedMaskIndex: null,
+      cardId: null
+    });
+  });
+
   it("moves through name, wish, matching, reveal and wearing without portrait or story choices", () => {
     let state = createInitialGetFaceRitualSession();
     state = transitionGetFaceRitual(state, { type: "nameSubmitted", name: "  阿渡  " });
@@ -29,6 +50,16 @@ describe("get-face ritual session", () => {
     state = transitionGetFaceRitual(state, { type: "enterStory" });
     expect(state.phase).toBe("wearing");
     expect(transitionGetFaceRitual(state, { type: "wearComplete" }).phase).toBe("complete");
+  });
+
+  it("keeps the selected mask id alongside its legacy index for future story bindings", () => {
+    const matching: GetFaceRitualSession = {
+      schemaVersion: "2.0.0", phase: "matching", name: "阿渡", wish: "我想传一封信", selectedMaskIndex: null, cardId: null
+    };
+
+    expect(transitionGetFaceRitual(matching, {
+      type: "matchResolved", cardId: "dream.liuyi.future-story", maskIndex: 6, maskId: "liu-yi"
+    })).toMatchObject({ phase: "mask", selectedMaskIndex: 6, selectedMaskId: "liu-yi" });
   });
 
   it("persists only the ritual draft without camera or choice state", () => {

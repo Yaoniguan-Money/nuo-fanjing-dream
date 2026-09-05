@@ -13,6 +13,7 @@ import { DEFAULT_DETAIL_CALLOUTS, DETAIL_ASSETS, DETAIL_CALLOUTS, RELATED_ASSETS
 import { faceData, getCodexDetail, type FaceData, type FaceMask } from "@/domain/get-face";
 import { normalizeCodexEntry, type CodexEntryInput } from "@/domain/codex";
 import { buildCodexSlots, collectedCount, codexNumber, slotLabel, type CodexSlotView } from "./codex-model";
+import { calculateCollectionFlight, type CollectionFlightRect } from "./collection-flight";
 import "./codex.css";
 
 export interface CodexExperienceProps {
@@ -22,6 +23,7 @@ export interface CodexExperienceProps {
   storage?: StorageLike;
   onRestart?: () => void;
   newlyCollectedMaskId?: string;
+  collectionArrival?: { maskId: string; asset: string; sourceRect: CollectionFlightRect };
   initiallyOpenMaskId?: string;
   demoMode?: boolean;
 }
@@ -81,12 +83,13 @@ const STORY_PATHS = [
   ["阿布摩", "dream.abumo.huang-nian-kai-huo"]
 ] as const;
 
-function CodexCard({ slot, selected, newlyCollected, onOpen }: { slot: CodexSlotView; selected: boolean; newlyCollected: boolean; onOpen: (slot: CodexSlotView, trigger: HTMLButtonElement) => void }) {
+function CodexCard({ slot, selected, newlyCollected, onOpen, cardRef }: { slot: CodexSlotView; selected: boolean; newlyCollected: boolean; onOpen: (slot: CodexSlotView, trigger: HTMLButtonElement) => void; cardRef?: (node: HTMLButtonElement | null) => void }) {
   const collected = slot.state === "collected";
   const cardName = collected ? slot.entry?.role.name : SLOT_NAMES[slot.index];
   return <li className={`codex-slot codex-slot-${slot.state} ${collected ? "" : "codex-slot-locked-ui"}${newlyCollected ? " codex-slot-newly-collected" : ""}`} data-state={collected ? "collected" : "locked"} style={{ "--card-a": slot.mask?.visual.card.primary ?? "#61594d", "--card-b": slot.mask?.visual.card.secondary ?? "#766f63" } as CSSProperties}>
     <button
       className={`codex-card ${selected ? "is-selected" : ""}`}
+      ref={cardRef}
       type="button"
       disabled={!collected}
       aria-label={collected ? slotLabel(slot) : `${cardName}，尚未解锁`}
@@ -204,7 +207,7 @@ function CodexDetail({ slot, presentation, stageRef, copyRef, onClose }: CodexDe
   </section>;
 }
 
-export function CodexExperience({ data = faceData, entries: controlledEntries, collection, storage, onRestart, newlyCollectedMaskId, initiallyOpenMaskId, demoMode = false }: CodexExperienceProps) {
+export function CodexExperience({ data = faceData, entries: controlledEntries, collection, storage, onRestart, newlyCollectedMaskId, collectionArrival, initiallyOpenMaskId, demoMode = false }: CodexExperienceProps) {
   const router = useRouter();
   const [localEntries, setLocalEntries] = useState<Record<string, CodexEntry>>(controlledEntries ?? {});
   const [activeSlot, setActiveSlot] = useState<CodexSlotView | null>(null);
@@ -216,6 +219,8 @@ export function CodexExperience({ data = faceData, entries: controlledEntries, c
   const timeline = useRef<{ kill: () => void } | null>(null);
   const stageRef = useRef<HTMLDivElement>(null);
   const copyRef = useRef<HTMLDivElement>(null);
+  const cardRefs = useRef(new Map<string, HTMLButtonElement>());
+  const [collectionFlight, setCollectionFlight] = useState<(CollectionFlightRect & { maskId: string; asset: string; x: number; y: number; scale: number }) | null>(null);
   const browserStorage = defaultStorage();
   const codex = useMemo(() => collection ?? ((storage ?? browserStorage) ? createCodexCollection(storage ?? browserStorage!) : null), [browserStorage, collection, storage]);
   const baseEntries = controlledEntries ?? localEntries;
@@ -223,6 +228,20 @@ export function CodexExperience({ data = faceData, entries: controlledEntries, c
   const entries = useMemo(() => demoMode && demoVariant === "all" ? demoEntries : baseEntries, [baseEntries, demoEntries, demoMode, demoVariant]);
   const slots = useMemo(() => buildCodexSlots(data, entries), [data, entries]);
   const count = collectedCount(slots);
+
+  useLayoutEffect(() => {
+    if (!collectionArrival) return;
+    const target = cardRefs.current.get(collectionArrival.maskId);
+    if (!target) return;
+    const transform = calculateCollectionFlight(collectionArrival.sourceRect, target.getBoundingClientRect());
+    setCollectionFlight({ ...collectionArrival.sourceRect, ...collectionArrival, ...transform });
+  }, [collectionArrival, slots]);
+
+  useEffect(() => {
+    if (!collectionFlight) return;
+    const timer = window.setTimeout(() => setCollectionFlight(null), prefersReducedMotion() ? 0 : 1_100);
+    return () => window.clearTimeout(timer);
+  }, [collectionFlight]);
 
   const unlockAll = useCallback(() => {
     setDemoVariant("all");
@@ -324,11 +343,12 @@ export function CodexExperience({ data = faceData, entries: controlledEntries, c
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [activeSlot, close]);
 
-  return <main className="codex-experience" style={{ "--codex-altar": `url("${data.codex.altar.background}")` } as CSSProperties}>
+  return <main aria-label="面具图鉴滚动区域" className="codex-experience" style={{ "--codex-altar": `url("${data.codex.altar.background}")` } as CSSProperties} tabIndex={0}>
     <header className="codex-title"><div className="codex-kicker">傩 · 谱 · 收 · 录</div><h1>面具图鉴 <span className="codex-title-count">({count} / {data.codex.slots.length})</span></h1><p>完成一条幻梦，点亮一位历史角色。点击已收录卡面，可旋转傩面并重读故事回响。</p></header>
-    <div className="codex-actions"><p aria-live="polite">已收录 {count} / {data.codex.slots.length}</p><button className="codex-reset-button" type="button" onClick={clear} aria-label="清空本机收录" title="清空本机收录">↻</button>{demoMode ? <label className="codex-demo-select">演示 <select value={demoVariant} onChange={(event) => event.target.value === "all" ? unlockAll() : leaveDemo()}><option value="normal">普通模式</option><option value="all">解锁全部面具</option></select></label> : null}<label className="codex-story-select">剧情体验 <select defaultValue="" onChange={(event) => { if (event.target.value) router.push(`/dream/${encodeURIComponent(event.target.value)}`); }}><option value="">选择已制作剧情</option>{STORY_PATHS.map(([name, id]) => <option value={id} key={id}>{name}</option>)}</select></label><Link className="codex-nav-link" href="/">返回首页</Link></div>
+    <div className="codex-actions"><p aria-live="polite">已收录 {count} / {data.codex.slots.length}</p><button className="codex-reset-button" type="button" onClick={clear} aria-label="清空本机收录" title="清空本机收录">↻</button>{demoMode ? <label className="codex-demo-select">演示 <select value={demoVariant} onChange={(event) => event.target.value === "all" ? unlockAll() : leaveDemo()}><option value="normal">普通模式</option><option value="all">解锁全部面具</option></select></label> : null}<label className="codex-story-select">剧情体验 <select defaultValue="" onChange={(event) => { if (event.target.value) router.push(`/dream/${encodeURIComponent(event.target.value)}`); }}><option value="">选择已制作剧情</option>{STORY_PATHS.map(([name, id]) => <option value={id} key={id}>{name}</option>)}</select></label><Link className="codex-nav-link codex-wish-link" href="/wish">再问一愿</Link><Link className="codex-nav-link" href="/">返回首页</Link></div>
     {demoMode && demoVariant === "all" ? <p className="codex-demo-hint">演示版：全部可用面具已点亮，可点击卡面查看翻转与详情；也可关闭演示恢复本机收录。</p> : null}
-    <div className="codex-layout"><ol className="codex-wall" aria-label="傩面图鉴">{slots.map((slot) => <CodexCard key={slot.id} slot={slot} selected={activeSlot?.id === slot.id} newlyCollected={slot.id === newlyCollectedMaskId} onOpen={open} />)}</ol></div>
+    <div className="codex-layout"><ol className="codex-wall" aria-label="傩面图鉴">{slots.map((slot) => <CodexCard key={slot.id} slot={slot} selected={activeSlot?.id === slot.id} newlyCollected={slot.id === newlyCollectedMaskId} onOpen={open} cardRef={(node) => { if (node) cardRefs.current.set(slot.id, node); else cardRefs.current.delete(slot.id); }} />)}</ol></div>
+    {collectionFlight ? <div className="codex-collection-flight" data-mask-id={collectionFlight.maskId} data-phase="departing" aria-hidden="true" style={{ left: collectionFlight.left, top: collectionFlight.top, width: collectionFlight.width, height: collectionFlight.height, "--flight-x": `${collectionFlight.x}px`, "--flight-y": `${collectionFlight.y}px`, "--flight-scale": collectionFlight.scale } as CSSProperties}><Image src={collectionFlight.asset} alt="" fill sizes="200px" /></div> : null}
     {activeSlot ? <div className="codex-modal" role="presentation" onPointerDown={(event) => { if (event.currentTarget === event.target) close(); }}>
       <CodexDetail key={activeSlot.id} slot={activeSlot} presentation={presentation} stageRef={stageRef} copyRef={copyRef} onClose={close} />
     </div> : null}
