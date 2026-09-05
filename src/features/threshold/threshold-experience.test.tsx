@@ -172,6 +172,7 @@ describe("ThresholdExperience", () => {
 
     fireEvent.click(screen.getByRole("button", { name: "开始入梦" }));
     expect(await screen.findByRole("heading", { name: "幻梦加载中" }, { timeout: 2000 })).toBeTruthy();
+    await waitFor(() => expect(preload).toHaveBeenCalledTimes(1));
     act(() => { report(18); report(57); report(83); });
 
     expect(screen.getByRole("progressbar", { name: "幻梦加载进度" }).getAttribute("aria-valuenow")).toBe("83");
