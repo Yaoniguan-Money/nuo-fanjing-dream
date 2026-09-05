@@ -118,7 +118,7 @@ export function GetFaceResult({ session, card, storage, onRestart }: { session: 
       <h1 id="reveal-title">{role.name}</h1>
       <p className="face-result-duty">职司 · {role.duty}</p>
       <p className="face-result-story">《{card.meta.title}》</p>
-      <button type="button" className="face-result-confirm ritual-hanging-cta" onClick={collect} disabled={!revealed || collecting || !collection}>{collecting ? "正在归入傩谱" : "收录此面"}</button>
+      <button type="button" className="face-result-confirm ritual-hanging-cta ritual-hanging-cta--collect" onClick={collect} disabled={!revealed || collecting || !collection}>{collecting ? "正在归入傩谱" : "收录此面"}</button>
       {!collection ? <p className="face-result-storage-error">本机存储不可用，暂时无法收录。</p> : null}
     </section>
   </main>;

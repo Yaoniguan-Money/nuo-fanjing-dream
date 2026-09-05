@@ -43,7 +43,7 @@ export function StoryMusicControl() {
   const selectTrack = (nextTrack: StoryMusicTrack) => {
     setTrackId(nextTrack.id);
     setOpen(false);
-    if (playing) playTrack(nextTrack);
+    playTrack(nextTrack);
   };
 
   return <div className="story-music-control" data-open={open ? "true" : "false"} onClick={(event) => event.stopPropagation()} onPointerDown={(event) => event.stopPropagation()}>

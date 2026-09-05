@@ -167,7 +167,7 @@ export function GetFaceRitual({ entryMode = "default", onReturn }: { entryMode?:
         <span>{state.phase === "matching" ? "识 · 惑 · 请 · 面" : "得 · 面"}</span>
         <h1>{state.phase === "matching" ? "八面寻心" : MASK_TITLES[selected]}</h1>
         <p>{state.phase === "matching" ? "面具正在围绕你的困惑旋转，等待一面停于眼前。" : `职司 · ${MASK_DUTIES[selected]}`}</p>
-        {state.phase === "mask" && matchReady ? <button type="button" className="enter-dream-button ritual-hanging-cta" onClick={() => dispatch({ type: "enterStory" })}>入 戏</button> : null}
+        {state.phase === "mask" && matchReady ? <button type="button" className="enter-dream-button ritual-hanging-cta ritual-hanging-cta--enter" onClick={() => dispatch({ type: "enterStory" })}>入 戏</button> : null}
       </div>
       {state.phase === "wearing" ? <div className="wearing-flash" aria-hidden="true" /> : null}
     </section> : null}

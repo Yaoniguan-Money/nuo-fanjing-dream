@@ -23,43 +23,20 @@ body { background: radial-gradient(circle at 50% 15%, #211a12, var(--ink) 52%); 
 button, input, select { font: inherit; }
 a { color: inherit; }
 
-/* The call to action follows the approved ritual plaque: a suspended seal with
-   two silk tails, rather than a framed rectangular application button. */
 .ritual-hanging-cta {
-  position: relative;
-  min-width: 186px;
+  width: min(320px, 72vw);
+  min-width: 0;
+  aspect-ratio: 3 / 1;
   margin-top: 14px;
-  padding: 13px 25px 17px;
-  border: 1px solid rgba(232, 191, 112, .84);
-  border-radius: 50% 50% 42% 42% / 18% 18% 22% 22%;
-  background:
-    linear-gradient(90deg, transparent 0 11%, rgba(245, 213, 147, .1) 11.5% 12%, transparent 12.5% 87.5%, rgba(245, 213, 147, .1) 88% 88.5%, transparent 89%),
-    linear-gradient(180deg, rgba(115, 68, 31, .88), rgba(43, 23, 13, .94));
-  box-shadow: inset 0 0 0 3px rgba(219, 171, 87, .12), 0 10px 22px rgba(0, 0, 0, .48);
-  color: #f3d895;
+  padding: 0;
+  border: 0;
+  background: var(--ritual-cta-art) center / contain no-repeat;
+  color: transparent;
   cursor: pointer;
-  font-family: var(--font-ritual-display);
-  font-size: 18px;
-  font-weight: 400;
-  letter-spacing: .34em;
-  text-indent: .34em;
-  text-shadow: 0 2px 2px #1c0d06;
   transition: transform .22s ease, filter .22s ease;
 }
-
-.ritual-hanging-cta::before,
-.ritual-hanging-cta::after {
-  content: "";
-  position: absolute;
-  top: calc(100% - 1px);
-  width: 1px;
-  height: 27px;
-  background: linear-gradient(#d4a657, #8a4825 64%, transparent);
-  filter: drop-shadow(0 2px 1px #000);
-}
-
-.ritual-hanging-cta::before { left: 25%; transform: rotate(7deg); }
-.ritual-hanging-cta::after { right: 25%; transform: rotate(-7deg); }
+.ritual-hanging-cta--enter { --ritual-cta-art: url("/dream-assets/brand/action-enter-dream.png"); }
+.ritual-hanging-cta--collect { --ritual-cta-art: url("/dream-assets/brand/action-collect-mask.png"); }
 .ritual-hanging-cta:hover:not(:disabled), .ritual-hanging-cta:focus-visible:not(:disabled) { filter: brightness(1.14); outline: none; transform: translateY(-3px); }
 .ritual-hanging-cta:focus-visible { outline: 2px solid #f2d68f; outline-offset: 5px; }
 .ritual-hanging-cta:disabled { cursor: wait; opacity: .5; }

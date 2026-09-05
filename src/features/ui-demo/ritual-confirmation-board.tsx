@@ -38,8 +38,8 @@ function Scene({ index, label }: { index: number; label: (typeof sceneLabels)[nu
     <header><span>{letter}</span><strong>{label}</strong></header>
     <div className="ritual-board__altar" aria-hidden="true" />
     <MaskOrbit scene={label} />
-    {label === "匹配命中" ? <div className="ritual-board__copy"><small>此面与你所问相照</small><strong>开路将军</strong><span>职司 · 开障引路</span><b className="ritual-board__hanging-cta">入 戏</b></div> : null}
-    {label === "故事收束" ? <div className="ritual-board__copy ritual-board__copy--collect"><small>幻梦已尽 · 得面已成</small><strong>开路将军</strong><span>职司 · 开障引路</span><b className="ritual-board__hanging-cta">收 录 此 面</b><i aria-hidden="true" /></div> : null}
+    {label === "匹配命中" ? <div className="ritual-board__copy"><small>此面与你所问相照</small><strong>开路将军</strong><span>职司 · 开障引路</span><b className="ritual-board__hanging-cta ritual-board__hanging-cta--enter">入 戏</b></div> : null}
+    {label === "故事收束" ? <div className="ritual-board__copy ritual-board__copy--collect"><small>幻梦已尽 · 得面已成</small><strong>开路将军</strong><span>职司 · 开障引路</span><b className="ritual-board__hanging-cta ritual-board__hanging-cta--collect">收 录 此 面</b><i aria-hidden="true" /></div> : null}
     {label === "八面候坛" ? <div className="ritual-board__seal">八面依次候坛<br /><span>45° 等距 · 真素材</span></div> : null}
     <footer><Image src="/dream-assets/brand/nuo-dream-logo-cover-clean.png" alt="大傩幻梦" width={344} height={126} /></footer>
   </section>;

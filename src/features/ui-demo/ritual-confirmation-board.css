@@ -19,10 +19,9 @@
 .ritual-board__copy small { color: rgba(236,211,157,.58); font-size: 11px; letter-spacing: .34em; }
 .ritual-board__copy strong { color: #f0c979; font-family: var(--font-ritual-display); font-size: 27px; font-weight: 400; letter-spacing: .2em; }
 .ritual-board__copy span { color: rgba(236,211,157,.68); font-size: 12px; letter-spacing: .18em; }
-.ritual-board__hanging-cta { position: relative; min-width: 168px; margin-top: 9px; padding: 12px 22px 16px; border: 1px solid rgba(232,185,95,.76); border-radius: 50% 50% 42% 42% / 18% 18% 22% 22%; background: linear-gradient(180deg, rgba(100,68,29,.84), rgba(25,16,7,.94)); box-shadow: inset 0 0 0 3px rgba(214,170,96,.09), 0 12px 26px #000; color: #f0d18e; font-family: var(--font-ritual-display); font-size: 17px; font-weight: 400; letter-spacing: .38em; text-align: center; text-indent: .38em; }
-.ritual-board__hanging-cta::before, .ritual-board__hanging-cta::after { content: ""; position: absolute; top: calc(100% - 1px); width: 1px; height: 25px; background: linear-gradient(#d4a657, #8a4825 64%, transparent); }
-.ritual-board__hanging-cta::before { left: 26%; transform: rotate(7deg); }
-.ritual-board__hanging-cta::after { right: 26%; transform: rotate(-7deg); }
+.ritual-board__hanging-cta { width: 194px; aspect-ratio: 3 / 1; margin-top: 9px; background: var(--ritual-board-cta-art) center / contain no-repeat; color: transparent; font-size: 0; }
+.ritual-board__hanging-cta--enter { --ritual-board-cta-art: url("/dream-assets/brand/action-enter-dream.png"); }
+.ritual-board__hanging-cta--collect { --ritual-board-cta-art: url("/dream-assets/brand/action-collect-mask.png"); }
 .ritual-board__copy--collect { left: auto; right: 54px; bottom: 82px; transform: none; }
 .ritual-board__copy--collect::before { content: ""; position: absolute; right: 202px; top: -212px; width: 178px; height: 1px; transform: rotate(28deg); transform-origin: right; background: linear-gradient(90deg, transparent, rgba(235,179,76,.9)); box-shadow: 0 0 11px rgba(235,179,76,.72); }
 .ritual-board__copy--collect i { position: absolute; right: -10px; top: -214px; width: 116px; aspect-ratio: .72; border: 1px solid rgba(233,188,96,.62); transform: rotate(7deg); background: linear-gradient(rgba(11,8,4,.58), rgba(11,8,4,.8)), url("/dream-assets/ui/codex/fronts/kailu-jiangjun-v2.png") center / contain no-repeat; box-shadow: 0 0 22px rgba(221,165,65,.2); }

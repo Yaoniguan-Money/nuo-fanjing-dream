@@ -10,12 +10,11 @@
 .ritual-question > span, .match-copy > span { color: #d2a858; letter-spacing: .64em; font-size: 11px; }
 .ritual-question h1, .match-copy h1 { max-width: 96vw; margin: 18px 0 12px; overflow: hidden; color: #f0d79e; font-family: var(--font-ritual-display); font-size: clamp(34px, 5.2vw, 72px); font-weight: 400; letter-spacing: .16em; text-indent: .16em; text-overflow: ellipsis; text-shadow: 0 5px 26px #000; white-space: nowrap; }
 .ritual-question > p { max-width: 650px; margin: 0 0 34px; color: rgba(239,227,201,.65); font-family: var(--font-ritual-copy); font-size: 14px; line-height: 1.9; letter-spacing: .1em; }
-.ritual-input-panel { position: relative; width: min(700px, 88vw); min-height: 112px; display: grid; align-items: center; padding: 20px 74px 20px 36px; border: 0; background: radial-gradient(ellipse at 50% 50%, rgba(37,47,41,.82), rgba(8,12,10,.48) 68%, transparent 72%), url("/dream-assets/ui/ritual/answer-frame-v2.svg") center / 100% 100% no-repeat; filter: drop-shadow(0 18px 34px rgba(0,0,0,.32)); }
-.ritual-input-panel::before { content: ""; position: absolute; inset: 20% 10%; pointer-events: none; background: repeating-linear-gradient(96deg, rgba(238,215,166,.018) 0 1px, transparent 1px 9px); mask-image: linear-gradient(90deg, transparent, #000 18% 82%, transparent); }
-.ritual-input-panel input, .ritual-input-panel textarea { position: relative; z-index: 1; width: 100%; padding: 12px 8px; border: 0; outline: 0; resize: none; background: transparent; color: #f1e2c2; font-family: var(--font-ritual-copy); font-size: clamp(17px, 2vw, 23px); line-height: 1.65; letter-spacing: .1em; text-align: center; }
+.ritual-input-panel { width: min(620px, 88vw); display: grid; justify-items: center; gap: 18px; }
+.ritual-input-panel input, .ritual-input-panel textarea { width: 100%; min-height: 62px; padding: 13px 20px; border: 1px solid rgba(214,171,86,.42); border-right-color: rgba(214,171,86,.18); border-left-color: rgba(214,171,86,.18); outline: 0; resize: none; background: linear-gradient(90deg, rgba(5,4,3,.22), rgba(18,14,9,.62), rgba(5,4,3,.22)); box-shadow: inset 0 1px 0 rgba(250,222,154,.12), 0 14px 30px rgba(0,0,0,.22); color: #f1e2c2; font-family: var(--font-ritual-copy); font-size: clamp(17px, 2vw, 23px); line-height: 1.65; letter-spacing: .1em; text-align: center; }
 .ritual-input-panel input::placeholder, .ritual-input-panel textarea::placeholder { color: rgba(231,213,177,.34); }
-.ritual-input-panel button { position: absolute; z-index: 2; right: 7.3%; top: 50%; width: 46px; height: 46px; border: 1px solid rgba(229,190,110,.72); border-radius: 50%; background: radial-gradient(circle, rgba(141,54,35,.78), rgba(61,24,16,.9)); color: #f0cd82; cursor: pointer; font-size: 20px; transform: translateY(-50%); box-shadow: inset 0 0 0 4px rgba(224,177,92,.08), 0 0 20px rgba(179,90,41,.15); transition: transform .2s ease, filter .2s ease; }
-.ritual-input-panel button:hover, .ritual-input-panel button:focus-visible { transform: translateY(-50%) scale(1.07); filter: brightness(1.18); outline: none; }
+.ritual-input-panel button { width: min(210px, 52vw); aspect-ratio: 3 / 1; border: 0; background: url("/dream-assets/brand/action-continue.png") center / contain no-repeat; color: transparent; cursor: pointer; transition: transform .2s ease, filter .2s ease; }
+.ritual-input-panel button:hover, .ritual-input-panel button:focus-visible { transform: translateY(-2px); filter: brightness(1.18); outline: 2px solid #f2d68f; outline-offset: 4px; }
 .ritual-error { margin-top: 15px !important; color: #e5ad83 !important; }
 .mask-match-stage { position: relative; min-height: 100svh; display: grid; place-items: center; perspective: 1300px; }
 .mask-orbit { position: absolute; top: 45%; left: 50%; width: min(900px, 92vw); height: min(580px, 63vh); transform: translate(-50%, -50%); }
@@ -24,6 +23,8 @@
 .mask-orbit::after { width: 55%; height: 34%; box-shadow: 0 0 26px rgba(230, 177, 76, .16); }
 .orbit-mask { position: absolute; top: var(--orbit-y); left: var(--orbit-x); width: clamp(130px, 16vw, 235px); aspect-ratio: .75; transform: translate(-50%, -50%) scale(var(--orbit-scale)); transform-origin: center; transition: left .8s cubic-bezier(.2,.75,.15,1), top .8s cubic-bezier(.2,.75,.15,1), transform .85s cubic-bezier(.2,.75,.15,1), opacity .65s ease, filter .65s ease; filter: drop-shadow(0 18px 28px rgba(0,0,0,.55)); }
 .orbit-mask-thumbnail { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 0 16px color-mix(in srgb, var(--mask-a, #c99b3d) 24%, transparent)); }
+.get-face-ritual[data-phase="matching"] .mask-orbit { animation: eight-face-ring-turn 18s linear infinite; }
+.get-face-ritual[data-phase="matching"] .orbit-mask-thumbnail { animation: eight-face-keep-upright 18s linear infinite; }
 .get-face-ritual[data-phase="matching"] .orbit-mask { animation: mask-candidate-breathe 3.8s ease-in-out infinite alternate; animation-delay: var(--orbit-delay); }
 .orbit-mask.selected { left: 50%; top: 45%; z-index: 8; transform: translate(-50%, -50%) scale(1.34); filter: drop-shadow(0 0 24px rgba(229,179,81,.46)) drop-shadow(0 22px 38px rgba(0,0,0,.66)); }
 .orbit-mask.dismissed { opacity: .22; filter: brightness(.42) saturate(.55) blur(.4px) drop-shadow(0 18px 28px rgba(0,0,0,.55)); }
@@ -37,8 +38,10 @@
 .get-face-return:hover, .get-face-return:focus-visible { border-color: rgba(208,173,98,.68); background: rgba(8,7,6,.78); color: #d0ad62; outline: none; }
 @keyframes ritual-appear { from { opacity: 0; transform: translateY(18px); } }
 @keyframes ritual-mist { to { transform: translateX(5vw) scale(1.1); opacity: .72; } }
+@keyframes eight-face-ring-turn { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
+@keyframes eight-face-keep-upright { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
 @keyframes mask-candidate-breathe { from { filter: brightness(.88) drop-shadow(0 16px 25px rgba(0,0,0,.52)); } to { filter: brightness(1.08) drop-shadow(0 18px 30px rgba(219,169,78,.2)); } }
 @keyframes mask-wear { 0% { transform: translate(-50%, -50%) scale(1.34); } 68% { opacity: 1; } 100% { transform: translate(-50%, -50%) scale(7.2); opacity: 0; } }
 @keyframes wearing-blackout { 0%, 50% { opacity: 0; } 76% { opacity: .6; } 100% { opacity: 1; } }
 @media (max-width: 700px) { .get-face-header { inset: 18px 18px auto; } .get-face-return { top: 12px; left: 12px; display: grid; width: 38px; height: 38px; place-items: center; padding: 0; overflow: hidden; font-size: 0; } .get-face-return::before { content: "←"; font: 18px/1 system-ui, sans-serif; } .mask-orbit { top: 42%; } .orbit-mask { width: 36vw; } .match-copy { bottom: 8vh; } .ritual-question h1 { letter-spacing: .05em; } }
-@media (prefers-reduced-motion: reduce) { .get-face-mist, .get-face-ritual[data-phase="matching"] .orbit-mask, .get-face-ritual[data-phase="wearing"] .orbit-mask.selected, .wearing-flash { animation-duration: .01ms; } }
+@media (prefers-reduced-motion: reduce) { .get-face-mist, .get-face-ritual[data-phase="matching"] .mask-orbit, .get-face-ritual[data-phase="matching"] .orbit-mask, .get-face-ritual[data-phase="matching"] .orbit-mask-thumbnail, .get-face-ritual[data-phase="wearing"] .orbit-mask.selected, .wearing-flash { animation-duration: .01ms; } }

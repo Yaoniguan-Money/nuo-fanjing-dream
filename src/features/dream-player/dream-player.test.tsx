@@ -92,6 +92,19 @@ describe("DreamPlayer", () => {
     expect(pause).toHaveBeenCalledOnce();
   });
 
+  it("选择一首曲目后立即开始播放", async () => {
+    const play = vi.spyOn(HTMLMediaElement.prototype, "play").mockResolvedValue(undefined);
+    vi.spyOn(HTMLMediaElement.prototype, "load").mockImplementation(() => undefined);
+    render(<DreamPlayer card={requireDreamCard("dream.kailu-jiangjun.du-shan-ji")} />);
+    fireEvent.click(screen.getByRole("button", { name: "进 入 幻 梦" }));
+
+    fireEvent.click(screen.getByRole("button", { name: "选择故事音乐" }));
+    fireEvent.click(screen.getByRole("menuitemradio", { name: "古意行旅" }));
+
+    expect(play).toHaveBeenCalledOnce();
+    expect(screen.getByRole("button", { name: "暂停故事音乐" })).toBeTruthy();
+  });
+
   it("浏览器拒绝播放时恢复为未播放状态", async () => {
     vi.spyOn(HTMLMediaElement.prototype, "play").mockRejectedValue(new DOMException("blocked", "NotAllowedError"));
 

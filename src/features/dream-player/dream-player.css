@@ -133,7 +133,7 @@ button:focus-visible, select:focus-visible { outline: 2px solid var(--gold); out
 .story-music-control {
   position: absolute;
   z-index: 34;
-  top: 16px;
+  top: 62px;
   right: 18px;
   display: grid;
   grid-template-columns: minmax(72px, auto) 30px;
@@ -464,7 +464,7 @@ button:focus-visible, select:focus-visible { outline: 2px solid var(--gold); out
   .advance-hint { right: 12px; bottom: 7px; font-size: 8px; }
   .dream-home-link { top: max(12px, env(safe-area-inset-top)); left: 12px; display: grid; width: 38px; height: 38px; place-items: center; padding: 0; overflow: hidden; font-size: 0; }
   .dream-home-link::before { content: "←"; font: 18px/1 system-ui, sans-serif; }
-  .story-music-control { top: max(12px, env(safe-area-inset-top)); right: 12px; grid-template-columns: 38px 28px; }
+  .story-music-control { top: max(108px, calc(env(safe-area-inset-top) + 100px)); right: 12px; grid-template-columns: 38px 28px; }
   .story-music-toggle { justify-content: center; padding: 0; }
   .story-music-label { display: none; }
   .story-music-menu { width: min(190px, calc(100vw - 24px)); }
