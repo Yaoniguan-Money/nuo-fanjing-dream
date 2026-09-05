@@ -47,6 +47,7 @@ export function ThresholdExperience({ onCrossThreshold, onIntroVideoStart, onLoa
 }) {
   const [stage, setStage] = useState<IntroStage>("title");
   const [progress, setProgress] = useState(0);
+  const [visualProgress, setVisualProgress] = useState(0);
   const [slowNetwork, setSlowNetwork] = useState(false);
   const [canEnterLightweight, setCanEnterLightweight] = useState(false);
   const videoStartNotified = useRef(false);
@@ -75,6 +76,7 @@ export function ThresholdExperience({ onCrossThreshold, onIntroVideoStart, onLoa
     let optionalReady = !introVideoSrc || Boolean(preload);
     let requiredProgress = 0;
     let completed = false;
+    let visualProgressTimer = 0;
     const controller = new AbortController();
     const optionalController = new AbortController();
     cancelOptionalPreload.current = () => optionalController.abort();
@@ -99,9 +101,14 @@ export function ThresholdExperience({ onCrossThreshold, onIntroVideoStart, onLoa
     const lightweightTimer = window.setTimeout(() => setCanEnterLightweight(true), 15_000);
     const renderCombinedProgress = () => {
       if (!active) return;
-      setProgress(introVideoSrc && !preload
+      const nextProgress = introVideoSrc && !preload
         ? Math.round(requiredProgress * .8 + (optionalReady ? 20 : 0))
-        : requiredProgress);
+        : requiredProgress;
+      setProgress(nextProgress);
+      window.clearTimeout(visualProgressTimer);
+      visualProgressTimer = window.setTimeout(() => {
+        if (active) setVisualProgress(nextProgress);
+      }, 70);
     };
     const reportRequired = (value: number) => {
       requiredProgress = Math.min(100, Math.max(0, Math.round(value)));
@@ -133,6 +140,7 @@ export function ThresholdExperience({ onCrossThreshold, onIntroVideoStart, onLoa
       window.clearTimeout(minimumTimer);
       window.clearTimeout(slowTimer);
       window.clearTimeout(lightweightTimer);
+      window.clearTimeout(visualProgressTimer);
     };
   }, [introVideoSrc, minimumLoadMs, onCrossThreshold, onLoadingStart, preload, stage]);
 
@@ -167,10 +175,10 @@ export function ThresholdExperience({ onCrossThreshold, onIntroVideoStart, onLoa
       <span className="threshold-loading-kicker">雾 · 起 · 龙 · 坛</span>
       <h1>幻梦加载中</h1>
       <div className="threshold-loading-progress" role="progressbar" aria-label="幻梦加载进度" aria-valuemin={0} aria-valuemax={100} aria-valuenow={progress}>
-        <i style={{ "--loading-progress": `${progress}%` } as React.CSSProperties} />
-        <b aria-hidden="true" style={{ "--loading-progress": `${progress}%` } as React.CSSProperties} />
+        <i style={{ "--loading-progress": `${visualProgress}%` } as React.CSSProperties} />
+        <b aria-hidden="true" style={{ "--loading-progress": `${visualProgress}%` } as React.CSSProperties} />
       </div>
-      <output>{String(progress).padStart(2, "0")}%</output>
+      <output>{String(visualProgress).padStart(2, "0")}%</output>
       <p>{slowNetwork ? "山雾较浓，仍在载入……" : "正为你请来坛前八面"}</p>
       {canEnterLightweight ? <button type="button" className="threshold-lightweight" onClick={enterLightweight}>轻量进入</button> : null}
     </section> : null}

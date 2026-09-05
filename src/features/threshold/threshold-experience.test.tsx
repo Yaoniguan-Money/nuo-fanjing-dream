@@ -137,6 +137,19 @@ describe("ThresholdExperience", () => {
     expect(screen.getByLabelText("入梦开场影片")).toBeTruthy();
   });
 
+  it("renders a visible fill transition when cached assets report complete immediately", async () => {
+    vi.useFakeTimers();
+    mockMedia();
+    render(<ThresholdExperience minimumLoadMs={2_000} preload={async (onProgress) => onProgress(100)} onCrossThreshold={vi.fn()} />);
+
+    await enterLoading();
+    const fill = screen.getByRole("progressbar", { name: "幻梦加载进度" }).querySelector("i")!;
+    expect(fill.style.getPropertyValue("--loading-progress")).toBe("0%");
+
+    await act(async () => { vi.advanceTimersByTime(80); await Promise.resolve(); });
+    expect(fill.style.getPropertyValue("--loading-progress")).toBe("100%");
+  });
+
   it("offers a lightweight path after slow-network guidance without abandoning required assets", async () => {
     vi.useFakeTimers();
     mockMedia();

@@ -33,8 +33,8 @@
 .threshold-loading-progress::before, .threshold-loading-progress::after { content: "◇"; position: absolute; top: 50%; color: rgba(210,171,97,.46); font: 12px/1 serif; transform: translateY(-50%); }
 .threshold-loading-progress::before { right: calc(100% + 12px); }
 .threshold-loading-progress::after { left: calc(100% + 12px); }
-.threshold-loading-progress i { position: absolute; inset: 1px auto 1px 0; width: var(--loading-progress); background: linear-gradient(90deg, #6c4a27, #d4a952 72%, #e7c678); box-shadow: 0 0 14px rgba(218,174,88,.35); transition: width .34s cubic-bezier(.22,.72,.2,1); }
-.threshold-loading-progress b { position: absolute; top: 50%; left: var(--loading-progress); width: 7px; height: 7px; border: 1px solid #e4bc6a; background: #8f2f20; box-shadow: 0 0 12px rgba(226,178,83,.64); transform: translate(-50%, -50%) rotate(45deg); transition: left .34s cubic-bezier(.22,.72,.2,1); }
+.threshold-loading-progress i { position: absolute; inset: 1px auto 1px 0; width: var(--loading-progress); background: linear-gradient(90deg, #6c4a27, #d4a952 72%, #e7c678); box-shadow: 0 0 14px rgba(218,174,88,.35); transition: width .76s cubic-bezier(.18,.78,.2,1); }
+.threshold-loading-progress b { position: absolute; top: 50%; left: var(--loading-progress); width: 7px; height: 7px; border: 1px solid #e4bc6a; background: #8f2f20; box-shadow: 0 0 12px rgba(226,178,83,.64); transform: translate(-50%, -50%) rotate(45deg); transition: left .76s cubic-bezier(.18,.78,.2,1); }
 .threshold-loading output { margin-top: 12px; color: rgba(220,190,132,.64); font: 10px/1 ui-monospace, monospace; letter-spacing: .2em; }
 .threshold-loading p { min-height: 1.4em; margin: 16px 0 0; color: rgba(224,207,171,.52); font-size: 10px; letter-spacing: .24em; }
 .threshold-lightweight { position: relative; z-index: 1; margin-top: 18px; padding: 8px 18px; border: 1px solid rgba(218,181,109,.36); background: rgba(8,7,5,.48); color: rgba(235,214,171,.78); font-size: 11px; letter-spacing: .24em; cursor: pointer; }
