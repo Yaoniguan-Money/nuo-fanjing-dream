@@ -47,7 +47,7 @@ describe("story-backed mask reveal", () => {
     const local = storage();
     const { container } = render(<GetFaceResult session={session} card={card} storage={local} onRestart={vi.fn()} />);
     expect(container.querySelector(".face-result-rays")).toBeNull();
-    expect(screen.getByRole("button", { name: "收录此面" }).className).toContain("ui-primary-cta");
+    expect(screen.getByRole("button", { name: "收录此面" }).className).toContain("ritual-hanging-cta");
   });
 
   it("collects on explicit confirmation, then enters the codex without any network request", async () => {

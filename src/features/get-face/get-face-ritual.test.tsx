@@ -72,6 +72,7 @@ describe("GetFaceRitual", () => {
     expect(screen.queryByRole("button", { name: "入 戏" })).toBeNull();
 
     await act(async () => { await vi.advanceTimersByTimeAsync(520); });
+    expect(screen.getByRole("button", { name: "入 戏" }).className).toContain("ritual-hanging-cta");
     fireEvent.click(screen.getByRole("button", { name: "入 戏" }));
     expect(container.querySelector('.get-face-ritual[data-phase="wearing"]')).toBeTruthy();
     await act(async () => { await vi.advanceTimersByTimeAsync(920); });

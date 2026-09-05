@@ -24,4 +24,10 @@ describe("ritual confirmation board", () => {
       "故事收束"
     ]);
   });
+
+  it("shows the review actions as hanging ritual plaques", () => {
+    render(<RitualConfirmationBoard />);
+    expect(screen.getByText("入 戏").className).toContain("ritual-board__hanging-cta");
+    expect(screen.getByText("收 录 此 面").className).toContain("ritual-board__hanging-cta");
+  });
 });

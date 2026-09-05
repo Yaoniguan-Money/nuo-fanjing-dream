@@ -1,5 +1,5 @@
 .threshold-experience { position: fixed; inset: 0; overflow: hidden; background: #080706; color: #efe2c4; }
-.threshold-dawn { position: absolute; inset: 0; background: linear-gradient(rgba(7,6,5,.16), rgba(7,6,5,.64)), url("/dream-assets/brand/cover-background.png") center/cover; transform: scale(1.04); animation: threshold-breathe 12s ease-in-out infinite alternate; }
+.threshold-dawn { position: absolute; inset: 0; background: linear-gradient(rgba(7,6,5,.1), rgba(7,6,5,.52)), url("/dream-assets/brand/cover-background-v2.png") center/cover; transform: scale(1.04); animation: threshold-breathe 12s ease-in-out infinite alternate; }
 .threshold-dawn::after { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 50% 40%, rgba(235,199,116,.22), transparent 28%), linear-gradient(90deg, rgba(8,7,6,.76), transparent 30% 70%, rgba(8,7,6,.76)); }
 .threshold-cloud { position: absolute; width: 80vw; height: 24vh; filter: blur(22px); opacity: .32; background: radial-gradient(ellipse, #ddc99f 0, transparent 67%); pointer-events: none; }
 .threshold-cloud-a { left: -20vw; bottom: 4vh; animation: cloud-drift 18s linear infinite alternate; }

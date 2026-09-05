@@ -35,6 +35,17 @@ const MASK_DUTIES = ["勇气与开始", "承愿与践行", "寻找位置", "守�
 
 function reducer(state: GetFaceRitualSession, event: GetFaceRitualEvent) { return transitionGetFaceRitual(state, event); }
 function maskIndexForCard(cardId: string): number { const index = CARD_IDS.indexOf(cardId as (typeof CARD_IDS)[number]); return index < 0 ? 0 : index; }
+function orbitPlacement(index: number): React.CSSProperties {
+  const angle = -90 + index * 45;
+  const radians = angle * Math.PI / 180;
+  const y = Math.sin(radians);
+  return {
+    "--orbit-x": `${50 + Math.cos(radians) * 40}%`,
+    "--orbit-y": `${50 + y * 35}%`,
+    "--orbit-scale": String((.78 + (y + 1) * .11) * (index === 6 ? .72 : 1)),
+    "--orbit-delay": `${index * .14}s`
+  } as React.CSSProperties;
+}
 
 function localMatch(wish: string): MatchResponse {
   const maskIndex = resolveVisual(getFaceData, wish);
@@ -147,7 +158,7 @@ export function GetFaceRitual({ entryMode = "default", onReturn }: { entryMode?:
           className={`orbit-mask orbit-mask-${index}${state.phase !== "matching" && index === selected ? " selected" : ""}${state.phase !== "matching" && index !== selected ? " dismissed" : ""}`}
           key={mask.id}
           role="img"
-          style={{ "--mask-a": mask.visual.card.primary, "--mask-b": mask.visual.card.secondary } as React.CSSProperties}
+          style={{ "--mask-a": mask.visual.card.primary, "--mask-b": mask.visual.card.secondary, ...orbitPlacement(index) } as React.CSSProperties}
         >
           <Image className="orbit-mask-thumbnail" src={RITUAL_MASK_THUMBNAILS[index]} alt="" width={150} height={200} loading="eager" unoptimized />
         </div>)}
@@ -156,7 +167,7 @@ export function GetFaceRitual({ entryMode = "default", onReturn }: { entryMode?:
         <span>{state.phase === "matching" ? "识 · 惑 · 请 · 面" : "得 · 面"}</span>
         <h1>{state.phase === "matching" ? "八面寻心" : MASK_TITLES[selected]}</h1>
         <p>{state.phase === "matching" ? "面具正在围绕你的困惑旋转，等待一面停于眼前。" : `职司 · ${MASK_DUTIES[selected]}`}</p>
-        {state.phase === "mask" && matchReady ? <button type="button" className="enter-dream-button" onClick={() => dispatch({ type: "enterStory" })}>入 戏</button> : null}
+        {state.phase === "mask" && matchReady ? <button type="button" className="enter-dream-button ritual-hanging-cta" onClick={() => dispatch({ type: "enterStory" })}>入 戏</button> : null}
       </div>
       {state.phase === "wearing" ? <div className="wearing-flash" aria-hidden="true" /> : null}
     </section> : null}
